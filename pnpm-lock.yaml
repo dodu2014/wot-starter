@@ -65,6 +65,9 @@ importers:
       '@dcloudio/uni-quickapp-webview':
         specifier: 3.0.0-4060620250520001
         version: 3.0.0-4060620250520001(@vueuse/core@11.0.3(vue@3.4.38(typescript@5.5.4)))(postcss@8.4.41)(rollup@4.21.1)(vue@3.4.38(typescript@5.5.4))
+      '@uni-helper/unh':
+        specifier: ^0.2.3
+        version: 0.2.3
       '@vueuse/core':
         specifier: ^11.0.3
         version: 11.0.3(vue@3.4.38(typescript@5.5.4))
@@ -2533,6 +2536,10 @@ packages:
 
   '@uni-helper/pages-json-schema@0.3.11':
     resolution: {integrity: sha512-JwfqW20igF8vrJpXU7ZYytk/9MVR/F/oo3/qUUD5evnkCms6Ue5wQxlp9scxCcsw/tn7ssjFQpFzTyIgR9tSHA==}
+
+  '@uni-helper/unh@0.2.3':
+    resolution: {integrity: sha512-uioHeLp0Aw458jAzE3B/uKMAeqpx5EVP2nmAmZSZaIA+kGg5B9zNruMfIK/tDmWdxRyA2/3vbrMWh6cYjXc68Q==}
+    hasBin: true
 
   '@uni-helper/uni-app-types@1.0.0-alpha.3':
     resolution: {integrity: sha512-lhSpVroEUxzre1vzKAckg85CFLUpn6vw9L2FDO1d8cd9JtMstlXkYmIn/Oz8tqzXxQ1sOgd3YcwoQmkXsw+Oxw==}
@@ -10517,6 +10524,15 @@ snapshots:
       - supports-color
 
   '@uni-helper/pages-json-schema@0.3.11': {}
+
+  '@uni-helper/unh@0.2.3':
+    dependencies:
+      blessed: 0.1.81
+      cac: 6.7.14
+      cross-spawn: 7.0.6
+      kolorist: 1.8.0
+      local-pkg: 1.1.2
+      unconfig: 7.3.3
 
   '@uni-helper/uni-app-types@1.0.0-alpha.3(typescript@5.5.4)(vue@3.4.38(typescript@5.5.4))':
     dependencies:

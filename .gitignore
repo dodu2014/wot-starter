@@ -19,3 +19,7 @@ dist
 *.njsproj
 *.sln
 *.sw?
+
+# unh
+pages.json
+manifest.json

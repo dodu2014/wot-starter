@@ -91,6 +91,23 @@ const {
   GlobalToast.error(error.error?.message || '用户登录失败')
 })
 
+// 使用真正的 useRequest hook - 获取app版本列表
+const {
+  data: appVersionData,
+  loading: appVersionLoading,
+  error: appVersionError,
+  send: loadAppVersionData,
+} = useRequest(
+  (keyword?: string) => Webapi_App.app.GetAppVersionList({
+    params: { keyword },
+  }),
+  {
+    immediate: false,
+  },
+).onError((error) => {
+  GlobalToast.error(error.error?.message || '获取app版本列表失败')
+})
+
 // useRequest 演示函数
 function demoLoadPets() {
   loadPetData('available')
@@ -98,6 +115,11 @@ function demoLoadPets() {
 
 function demoLogin() {
   performLogin('testuser', 'testpass')
+}
+
+// useRequest 演示函数
+async function loadAppVersion() {
+  await loadAppVersionData()
 }
 
 // 链接导航处理
@@ -116,6 +138,10 @@ function handleNavigate(url: string) {
   })
   // #endif
 }
+
+onMounted(async () => {
+  // await loadAppVersionData()
+})
 </script>
 
 <template>
@@ -268,6 +294,59 @@ function handleNavigate(url: string) {
               &nbsp;&nbsp;(username, password) => Apis.user.loginUser({\n
               &nbsp;&nbsp;&nbsp;&nbsp;params: { username, password }\n
               &nbsp;&nbsp;}),\n
+              &nbsp;&nbsp;{ immediate: false }\n
+              ).onError((error) => { ... })
+            </view>
+          </view>
+        </view>
+
+        <!-- app版本列表请求 -->
+        <view class="rounded-2 bg-white p-4 dark:bg-[var(--wot-dark-background2)]">
+          <view class="mb-3 flex items-center">
+            <view class="mr-2 text-5">
+              🤖
+            </view>
+            <view class="text-4 text-gray-800 font-bold dark:text-[var(--wot-dark-color)]">
+              app版本列表请求
+            </view>
+          </view>
+          <view class="mb-3 text-3 text-gray-600 leading-relaxed dark:text-[var(--wot-dark-color2)]">
+            使用 useRequest 获取app版本列表，支持参数传递和错误处理
+          </view>
+
+          <view class="mb-3">
+            <wd-button
+              type="success"
+              block
+              :loading="appVersionLoading"
+              @click="loadAppVersion"
+            >
+              获取app版本列表
+            </wd-button>
+          </view>
+
+          <!-- 请求状态显示 -->
+          <view class="space-y-2">
+            <view v-if="appVersionLoading" class="flex items-center text-3 text-blue-600">
+              <wd-icon name="loading" size="14px" class="mr-1" />
+              正在加载宠物数据...
+            </view>
+            <view v-if="appVersionError" class="text-3 text-red-600">
+              ❌ 请求失败: {{ appVersionError.message }}
+            </view>
+            <view v-if="appVersionData && !appVersionLoading" class="text-3 text-green-600">
+              ✅ 成功获取 {{ appVersionData.data?.list?.length }} 个app版本
+            </view>
+          </view>
+
+          <!-- 代码示例 -->
+          <view class="mt-3 rounded-2 bg-gray-50 p-3 dark:bg-[var(--wot-dark-background3)]">
+            <view class="mb-2 text-3 text-gray-700 font-bold dark:text-[var(--wot-dark-color)]">
+              代码示例:
+            </view>
+            <view class="text-2.5 text-gray-600 leading-relaxed font-mono dark:text-[var(--wot-dark-color2)]">
+              const { data, loading, send } = useRequest(\n
+              &nbsp;&nbsp;(status) => Webapi_App.app.GetAppVersionList({ params: { keyword } }),\n
               &nbsp;&nbsp;{ immediate: false }\n
               ).onError((error) => { ... })
             </view>

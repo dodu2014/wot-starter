@@ -94,8 +94,8 @@ importers:
         version: 1.11.1(vue@3.4.38(typescript@5.5.4))
     devDependencies:
       '@alova/wormhole':
-        specifier: ^1.1.2
-        version: 1.1.2
+        specifier: ^1.3.3
+        version: 1.3.3
       '@commitlint/cli':
         specifier: ^19.5.0
         version: 19.5.0(@types/node@20.16.2)(typescript@5.5.4)
@@ -235,8 +235,8 @@ packages:
   '@alova/shared@1.3.1':
     resolution: {integrity: sha512-ijSOaFLUFcVzMKSY3avoEE5C03/p9atjMDPBwvNkwnzaCrhv6/m4A121NdadF8YlHCRuifyYfz90IyEdMXTsJg==}
 
-  '@alova/wormhole@1.1.2':
-    resolution: {integrity: sha512-egBw0WQSV5lJmKwTGTYxXe0lNx4aJnRWI/cyu/qbw9ygUF2N+inT3LH3h+teVIigFQ/8xUsmxkqqfS01coZiiw==}
+  '@alova/wormhole@1.3.3':
+    resolution: {integrity: sha512-pqsVruCUfGq6+W3aLPRyUDliAUxnaPzt5ghaBcONfBofTXiwVT5GwEPRMuJ0k6SsTeWd0nSe6dbtSehLsctpmw==}
     hasBin: true
 
   '@ampproject/remapping@2.3.0':
@@ -7306,7 +7306,7 @@ snapshots:
 
   '@alova/shared@1.3.1': {}
 
-  '@alova/wormhole@1.1.2':
+  '@alova/wormhole@1.3.3':
     dependencies:
       alova: 3.3.4
       commander: 14.0.0

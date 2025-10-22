@@ -177,7 +177,7 @@ export default <Config>{
        * exported global api name, you can access the generated api globally through this name, default is `Apis`.
        * it is required when multiple generators are configured, and it cannot be repeated
        */
-      global: 'Base',
+      global: 'Webapi_Base',
 
       /**
        * filter or convert the generated api information, return an apiDescriptor, if this function is not specified, the apiDescripor object is not converted
@@ -240,7 +240,7 @@ export default <Config>{
        * exported global api name, you can access the generated api globally through this name, default is `Apis`.
        * it is required when multiple generators are configured, and it cannot be repeated
        */
-      global: 'Business',
+      global: 'Webapi_Business',
 
       /**
        * filter or convert the generated api information, return an apiDescriptor, if this function is not specified, the apiDescripor object is not converted

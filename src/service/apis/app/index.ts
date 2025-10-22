@@ -6,7 +6,7 @@ export { alovaInstance }
 
 export const $$userConfigMap = withConfigType({})
 
-const Apis = createApis(alovaInstance, $$userConfigMap)
+const Webapi_App = createApis(alovaInstance, $$userConfigMap)
 
-export default Apis
-export { Apis }
+export default Webapi_App
+export { Webapi_App }

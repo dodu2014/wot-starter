@@ -233,7 +233,7 @@ declare global {
        * }
        * ```
        */
-      get_api_app_app_versions_check<
+      CheckAppVersion<
         Config extends Alova2MethodConfig<ApiResultOfAppVersion> & {
           params: {
             appid?: string;
@@ -242,7 +242,7 @@ declare global {
         }
       >(
         config: Config
-      ): Alova2Method<ApiResultOfAppVersion, 'app.get_api_app_app_versions_check', Config>;
+      ): Alova2Method<ApiResultOfAppVersion, 'app.CheckAppVersion', Config>;
       /**
        * ---
        *
@@ -287,7 +287,7 @@ declare global {
        * }
        * ```
        */
-      get_api_app_app_versions_get<
+      GetAppVersion<
         Config extends Alova2MethodConfig<ApiResultOfAppVersion> & {
           params: {
             id?: string;
@@ -295,7 +295,7 @@ declare global {
         }
       >(
         config: Config
-      ): Alova2Method<ApiResultOfAppVersion, 'app.get_api_app_app_versions_get', Config>;
+      ): Alova2Method<ApiResultOfAppVersion, 'app.GetAppVersion', Config>;
       /**
        * ---
        *
@@ -310,9 +310,9 @@ declare global {
        * type Response = null
        * ```
        */
-      get_api_app_app_versions_download_last_apk<Config extends Alova2MethodConfig<null>>(
+      DownloadLastAppVersion<Config extends Alova2MethodConfig<null>>(
         config?: Config
-      ): Alova2Method<null, 'app.get_api_app_app_versions_download_last_apk', Config>;
+      ): Alova2Method<null, 'app.DownloadLastAppVersion', Config>;
       /**
        * ---
        *
@@ -369,7 +369,7 @@ declare global {
        * }
        * ```
        */
-      get_api_app_app_versions_list<
+      GetAppVersionList<
         Config extends Alova2MethodConfig<ApiResultOfPageListOfAppVersion> & {
           params: {
             enabled?: boolean;
@@ -380,7 +380,7 @@ declare global {
         }
       >(
         config: Config
-      ): Alova2Method<ApiResultOfPageListOfAppVersion, 'app.get_api_app_app_versions_list', Config>;
+      ): Alova2Method<ApiResultOfPageListOfAppVersion, 'app.GetAppVersionList', Config>;
       /**
        * ---
        *
@@ -433,13 +433,13 @@ declare global {
        * }
        * ```
        */
-      post_api_app_app_versions_create<
+      CreateAppVersion<
         Config extends Alova2MethodConfig<ApiResultOfAppVersion> & {
           data: AppVersion2;
         }
       >(
         config: Config
-      ): Alova2Method<ApiResultOfAppVersion, 'app.post_api_app_app_versions_create', Config>;
+      ): Alova2Method<ApiResultOfAppVersion, 'app.CreateAppVersion', Config>;
       /**
        * ---
        *
@@ -492,13 +492,13 @@ declare global {
        * }
        * ```
        */
-      put_api_app_app_versions_update<
+      UpdateAppVersion<
         Config extends Alova2MethodConfig<ApiResultOfAppVersion> & {
           data: AppVersion2;
         }
       >(
         config: Config
-      ): Alova2Method<ApiResultOfAppVersion, 'app.put_api_app_app_versions_update', Config>;
+      ): Alova2Method<ApiResultOfAppVersion, 'app.UpdateAppVersion', Config>;
       /**
        * ---
        *
@@ -543,7 +543,7 @@ declare global {
        * }
        * ```
        */
-      delete_api_app_app_versions_delete<
+      DeleteAppVersion<
         Config extends Alova2MethodConfig<ApiResultOfAppVersion> & {
           params: {
             id?: string;
@@ -551,7 +551,7 @@ declare global {
         }
       >(
         config: Config
-      ): Alova2Method<ApiResultOfAppVersion, 'app.delete_api_app_app_versions_delete', Config>;
+      ): Alova2Method<ApiResultOfAppVersion, 'app.DeleteAppVersion', Config>;
       /**
        * ---
        *
@@ -584,13 +584,13 @@ declare global {
        * }
        * ```
        */
-      delete_api_app_app_versions_deletes<
+      DeleteAppVersions<
         Config extends Alova2MethodConfig<ApiResultOfint> & {
           data: string[];
         }
       >(
         config: Config
-      ): Alova2Method<ApiResultOfint, 'app.delete_api_app_app_versions_deletes', Config>;
+      ): Alova2Method<ApiResultOfint, 'app.DeleteAppVersions', Config>;
     };
   }
 

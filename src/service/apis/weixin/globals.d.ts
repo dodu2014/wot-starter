@@ -1085,7 +1085,7 @@ export interface ApiResultOfSyncApiResult {
 }
 declare global {
   interface WebApi_Weixin {
-    general: {
+    customService: {
       /**
        * ---
        *
@@ -1131,9 +1131,11 @@ declare global {
        * }
        * ```
        */
-      get_api_weixin_custom_service_list<Config extends Alova2MethodConfig<ApiResultOfCustomInfoJson>>(
+      GetCustomServiceList<Config extends Alova2MethodConfig<ApiResultOfCustomInfoJson>>(
         config?: Config
-      ): Alova2Method<ApiResultOfCustomInfoJson, 'general.get_api_weixin_custom_service_list', Config>;
+      ): Alova2Method<ApiResultOfCustomInfoJson, 'customService.GetCustomServiceList', Config>;
+    };
+    draft: {
       /**
        * ---
        *
@@ -1199,7 +1201,7 @@ declare global {
        * }
        * ```
        */
-      get_api_weixin_drafts_list<
+      GetDraftList<
         Config extends Alova2MethodConfig<ApiResultOfPageListOfDraftList_Item> & {
           params: {
             page?: number;
@@ -1208,7 +1210,7 @@ declare global {
         }
       >(
         config: Config
-      ): Alova2Method<ApiResultOfPageListOfDraftList_Item, 'general.get_api_weixin_drafts_list', Config>;
+      ): Alova2Method<ApiResultOfPageListOfDraftList_Item, 'draft.GetDraftList', Config>;
       /**
        * ---
        *
@@ -1265,7 +1267,7 @@ declare global {
        * }
        * ```
        */
-      get_api_weixin_drafts_get<
+      GetDraft<
         Config extends Alova2MethodConfig<ApiResultOfGetDraftResultJson> & {
           params: {
             mediaid?: string;
@@ -1273,7 +1275,7 @@ declare global {
         }
       >(
         config: Config
-      ): Alova2Method<ApiResultOfGetDraftResultJson, 'general.get_api_weixin_drafts_get', Config>;
+      ): Alova2Method<ApiResultOfGetDraftResultJson, 'draft.GetDraft', Config>;
       /**
        * ---
        *
@@ -1323,13 +1325,13 @@ declare global {
        * }
        * ```
        */
-      post_api_weixin_drafts_create<
+      CreateDraft<
         Config extends Alova2MethodConfig<ApiResultOfAddDraftResultJson> & {
           data: DraftModel[];
         }
       >(
         config: Config
-      ): Alova2Method<ApiResultOfAddDraftResultJson, 'general.post_api_weixin_drafts_create', Config>;
+      ): Alova2Method<ApiResultOfAddDraftResultJson, 'draft.CreateDraft', Config>;
       /**
        * ---
        *
@@ -1388,7 +1390,7 @@ declare global {
        * }
        * ```
        */
-      put_api_weixin_drafts_update<
+      UpdateDraft<
         Config extends Alova2MethodConfig<ApiResultOfWxJsonResult> & {
           params: {
             mediaid?: string;
@@ -1398,7 +1400,7 @@ declare global {
         }
       >(
         config: Config
-      ): Alova2Method<ApiResultOfWxJsonResult, 'general.put_api_weixin_drafts_update', Config>;
+      ): Alova2Method<ApiResultOfWxJsonResult, 'draft.UpdateDraft', Config>;
       /**
        * ---
        *
@@ -1439,7 +1441,7 @@ declare global {
        * }
        * ```
        */
-      delete_api_weixin_drafts_delete<
+      DeleteDraft<
         Config extends Alova2MethodConfig<ApiResultOfWxJsonResult> & {
           params: {
             mediaid?: string;
@@ -1447,7 +1449,7 @@ declare global {
         }
       >(
         config: Config
-      ): Alova2Method<ApiResultOfWxJsonResult, 'general.delete_api_weixin_drafts_delete', Config>;
+      ): Alova2Method<ApiResultOfWxJsonResult, 'draft.DeleteDraft', Config>;
       /**
        * ---
        *
@@ -1491,7 +1493,7 @@ declare global {
        * }
        * ```
        */
-      post_api_weixin_drafts_batch_send_message<
+      BatchSendMessage<
         Config extends Alova2MethodConfig<ApiResultOfSendResult> & {
           params: {
             mediaid?: string;
@@ -1499,7 +1501,7 @@ declare global {
         }
       >(
         config: Config
-      ): Alova2Method<ApiResultOfSendResult, 'general.post_api_weixin_drafts_batch_send_message', Config>;
+      ): Alova2Method<ApiResultOfSendResult, 'draft.BatchSendMessage', Config>;
       /**
        * ---
        *
@@ -1541,7 +1543,7 @@ declare global {
        * }
        * ```
        */
-      post_api_weixin_drafts_publish<
+      PublishDraft<
         Config extends Alova2MethodConfig<ApiResultOfSubmitFreePublishResultJson> & {
           params: {
             mediaid?: string;
@@ -1549,7 +1551,9 @@ declare global {
         }
       >(
         config: Config
-      ): Alova2Method<ApiResultOfSubmitFreePublishResultJson, 'general.post_api_weixin_drafts_publish', Config>;
+      ): Alova2Method<ApiResultOfSubmitFreePublishResultJson, 'draft.PublishDraft', Config>;
+    };
+    freePublish: {
       /**
        * ---
        *
@@ -1621,7 +1625,7 @@ declare global {
        * }
        * ```
        */
-      get_api_weixin_free_publish_list<
+      GetFreePublishList<
         Config extends Alova2MethodConfig<ApiResultOfPageListOfFreePublishList_Item> & {
           params: {
             page?: number;
@@ -1630,7 +1634,7 @@ declare global {
         }
       >(
         config: Config
-      ): Alova2Method<ApiResultOfPageListOfFreePublishList_Item, 'general.get_api_weixin_free_publish_list', Config>;
+      ): Alova2Method<ApiResultOfPageListOfFreePublishList_Item, 'freePublish.GetFreePublishList', Config>;
       /**
        * ---
        *
@@ -1688,7 +1692,7 @@ declare global {
        * }
        * ```
        */
-      get_api_weixin_free_publish_get_by_article_id<
+      GetFreePublishByArticleId<
         Config extends Alova2MethodConfig<ApiResultOfFreePublishGetArticleResultJson> & {
           params: {
             articleId?: string;
@@ -1696,11 +1700,7 @@ declare global {
         }
       >(
         config: Config
-      ): Alova2Method<
-        ApiResultOfFreePublishGetArticleResultJson,
-        'general.get_api_weixin_free_publish_get_by_article_id',
-        Config
-      >;
+      ): Alova2Method<ApiResultOfFreePublishGetArticleResultJson, 'freePublish.GetFreePublishByArticleId', Config>;
       /**
        * ---
        *
@@ -1760,7 +1760,7 @@ declare global {
        * }
        * ```
        */
-      get_api_weixin_free_publish_get_status<
+      GetFreePublishStatus<
         Config extends Alova2MethodConfig<ApiResultOfGetFreePublishResultJson> & {
           params: {
             publishId?: string;
@@ -1768,7 +1768,7 @@ declare global {
         }
       >(
         config: Config
-      ): Alova2Method<ApiResultOfGetFreePublishResultJson, 'general.get_api_weixin_free_publish_get_status', Config>;
+      ): Alova2Method<ApiResultOfGetFreePublishResultJson, 'freePublish.GetFreePublishStatus', Config>;
       /**
        * ---
        *
@@ -1810,7 +1810,7 @@ declare global {
        * }
        * ```
        */
-      delete_api_weixin_free_publish_delete<
+      DeleteFreePublish<
         Config extends Alova2MethodConfig<ApiResultOfWxJsonResult> & {
           params: {
             articleId?: string;
@@ -1819,7 +1819,7 @@ declare global {
         }
       >(
         config: Config
-      ): Alova2Method<ApiResultOfWxJsonResult, 'general.delete_api_weixin_free_publish_delete', Config>;
+      ): Alova2Method<ApiResultOfWxJsonResult, 'freePublish.DeleteFreePublish', Config>;
       /**
        * ---
        *
@@ -1854,7 +1854,7 @@ declare global {
        * }
        * ```
        */
-      post_api_weixin_free_publish_send_template_message<
+      SendFreePublishTemplateMessage<
         Config extends Alova2MethodConfig<ApiResultOfValueTupleOfintAndint> & {
           params: {
             articleId?: string;
@@ -1862,11 +1862,9 @@ declare global {
         }
       >(
         config: Config
-      ): Alova2Method<
-        ApiResultOfValueTupleOfintAndint,
-        'general.post_api_weixin_free_publish_send_template_message',
-        Config
-      >;
+      ): Alova2Method<ApiResultOfValueTupleOfintAndint, 'freePublish.SendFreePublishTemplateMessage', Config>;
+    };
+    material: {
       /**
        * ---
        *
@@ -1890,7 +1888,7 @@ declare global {
        * type Response = null
        * ```
        */
-      get_api_weixin_materials_get_image<
+      GetImage<
         Config extends Alova2MethodConfig<null> & {
           params: {
             mediaid?: string;
@@ -1898,7 +1896,7 @@ declare global {
         }
       >(
         config: Config
-      ): Alova2Method<null, 'general.get_api_weixin_materials_get_image', Config>;
+      ): Alova2Method<null, 'material.GetImage', Config>;
       /**
        * ---
        *
@@ -1956,7 +1954,7 @@ declare global {
        * }
        * ```
        */
-      get_api_weixin_materials_get_news<
+      GetNews<
         Config extends Alova2MethodConfig<ApiResultOfGetNewsResultJson> & {
           params: {
             mediaid?: string;
@@ -1964,7 +1962,7 @@ declare global {
         }
       >(
         config: Config
-      ): Alova2Method<ApiResultOfGetNewsResultJson, 'general.get_api_weixin_materials_get_news', Config>;
+      ): Alova2Method<ApiResultOfGetNewsResultJson, 'material.GetNews', Config>;
       /**
        * ---
        *
@@ -2008,7 +2006,7 @@ declare global {
        * }
        * ```
        */
-      get_api_weixin_materials_get_video<
+      GetVideo<
         Config extends Alova2MethodConfig<ApiResultOfGetForeverMediaVideoResultJson> & {
           params: {
             mediaid?: string;
@@ -2016,7 +2014,7 @@ declare global {
         }
       >(
         config: Config
-      ): Alova2Method<ApiResultOfGetForeverMediaVideoResultJson, 'general.get_api_weixin_materials_get_video', Config>;
+      ): Alova2Method<ApiResultOfGetForeverMediaVideoResultJson, 'material.GetVideo', Config>;
       /**
        * ---
        *
@@ -2057,7 +2055,7 @@ declare global {
        * }
        * ```
        */
-      delete_api_weixin_materials_delete<
+      DeleteMaterial<
         Config extends Alova2MethodConfig<ApiResultOfWxJsonResult> & {
           params: {
             mediaid?: string;
@@ -2065,7 +2063,9 @@ declare global {
         }
       >(
         config: Config
-      ): Alova2Method<ApiResultOfWxJsonResult, 'general.delete_api_weixin_materials_delete', Config>;
+      ): Alova2Method<ApiResultOfWxJsonResult, 'material.DeleteMaterial', Config>;
+    };
+    menu: {
       /**
        * ---
        *
@@ -2128,9 +2128,9 @@ declare global {
        * }
        * ```
        */
-      get_api_weixin_menus_get<Config extends Alova2MethodConfig<ApiResultOfGetMenuResult>>(
+      GetMenu<Config extends Alova2MethodConfig<ApiResultOfGetMenuResult>>(
         config?: Config
-      ): Alova2Method<ApiResultOfGetMenuResult, 'general.get_api_weixin_menus_get', Config>;
+      ): Alova2Method<ApiResultOfGetMenuResult, 'menu.GetMenu', Config>;
       /**
        * ---
        *
@@ -2233,13 +2233,15 @@ declare global {
        * }
        * ```
        */
-      post_api_weixin_menus_update<
+      UpdateMenu<
         Config extends Alova2MethodConfig<ApiResultOfWxJsonResult> & {
           data: GetMenuResultFull;
         }
       >(
         config: Config
-      ): Alova2Method<ApiResultOfWxJsonResult, 'general.post_api_weixin_menus_update', Config>;
+      ): Alova2Method<ApiResultOfWxJsonResult, 'menu.UpdateMenu', Config>;
+    };
+    mp: {
       /**
        * ---
        *
@@ -2274,7 +2276,7 @@ declare global {
        * }
        * ```
        */
-      get_api_weixin_mp_create_scene_qrcode<
+      CreateSceneQrCode<
         Config extends Alova2MethodConfig<ApiResultOfstring> & {
           params: {
             scene?: string;
@@ -2282,7 +2284,7 @@ declare global {
         }
       >(
         config: Config
-      ): Alova2Method<ApiResultOfstring, 'general.get_api_weixin_mp_create_scene_qrcode', Config>;
+      ): Alova2Method<ApiResultOfstring, 'mp.CreateSceneQrCode', Config>;
       /**
        * ---
        *
@@ -2317,7 +2319,7 @@ declare global {
        * }
        * ```
        */
-      get_api_weixin_mp_create_limit_scene_qrcode<
+      CreateLimitSceneQrCode<
         Config extends Alova2MethodConfig<ApiResultOfstring> & {
           params: {
             scene?: string;
@@ -2325,7 +2327,9 @@ declare global {
         }
       >(
         config: Config
-      ): Alova2Method<ApiResultOfstring, 'general.get_api_weixin_mp_create_limit_scene_qrcode', Config>;
+      ): Alova2Method<ApiResultOfstring, 'mp.CreateLimitSceneQrCode', Config>;
+    };
+    mpService: {
       /**
        * ---
        *
@@ -2365,7 +2369,7 @@ declare global {
        * type Response = null
        * ```
        */
-      get_api_weixin_mp_services<
+      GetWeixinServices<
         Config extends Alova2MethodConfig<null> & {
           params: {
             echostr?: string;
@@ -2374,7 +2378,7 @@ declare global {
         }
       >(
         config: Config
-      ): Alova2Method<null, 'general.get_api_weixin_mp_services', Config>;
+      ): Alova2Method<null, 'mpService.GetWeixinServices', Config>;
       /**
        * ---
        *
@@ -2405,13 +2409,15 @@ declare global {
        * type Response = null
        * ```
        */
-      post_api_weixin_mp_services<
+      PostWeixinServices<
         Config extends Alova2MethodConfig<null> & {
           data: PostModel;
         }
       >(
         config: Config
-      ): Alova2Method<null, 'general.post_api_weixin_mp_services', Config>;
+      ): Alova2Method<null, 'mpService.PostWeixinServices', Config>;
+    };
+    oAuth: {
       /**
        * ---
        *
@@ -2437,7 +2443,7 @@ declare global {
        * type Response = null
        * ```
        */
-      get_api_weixin_o_auth_user_info_callback<
+      UserInfoCallback<
         Config extends Alova2MethodConfig<null> & {
           params: {
             code?: string;
@@ -2447,7 +2453,9 @@ declare global {
         }
       >(
         config: Config
-      ): Alova2Method<null, 'general.get_api_weixin_o_auth_user_info_callback', Config>;
+      ): Alova2Method<null, 'oAuth.UserInfoCallback', Config>;
+    };
+    wxOpen: {
       /**
        * ---
        *
@@ -2483,7 +2491,7 @@ declare global {
        * }
        * ```
        */
-      get_api_weixin_wx_open_on_login<
+      OnLogin<
         Config extends Alova2MethodConfig<ApiResult> & {
           params: {
             code?: string;
@@ -2492,7 +2500,7 @@ declare global {
         }
       >(
         config: Config
-      ): Alova2Method<ApiResult, 'general.get_api_weixin_wx_open_on_login', Config>;
+      ): Alova2Method<ApiResult, 'wxOpen.OnLogin', Config>;
       /**
        * ---
        *
@@ -2543,13 +2551,13 @@ declare global {
        * }
        * ```
        */
-      post_api_weixin_wx_open_decrypt_user_info<
+      DecryptUserInfo<
         Config extends Alova2MethodConfig<ApiResultOfDecodedUserInfo> & {
           data: EncryptedDataModel;
         }
       >(
         config: Config
-      ): Alova2Method<ApiResultOfDecodedUserInfo, 'general.post_api_weixin_wx_open_decrypt_user_info', Config>;
+      ): Alova2Method<ApiResultOfDecodedUserInfo, 'wxOpen.DecryptUserInfo', Config>;
       /**
        * ---
        *
@@ -2586,13 +2594,13 @@ declare global {
        * }
        * ```
        */
-      post_api_weixin_wx_open_decrypt_phone_number<
+      DecryptPhoneNumber<
         Config extends Alova2MethodConfig<ApiResultOfstring> & {
           data: EncryptedDataModel;
         }
       >(
         config: Config
-      ): Alova2Method<ApiResultOfstring, 'general.post_api_weixin_wx_open_decrypt_phone_number', Config>;
+      ): Alova2Method<ApiResultOfstring, 'wxOpen.DecryptPhoneNumber', Config>;
       /**
        * ---
        *
@@ -2628,7 +2636,7 @@ declare global {
        * }
        * ```
        */
-      post_api_weixin_wx_open_get_user_phone_number_from_code<
+      GetUserPhoneNumberFromCode<
         Config extends Alova2MethodConfig<ApiResultOfstring> & {
           params: {
             code?: string;
@@ -2637,7 +2645,7 @@ declare global {
         }
       >(
         config: Config
-      ): Alova2Method<ApiResultOfstring, 'general.post_api_weixin_wx_open_get_user_phone_number_from_code', Config>;
+      ): Alova2Method<ApiResultOfstring, 'wxOpen.GetUserPhoneNumberFromCode', Config>;
       /**
        * ---
        *
@@ -2663,7 +2671,7 @@ declare global {
        * type Response = null
        * ```
        */
-      get_api_weixin_wx_open_generate_wxcode<
+      GenerateWxcode<
         Config extends Alova2MethodConfig<null> & {
           params: {
             path?: string;
@@ -2673,7 +2681,9 @@ declare global {
         }
       >(
         config: Config
-      ): Alova2Method<null, 'general.get_api_weixin_wx_open_generate_wxcode', Config>;
+      ): Alova2Method<null, 'wxOpen.GenerateWxcode', Config>;
+    };
+    wxPay: {
       /**
        * ---
        *
@@ -2713,7 +2723,7 @@ declare global {
        * }
        * ```
        */
-      post_api_weixin_wx_pay_create_unifiedorder<
+      CreateUnifiedorder<
         Config extends Alova2MethodConfig<ApiResult> & {
           params: {
             openId?: string;
@@ -2726,7 +2736,7 @@ declare global {
         }
       >(
         config: Config
-      ): Alova2Method<ApiResult, 'general.post_api_weixin_wx_pay_create_unifiedorder', Config>;
+      ): Alova2Method<ApiResult, 'wxPay.CreateUnifiedorder', Config>;
       /**
        * ---
        *
@@ -2741,9 +2751,9 @@ declare global {
        * type Response = null
        * ```
        */
-      post_api_weixin_wx_pay_payment_notify<Config extends Alova2MethodConfig<null>>(
+      paymentNotify<Config extends Alova2MethodConfig<null>>(
         config?: Config
-      ): Alova2Method<null, 'general.post_api_weixin_wx_pay_payment_notify', Config>;
+      ): Alova2Method<null, 'wxPay.paymentNotify', Config>;
       /**
        * ---
        *
@@ -2842,7 +2852,7 @@ declare global {
        * }
        * ```
        */
-      get_api_weixin_wx_pay_query<
+      Query<
         Config extends Alova2MethodConfig<ApiResultOfOrderReturnJson> & {
           params: {
             orderNum?: string;
@@ -2850,7 +2860,7 @@ declare global {
         }
       >(
         config: Config
-      ): Alova2Method<ApiResultOfOrderReturnJson, 'general.get_api_weixin_wx_pay_query', Config>;
+      ): Alova2Method<ApiResultOfOrderReturnJson, 'wxPay.Query', Config>;
       /**
        * ---
        *
@@ -2948,7 +2958,7 @@ declare global {
        * }
        * ```
        */
-      post_api_weixin_wx_pay_refund<
+      Refund<
         Config extends Alova2MethodConfig<ApiResultOfRefundReturnJson> & {
           params: {
             orderNum?: string;
@@ -2958,7 +2968,7 @@ declare global {
         }
       >(
         config: Config
-      ): Alova2Method<ApiResultOfRefundReturnJson, 'general.post_api_weixin_wx_pay_refund', Config>;
+      ): Alova2Method<ApiResultOfRefundReturnJson, 'wxPay.Refund', Config>;
       /**
        * ---
        *
@@ -2973,9 +2983,9 @@ declare global {
        * type Response = null
        * ```
        */
-      post_api_weixin_wx_pay_refund_notify<Config extends Alova2MethodConfig<null>>(
+      refundNotify<Config extends Alova2MethodConfig<null>>(
         config?: Config
-      ): Alova2Method<null, 'general.post_api_weixin_wx_pay_refund_notify', Config>;
+      ): Alova2Method<null, 'wxPay.refundNotify', Config>;
       /**
        * ---
        *
@@ -3038,7 +3048,7 @@ declare global {
        * }
        * ```
        */
-      post_api_weixin_wx_pay_extract<
+      extract<
         Config extends Alova2MethodConfig<ApiResultOfApplicationUser> & {
           params: {
             id?: string;
@@ -3048,7 +3058,9 @@ declare global {
         }
       >(
         config: Config
-      ): Alova2Method<ApiResultOfApplicationUser, 'general.post_api_weixin_wx_pay_extract', Config>;
+      ): Alova2Method<ApiResultOfApplicationUser, 'wxPay.extract', Config>;
+    };
+    wxUser: {
       /**
        * ---
        *
@@ -3114,7 +3126,7 @@ declare global {
        * }
        * ```
        */
-      get_api_weixin_wx_users_list<
+      getWxUserList<
         Config extends Alova2MethodConfig<ApiResultOfPageListOfWxUser> & {
           params: {
             type?: string;
@@ -3128,7 +3140,7 @@ declare global {
         }
       >(
         config: Config
-      ): Alova2Method<ApiResultOfPageListOfWxUser, 'general.get_api_weixin_wx_users_list', Config>;
+      ): Alova2Method<ApiResultOfPageListOfWxUser, 'wxUser.getWxUserList', Config>;
       /**
        * ---
        *
@@ -3179,7 +3191,7 @@ declare global {
        * }
        * ```
        */
-      get_api_weixin_wx_users_get<
+      getWxUser<
         Config extends Alova2MethodConfig<ApiResultOfWxUser> & {
           params: {
             openid?: string;
@@ -3187,7 +3199,7 @@ declare global {
         }
       >(
         config: Config
-      ): Alova2Method<ApiResultOfWxUser, 'general.get_api_weixin_wx_users_get', Config>;
+      ): Alova2Method<ApiResultOfWxUser, 'wxUser.getWxUser', Config>;
       /**
        * ---
        *
@@ -3252,13 +3264,13 @@ declare global {
        * }
        * ```
        */
-      post_api_weixin_wx_users_create<
+      createWxUser<
         Config extends Alova2MethodConfig<ApiResultOfWxUser> & {
           data: WxUser;
         }
       >(
         config: Config
-      ): Alova2Method<ApiResultOfWxUser, 'general.post_api_weixin_wx_users_create', Config>;
+      ): Alova2Method<ApiResultOfWxUser, 'wxUser.createWxUser', Config>;
       /**
        * ---
        *
@@ -3323,13 +3335,13 @@ declare global {
        * }
        * ```
        */
-      put_api_weixin_wx_users_update<
+      updateWxUser<
         Config extends Alova2MethodConfig<ApiResultOfWxUser> & {
           data: WxUser;
         }
       >(
         config: Config
-      ): Alova2Method<ApiResultOfWxUser, 'general.put_api_weixin_wx_users_update', Config>;
+      ): Alova2Method<ApiResultOfWxUser, 'wxUser.updateWxUser', Config>;
       /**
        * ---
        *
@@ -3380,7 +3392,7 @@ declare global {
        * }
        * ```
        */
-      delete_api_weixin_wx_users_delete<
+      deleteWxUser<
         Config extends Alova2MethodConfig<ApiResultOfWxUser> & {
           params: {
             id?: string;
@@ -3388,7 +3400,7 @@ declare global {
         }
       >(
         config: Config
-      ): Alova2Method<ApiResultOfWxUser, 'general.delete_api_weixin_wx_users_delete', Config>;
+      ): Alova2Method<ApiResultOfWxUser, 'wxUser.deleteWxUser', Config>;
       /**
        * ---
        *
@@ -3426,7 +3438,7 @@ declare global {
        * }
        * ```
        */
-      post_api_weixin_wx_users_sync<
+      syncWxUser<
         Config extends Alova2MethodConfig<ApiResultOfSyncApiResult> & {
           params: {
             nextOpenid?: string;
@@ -3434,7 +3446,7 @@ declare global {
         }
       >(
         config: Config
-      ): Alova2Method<ApiResultOfSyncApiResult, 'general.post_api_weixin_wx_users_sync', Config>;
+      ): Alova2Method<ApiResultOfSyncApiResult, 'wxUser.syncWxUser', Config>;
     };
   }
 

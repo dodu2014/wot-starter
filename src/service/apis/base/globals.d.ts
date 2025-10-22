@@ -1079,8 +1079,8 @@ export interface ApiResultOfAddDraftResultJson {
   isSuccess?: boolean;
 }
 declare global {
-  interface Base {
-    general: {
+  interface Webapi_Base {
+    articleAgreeLog: {
       /**
        * ---
        *
@@ -1116,7 +1116,7 @@ declare global {
        * }
        * ```
        */
-      get_api_base_article_agree_logs_count<
+      CountArticleAgreeLogs<
         Config extends Alova2MethodConfig<ApiResultOfValueTupleOfintAndint> & {
           params: {
             articleid?: string;
@@ -1125,7 +1125,7 @@ declare global {
         }
       >(
         config: Config
-      ): Alova2Method<ApiResultOfValueTupleOfintAndint, 'general.get_api_base_article_agree_logs_count', Config>;
+      ): Alova2Method<ApiResultOfValueTupleOfintAndint, 'articleAgreeLog.CountArticleAgreeLogs', Config>;
       /**
        * ---
        *
@@ -1162,7 +1162,7 @@ declare global {
        * }
        * ```
        */
-      post_api_base_article_agree_logs_set<
+      SetArticleAgreeLog<
         Config extends Alova2MethodConfig<ApiResultOfValueTupleOfintAndint> & {
           params: {
             articleid?: string;
@@ -1172,7 +1172,9 @@ declare global {
         }
       >(
         config: Config
-      ): Alova2Method<ApiResultOfValueTupleOfintAndint, 'general.post_api_base_article_agree_logs_set', Config>;
+      ): Alova2Method<ApiResultOfValueTupleOfintAndint, 'articleAgreeLog.SetArticleAgreeLog', Config>;
+    };
+    articleCategory: {
       /**
        * ---
        *
@@ -1230,7 +1232,7 @@ declare global {
        * }
        * ```
        */
-      get_api_base_article_categories_list<
+      GetArticleCategoryList<
         Config extends Alova2MethodConfig<ApiResultOfPageListOfArticleCategory> & {
           params: {
             pid?: string;
@@ -1242,7 +1244,7 @@ declare global {
         }
       >(
         config: Config
-      ): Alova2Method<ApiResultOfPageListOfArticleCategory, 'general.get_api_base_article_categories_list', Config>;
+      ): Alova2Method<ApiResultOfPageListOfArticleCategory, 'articleCategory.GetArticleCategoryList', Config>;
       /**
        * ---
        *
@@ -1293,7 +1295,7 @@ declare global {
        * }
        * ```
        */
-      get_api_base_article_categories_node_list<
+      GetArticleCategoryNodeList<
         Config extends Alova2MethodConfig<ApiResultOfIEnumerableOfArticleCategory> & {
           params: {
             pid?: string;
@@ -1303,11 +1305,7 @@ declare global {
         }
       >(
         config: Config
-      ): Alova2Method<
-        ApiResultOfIEnumerableOfArticleCategory,
-        'general.get_api_base_article_categories_node_list',
-        Config
-      >;
+      ): Alova2Method<ApiResultOfIEnumerableOfArticleCategory, 'articleCategory.GetArticleCategoryNodeList', Config>;
       /**
        * ---
        *
@@ -1372,7 +1370,7 @@ declare global {
        * }
        * ```
        */
-      get_api_base_article_categories_get<
+      GetArticleCategory<
         Config extends Alova2MethodConfig<ApiResultOfArticleCategory> & {
           params: {
             num?: string;
@@ -1380,7 +1378,7 @@ declare global {
         }
       >(
         config: Config
-      ): Alova2Method<ApiResultOfArticleCategory, 'general.get_api_base_article_categories_get', Config>;
+      ): Alova2Method<ApiResultOfArticleCategory, 'articleCategory.GetArticleCategory', Config>;
       /**
        * ---
        *
@@ -1463,13 +1461,13 @@ declare global {
        * }
        * ```
        */
-      post_api_base_article_categories_create<
+      CreateArticleCategory<
         Config extends Alova2MethodConfig<ApiResultOfArticleCategory> & {
           data: ArticleCategory3;
         }
       >(
         config: Config
-      ): Alova2Method<ApiResultOfArticleCategory, 'general.post_api_base_article_categories_create', Config>;
+      ): Alova2Method<ApiResultOfArticleCategory, 'articleCategory.CreateArticleCategory', Config>;
       /**
        * ---
        *
@@ -1552,13 +1550,13 @@ declare global {
        * }
        * ```
        */
-      put_api_base_article_categories_update<
+      UpdateArticleCategory<
         Config extends Alova2MethodConfig<ApiResultOfArticleCategory> & {
           data: ArticleCategory3;
         }
       >(
         config: Config
-      ): Alova2Method<ApiResultOfArticleCategory, 'general.put_api_base_article_categories_update', Config>;
+      ): Alova2Method<ApiResultOfArticleCategory, 'articleCategory.UpdateArticleCategory', Config>;
       /**
        * ---
        *
@@ -1623,7 +1621,7 @@ declare global {
        * }
        * ```
        */
-      delete_api_base_article_categories_delete<
+      DeleteArticleCategory<
         Config extends Alova2MethodConfig<ApiResultOfArticleCategory> & {
           params: {
             num?: string;
@@ -1631,7 +1629,7 @@ declare global {
         }
       >(
         config: Config
-      ): Alova2Method<ApiResultOfArticleCategory, 'general.delete_api_base_article_categories_delete', Config>;
+      ): Alova2Method<ApiResultOfArticleCategory, 'articleCategory.DeleteArticleCategory', Config>;
       /**
        * ---
        *
@@ -1664,13 +1662,15 @@ declare global {
        * }
        * ```
        */
-      delete_api_base_article_categories_deletes<
+      DeleteArticleCategories<
         Config extends Alova2MethodConfig<ApiResult> & {
           data: string[];
         }
       >(
         config: Config
-      ): Alova2Method<ApiResult, 'general.delete_api_base_article_categories_deletes', Config>;
+      ): Alova2Method<ApiResult, 'articleCategory.DeleteArticleCategories', Config>;
+    };
+    article: {
       /**
        * ---
        *
@@ -1778,7 +1778,7 @@ declare global {
        * }
        * ```
        */
-      get_api_base_articles_list<
+      GetArticleList<
         Config extends Alova2MethodConfig<ApiResultOfPageListOfArticle> & {
           params: {
             categorynum?: string;
@@ -1792,7 +1792,7 @@ declare global {
         }
       >(
         config: Config
-      ): Alova2Method<ApiResultOfPageListOfArticle, 'general.get_api_base_articles_list', Config>;
+      ): Alova2Method<ApiResultOfPageListOfArticle, 'article.GetArticleList', Config>;
       /**
        * ---
        *
@@ -1885,7 +1885,7 @@ declare global {
        * }
        * ```
        */
-      get_api_base_articles_get<
+      GetArticle<
         Config extends Alova2MethodConfig<ApiResultOfArticle> & {
           params: {
             id?: string;
@@ -1893,7 +1893,7 @@ declare global {
         }
       >(
         config: Config
-      ): Alova2Method<ApiResultOfArticle, 'general.get_api_base_articles_get', Config>;
+      ): Alova2Method<ApiResultOfArticle, 'article.GetArticle', Config>;
       /**
        * ---
        *
@@ -2042,13 +2042,13 @@ declare global {
        * }
        * ```
        */
-      post_api_base_articles_create<
+      CreateArticle<
         Config extends Alova2MethodConfig<ApiResultOfArticle> & {
           data: Article;
         }
       >(
         config: Config
-      ): Alova2Method<ApiResultOfArticle, 'general.post_api_base_articles_create', Config>;
+      ): Alova2Method<ApiResultOfArticle, 'article.CreateArticle', Config>;
       /**
        * ---
        *
@@ -2197,13 +2197,13 @@ declare global {
        * }
        * ```
        */
-      put_api_base_articles_update<
+      UpdateArticle<
         Config extends Alova2MethodConfig<ApiResultOfArticle> & {
           data: Article;
         }
       >(
         config: Config
-      ): Alova2Method<ApiResultOfArticle, 'general.put_api_base_articles_update', Config>;
+      ): Alova2Method<ApiResultOfArticle, 'article.UpdateArticle', Config>;
       /**
        * ---
        *
@@ -2296,7 +2296,7 @@ declare global {
        * }
        * ```
        */
-      delete_api_base_articles_delete<
+      DeleteArticle<
         Config extends Alova2MethodConfig<ApiResultOfArticle> & {
           params: {
             id?: string;
@@ -2304,7 +2304,7 @@ declare global {
         }
       >(
         config: Config
-      ): Alova2Method<ApiResultOfArticle, 'general.delete_api_base_articles_delete', Config>;
+      ): Alova2Method<ApiResultOfArticle, 'article.DeleteArticle', Config>;
       /**
        * ---
        *
@@ -2337,13 +2337,13 @@ declare global {
        * }
        * ```
        */
-      delete_api_base_articles_deletes<
+      DeleteArticles<
         Config extends Alova2MethodConfig<ApiResultOfint> & {
           data: string[];
         }
       >(
         config: Config
-      ): Alova2Method<ApiResultOfint, 'general.delete_api_base_articles_deletes', Config>;
+      ): Alova2Method<ApiResultOfint, 'article.DeleteArticles', Config>;
       /**
        * ---
        *
@@ -2401,7 +2401,9 @@ declare global {
         }
       >(
         config: Config
-      ): Alova2Method<ApiResultOfAddDraftResultJson, 'general.post_api_base_articles_publish_to_draft', Config>;
+      ): Alova2Method<ApiResultOfAddDraftResultJson, 'article.post_api_base_articles_publish_to_draft', Config>;
+    };
+    auth: {
       /**
        * ---
        *
@@ -2444,13 +2446,13 @@ declare global {
        * }
        * ```
        */
-      post_api_base_auth_login<
+      Login<
         Config extends Alova2MethodConfig<ApiResultOfAccessTokenModel> & {
           data: LoginModel;
         }
       >(
         config: Config
-      ): Alova2Method<ApiResultOfAccessTokenModel, 'general.post_api_base_auth_login', Config>;
+      ): Alova2Method<ApiResultOfAccessTokenModel, 'auth.Login', Config>;
       /**
        * ---
        *
@@ -2493,7 +2495,7 @@ declare global {
        * }
        * ```
        */
-      post_api_base_auth_easy_login<
+      EasyLogin<
         Config extends Alova2MethodConfig<ApiResultOfAccessTokenModel> & {
           params: {
             phoneNumber?: string;
@@ -2502,7 +2504,7 @@ declare global {
         }
       >(
         config: Config
-      ): Alova2Method<ApiResultOfAccessTokenModel, 'general.post_api_base_auth_easy_login', Config>;
+      ): Alova2Method<ApiResultOfAccessTokenModel, 'auth.EasyLogin', Config>;
       /**
        * ---
        *
@@ -2551,7 +2553,7 @@ declare global {
        * }
        * ```
        */
-      get_api_base_auth_get_profile_info_by_token<
+      GetProfileInfoByToken<
         Config extends Alova2MethodConfig<ApiResultOfUserProfileInfo> & {
           params: {
             token?: string;
@@ -2559,7 +2561,7 @@ declare global {
         }
       >(
         config: Config
-      ): Alova2Method<ApiResultOfUserProfileInfo, 'general.get_api_base_auth_get_profile_info_by_token', Config>;
+      ): Alova2Method<ApiResultOfUserProfileInfo, 'auth.GetProfileInfoByToken', Config>;
       /**
        * ---
        *
@@ -2599,9 +2601,9 @@ declare global {
        * }
        * ```
        */
-      get_api_base_auth_get_profile_info<Config extends Alova2MethodConfig<ApiResultOfUserProfileInfo>>(
+      GetProfileInfo<Config extends Alova2MethodConfig<ApiResultOfUserProfileInfo>>(
         config?: Config
-      ): Alova2Method<ApiResultOfUserProfileInfo, 'general.get_api_base_auth_get_profile_info', Config>;
+      ): Alova2Method<ApiResultOfUserProfileInfo, 'auth.GetProfileInfo', Config>;
       /**
        * ---
        *
@@ -2627,9 +2629,9 @@ declare global {
        * }
        * ```
        */
-      post_api_base_auth_logout<Config extends Alova2MethodConfig<ApiResult>>(
+      Logout<Config extends Alova2MethodConfig<ApiResult>>(
         config?: Config
-      ): Alova2Method<ApiResult, 'general.post_api_base_auth_logout', Config>;
+      ): Alova2Method<ApiResult, 'auth.Logout', Config>;
       /**
        * ---
        *
@@ -2664,7 +2666,7 @@ declare global {
        * }
        * ```
        */
-      post_api_base_auth_send_email_validate_code<
+      SendEmailValidateCode<
         Config extends Alova2MethodConfig<ApiResult> & {
           params: {
             email?: string;
@@ -2672,7 +2674,7 @@ declare global {
         }
       >(
         config: Config
-      ): Alova2Method<ApiResult, 'general.post_api_base_auth_send_email_validate_code', Config>;
+      ): Alova2Method<ApiResult, 'auth.SendEmailValidateCode', Config>;
       /**
        * ---
        *
@@ -2746,7 +2748,7 @@ declare global {
        * }
        * ```
        */
-      post_api_base_auth_register<
+      Register<
         Config extends Alova2MethodConfig<ApiResultOfApplicationUser> & {
           params: {
             rate?: number;
@@ -2755,7 +2757,9 @@ declare global {
         }
       >(
         config: Config
-      ): Alova2Method<ApiResultOfApplicationUser, 'general.post_api_base_auth_register', Config>;
+      ): Alova2Method<ApiResultOfApplicationUser, 'auth.Register', Config>;
+    };
+    carousel: {
       /**
        * ---
        *
@@ -2809,7 +2813,7 @@ declare global {
        * }
        * ```
        */
-      get_api_base_carousels_list<
+      GetCarouselList<
         Config extends Alova2MethodConfig<ApiResultOfPageListOfCarousel> & {
           params: {
             keyword?: string;
@@ -2819,7 +2823,7 @@ declare global {
         }
       >(
         config: Config
-      ): Alova2Method<ApiResultOfPageListOfCarousel, 'general.get_api_base_carousels_list', Config>;
+      ): Alova2Method<ApiResultOfPageListOfCarousel, 'carousel.GetCarouselList', Config>;
       /**
        * ---
        *
@@ -2862,7 +2866,7 @@ declare global {
        * }
        * ```
        */
-      get_api_base_carousels_get<
+      GetCarousel<
         Config extends Alova2MethodConfig<ApiResultOfCarousel> & {
           params: {
             id?: string;
@@ -2870,7 +2874,7 @@ declare global {
         }
       >(
         config: Config
-      ): Alova2Method<ApiResultOfCarousel, 'general.get_api_base_carousels_get', Config>;
+      ): Alova2Method<ApiResultOfCarousel, 'carousel.GetCarousel', Config>;
       /**
        * ---
        *
@@ -2913,7 +2917,7 @@ declare global {
        * }
        * ```
        */
-      get_api_base_carousels_get_by_key<
+      GetCarouselByKey<
         Config extends Alova2MethodConfig<ApiResultOfCarousel> & {
           params: {
             key?: string;
@@ -2921,7 +2925,7 @@ declare global {
         }
       >(
         config: Config
-      ): Alova2Method<ApiResultOfCarousel, 'general.get_api_base_carousels_get_by_key', Config>;
+      ): Alova2Method<ApiResultOfCarousel, 'carousel.GetCarouselByKey', Config>;
       /**
        * ---
        *
@@ -2970,13 +2974,13 @@ declare global {
        * }
        * ```
        */
-      post_api_base_carousels_create<
+      CreateCarousel<
         Config extends Alova2MethodConfig<ApiResultOfCarousel> & {
           data: Carousel;
         }
       >(
         config: Config
-      ): Alova2Method<ApiResultOfCarousel, 'general.post_api_base_carousels_create', Config>;
+      ): Alova2Method<ApiResultOfCarousel, 'carousel.CreateCarousel', Config>;
       /**
        * ---
        *
@@ -3025,13 +3029,13 @@ declare global {
        * }
        * ```
        */
-      put_api_base_carousels_update<
+      UpdateCarousel<
         Config extends Alova2MethodConfig<ApiResultOfCarousel> & {
           data: Carousel;
         }
       >(
         config: Config
-      ): Alova2Method<ApiResultOfCarousel, 'general.put_api_base_carousels_update', Config>;
+      ): Alova2Method<ApiResultOfCarousel, 'carousel.UpdateCarousel', Config>;
       /**
        * ---
        *
@@ -3074,7 +3078,7 @@ declare global {
        * }
        * ```
        */
-      delete_api_base_carousels_delete<
+      DeleteCarousel<
         Config extends Alova2MethodConfig<ApiResultOfCarousel> & {
           params: {
             id?: string;
@@ -3082,7 +3086,48 @@ declare global {
         }
       >(
         config: Config
-      ): Alova2Method<ApiResultOfCarousel, 'general.delete_api_base_carousels_delete', Config>;
+      ): Alova2Method<ApiResultOfCarousel, 'carousel.DeleteCarousel', Config>;
+      /**
+       * ---
+       *
+       * [DELETE] 批量删除轮播图
+       *
+       * **path:** /api/Base/Carousels/deletes
+       *
+       * ---
+       *
+       * **RequestBody**
+       * ```ts
+       * type RequestBody = string[]
+       * ```
+       *
+       * ---
+       *
+       * **Response**
+       * ```ts
+       * type Response = {
+       *   // 响应编号
+       *   code?: number
+       *   // 响应消息
+       *   message?: string
+       *   // 响应数据 T
+       *   data?: number
+       *   // 扩展数据
+       *   extend?: null
+       *   // 请求是否返回正确
+       *   isSuccess?: boolean
+       * }
+       * ```
+       */
+      DeleteCarousels<
+        Config extends Alova2MethodConfig<ApiResultOfint> & {
+          data: string[];
+        }
+      >(
+        config: Config
+      ): Alova2Method<ApiResultOfint, 'carousel.DeleteCarousels', Config>;
+    };
+    dynamicMenu: {
       /**
        * ---
        *
@@ -3162,7 +3207,7 @@ declare global {
        * }
        * ```
        */
-      get_api_base_dynamic_menus_list<
+      GetDynamicMenuList<
         Config extends Alova2MethodConfig<ApiResultOfIEnumerableOfDynamicMenu> & {
           params: {
             keyword?: string;
@@ -3170,7 +3215,7 @@ declare global {
         }
       >(
         config: Config
-      ): Alova2Method<ApiResultOfIEnumerableOfDynamicMenu, 'general.get_api_base_dynamic_menus_list', Config>;
+      ): Alova2Method<ApiResultOfIEnumerableOfDynamicMenu, 'dynamicMenu.GetDynamicMenuList', Config>;
       /**
        * ---
        *
@@ -3246,7 +3291,7 @@ declare global {
        * }
        * ```
        */
-      get_api_base_dynamic_menus_get<
+      GetDynamicMenu<
         Config extends Alova2MethodConfig<ApiResultOfDynamicMenu> & {
           params: {
             id?: string;
@@ -3254,7 +3299,7 @@ declare global {
         }
       >(
         config: Config
-      ): Alova2Method<ApiResultOfDynamicMenu, 'general.get_api_base_dynamic_menus_get', Config>;
+      ): Alova2Method<ApiResultOfDynamicMenu, 'dynamicMenu.GetDynamicMenu', Config>;
       /**
        * ---
        *
@@ -3369,13 +3414,13 @@ declare global {
        * }
        * ```
        */
-      post_api_base_dynamic_menus_create<
+      CreateDynamicMenu<
         Config extends Alova2MethodConfig<ApiResultOfDynamicMenu> & {
           data: DynamicMenu;
         }
       >(
         config: Config
-      ): Alova2Method<ApiResultOfDynamicMenu, 'general.post_api_base_dynamic_menus_create', Config>;
+      ): Alova2Method<ApiResultOfDynamicMenu, 'dynamicMenu.CreateDynamicMenu', Config>;
       /**
        * ---
        *
@@ -3490,13 +3535,13 @@ declare global {
        * }
        * ```
        */
-      put_api_base_dynamic_menus_update<
+      UpdateDynamicMenu<
         Config extends Alova2MethodConfig<ApiResultOfDynamicMenu> & {
           data: DynamicMenu;
         }
       >(
         config: Config
-      ): Alova2Method<ApiResultOfDynamicMenu, 'general.put_api_base_dynamic_menus_update', Config>;
+      ): Alova2Method<ApiResultOfDynamicMenu, 'dynamicMenu.UpdateDynamicMenu', Config>;
       /**
        * ---
        *
@@ -3572,7 +3617,7 @@ declare global {
        * }
        * ```
        */
-      delete_api_base_dynamic_menus_delete<
+      DeleteDynamicMenu<
         Config extends Alova2MethodConfig<ApiResultOfDynamicMenu> & {
           params: {
             id?: string;
@@ -3580,7 +3625,48 @@ declare global {
         }
       >(
         config: Config
-      ): Alova2Method<ApiResultOfDynamicMenu, 'general.delete_api_base_dynamic_menus_delete', Config>;
+      ): Alova2Method<ApiResultOfDynamicMenu, 'dynamicMenu.DeleteDynamicMenu', Config>;
+      /**
+       * ---
+       *
+       * [DELETE] 批量删除动态菜单
+       *
+       * **path:** /api/Base/DynamicMenus/deletes
+       *
+       * ---
+       *
+       * **RequestBody**
+       * ```ts
+       * type RequestBody = string[]
+       * ```
+       *
+       * ---
+       *
+       * **Response**
+       * ```ts
+       * type Response = {
+       *   // 响应编号
+       *   code?: number
+       *   // 响应消息
+       *   message?: string
+       *   // 响应数据 T
+       *   data?: number
+       *   // 扩展数据
+       *   extend?: null
+       *   // 请求是否返回正确
+       *   isSuccess?: boolean
+       * }
+       * ```
+       */
+      DeleteDynamicMenus<
+        Config extends Alova2MethodConfig<ApiResultOfint> & {
+          data: string[];
+        }
+      >(
+        config: Config
+      ): Alova2Method<ApiResultOfint, 'dynamicMenu.DeleteDynamicMenus', Config>;
+    };
+    imageBridge: {
       /**
        * ---
        *
@@ -3605,7 +3691,7 @@ declare global {
        * type Response = null
        * ```
        */
-      get_api_base_image_bridge_get_remote<
+      GetRemoteImage<
         Config extends Alova2MethodConfig<null> & {
           params: {
             remoteUrl?: string;
@@ -3614,7 +3700,9 @@ declare global {
         }
       >(
         config: Config
-      ): Alova2Method<null, 'general.get_api_base_image_bridge_get_remote', Config>;
+      ): Alova2Method<null, 'imageBridge.GetRemoteImage', Config>;
+    };
+    lbs: {
       /**
        * ---
        *
@@ -3673,7 +3761,7 @@ declare global {
        * }
        * ```
        */
-      get_api_base_lbs_geocoder_by_location<
+      GetGeocoderByLocation<
         Config extends Alova2MethodConfig<ApiResultOfAddressInfo> & {
           params: {
             longitude?: number;
@@ -3682,7 +3770,7 @@ declare global {
         }
       >(
         config: Config
-      ): Alova2Method<ApiResultOfAddressInfo, 'general.get_api_base_lbs_geocoder_by_location', Config>;
+      ): Alova2Method<ApiResultOfAddressInfo, 'lbs.GetGeocoderByLocation', Config>;
       /**
        * ---
        *
@@ -3723,7 +3811,7 @@ declare global {
        * }
        * ```
        */
-      get_api_base_lbs_geocoder_get_location<
+      GetGeocoderLocation<
         Config extends Alova2MethodConfig<ApiResultOfLocationInfo> & {
           params: {
             address?: string;
@@ -3731,7 +3819,9 @@ declare global {
         }
       >(
         config: Config
-      ): Alova2Method<ApiResultOfLocationInfo, 'general.get_api_base_lbs_geocoder_get_location', Config>;
+      ): Alova2Method<ApiResultOfLocationInfo, 'lbs.GetGeocoderLocation', Config>;
+    };
+    qrcode: {
       /**
        * ---
        *
@@ -3755,7 +3845,7 @@ declare global {
        * type Response = null
        * ```
        */
-      get_api_base_qrcode_get<
+      GetQrcode<
         Config extends Alova2MethodConfig<null> & {
           params: {
             content?: string;
@@ -3763,39 +3853,9 @@ declare global {
         }
       >(
         config: Config
-      ): Alova2Method<null, 'general.get_api_base_qrcode_get', Config>;
-      /**
-       * ---
-       *
-       * [GET] 获取二维码图片
-       *
-       * **path:** /api/Base/Qrcode/generate
-       *
-       * ---
-       *
-       * **Query Parameters**
-       * ```ts
-       * type QueryParameters = {
-       *   content?: string
-       * }
-       * ```
-       *
-       * ---
-       *
-       * **Response**
-       * ```ts
-       * type Response = null
-       * ```
-       */
-      get_api_base_qrcode_generate<
-        Config extends Alova2MethodConfig<null> & {
-          params: {
-            content?: string;
-          };
-        }
-      >(
-        config: Config
-      ): Alova2Method<null, 'general.get_api_base_qrcode_generate', Config>;
+      ): Alova2Method<null, 'qrcode.GetQrcode', Config>;
+    };
+    role: {
       /**
        * ---
        *
@@ -3855,7 +3915,7 @@ declare global {
        * }
        * ```
        */
-      get_api_base_roles_list<
+      GetRolesList<
         Config extends Alova2MethodConfig<ApiResultOfPageListOfApplicationRole> & {
           params: {
             keyword?: string;
@@ -3866,7 +3926,7 @@ declare global {
         }
       >(
         config: Config
-      ): Alova2Method<ApiResultOfPageListOfApplicationRole, 'general.get_api_base_roles_list', Config>;
+      ): Alova2Method<ApiResultOfPageListOfApplicationRole, 'role.GetRolesList', Config>;
       /**
        * ---
        *
@@ -3914,7 +3974,7 @@ declare global {
        * }
        * ```
        */
-      get_api_base_roles_get<
+      GetRole<
         Config extends Alova2MethodConfig<ApiResultOfApplicationRole> & {
           params: {
             id?: string;
@@ -3922,7 +3982,7 @@ declare global {
         }
       >(
         config: Config
-      ): Alova2Method<ApiResultOfApplicationRole, 'general.get_api_base_roles_get', Config>;
+      ): Alova2Method<ApiResultOfApplicationRole, 'role.GetRole', Config>;
       /**
        * ---
        *
@@ -3970,7 +4030,7 @@ declare global {
        * }
        * ```
        */
-      get_api_base_roles_get_by_name<
+      GetRoleByName<
         Config extends Alova2MethodConfig<ApiResultOfApplicationRole> & {
           params: {
             name?: string;
@@ -3978,7 +4038,7 @@ declare global {
         }
       >(
         config: Config
-      ): Alova2Method<ApiResultOfApplicationRole, 'general.get_api_base_roles_get_by_name', Config>;
+      ): Alova2Method<ApiResultOfApplicationRole, 'role.GetRoleByName', Config>;
       /**
        * ---
        *
@@ -4037,13 +4097,13 @@ declare global {
        * }
        * ```
        */
-      post_api_base_roles_create<
+      CreateRole<
         Config extends Alova2MethodConfig<ApiResultOfApplicationRole> & {
           data: ApplicationRole;
         }
       >(
         config: Config
-      ): Alova2Method<ApiResultOfApplicationRole, 'general.post_api_base_roles_create', Config>;
+      ): Alova2Method<ApiResultOfApplicationRole, 'role.CreateRole', Config>;
       /**
        * ---
        *
@@ -4102,13 +4162,13 @@ declare global {
        * }
        * ```
        */
-      put_api_base_roles_update<
+      UpdateRole<
         Config extends Alova2MethodConfig<ApiResultOfApplicationRole> & {
           data: ApplicationRole;
         }
       >(
         config: Config
-      ): Alova2Method<ApiResultOfApplicationRole, 'general.put_api_base_roles_update', Config>;
+      ): Alova2Method<ApiResultOfApplicationRole, 'role.UpdateRole', Config>;
       /**
        * ---
        *
@@ -4156,7 +4216,7 @@ declare global {
        * }
        * ```
        */
-      delete_api_base_roles_delete<
+      DeleteRole<
         Config extends Alova2MethodConfig<ApiResultOfApplicationRole> & {
           params: {
             id?: string;
@@ -4164,7 +4224,7 @@ declare global {
         }
       >(
         config: Config
-      ): Alova2Method<ApiResultOfApplicationRole, 'general.delete_api_base_roles_delete', Config>;
+      ): Alova2Method<ApiResultOfApplicationRole, 'role.DeleteRole', Config>;
       /**
        * ---
        *
@@ -4212,7 +4272,7 @@ declare global {
        * }
        * ```
        */
-      delete_api_base_roles_delete_by_name<
+      DeleteRoleByName<
         Config extends Alova2MethodConfig<ApiResultOfApplicationRole> & {
           params: {
             name?: string;
@@ -4220,7 +4280,7 @@ declare global {
         }
       >(
         config: Config
-      ): Alova2Method<ApiResultOfApplicationRole, 'general.delete_api_base_roles_delete_by_name', Config>;
+      ): Alova2Method<ApiResultOfApplicationRole, 'role.DeleteRoleByName', Config>;
       /**
        * ---
        *
@@ -4255,7 +4315,7 @@ declare global {
        * }
        * ```
        */
-      post_api_base_roles_sync_rights_to_users<
+      SyncRightsToUsers<
         Config extends Alova2MethodConfig<ApiResultOfint> & {
           params: {
             name?: string;
@@ -4263,7 +4323,9 @@ declare global {
         }
       >(
         config: Config
-      ): Alova2Method<ApiResultOfint, 'general.post_api_base_roles_sync_rights_to_users', Config>;
+      ): Alova2Method<ApiResultOfint, 'role.SyncRightsToUsers', Config>;
+    };
+    upFile: {
       /**
        * ---
        *
@@ -4303,7 +4365,7 @@ declare global {
        * type Response = null
        * ```
        */
-      post_api_base_up_files_upload<
+      upload<
         Config extends Alova2MethodConfig<null> & {
           params: {
             path?: string;
@@ -4321,7 +4383,9 @@ declare global {
         }
       >(
         config: Config
-      ): Alova2Method<null, 'general.post_api_base_up_files_upload', Config>;
+      ): Alova2Method<null, 'upFile.upload', Config>;
+    };
+    userOperateLog: {
       /**
        * ---
        *
@@ -4387,7 +4451,7 @@ declare global {
        * }
        * ```
        */
-      get_api_base_user_operate_logs_list<
+      GetUserOperateLogList<
         Config extends Alova2MethodConfig<ApiResultOfPageListOfUserOperateLog> & {
           params: {
             type?: string;
@@ -4400,7 +4464,7 @@ declare global {
         }
       >(
         config: Config
-      ): Alova2Method<ApiResultOfPageListOfUserOperateLog, 'general.get_api_base_user_operate_logs_list', Config>;
+      ): Alova2Method<ApiResultOfPageListOfUserOperateLog, 'userOperateLog.GetUserOperateLogList', Config>;
       /**
        * ---
        *
@@ -4452,7 +4516,7 @@ declare global {
        * }
        * ```
        */
-      get_api_base_user_operate_logs_get<
+      GetUserOperateLog<
         Config extends Alova2MethodConfig<ApiResultOfUserOperateLog> & {
           params: {
             id?: string;
@@ -4460,7 +4524,7 @@ declare global {
         }
       >(
         config: Config
-      ): Alova2Method<ApiResultOfUserOperateLog, 'general.get_api_base_user_operate_logs_get', Config>;
+      ): Alova2Method<ApiResultOfUserOperateLog, 'userOperateLog.GetUserOperateLog', Config>;
       /**
        * ---
        *
@@ -4527,13 +4591,13 @@ declare global {
        * }
        * ```
        */
-      post_api_base_user_operate_logs_create<
+      CreateUserOperateLog<
         Config extends Alova2MethodConfig<ApiResultOfUserOperateLog> & {
           data: UserOperateLog;
         }
       >(
         config: Config
-      ): Alova2Method<ApiResultOfUserOperateLog, 'general.post_api_base_user_operate_logs_create', Config>;
+      ): Alova2Method<ApiResultOfUserOperateLog, 'userOperateLog.CreateUserOperateLog', Config>;
       /**
        * ---
        *
@@ -4600,13 +4664,13 @@ declare global {
        * }
        * ```
        */
-      put_api_base_user_operate_logs_update<
+      UpdateUserOperateLog<
         Config extends Alova2MethodConfig<ApiResultOfUserOperateLog> & {
           data: UserOperateLog;
         }
       >(
         config: Config
-      ): Alova2Method<ApiResultOfUserOperateLog, 'general.put_api_base_user_operate_logs_update', Config>;
+      ): Alova2Method<ApiResultOfUserOperateLog, 'userOperateLog.UpdateUserOperateLog', Config>;
       /**
        * ---
        *
@@ -4658,7 +4722,7 @@ declare global {
        * }
        * ```
        */
-      delete_api_base_user_operate_logs_delete<
+      DeleteUserOperateLog<
         Config extends Alova2MethodConfig<ApiResultOfUserOperateLog> & {
           params: {
             id?: string;
@@ -4666,7 +4730,7 @@ declare global {
         }
       >(
         config: Config
-      ): Alova2Method<ApiResultOfUserOperateLog, 'general.delete_api_base_user_operate_logs_delete', Config>;
+      ): Alova2Method<ApiResultOfUserOperateLog, 'userOperateLog.DeleteUserOperateLog', Config>;
       /**
        * ---
        *
@@ -4704,7 +4768,7 @@ declare global {
        * }
        * ```
        */
-      delete_api_base_user_operate_logs_clear<
+      ClearUserOperateLogs<
         Config extends Alova2MethodConfig<ApiResultOfint> & {
           params: {
             type?: string;
@@ -4715,7 +4779,9 @@ declare global {
         }
       >(
         config: Config
-      ): Alova2Method<ApiResultOfint, 'general.delete_api_base_user_operate_logs_clear', Config>;
+      ): Alova2Method<ApiResultOfint, 'userOperateLog.ClearUserOperateLogs', Config>;
+    };
+    user: {
       /**
        * ---
        *
@@ -4791,7 +4857,7 @@ declare global {
        * }
        * ```
        */
-      get_api_base_users_list<
+      GetUserList<
         Config extends Alova2MethodConfig<ApiResultOfPageListOfApplicationUser> & {
           params: {
             role?: string;
@@ -4805,7 +4871,7 @@ declare global {
         }
       >(
         config: Config
-      ): Alova2Method<ApiResultOfPageListOfApplicationUser, 'general.get_api_base_users_list', Config>;
+      ): Alova2Method<ApiResultOfPageListOfApplicationUser, 'user.GetUserList', Config>;
       /**
        * ---
        *
@@ -4850,7 +4916,7 @@ declare global {
        * }
        * ```
        */
-      get_api_base_users_get<
+      GetUser<
         Config extends Alova2MethodConfig<ApiResultOfIUserProfile> & {
           params: {
             id?: string;
@@ -4858,7 +4924,7 @@ declare global {
         }
       >(
         config: Config
-      ): Alova2Method<ApiResultOfIUserProfile, 'general.get_api_base_users_get', Config>;
+      ): Alova2Method<ApiResultOfIUserProfile, 'user.GetUser', Config>;
       /**
        * ---
        *
@@ -4903,7 +4969,7 @@ declare global {
        * }
        * ```
        */
-      get_api_base_users_get_by_name<
+      GetUserByName<
         Config extends Alova2MethodConfig<ApiResultOfIUserProfile> & {
           params: {
             username?: string;
@@ -4911,7 +4977,7 @@ declare global {
         }
       >(
         config: Config
-      ): Alova2Method<ApiResultOfIUserProfile, 'general.get_api_base_users_get_by_name', Config>;
+      ): Alova2Method<ApiResultOfIUserProfile, 'user.GetUserByName', Config>;
       /**
        * ---
        *
@@ -4968,7 +5034,7 @@ declare global {
        * }
        * ```
        */
-      get_api_base_users_get_permission<
+      GetUserPermission<
         Config extends Alova2MethodConfig<Api_result_of_client_route> & {
           params: {
             userName?: string;
@@ -4976,7 +5042,7 @@ declare global {
         }
       >(
         config: Config
-      ): Alova2Method<Api_result_of_client_route, 'general.get_api_base_users_get_permission', Config>;
+      ): Alova2Method<Api_result_of_client_route, 'user.GetUserPermission', Config>;
       /**
        * ---
        *
@@ -5060,7 +5126,7 @@ declare global {
        * }
        * ```
        */
-      post_api_base_users_create<
+      CreateUser<
         Config extends Alova2MethodConfig<ApiResultOfApplicationUser> & {
           params: {
             parentUserId?: string;
@@ -5070,7 +5136,7 @@ declare global {
         }
       >(
         config: Config
-      ): Alova2Method<ApiResultOfApplicationUser, 'general.post_api_base_users_create', Config>;
+      ): Alova2Method<ApiResultOfApplicationUser, 'user.CreateUser', Config>;
       /**
        * ---
        *
@@ -5154,7 +5220,7 @@ declare global {
        * }
        * ```
        */
-      post_api_base_users_create_by_parent<
+      CreateUserByParent<
         Config extends Alova2MethodConfig<ApiResultOfApplicationUser> & {
           params: {
             parentUserId?: string;
@@ -5164,7 +5230,7 @@ declare global {
         }
       >(
         config: Config
-      ): Alova2Method<ApiResultOfApplicationUser, 'general.post_api_base_users_create_by_parent', Config>;
+      ): Alova2Method<ApiResultOfApplicationUser, 'user.CreateUserByParent', Config>;
       /**
        * ---
        *
@@ -5236,13 +5302,13 @@ declare global {
        * }
        * ```
        */
-      put_api_base_users_update<
+      UpdateUserProfile<
         Config extends Alova2MethodConfig<ApiResultOfApplicationUser> & {
           data: UserProfileModel;
         }
       >(
         config: Config
-      ): Alova2Method<ApiResultOfApplicationUser, 'general.put_api_base_users_update', Config>;
+      ): Alova2Method<ApiResultOfApplicationUser, 'user.UpdateUserProfile', Config>;
       /**
        * ---
        *
@@ -5281,7 +5347,7 @@ declare global {
        * }
        * ```
        */
-      get_api_base_users_get_roles<
+      GetUserRoles<
         Config extends Alova2MethodConfig<ApiResultOfIListOfstring> & {
           params: {
             userId?: string;
@@ -5289,7 +5355,7 @@ declare global {
         }
       >(
         config: Config
-      ): Alova2Method<ApiResultOfIListOfstring, 'general.get_api_base_users_get_roles', Config>;
+      ): Alova2Method<ApiResultOfIListOfstring, 'user.GetUserRoles', Config>;
       /**
        * ---
        *
@@ -5353,13 +5419,13 @@ declare global {
        * }
        * ```
        */
-      post_api_base_users_set_roles<
+      SetUserRoles<
         Config extends Alova2MethodConfig<ApiResultOfApplicationUser> & {
           data: SetUserRolesModel;
         }
       >(
         config: Config
-      ): Alova2Method<ApiResultOfApplicationUser, 'general.post_api_base_users_set_roles', Config>;
+      ): Alova2Method<ApiResultOfApplicationUser, 'user.SetUserRoles', Config>;
       /**
        * ---
        *
@@ -5397,13 +5463,13 @@ declare global {
        * }
        * ```
        */
-      post_api_base_users_change_password<
+      ChangeUserPassword<
         Config extends Alova2MethodConfig<ApiResult> & {
           data: ChangePasswordModel;
         }
       >(
         config: Config
-      ): Alova2Method<ApiResult, 'general.post_api_base_users_change_password', Config>;
+      ): Alova2Method<ApiResult, 'user.ChangeUserPassword', Config>;
       /**
        * ---
        *
@@ -5441,13 +5507,13 @@ declare global {
        * }
        * ```
        */
-      post_api_base_users_reset_password<
+      ResetUserPassword<
         Config extends Alova2MethodConfig<ApiResult> & {
           data: ResetPasswordModel;
         }
       >(
         config: Config
-      ): Alova2Method<ApiResult, 'general.post_api_base_users_reset_password', Config>;
+      ): Alova2Method<ApiResult, 'user.ResetUserPassword', Config>;
       /**
        * ---
        *
@@ -5508,7 +5574,7 @@ declare global {
        * }
        * ```
        */
-      delete_api_base_users_delete<
+      DeleteUser<
         Config extends Alova2MethodConfig<ApiResultOfApplicationUser> & {
           params: {
             id?: string;
@@ -5516,7 +5582,7 @@ declare global {
         }
       >(
         config: Config
-      ): Alova2Method<ApiResultOfApplicationUser, 'general.delete_api_base_users_delete', Config>;
+      ): Alova2Method<ApiResultOfApplicationUser, 'user.DeleteUser', Config>;
       /**
        * ---
        *
@@ -5577,7 +5643,7 @@ declare global {
        * }
        * ```
        */
-      delete_api_base_users_delete_by_name<
+      DeleteUserByName<
         Config extends Alova2MethodConfig<ApiResultOfApplicationUser> & {
           params: {
             username?: string;
@@ -5585,7 +5651,7 @@ declare global {
         }
       >(
         config: Config
-      ): Alova2Method<ApiResultOfApplicationUser, 'general.delete_api_base_users_delete_by_name', Config>;
+      ): Alova2Method<ApiResultOfApplicationUser, 'user.DeleteUserByName', Config>;
       /**
        * ---
        *
@@ -5618,15 +5684,15 @@ declare global {
        * }
        * ```
        */
-      post_api_base_users_deletes<
+      DeleteUsers<
         Config extends Alova2MethodConfig<ApiResult> & {
           data: string[];
         }
       >(
         config: Config
-      ): Alova2Method<ApiResult, 'general.post_api_base_users_deletes', Config>;
+      ): Alova2Method<ApiResult, 'user.DeleteUsers', Config>;
     };
   }
 
-  var Base: Base;
+  var Webapi_Base: Webapi_Base;
 }

@@ -415,8 +415,8 @@ export interface ApiResultOfUserTeamMap {
   isSuccess?: boolean;
 }
 declare global {
-  interface Business {
-    general: {
+  interface Webapi_Business {
+    tradingChannel: {
       /**
        * ---
        *
@@ -468,7 +468,7 @@ declare global {
        * }
        * ```
        */
-      get_api_business_trading_channels_list<
+      GetTradingChannelList<
         Config extends Alova2MethodConfig<ApiResultOfPageListOfTradingChannel> & {
           params: {
             keyword?: string;
@@ -478,7 +478,7 @@ declare global {
         }
       >(
         config: Config
-      ): Alova2Method<ApiResultOfPageListOfTradingChannel, 'general.get_api_business_trading_channels_list', Config>;
+      ): Alova2Method<ApiResultOfPageListOfTradingChannel, 'tradingChannel.GetTradingChannelList', Config>;
       /**
        * ---
        *
@@ -519,7 +519,7 @@ declare global {
        * }
        * ```
        */
-      get_api_business_trading_channels_get<
+      GetTradingChannel<
         Config extends Alova2MethodConfig<ApiResultOfTradingChannel> & {
           params: {
             id?: string;
@@ -527,7 +527,7 @@ declare global {
         }
       >(
         config: Config
-      ): Alova2Method<ApiResultOfTradingChannel, 'general.get_api_business_trading_channels_get', Config>;
+      ): Alova2Method<ApiResultOfTradingChannel, 'tradingChannel.GetTradingChannel', Config>;
       /**
        * ---
        *
@@ -572,13 +572,13 @@ declare global {
        * }
        * ```
        */
-      post_api_business_trading_channels_create<
+      CreateTradingChannel<
         Config extends Alova2MethodConfig<ApiResultOfTradingChannel> & {
           data: TradingChannel;
         }
       >(
         config: Config
-      ): Alova2Method<ApiResultOfTradingChannel, 'general.post_api_business_trading_channels_create', Config>;
+      ): Alova2Method<ApiResultOfTradingChannel, 'tradingChannel.CreateTradingChannel', Config>;
       /**
        * ---
        *
@@ -623,13 +623,13 @@ declare global {
        * }
        * ```
        */
-      put_api_business_trading_channels_update<
+      UpdateTradingChannel<
         Config extends Alova2MethodConfig<ApiResultOfTradingChannel> & {
           data: TradingChannel;
         }
       >(
         config: Config
-      ): Alova2Method<ApiResultOfTradingChannel, 'general.put_api_business_trading_channels_update', Config>;
+      ): Alova2Method<ApiResultOfTradingChannel, 'tradingChannel.UpdateTradingChannel', Config>;
       /**
        * ---
        *
@@ -670,7 +670,7 @@ declare global {
        * }
        * ```
        */
-      delete_api_business_trading_channels_delete<
+      DeleteTradingChannel<
         Config extends Alova2MethodConfig<ApiResultOfTradingChannel> & {
           params: {
             id?: string;
@@ -678,7 +678,7 @@ declare global {
         }
       >(
         config: Config
-      ): Alova2Method<ApiResultOfTradingChannel, 'general.delete_api_business_trading_channels_delete', Config>;
+      ): Alova2Method<ApiResultOfTradingChannel, 'tradingChannel.DeleteTradingChannel', Config>;
       /**
        * ---
        *
@@ -711,13 +711,15 @@ declare global {
        * }
        * ```
        */
-      post_api_business_trading_channels_deletes<
+      DeleteTradingChannels<
         Config extends Alova2MethodConfig<ApiResult> & {
           data: string[];
         }
       >(
         config: Config
-      ): Alova2Method<ApiResult, 'general.post_api_business_trading_channels_deletes', Config>;
+      ): Alova2Method<ApiResult, 'tradingChannel.DeleteTradingChannels', Config>;
+    };
+    userAssetLog: {
       /**
        * ---
        *
@@ -778,7 +780,7 @@ declare global {
        * }
        * ```
        */
-      get_api_business_user_asset_logs_list<
+      GetUserAssetLogList<
         Config extends Alova2MethodConfig<ApiResultOfPageListOfUserAssetLog> & {
           params: {
             startTime?: string;
@@ -793,7 +795,7 @@ declare global {
         }
       >(
         config: Config
-      ): Alova2Method<ApiResultOfPageListOfUserAssetLog, 'general.get_api_business_user_asset_logs_list', Config>;
+      ): Alova2Method<ApiResultOfPageListOfUserAssetLog, 'userAssetLog.GetUserAssetLogList', Config>;
       /**
        * ---
        *
@@ -838,7 +840,7 @@ declare global {
        * }
        * ```
        */
-      get_api_business_user_asset_logs_get<
+      GetUserAssetLog<
         Config extends Alova2MethodConfig<ApiResultOfUserAssetLog> & {
           params: {
             id?: string;
@@ -846,7 +848,9 @@ declare global {
         }
       >(
         config: Config
-      ): Alova2Method<ApiResultOfUserAssetLog, 'general.get_api_business_user_asset_logs_get', Config>;
+      ): Alova2Method<ApiResultOfUserAssetLog, 'userAssetLog.GetUserAssetLog', Config>;
+    };
+    userOrder: {
       /**
        * ---
        *
@@ -913,7 +917,7 @@ declare global {
        * }
        * ```
        */
-      get_api_business_user_orders_list<
+      getUserOrders<
         Config extends Alova2MethodConfig<ApiResultOfPageListOfUserOrder> & {
           params: {
             startTime?: string;
@@ -929,7 +933,7 @@ declare global {
         }
       >(
         config: Config
-      ): Alova2Method<ApiResultOfPageListOfUserOrder, 'general.get_api_business_user_orders_list', Config>;
+      ): Alova2Method<ApiResultOfPageListOfUserOrder, 'userOrder.getUserOrders', Config>;
       /**
        * ---
        *
@@ -979,7 +983,7 @@ declare global {
        * }
        * ```
        */
-      get_api_business_user_orders_get<
+      getUserOrder<
         Config extends Alova2MethodConfig<ApiResultOfUserOrder> & {
           params: {
             id?: string;
@@ -987,7 +991,7 @@ declare global {
         }
       >(
         config: Config
-      ): Alova2Method<ApiResultOfUserOrder, 'general.get_api_business_user_orders_get', Config>;
+      ): Alova2Method<ApiResultOfUserOrder, 'userOrder.getUserOrder', Config>;
       /**
        * ---
        *
@@ -1050,13 +1054,13 @@ declare global {
        * }
        * ```
        */
-      post_api_business_user_orders_create<
+      createUserOrder<
         Config extends Alova2MethodConfig<ApiResultOfUserOrder> & {
           data: UserOrder;
         }
       >(
         config: Config
-      ): Alova2Method<ApiResultOfUserOrder, 'general.post_api_business_user_orders_create', Config>;
+      ): Alova2Method<ApiResultOfUserOrder, 'userOrder.createUserOrder', Config>;
       /**
        * ---
        *
@@ -1106,7 +1110,7 @@ declare global {
        * }
        * ```
        */
-      put_api_business_user_orders_completed<
+      completedUserOrder<
         Config extends Alova2MethodConfig<ApiResultOfUserOrder> & {
           params: {
             id?: string;
@@ -1114,7 +1118,7 @@ declare global {
         }
       >(
         config: Config
-      ): Alova2Method<ApiResultOfUserOrder, 'general.put_api_business_user_orders_completed', Config>;
+      ): Alova2Method<ApiResultOfUserOrder, 'userOrder.completedUserOrder', Config>;
       /**
        * ---
        *
@@ -1164,7 +1168,7 @@ declare global {
        * }
        * ```
        */
-      delete_api_business_user_orders_delete<
+      deleteUserOrder<
         Config extends Alova2MethodConfig<ApiResultOfUserOrder> & {
           params: {
             id?: string;
@@ -1172,7 +1176,7 @@ declare global {
         }
       >(
         config: Config
-      ): Alova2Method<ApiResultOfUserOrder, 'general.delete_api_business_user_orders_delete', Config>;
+      ): Alova2Method<ApiResultOfUserOrder, 'userOrder.deleteUserOrder', Config>;
       /**
        * ---
        *
@@ -1205,13 +1209,15 @@ declare global {
        * }
        * ```
        */
-      post_api_business_user_orders_deletes<
+      deleteUserOrders<
         Config extends Alova2MethodConfig<ApiResult> & {
           data: string[];
         }
       >(
         config: Config
-      ): Alova2Method<ApiResult, 'general.post_api_business_user_orders_deletes', Config>;
+      ): Alova2Method<ApiResult, 'userOrder.deleteUserOrders', Config>;
+    };
+    userTeamMap: {
       /**
        * ---
        *
@@ -1274,7 +1280,7 @@ declare global {
        * }
        * ```
        */
-      get_api_business_user_team_maps_list<
+      getUserTeamMapList<
         Config extends Alova2MethodConfig<ApiResultOfPageListOfUserTeamMap> & {
           params: {
             userId?: string;
@@ -1288,7 +1294,7 @@ declare global {
         }
       >(
         config: Config
-      ): Alova2Method<ApiResultOfPageListOfUserTeamMap, 'general.get_api_business_user_team_maps_list', Config>;
+      ): Alova2Method<ApiResultOfPageListOfUserTeamMap, 'userTeamMap.getUserTeamMapList', Config>;
       /**
        * ---
        *
@@ -1336,7 +1342,7 @@ declare global {
        * }
        * ```
        */
-      get_api_business_user_team_maps_get<
+      getUserTeamMap<
         Config extends Alova2MethodConfig<ApiResultOfUserTeamMap> & {
           params: {
             id?: string;
@@ -1344,7 +1350,7 @@ declare global {
         }
       >(
         config: Config
-      ): Alova2Method<ApiResultOfUserTeamMap, 'general.get_api_business_user_team_maps_get', Config>;
+      ): Alova2Method<ApiResultOfUserTeamMap, 'userTeamMap.getUserTeamMap', Config>;
       /**
        * ---
        *
@@ -1403,13 +1409,13 @@ declare global {
        * }
        * ```
        */
-      post_api_business_user_team_maps_create<
+      createUserTeamMap<
         Config extends Alova2MethodConfig<ApiResultOfUserTeamMap> & {
           data: UserTeamMap;
         }
       >(
         config: Config
-      ): Alova2Method<ApiResultOfUserTeamMap, 'general.post_api_business_user_team_maps_create', Config>;
+      ): Alova2Method<ApiResultOfUserTeamMap, 'userTeamMap.createUserTeamMap', Config>;
       /**
        * ---
        *
@@ -1447,7 +1453,7 @@ declare global {
        * }
        * ```
        */
-      post_api_business_user_team_maps_transfer_usdt<
+      transferUsdt<
         Config extends Alova2MethodConfig<ApiResult> & {
           params: {
             fromUserId?: string;
@@ -1458,7 +1464,7 @@ declare global {
         }
       >(
         config: Config
-      ): Alova2Method<ApiResult, 'general.post_api_business_user_team_maps_transfer_usdt', Config>;
+      ): Alova2Method<ApiResult, 'userTeamMap.transferUsdt', Config>;
       /**
        * ---
        *
@@ -1517,13 +1523,13 @@ declare global {
        * }
        * ```
        */
-      put_api_business_user_team_maps_update<
+      updateUserTeamMap<
         Config extends Alova2MethodConfig<ApiResultOfUserTeamMap> & {
           data: UserTeamMap;
         }
       >(
         config: Config
-      ): Alova2Method<ApiResultOfUserTeamMap, 'general.put_api_business_user_team_maps_update', Config>;
+      ): Alova2Method<ApiResultOfUserTeamMap, 'userTeamMap.updateUserTeamMap', Config>;
       /**
        * ---
        *
@@ -1571,7 +1577,7 @@ declare global {
        * }
        * ```
        */
-      delete_api_business_user_team_maps_delete<
+      deleteUserTeamMap<
         Config extends Alova2MethodConfig<ApiResultOfUserTeamMap> & {
           params: {
             id?: string;
@@ -1579,7 +1585,7 @@ declare global {
         }
       >(
         config: Config
-      ): Alova2Method<ApiResultOfUserTeamMap, 'general.delete_api_business_user_team_maps_delete', Config>;
+      ): Alova2Method<ApiResultOfUserTeamMap, 'userTeamMap.deleteUserTeamMap', Config>;
       /**
        * ---
        *
@@ -1612,15 +1618,15 @@ declare global {
        * }
        * ```
        */
-      post_api_business_user_team_maps_deletes<
+      deleteUserTeamMaps<
         Config extends Alova2MethodConfig<ApiResult> & {
           data: string[];
         }
       >(
         config: Config
-      ): Alova2Method<ApiResult, 'general.post_api_business_user_team_maps_deletes', Config>;
+      ): Alova2Method<ApiResult, 'userTeamMap.deleteUserTeamMaps', Config>;
     };
   }
 
-  var Business: Business;
+  var Webapi_Business: Webapi_Business;
 }

@@ -17,12 +17,12 @@
  * **Do not edit the file manually.**
  */
 export default {
-  'app.get_api_app_app_versions_check': ['GET', '/api/App/AppVersions/check'],
-  'app.get_api_app_app_versions_get': ['GET', '/api/App/AppVersions/get'],
-  'app.get_api_app_app_versions_download_last_apk': ['GET', '/api/App/AppVersions/download/last.apk'],
-  'app.get_api_app_app_versions_list': ['GET', '/api/App/AppVersions/list'],
-  'app.post_api_app_app_versions_create': ['POST', '/api/App/AppVersions/create'],
-  'app.put_api_app_app_versions_update': ['PUT', '/api/App/AppVersions/update'],
-  'app.delete_api_app_app_versions_delete': ['DELETE', '/api/App/AppVersions/delete'],
-  'app.delete_api_app_app_versions_deletes': ['DELETE', '/api/App/AppVersions/deletes']
+  'app.CheckAppVersion': ['GET', '/api/App/AppVersions/check'],
+  'app.GetAppVersion': ['GET', '/api/App/AppVersions/get'],
+  'app.DownloadLastAppVersion': ['GET', '/api/App/AppVersions/download/last.apk'],
+  'app.GetAppVersionList': ['GET', '/api/App/AppVersions/list'],
+  'app.CreateAppVersion': ['POST', '/api/App/AppVersions/create'],
+  'app.UpdateAppVersion': ['PUT', '/api/App/AppVersions/update'],
+  'app.DeleteAppVersion': ['DELETE', '/api/App/AppVersions/delete'],
+  'app.DeleteAppVersions': ['DELETE', '/api/App/AppVersions/deletes']
 };

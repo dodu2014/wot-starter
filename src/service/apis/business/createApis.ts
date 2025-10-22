@@ -69,7 +69,7 @@ const createFunctionalProxy = (array: (string | symbol)[], alovaInstance: Alova<
 };
 
 export const createApis = (alovaInstance: Alova<AlovaGenerics>, configMap: any) => {
-  const Apis = new Proxy({} as Business, {
+  const Apis = new Proxy({} as Webapi_Business, {
     get(_, property) {
       return createFunctionalProxy([property], alovaInstance, configMap);
     }
@@ -77,9 +77,9 @@ export const createApis = (alovaInstance: Alova<AlovaGenerics>, configMap: any) 
   return Apis;
 };
 
-export const mountApis = (Apis: Business) => {
+export const mountApis = (Apis: Webapi_Business) => {
   // define global variable `Apis`
-  (globalThis as any).Business = Apis;
+  (globalThis as any).Webapi_Business = Apis;
 };
 
 type MethodConfig<T> = AlovaMethodCreateConfig<
@@ -87,10 +87,10 @@ type MethodConfig<T> = AlovaMethodCreateConfig<
   any,
   T
 >;
-type APISofParameters<Tag extends string, Url extends string> = Tag extends keyof Business
-  ? Url extends keyof Business[Tag]
-    ? Business[Tag][Url] extends (...args: any) => any
-      ? Parameters<Business[Tag][Url]>
+type APISofParameters<Tag extends string, Url extends string> = Tag extends keyof Webapi_Business
+  ? Url extends keyof Webapi_Business[Tag]
+    ? Webapi_Business[Tag][Url] extends (...args: any) => any
+      ? Parameters<Webapi_Business[Tag][Url]>
       : any
     : any
   : any;

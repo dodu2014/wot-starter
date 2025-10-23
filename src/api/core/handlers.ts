@@ -25,11 +25,10 @@ export class ApiError extends Error {
 // Define a type for the expected API response structure
 interface ApiResponse {
   code: number
-  msg?: string
+  message: string
+  isSuccess: boolean
   data?: any
-  success?: boolean
-  total?: number
-  more?: boolean
+  extend?: any
 }
 
 // Handle successful responses
@@ -63,6 +62,11 @@ export async function handleAlovaResponse(
   // Log response in development
   if (import.meta.env.MODE === 'development') {
     console.log('[Alova Response]', json)
+  }
+
+  if (!json.isSuccess) {
+    globalToast.error(`${json.message}`)
+    throw new ApiError(json.message, statusCode, data)
   }
 
   // Return data for successful responses

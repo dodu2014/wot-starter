@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { Webapi_App } from '@/service/apis/app/index'
+
 definePage({
   name: 'request',
   style: {
@@ -329,7 +331,7 @@ onMounted(async () => {
           <view class="space-y-2">
             <view v-if="appVersionLoading" class="flex items-center text-3 text-blue-600">
               <wd-icon name="loading" size="14px" class="mr-1" />
-              正在加载宠物数据...
+              正在加载app版本数据...
             </view>
             <view v-if="appVersionError" class="text-3 text-red-600">
               ❌ 请求失败: {{ appVersionError.message }}

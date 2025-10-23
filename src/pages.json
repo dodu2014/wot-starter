@@ -51,6 +51,23 @@
       }
     },
     {
+      "path": "pages/login/index",
+      "type": "page",
+      "name": "login",
+      "style": {
+        "navigationBarTitleText": "登录"
+      }
+    },
+    {
+      "path": "pages/my/index",
+      "type": "page",
+      "name": "my",
+      "layout": "tabbar",
+      "style": {
+        "navigationBarTitleText": "个人中心"
+      }
+    },
+    {
       "path": "pages/pinia/index",
       "type": "page",
       "name": "pinia",
@@ -167,6 +184,9 @@
       },
       {
         "pagePath": "pages/about/index"
+      },
+      {
+        "pagePath": "pages/my/index"
       }
     ]
   },

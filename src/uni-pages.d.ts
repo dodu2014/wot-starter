@@ -10,6 +10,8 @@ type _LocationUrl =
   "/pages/create-uni/index" |
   "/pages/feedback/index" |
   "/pages/icon/index" |
+  "/pages/login/index" |
+  "/pages/my/index" |
   "/pages/pinia/index" |
   "/pages/request/index" |
   "/pages/router/demo-aftereach" |
@@ -31,7 +33,7 @@ interface NavigateToOptions {
 interface RedirectToOptions extends NavigateToOptions {}
 
 interface SwitchTabOptions {
-  url: "/pages/index/index" | "/pages/about/index"
+  url: "/pages/index/index" | "/pages/about/index" | "/pages/my/index"
 }
 
 type ReLaunchOptions = NavigateToOptions | SwitchTabOptions;

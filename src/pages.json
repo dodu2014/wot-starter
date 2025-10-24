@@ -12,7 +12,7 @@
     {
       "path": "pages/about/feedback",
       "type": "page",
-      "name": "feedback",
+      "name": "feedback2",
       "style": {
         "navigationBarTitleText": "反馈"
       },

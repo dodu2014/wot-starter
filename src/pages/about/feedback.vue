@@ -1,6 +1,6 @@
 <script setup lang="ts">
 definePage({
-  name: 'feedback',
+  name: 'feedback2',
   style: {
     navigationBarTitleText: '反馈',
   },

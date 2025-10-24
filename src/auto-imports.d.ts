@@ -44,6 +44,7 @@ declare global {
   const effectScope: typeof import('vue')['effectScope']
   const extendRef: typeof import('@vueuse/core')['extendRef']
   const getActivePinia: typeof import('pinia')['getActivePinia']
+  const getAllExcludePages: typeof import('./utils/index')['getAllExcludePages']
   const getAllPages: typeof import('./utils/index')['getAllPages']
   const getCurrentInstance: typeof import('vue')['getCurrentInstance']
   const getCurrentPath: typeof import('./utils/index')['getCurrentPath']
@@ -401,6 +402,7 @@ declare module 'vue' {
     readonly effectScope: UnwrapRef<typeof import('vue')['effectScope']>
     readonly extendRef: UnwrapRef<typeof import('@vueuse/core')['extendRef']>
     readonly getActivePinia: UnwrapRef<typeof import('pinia')['getActivePinia']>
+    readonly getAllExcludePages: UnwrapRef<typeof import('./utils/index')['getAllExcludePages']>
     readonly getAllPages: UnwrapRef<typeof import('./utils/index')['getAllPages']>
     readonly getCurrentInstance: UnwrapRef<typeof import('vue')['getCurrentInstance']>
     readonly getCurrentPath: UnwrapRef<typeof import('./utils/index')['getCurrentPath']>

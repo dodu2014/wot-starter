@@ -1,4 +1,4 @@
-import { pages, subPackages } from '@/pages.json'
+import { pages, subPackages } from 'virtual:uni-pages'
 
 /**
  * 获取当前页面路径
@@ -10,15 +10,10 @@ export function getCurrentPath() {
   return currentPage.route || ''
 }
 
-/**
- * 得到所有的需要登录的 pages，包括主包和分包的
- * 这里设计得通用一点，可以传递 key 作为判断依据，默认是 excludeLoginPath, 与 route-block 配对使用
- * 如果没有传 key，则表示所有的 pages，如果传递了 key, 则表示通过 key 过滤
- */
-export function getAllPages(key = 'excludeLoginPath') {
+/** 得到所有 pages，包括主包和分包的 */
+export function getAllPages() {
   // 这里处理主包
   const mainPages = pages
-    .filter(page => !key || (page as any)[key])
     .map(page => ({
       ...page,
       path: `/${page.path}`,
@@ -31,7 +26,6 @@ export function getAllPages(key = 'excludeLoginPath') {
     const { root } = subPageObj
 
     subPageObj.pages
-      .filter(page => !key || (page as any)[key])
       .forEach((page: { path: string } & Record<string, any>) => {
         subPages.push({
           ...page,
@@ -39,7 +33,18 @@ export function getAllPages(key = 'excludeLoginPath') {
         })
       })
   })
-  const result = [...mainPages, ...subPages]
-  // console.log(`getAllPages by ${key} result: `, result)
-  return result
+  return [...mainPages, ...subPages]
+}
+
+/**
+ * 得到所有的需要登录的 pages，包括主包和分包的
+ * 这里设计得通用一点，可以传递 key 作为判断依据，默认是 excludeLoginPath, 与 route-block 配对使用
+ * 如果没有传 key，则表示所有的 pages，如果传递了 key, 则表示通过 key 过滤
+ *
+ * @param [key] 过滤的 key
+ * @returns 需要登录的 pages
+ */
+export function getAllExcludePages(key = 'excludeLoginPath') {
+  const pages = getAllPages()
+  return pages.filter((page: any) => !key || !page[key])
 }

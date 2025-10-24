@@ -29,8 +29,8 @@ export const alovaInstance = createAlova({
     }
 
     // Add token in request header
-    const { token } = useUserStore()
-    if (token) {
+    const { logined, token } = useUserStore()
+    if (logined && token) {
       method.config.headers.Authorization = `bearer ${token}`
     }
   },

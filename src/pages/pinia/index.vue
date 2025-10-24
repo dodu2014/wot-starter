@@ -37,7 +37,7 @@ const useCounterStore = defineStore('counter', () => {
 })
 
 // 定义一个用户信息store（演示持久化）
-const useUserStore = defineStore('user', () => {
+const useUser1Store = defineStore('user1', () => {
   const userInfo = ref({
     name: '',
     email: '',
@@ -99,7 +99,7 @@ const useTempStore = defineStore('temp', () => {
 
 // 使用stores
 const counterStore = useCounterStore()
-const userStore = useUserStore()
+const userStore = useUser1Store()
 const tempStore = useTempStore()
 
 // 表单数据

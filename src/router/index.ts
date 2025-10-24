@@ -54,6 +54,20 @@ router.beforeEach((to, from, next) => {
     })
   }
 
+  if ((to as any)?.excludeLoginPath) {
+    console.log('🚀 当前页面需要登录')
+    const { logined } = useUserStore()
+    if (!logined) {
+      console.log('🚀 当前用户未登录，跳转到登录页面')
+      // 跳转到登陆页
+      next(false)
+      uni.navigateTo({
+        url: `/pages/login/index?redirect=${to.path}`,
+      })
+      return
+    }
+  }
+
   // 继续导航
   next()
 })

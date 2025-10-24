@@ -10,6 +10,14 @@ definePage({
 const userStore = useUserStore()
 const { userInfo, logined } = storeToRefs(userStore)
 
+const router = useRouter()
+// 页面跳转方法
+function navigateTo(name: string) {
+  router.push({
+    name,
+  })
+}
+
 onLoad(async () => {
   console.log('userInfo', userInfo)
   // if (userInfo) {
@@ -34,5 +42,11 @@ onLoad(async () => {
         </view>
       </template>
     </wd-card>
+
+    <view>
+      <wd-button @click="navigateTo('feedback')">
+        测试需要登陆的页面
+      </wd-button>
+    </view>
   </view>
 </template>

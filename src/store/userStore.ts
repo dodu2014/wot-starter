@@ -3,11 +3,11 @@ import { ref } from 'vue'
 import type { UserProfileInfo } from '@/service/apis/base/globals.d.ts'
 import { Webapi_Base } from '@/service/apis'
 
-const GlobalToast = useGlobalToast()
-
 export const useUserStore = defineStore(
   'userStore',
   () => {
+    const GlobalToast = useGlobalToast()
+
     /* 定义用户信息 */
     const userInfo = ref<UserProfileInfo>()
 

@@ -10,6 +10,15 @@
       }
     },
     {
+      "path": "pages/about/feedback",
+      "type": "page",
+      "name": "feedback",
+      "style": {
+        "navigationBarTitleText": "反馈"
+      },
+      "excludeLoginPath": true
+    },
+    {
       "path": "pages/about/index",
       "type": "page",
       "name": "about",

@@ -27,6 +27,12 @@ export const alovaInstance = createAlova({
       console.log(`[API Base URL] ${import.meta.env.VITE_API_BASE_URL}`)
       console.log(`[Environment] ${import.meta.env.VITE_ENV_NAME}`)
     }
+
+    // Add token in request header
+    const { token } = useUserStore()
+    if (token) {
+      method.config.headers.Authorization = `bearer ${token}`
+    }
   },
 
   // Response handlers

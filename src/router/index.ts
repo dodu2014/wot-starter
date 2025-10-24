@@ -60,9 +60,11 @@ router.beforeEach((to, from, next) => {
     if (!logined) {
       console.log('🚀 当前用户未登录，跳转到登录页面')
       // 跳转到登陆页
-      next(false)
-      uni.navigateTo({
-        url: `/pages/login/index?redirect=${to.path}`,
+      next({
+        path: '/pages/login/index',
+        query: {
+          redirect: to.path as string,
+        },
       })
       return
     }

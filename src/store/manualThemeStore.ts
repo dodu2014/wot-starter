@@ -2,6 +2,9 @@ import { defineStore } from 'pinia'
 import type { ThemeColorOption, ThemeMode, ThemeState } from '@/composables/types/theme'
 import { themeColorOptions } from '@/composables/types/theme'
 
+// 默认主题色
+const defaultTheme = themeColorOptions.find(item => item.value === 'red')!
+
 /**
  * 完整版主题状态管理
  * 支持手动切换主题、主题色选择、跟随系统主题等完整功能
@@ -11,7 +14,7 @@ export const useManualThemeStore = defineStore('manualTheme', {
     theme: 'light',
     followSystem: true, // 是否跟随系统主题
     hasUserSet: false, // 用户是否手动设置过主题
-    currentThemeColor: themeColorOptions[0],
+    currentThemeColor: defaultTheme,
     themeVars: {
       darkBackground: '#0f0f0f',
       darkBackground2: '#1a1a1a',
@@ -23,7 +26,7 @@ export const useManualThemeStore = defineStore('manualTheme', {
       darkColor: '#ffffff',
       darkColor2: '#e0e0e0',
       darkColor3: '#a0a0a0',
-      colorTheme: themeColorOptions[0].primary,
+      colorTheme: defaultTheme.primary,
     },
   }),
 

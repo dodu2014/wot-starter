@@ -15,6 +15,7 @@ declare global {
   const apiDefinitions: typeof import('./api/apiDefinitions')['default']
   const asyncComputed: typeof import('@vueuse/core')['asyncComputed']
   const autoResetRef: typeof import('@vueuse/core')['autoResetRef']
+  const checkMiniProgramUpdate: typeof import('./utils/version')['checkMiniProgramUpdate']
   const computed: typeof import('vue')['computed']
   const computedAsync: typeof import('@vueuse/core')['computedAsync']
   const computedEager: typeof import('@vueuse/core')['computedEager']
@@ -44,17 +45,18 @@ declare global {
   const effectScope: typeof import('vue')['effectScope']
   const extendRef: typeof import('@vueuse/core')['extendRef']
   const getActivePinia: typeof import('pinia')['getActivePinia']
-  const getAllExcludePages: typeof import('./utils/index')['getAllExcludePages']
-  const getAllPages: typeof import('./utils/index')['getAllPages']
+  const getAllExcludePages: typeof import('./utils/page')['getAllExcludePages']
+  const getAllPages: typeof import('./utils/page')['getAllPages']
   const getCurrentInstance: typeof import('vue')['getCurrentInstance']
-  const getCurrentPath: typeof import('./utils/index')['getCurrentPath']
+  const getCurrentPath: typeof import('./utils/page')['getCurrentPath']
   const getCurrentScope: typeof import('vue')['getCurrentScope']
+  const getMiniProgramVersion: typeof import('./utils/version')['getMiniProgramVersion']
   const h: typeof import('vue')['h']
   const ignorableWatch: typeof import('@vueuse/core')['ignorableWatch']
   const inject: typeof import('vue')['inject']
   const injectLocal: typeof import('@vueuse/core')['injectLocal']
   const isDefined: typeof import('@vueuse/core')['isDefined']
-  const isPageTabbar: typeof import('./utils/index')['isPageTabbar']
+  const isPageTabbar: typeof import('./utils/page')['isPageTabbar']
   const isProxy: typeof import('vue')['isProxy']
   const isReactive: typeof import('vue')['isReactive']
   const isReadonly: typeof import('vue')['isReadonly']
@@ -374,6 +376,7 @@ declare module 'vue' {
     readonly apiDefinitions: UnwrapRef<typeof import('./api/apiDefinitions')['default']>
     readonly asyncComputed: UnwrapRef<typeof import('@vueuse/core')['asyncComputed']>
     readonly autoResetRef: UnwrapRef<typeof import('@vueuse/core')['autoResetRef']>
+    readonly checkMiniProgramUpdate: UnwrapRef<typeof import('./utils/version')['checkMiniProgramUpdate']>
     readonly computed: UnwrapRef<typeof import('vue')['computed']>
     readonly computedAsync: UnwrapRef<typeof import('@vueuse/core')['computedAsync']>
     readonly computedEager: UnwrapRef<typeof import('@vueuse/core')['computedEager']>
@@ -403,17 +406,18 @@ declare module 'vue' {
     readonly effectScope: UnwrapRef<typeof import('vue')['effectScope']>
     readonly extendRef: UnwrapRef<typeof import('@vueuse/core')['extendRef']>
     readonly getActivePinia: UnwrapRef<typeof import('pinia')['getActivePinia']>
-    readonly getAllExcludePages: UnwrapRef<typeof import('./utils/index')['getAllExcludePages']>
-    readonly getAllPages: UnwrapRef<typeof import('./utils/index')['getAllPages']>
+    readonly getAllExcludePages: UnwrapRef<typeof import('./utils/page')['getAllExcludePages']>
+    readonly getAllPages: UnwrapRef<typeof import('./utils/page')['getAllPages']>
     readonly getCurrentInstance: UnwrapRef<typeof import('vue')['getCurrentInstance']>
-    readonly getCurrentPath: UnwrapRef<typeof import('./utils/index')['getCurrentPath']>
+    readonly getCurrentPath: UnwrapRef<typeof import('./utils/page')['getCurrentPath']>
     readonly getCurrentScope: UnwrapRef<typeof import('vue')['getCurrentScope']>
+    readonly getMiniProgramVersion: UnwrapRef<typeof import('./utils/version')['getMiniProgramVersion']>
     readonly h: UnwrapRef<typeof import('vue')['h']>
     readonly ignorableWatch: UnwrapRef<typeof import('@vueuse/core')['ignorableWatch']>
     readonly inject: UnwrapRef<typeof import('vue')['inject']>
     readonly injectLocal: UnwrapRef<typeof import('@vueuse/core')['injectLocal']>
     readonly isDefined: UnwrapRef<typeof import('@vueuse/core')['isDefined']>
-    readonly isPageTabbar: UnwrapRef<typeof import('./utils/index')['isPageTabbar']>
+    readonly isPageTabbar: UnwrapRef<typeof import('./utils/page')['isPageTabbar']>
     readonly isProxy: UnwrapRef<typeof import('vue')['isProxy']>
     readonly isReactive: UnwrapRef<typeof import('vue')['isReactive']>
     readonly isReadonly: UnwrapRef<typeof import('vue')['isReadonly']>

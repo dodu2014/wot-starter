@@ -90,12 +90,12 @@
     "sass": "1.78.0",
     "simple-git-hooks": "^2.11.1",
     "standard-version": "^9.5.0",
-    "typescript": "~5.5.4",
+    "typescript": "~5.9.3",
     "uni-mini-router": "^0.1.6",
     "unocss": "^0.62.3",
     "unplugin-auto-import": "^0.18.2",
     "vite": "^5.2.8",
-    "vue-tsc": "^2.0.28"
+    "vue-tsc": "^3.1.2"
   },
   "simple-git-hooks": {
     "pre-commit": "pnpm lint-staged"

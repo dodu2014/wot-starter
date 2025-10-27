@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { Webapi_App } from '@/service/apis'
-
 definePage({
   name: 'request',
   style: {

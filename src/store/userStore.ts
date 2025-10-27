@@ -1,7 +1,6 @@
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
 import type { UserProfileInfo } from '@/service/apis/base/globals.d.ts'
-import { Webapi_Base } from '@/service/apis'
 
 export const useUserStore = defineStore(
   'userStore',

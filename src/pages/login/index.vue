@@ -102,7 +102,7 @@ function toProtocol(type: string) {
   router.push({ path: `/pages/login/${type}` })
 }
 
-onLoad((options) => {
+onLoad((options: any) => {
   console.log('login options: ', options)
   if (options?.redirect) {
     redirectUrl.value = options.redirect

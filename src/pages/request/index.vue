@@ -190,84 +190,31 @@ onMounted(async () => {
     </view>
 
     <!-- Alova useRequest 演示 -->
-    <demo-block title="useRequest Hook 演示">
+    <demo-block title="useRequest Hook 演示" custom-card-content-class="!gap-8">
       <!-- 宠物列表请求 -->
-      <view class="flex items-center">
-        <view class="mr-2 text-5">
-          🐾
-        </view>
-        <view class="text-4 text-gray-800 font-bold dark:text-[var(--wot-dark-color)]">
-          宠物列表请求
-        </view>
-
-        <!-- app版本列表请求 -->
-        <view class="rounded-2 bg-white p-4 dark:bg-[var(--wot-dark-background2)]">
-          <view class="mb-3 flex items-center">
-            <view class="mr-2 text-5">
-              🤖
-            </view>
-            <view class="text-4 text-gray-800 font-bold dark:text-[var(--wot-dark-color)]">
-              app版本列表请求
-            </view>
+      <view class="flex-col gap-3">
+        <view class="flex items-center">
+          <view class="mr-2 text-5">
+            🐾
           </view>
-          <view class="mb-3 text-3 text-gray-600 leading-relaxed dark:text-[var(--wot-dark-color2)]">
-            使用 useRequest 获取app版本列表，支持参数传递和错误处理
-          </view>
-
-          <view class="mb-3">
-            <wd-button
-              type="success"
-              block
-              :loading="appVersionLoading"
-              @click="loadAppVersion"
-            >
-              获取app版本列表
-            </wd-button>
-          </view>
-
-          <!-- 请求状态显示 -->
-          <view class="space-y-2">
-            <view v-if="appVersionLoading" class="flex items-center text-3 text-blue-600">
-              <wd-icon name="loading" size="14px" class="mr-1" />
-              正在加载app版本数据...
-            </view>
-            <view v-if="appVersionError" class="text-3 text-red-600">
-              ❌ 请求失败: {{ appVersionError.message }}
-            </view>
-            <view v-if="appVersionData && !appVersionLoading" class="text-3 text-green-600">
-              ✅ 成功获取 {{ appVersionData.data?.list?.length }} 个app版本
-            </view>
-          </view>
-
-          <!-- 代码示例 -->
-          <view class="mt-3 rounded-2 bg-gray-50 p-3 dark:bg-[var(--wot-dark-background3)]">
-            <view class="mb-2 text-3 text-gray-700 font-bold dark:text-[var(--wot-dark-color)]">
-              代码示例:
-            </view>
-            <view class="text-2.5 text-gray-600 leading-relaxed font-mono dark:text-[var(--wot-dark-color2)]">
-              const { data, loading, send } = useRequest(\n
-              &nbsp;&nbsp;(status) => Webapi_App.app.GetAppVersionList({ params: { keyword } }),\n
-              &nbsp;&nbsp;{ immediate: false }\n
-              ).onError((error) => { ... })
-            </view>
+          <view class="text-4 text-gray-800 font-bold dark:text-[var(--wot-dark-color)]">
+            宠物列表请求
           </view>
         </view>
-      </view>
-      <view class="text-3 leading-relaxed">
-        使用 useRequest 获取宠物列表，支持参数传递和错误处理
-      </view>
+        <view class="text-3 leading-relaxed">
+          使用 useRequest 获取宠物列表，支持参数传递和错误处理
+        </view>
 
-      <wd-button
-        type="primary"
-        block
-        :loading="petLoading"
-        @click="demoLoadPets"
-      >
-        获取宠物列表
-      </wd-button>
+        <wd-button
+          type="primary"
+          block
+          :loading="petLoading"
+          @click="demoLoadPets"
+        >
+          获取宠物列表
+        </wd-button>
 
-      <!-- 请求状态显示 -->
-      <view class="space-y-2">
+        <!-- 请求状态显示 -->
         <view v-if="petLoading" class="flex items-center text-3 text-blue-600">
           <wd-icon name="loading" size="14px" class="mr-1" />
           正在加载宠物数据...
@@ -278,43 +225,43 @@ onMounted(async () => {
         <view v-if="petData && !petLoading" class="text-3 text-green-600">
           ✅ 成功获取 {{ petData.length }} 只宠物数据
         </view>
-      </view>
 
-      <!-- 代码示例 -->
-      <code-content>
-        代码示例:
-        <template #pre>
-          {{ `const { data, loading, send } = useRequest(
+        <!-- 代码示例 -->
+        <code-content>
+          代码示例:
+          <template #pre>
+            {{ `const { data, loading, send } = useRequest(
   (status) => Apis.pet.findPetsByStatus({ params: { status } }),
   { immediate: false }
 ).onError((error) => { ... })` }}
-        </template>
-      </code-content>
+          </template>
+        </code-content>
+      </view>
 
       <!-- 用户登录请求 -->
-      <view class="mt-5 flex items-center">
-        <view class="mr-2 text-5">
-          👤
+      <view class="flex-col gap-3">
+        <view class="flex items-center">
+          <view class="mr-2 text-5">
+            👤
+          </view>
+          <view class="text-4 text-gray-800 font-bold dark:text-[var(--wot-dark-color)]">
+            用户登录请求
+          </view>
         </view>
-        <view class="text-4 text-gray-800 font-bold dark:text-[var(--wot-dark-color)]">
-          用户登录请求
+        <view class="text-3 leading-relaxed">
+          演示多参数传递和POST请求处理
         </view>
-      </view>
-      <view class="text-3 text-gray-600 leading-relaxed dark:text-[var(--wot-dark-color2)]">
-        演示多参数传递和POST请求处理
-      </view>
 
-      <wd-button
-        type="warning"
-        block
-        :loading="loginLoading"
-        @click="demoLogin"
-      >
-        模拟用户登录
-      </wd-button>
+        <wd-button
+          type="warning"
+          block
+          :loading="loginLoading"
+          @click="demoLogin"
+        >
+          模拟用户登录
+        </wd-button>
 
-      <!-- 请求状态显示 -->
-      <view class="space-y-2">
+        <!-- 请求状态显示 -->
         <view v-if="loginLoading" class="flex items-center text-3 text-blue-600">
           <wd-icon name="loading" size="14px" class="mr-1" />
           正在登录中...
@@ -325,20 +272,67 @@ onMounted(async () => {
         <view v-if="loginData && !loginLoading" class="text-3 text-green-600">
           ✅ 登录成功！
         </view>
-      </view>
 
-      <!-- 代码示例 -->
-      <code-content>
-        代码示例:
-        <template #pre>
-          {{ `const { data, loading, send } = useRequest(
+        <!-- 代码示例 -->
+        <code-content>
+          代码示例:
+          <template #pre>
+            {{ `const { data, loading, send } = useRequest(
   (username, password) => Apis.user.loginUser({
     params: { username, password }
   }),
   { immediate: false }
 ).onError((error) => { ... })` }}
-        </template>
-      </code-content>
+          </template>
+        </code-content>
+      </view>
+
+      <!-- app版本列表请求 -->
+      <view class="flex-col gap-3">
+        <view class="flex items-center">
+          <view class="mr-2 text-5">
+            🤖
+          </view>
+          <view class="text-4 text-gray-800 font-bold dark:text-[var(--wot-dark-color)]">
+            app版本列表请求
+          </view>
+        </view>
+        <view class="text-3 leading-relaxed">
+          使用 useRequest 获取app版本列表，支持参数传递和错误处理
+        </view>
+
+        <wd-button
+          type="success"
+          block
+          :loading="appVersionLoading"
+          @click="loadAppVersion"
+        >
+          获取app版本列表
+        </wd-button>
+
+        <!-- 请求状态显示 -->
+        <view v-if="appVersionLoading" class="flex items-center text-3 text-blue-600">
+          <wd-icon name="loading" size="14px" class="mr-1" />
+          正在加载app版本数据...
+        </view>
+        <view v-if="appVersionError" class="text-3 text-red-600">
+          ❌ 请求失败: {{ appVersionError.message }}
+        </view>
+        <view v-if="appVersionData && !appVersionLoading" class="text-3 text-green-600">
+          ✅ 成功获取 {{ appVersionData.data?.list?.length }} 个app版本
+        </view>
+
+        <!-- 代码示例 -->
+        <code-content>
+          代码示例:
+          <template #pre>
+            {{ `const { data, loading, send } = useRequest(
+  (status) => Webapi_App.app.GetAppVersionList({ params: { keyword } }),
+  { immediate: false }
+).onError((error) => { ... })` }}
+          </template>
+        </code-content>
+      </view>
     </demo-block>
 
     <!-- 相关链接 -->

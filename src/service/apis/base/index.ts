@@ -1,7 +1,15 @@
+// Export the global Apis object from the generated code
 import { createApis, withConfigType } from './createApis'
+
+// Import the core alova instance
 import alovaInstance from '@/api/core/instance'
 
-const Webapi_Base = createApis(alovaInstance, withConfigType({}))
+// Export the alova instance for direct use if needed
+export { alovaInstance }
+
+// Configure method options for specific APIs
+export const $$userConfigMap = withConfigType({})
+
+export const Webapi_Base = createApis(alovaInstance, $$userConfigMap)
 
 export default Webapi_Base
-export { Webapi_Base }

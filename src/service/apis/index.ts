@@ -1,4 +1,4 @@
-export * from './app'
-export * from './base'
-export * from './business'
-export * from './weixin'
+export { Webapi_App } from './app'
+export { Webapi_Base } from './base'
+export { Webapi_Business } from './business'
+export { Webapi_Weixin } from './weixin'

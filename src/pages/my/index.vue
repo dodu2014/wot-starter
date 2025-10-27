@@ -31,7 +31,7 @@ onLoad(async () => {
 
       <template #footer>
         <view class="flex justify-end gap-12px">
-          <wd-button size="small" plain :disabled="logined" @click="userStore.login">
+          <wd-button size="small" plain :disabled="logined" @click="userStore.login({ userName: 'admin', password: 'admin999' })">
             模拟登录
           </wd-button>
           <wd-button size="small" plain :disabled="!logined" type="error" @click="userStore.logout">
@@ -41,9 +41,12 @@ onLoad(async () => {
       </template>
     </wd-card>
 
-    <view>
+    <view class="grid grid-cols-2 m-4 gap-2">
       <wd-button @click="navigateTo('/pages/about/feedback')">
         测试需要登陆的页面
+      </wd-button>
+      <wd-button @click="navigateTo('/pages/login/index')">
+        登陆页面
       </wd-button>
     </view>
   </view>

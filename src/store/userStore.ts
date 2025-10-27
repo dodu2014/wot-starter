@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
-import type { UserProfileInfo } from '@/service/apis/base/globals.d.ts'
+import type { LoginModel, UserProfileInfo } from '@/service/apis/base/globals.d.ts'
 
 export const useUserStore = defineStore(
   'userStore',
@@ -47,16 +47,17 @@ export const useUserStore = defineStore(
     })
 
     /* 登录 */
-    async function login() {
-      const { error, send } = useRequest(() => Webapi_Base.auth.Login({ data: { userName: 'admin', password: 'admin999' } })).onError((error) => {
+    async function login(model: LoginModel) {
+      const { error, data, send } = useRequest(() => Webapi_Base.auth.Login({ data: model })).onError((error) => {
         GlobalToast.error(error.error?.message || '')
       })
-      const res = await send()
+      await send()
       if (!error.value) {
-        console.log('成功登录', res)
-        setToken(res.data.token)
+        console.log('成功登录', data.value)
+        setToken(data.value.data?.token)
         await loadUserInfo()
       }
+      return { error, data }
     }
 
     /* 退出登录 */

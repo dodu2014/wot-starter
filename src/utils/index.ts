@@ -1,4 +1,5 @@
 import { pages, subPackages } from 'virtual:uni-pages'
+import { tabBar } from '../pages.json'
 
 /**
  * 获取当前页面路径
@@ -47,4 +48,13 @@ export function getAllPages() {
 export function getAllExcludePages(key = 'excludeLoginPath') {
   const pages = getAllPages()
   return pages.filter((page: any) => !key || !page[key])
+}
+
+/** 判断是否是 tabbar 页面 */
+export function isPageTabbar(path: string) {
+  let _path = path.split('?')[0]
+  if (_path.startsWith('/')) {
+    _path = _path.slice(1)
+  }
+  return tabBar.list.some(item => item.pagePath === _path)
 }

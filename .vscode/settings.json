@@ -61,5 +61,8 @@
   "files.associations": {
     "**/pages.json": "jsonc",
     "**/manifest.json": "jsonc"
-  }
+  },
+
+  // Disable emoji in commit messages
+  "GitCommitPlugin.ShowEmoji": false
 }

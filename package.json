@@ -88,7 +88,7 @@
     "husky": "^8.0.0",
     "lint-staged": "^15.2.9",
     "miniprogram-api-typings": "^3.12.3",
-    "sass": "1.93.2",
+    "sass": "1.78.0",
     "simple-git-hooks": "^2.11.1",
     "standard-version": "^9.5.0",
     "typescript": "~5.9.3",

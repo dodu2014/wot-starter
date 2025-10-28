@@ -68,6 +68,15 @@
       }
     },
     {
+      "path": "pages/login/register",
+      "type": "page",
+      "name": "register",
+      "layout": "default",
+      "style": {
+        "navigationBarTitleText": "用户注册"
+      }
+    },
+    {
       "path": "pages/my/index",
       "type": "page",
       "name": "my",
@@ -163,6 +172,24 @@
       "name": "root",
       "style": {
         "navigationBarTitleText": "uni-ku/root"
+      }
+    },
+    {
+      "path": "pages/user/changePassword",
+      "type": "page",
+      "name": "user-change-password",
+      "layout": "default",
+      "style": {
+        "navigationBarTitleText": "修改密码"
+      }
+    },
+    {
+      "path": "pages/user/profile",
+      "type": "page",
+      "name": "user-profile",
+      "layout": "default",
+      "style": {
+        "navigationBarTitleText": "用户档案"
       }
     }
   ],

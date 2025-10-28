@@ -12,6 +12,7 @@ type _LocationUrl =
   "/pages/feedback/index" |
   "/pages/icon/index" |
   "/pages/login/index" |
+  "/pages/login/register" |
   "/pages/my/index" |
   "/pages/pinia/index" |
   "/pages/request/index" |
@@ -24,6 +25,8 @@ type _LocationUrl =
   "/pages/router/demo-string" |
   "/pages/router/index" |
   "/pages/uni-ku-root/index" |
+  "/pages/user/changePassword" |
+  "/pages/user/profile" |
   "/subPages/styles/index" |
   "/subEcharts/echarts/index" |
   "/subAsyncEcharts/asyncEcharts/index";

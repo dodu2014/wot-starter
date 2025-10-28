@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { LOGIN_PAGE } from '@/router'
 import defaultAvatar from '/static/logo.png'
 
 definePage({
@@ -46,7 +47,7 @@ const menuItems = ref([
   {
     title: '账户设置',
     icon: 'setting1',
-    path: '/pages/settings/index',
+    path: '/pages/about/feedback',
   },
   {
     title: '帮助中心',
@@ -68,7 +69,7 @@ function navigateTo(path: string) {
 // 跳转到登录页面
 function toLogin() {
   if (!logined.value) {
-    router.push({ path: '/pages/login/index' })
+    router.push({ path: LOGIN_PAGE })
   }
 }
 

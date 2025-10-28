@@ -1,6 +1,10 @@
 /// <reference types="@uni-helper/vite-plugin-uni-pages/client" />
 import { pages, subPackages } from 'virtual:uni-pages'
 
+// 定义固定路由页面
+export const HOME_PAGE: _LocationUrl = '/pages/index/index'
+export const LOGIN_PAGE: _LocationUrl = '/pages/login/index'
+
 function generateRoutes() {
   const routes = pages.map((page) => {
     const newPath = `/${page.path}`
@@ -61,7 +65,7 @@ router.beforeEach((to, from, next) => {
       console.log('🚀 当前用户未登录，跳转到登录页面')
       // 跳转到登陆页
       next({
-        path: '/pages/login/index',
+        path: LOGIN_PAGE,
         query: {
           redirect: to.path as string,
         },

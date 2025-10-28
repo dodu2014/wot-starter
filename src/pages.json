@@ -73,6 +73,7 @@
       "name": "my",
       "layout": "tabbar",
       "style": {
+        "navigationStyle": "custom",
         "navigationBarTitleText": "个人中心"
       }
     },

@@ -5,8 +5,6 @@ import store from './store'
 import 'uno.css'
 import '@/style/index.scss'
 
-import './service/apis'
-
 export function createApp() {
   const app = createSSRApp(App)
   app.use(router)

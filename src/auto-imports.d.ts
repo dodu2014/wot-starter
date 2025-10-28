@@ -9,6 +9,10 @@ declare global {
   const Apis: typeof import('./api/index')['Apis']
   const CommonUtil: typeof import('wot-design-uni')['CommonUtil']
   const EffectScope: typeof import('vue')['EffectScope']
+  const Webapi_App: typeof import('./service/apis/index')['Webapi_App']
+  const Webapi_Base: typeof import('./service/apis/index')['Webapi_Base']
+  const Webapi_Business: typeof import('./service/apis/index')['Webapi_Business']
+  const Webapi_Weixin: typeof import('./service/apis/index')['Webapi_Weixin']
   const acceptHMRUpdate: typeof import('pinia')['acceptHMRUpdate']
   const alovaInstance: typeof import('./api/index')['alovaInstance']
   const api: typeof import('./api/index')['default']
@@ -370,6 +374,10 @@ declare module 'vue' {
     readonly Apis: UnwrapRef<typeof import('./api/index')['Apis']>
     readonly CommonUtil: UnwrapRef<typeof import('wot-design-uni')['CommonUtil']>
     readonly EffectScope: UnwrapRef<typeof import('vue')['EffectScope']>
+    readonly Webapi_App: UnwrapRef<typeof import('./service/apis/index')['Webapi_App']>
+    readonly Webapi_Base: UnwrapRef<typeof import('./service/apis/index')['Webapi_Base']>
+    readonly Webapi_Business: UnwrapRef<typeof import('./service/apis/index')['Webapi_Business']>
+    readonly Webapi_Weixin: UnwrapRef<typeof import('./service/apis/index')['Webapi_Weixin']>
     readonly acceptHMRUpdate: UnwrapRef<typeof import('pinia')['acceptHMRUpdate']>
     readonly alovaInstance: UnwrapRef<typeof import('./api/index')['alovaInstance']>
     readonly api: UnwrapRef<typeof import('./api/index')['default']>

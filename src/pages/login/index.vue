@@ -103,7 +103,9 @@ function toProtocol(type: string) {
 }
 
 onLoad((options: any) => {
-  console.log('login options: ', options)
+  // 如果有登录信息，则自动填充用户名
+  model.value.userName = uni.getStorageSync('loginInfo')?.username
+
   if (options?.redirect) {
     redirectUrl.value = options.redirect
   }

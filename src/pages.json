@@ -16,7 +16,7 @@
       "style": {
         "navigationBarTitleText": "反馈"
       },
-      "excludeLoginPath": true
+      "needLogin": true
     },
     {
       "path": "pages/about/index",

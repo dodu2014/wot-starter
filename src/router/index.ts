@@ -58,7 +58,7 @@ router.beforeEach((to, from, next) => {
     })
   }
 
-  if ((to as any)?.excludeLoginPath) {
+  if ((to as any)?.needLogin) {
     console.log('🚀 当前页面需要登录')
     const { logined } = useUserStore()
     if (!logined) {

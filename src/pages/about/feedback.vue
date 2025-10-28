@@ -4,8 +4,8 @@ definePage({
   style: {
     navigationBarTitleText: '反馈',
   },
-  // 登录授权(可选)：同时支持黑白名单，详情请见 src/router 文件夹
-  excludeLoginPath: true,
+  // 登录授权(可选)
+  needLogin: true,
 })
 </script>
 

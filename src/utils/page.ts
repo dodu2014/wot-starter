@@ -6,7 +6,7 @@ import { tabBar } from '../pages.json'
  * @returns 当前页面路径
  */
 export function getCurrentPath() {
-  const pages = getCurrentPages<{ excludeLoginPath?: boolean }>()
+  const pages = getCurrentPages<{ needLogin?: boolean }>()
   const currentPage = pages[pages.length - 1]
   return currentPage.route || ''
 }
@@ -39,13 +39,13 @@ export function getAllPages() {
 
 /**
  * 得到所有的需要登录的 pages，包括主包和分包的
- * 这里设计得通用一点，可以传递 key 作为判断依据，默认是 excludeLoginPath, 与 route-block 配对使用
+ * 这里设计得通用一点，可以传递 key 作为判断依据，默认是 needLogin, 与 route-block 配对使用
  * 如果没有传 key，则表示所有的 pages，如果传递了 key, 则表示通过 key 过滤
  *
  * @param [key] 过滤的 key
  * @returns 需要登录的 pages
  */
-export function getAllExcludePages(key = 'excludeLoginPath') {
+export function getAllExcludePages(key = 'needLogin') {
   const pages = getAllPages()
   return pages.filter((page: any) => !key || !page[key])
 }

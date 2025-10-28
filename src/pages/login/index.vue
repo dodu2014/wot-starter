@@ -15,7 +15,7 @@ const redirectUrl = ref('')
 const model = ref({
   userName: '',
   password: '',
-  remember: false,
+  remember: true,
 })
 const agreed = ref(false)
 
@@ -94,7 +94,11 @@ function checkAccept(): Promise<boolean> {
 }
 
 function back() {
-  uni.navigateBack()
+  const pages = getCurrentPages()
+  if (pages.length > 1)
+    uni.navigateBack()
+  else
+    router.pushTab({ path: '/pages/index/index' })
 }
 
 function toProtocol(type: string) {

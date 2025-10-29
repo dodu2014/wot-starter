@@ -1,14 +1,16 @@
 /// <reference types="@uni-helper/vite-plugin-uni-pages/client" />
+import type { PageMetaDatum } from '@uni-helper/vite-plugin-uni-pages'
 import { pages, subPackages } from 'virtual:uni-pages'
+import type { RouterExt } from '@/shims'
 
 // 定义固定路由页面
 export const HOME_PAGE: _LocationUrl = '/pages/index/index'
 export const LOGIN_PAGE: _LocationUrl = '/pages/login/index'
 
-function generateRoutes() {
+function generateRoutes(): PageMetaDatum[] {
   const routes = pages.map((page) => {
     const newPath = `/${page.path}`
-    return { ...page, path: newPath }
+    return { ...page, path: newPath } as PageMetaDatum
   })
   if (subPackages && subPackages.length > 0) {
     subPackages.forEach((subPackage) => {
@@ -96,4 +98,4 @@ router.afterEach((to, from) => {
   }
 })
 
-export default router
+export default router as RouterExt

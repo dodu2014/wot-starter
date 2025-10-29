@@ -77,12 +77,30 @@
       }
     },
     {
+      "path": "pages/login/privacyPolicy",
+      "type": "page",
+      "name": "privacy-policy",
+      "layout": "default",
+      "style": {
+        "navigationBarTitleText": "隐私政策"
+      }
+    },
+    {
       "path": "pages/login/register",
       "type": "page",
       "name": "register",
       "layout": "default",
       "style": {
         "navigationBarTitleText": "用户注册"
+      }
+    },
+    {
+      "path": "pages/login/userAgreement",
+      "type": "page",
+      "name": "user-agreement",
+      "layout": "default",
+      "style": {
+        "navigationBarTitleText": "用户协议"
       }
     },
     {

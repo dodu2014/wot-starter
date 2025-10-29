@@ -13,7 +13,9 @@ type _LocationUrl =
   "/pages/feedback/index" |
   "/pages/icon/index" |
   "/pages/login/index" |
+  "/pages/login/privacyPolicy" |
   "/pages/login/register" |
+  "/pages/login/userAgreement" |
   "/pages/my/index" |
   "/pages/pinia/index" |
   "/pages/request/index" |

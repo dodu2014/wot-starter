@@ -30,6 +30,10 @@ type _LocationUrl =
   "/pages/uni-ku-root/index" |
   "/pages/user/changePassword" |
   "/pages/user/profile" |
+  "/pages/user/settings" |
+  "/pages/business/order/index" |
+  "/pages/business/team/index" |
+  "/pages/business/team/join" |
   "/subPages/styles/index" |
   "/subEcharts/echarts/index" |
   "/subAsyncEcharts/asyncEcharts/index";

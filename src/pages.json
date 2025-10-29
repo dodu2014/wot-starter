@@ -208,7 +208,8 @@
       "layout": "default",
       "style": {
         "navigationBarTitleText": "修改密码"
-      }
+      },
+      "needLogin": true
     },
     {
       "path": "pages/user/profile",
@@ -217,7 +218,48 @@
       "layout": "default",
       "style": {
         "navigationBarTitleText": "用户档案"
-      }
+      },
+      "needLogin": true
+    },
+    {
+      "path": "pages/user/settings",
+      "type": "page",
+      "name": "user-settings",
+      "layout": "default",
+      "style": {
+        "navigationBarTitleText": "用户设置"
+      },
+      "needLogin": true
+    },
+    {
+      "path": "pages/business/order/index",
+      "type": "page",
+      "name": "order-index",
+      "layout": "default",
+      "style": {
+        "navigationBarTitleText": "我的订单"
+      },
+      "needLogin": true
+    },
+    {
+      "path": "pages/business/team/index",
+      "type": "page",
+      "name": "team-index",
+      "layout": "default",
+      "style": {
+        "navigationBarTitleText": "团队成员"
+      },
+      "needLogin": true
+    },
+    {
+      "path": "pages/business/team/join",
+      "type": "page",
+      "name": "team-join",
+      "layout": "default",
+      "style": {
+        "navigationBarTitleText": "邀请加入"
+      },
+      "needLogin": true
     }
   ],
   "globalStyle": {

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { LOGIN_PAGE } from '@/router'
+import router, { LOGIN_PAGE } from '@/router'
 import defaultAvatar from '/static/logo.png'
 
 definePage({
@@ -15,8 +15,6 @@ const { confirm } = useGlobalMessage()
 const userStore = useUserStore()
 const { userInfo, logined } = storeToRefs(userStore)
 
-const router = useRouter()
-
 // 模拟数据 - 积分、余额、订单数量、团队成员
 const userStats = ref({
   points: 1250,
@@ -26,33 +24,39 @@ const userStats = ref({
 })
 
 // 功能菜单项
-const menuItems = ref([
+interface MenuItem {
+  title: string
+  icon: string
+  path: _LocationUrl
+  badge?: number
+}
+const menuItems = ref<MenuItem[]>([
   {
     title: '我的订单',
     icon: 'list',
-    path: '/pages/order/list',
+    path: '/pages/business/order/index',
     badge: 3,
   },
   {
-    title: '我的团队',
+    title: '团队成员',
     icon: 'usergroup',
-    path: '/pages/team/list',
+    path: '/pages/business/team/index',
     badge: 8,
   },
   {
-    title: '积分商城',
-    icon: 'gift',
-    path: '/pages/points/mall',
+    title: '邀请加入',
+    icon: 'qrcode',
+    path: '/pages/business/team/join',
   },
   {
     title: '账户设置',
     icon: 'setting1',
-    path: '/pages/about/feedback',
+    path: '/pages/user/settings',
   },
   {
     title: '帮助中心',
     icon: 'help-circle',
-    path: '/pages/help/index',
+    path: '/pages/about/index',
   },
   {
     title: '关于我们',
@@ -61,15 +65,10 @@ const menuItems = ref([
   },
 ])
 
-// 页面跳转方法
-function navigateTo(path: string) {
-  router.push({ path })
-}
-
 // 跳转到登录页面
 function toLogin() {
   if (!logined.value) {
-    router.push({ path: LOGIN_PAGE })
+    router.push(LOGIN_PAGE)
   }
 }
 
@@ -88,12 +87,9 @@ function logout() {
   })
 }
 
-// 编辑用户信息
-function editProfile() {
-  uni.showToast({
-    title: '编辑用户信息',
-    icon: 'none',
-  })
+// 跳转到设置页面
+function toSettings() {
+  router.push('/pages/user/settings')
 }
 
 onLoad(async () => {
@@ -132,7 +128,7 @@ onLoad(async () => {
               </view>
             </view>
           </view>
-          <wd-icon v-if="logined" name="setting1" size="30px" @click.prevent.stop="editProfile" />
+          <wd-icon v-if="logined" name="setting1" size="30px" @click.prevent.stop="toSettings" />
         </view>
 
         <!-- 统计信息卡片 -->
@@ -164,7 +160,7 @@ onLoad(async () => {
           v-for="item in menuItems.slice(0, 3)"
           :key="item.title"
           class="flex flex-col items-center py-3"
-          @click="navigateTo(item.path)"
+          @click="() => router.push(item.path)"
         >
           <wd-icon :name="item.icon" size="24px" class="mb-2 text-#d7421a" />
           <wd-text :text="item.title" size="12px" />
@@ -181,7 +177,7 @@ onLoad(async () => {
           :title="item.title"
           :icon="item.icon"
           is-link
-          @click="navigateTo(item.path)"
+          @click="() => router.push(item.path)"
         />
       </wd-cell-group>
     </demo-block>

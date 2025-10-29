@@ -5,7 +5,8 @@ import type { LoginModel, UserProfileInfo } from '@/service/apis/base/globals.d.
 export const useUserStore = defineStore(
   'userStore',
   () => {
-    const GlobalToast = useGlobalToast()
+    const toast = useGlobalToast()
+    const { close: hideLoading } = useGlobalLoading()
 
     /* 定义用户信息 */
     const userInfo = ref<UserProfileInfo>()
@@ -24,7 +25,7 @@ export const useUserStore = defineStore(
     /** 加载用户信息 */
     const loadUserInfo = async () => {
       const { send } = useRequest(() => Webapi_Base.auth.GetProfileInfo()).onError((error) => {
-        GlobalToast.error(error.error?.message || '获取用户档案失败')
+        toast.error(error.error?.message || '获取用户档案失败')
       })
 
       const res = await send()
@@ -49,7 +50,8 @@ export const useUserStore = defineStore(
     /* 登录 */
     async function login(model: LoginModel) {
       const { error, data, send } = useRequest(() => Webapi_Base.auth.Login({ data: model })).onError((error) => {
-        GlobalToast.error(error.error?.message || '')
+        hideLoading()
+        toast.error(error.error?.message || '')
       })
       await send()
       if (!error.value) {
@@ -63,7 +65,7 @@ export const useUserStore = defineStore(
     /* 退出登录 */
     async function logout() {
       const { error, send } = useRequest(() => Webapi_Base.auth.Logout()).onError((error) => {
-        GlobalToast.error(error.error?.message || '')
+        toast.error(error.error?.message || '')
       })
       const res = await send()
       if (!error.value) {

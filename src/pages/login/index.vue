@@ -11,6 +11,8 @@ definePage({
 const toast = useGlobalToast()
 const { login } = useUserStore()
 const redirectUrl = ref('')
+const { confirm } = useGlobalMessage()
+const { loading } = useGlobalLoading()
 
 const model = ref({
   userName: '',
@@ -26,6 +28,7 @@ async function handleLogin() {
     return toast.warning({ msg: '请输入用户名和密码' })
   }
 
+  loading('登录中..')
   const { error } = await login(model.value)
   if (error.value) {
     toast.error(error.value.message)
@@ -51,15 +54,15 @@ async function handleLogin() {
       const pages = getCurrentPages()
       console.log({ pages })
       if (!redirectUrl.value) {
-        uni.navigateBack()
+        router.back()
         return
       }
       // 判断 redirectUrl 是否为 tab 页面
       if (isPageTabbar(redirectUrl.value)) {
-        router.pushTab({ path: redirectUrl.value })
+        router.pushTab(redirectUrl.value as _LocationUrl)
       }
       else {
-        router.replace({ path: redirectUrl.value })
+        router.replace(redirectUrl.value as _LocationUrl)
       }
     },
   })
@@ -72,19 +75,17 @@ function checkAccept(): Promise<boolean> {
       resolve(true)
       return
     }
-    uni.showModal({
+    confirm({
       title: '同意并继续',
-      content: '请确认以及阅读且同意‘用户服务协议’和‘隐私政策’',
-      confirmText: '已阅读',
+      msg: '请确认以及阅读且同意‘用户服务协议’和‘隐私政策’',
+      confirmButtonText: '已阅读',
       success: (e) => {
-        if (!e.confirm) {
-          console.log('success', false)
-          reject(new Error('已取消'))
-        }
-        else {
+        if (e.action === 'confirm') {
           agreed.value = true
           resolve(true)
+          return
         }
+        reject(new Error('已取消'))
       },
       fail: (res) => {
         reject(res)
@@ -96,12 +97,12 @@ function checkAccept(): Promise<boolean> {
 function back() {
   const pages = getCurrentPages()
   if (pages.length > 1)
-    uni.navigateBack()
+    router.back()
   else
     router.pushTab({ path: HOME_PAGE })
 }
 
-function toProtocol(type: string) {
+function toProtocol(type: 'privacyPolicy' | 'userAgreement') {
   // 这里可以跳转到协议页面
   router.push({ path: `/pages/login/${type}` })
 }

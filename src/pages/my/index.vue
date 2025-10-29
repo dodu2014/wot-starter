@@ -132,11 +132,11 @@ onLoad(async () => {
               </view>
             </view>
           </view>
-          <wd-icon name="setting1" size="30px" @click.prevent="editProfile" />
+          <wd-icon v-if="logined" name="setting1" size="30px" @click.prevent.stop="editProfile" />
         </view>
 
         <!-- 统计信息卡片 -->
-        <view class="grid grid-cols-2 gap-3 rounded-lg bg-white bg-opacity-20 p-3">
+        <view v-if="logined" class="grid grid-cols-2 gap-3 rounded-lg bg-white bg-opacity-20 p-3">
           <view class="text-center">
             <view class="text-lg font-bold">
               ₮{{ logined ? userStats.points : ' --' }}

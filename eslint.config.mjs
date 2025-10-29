@@ -1,5 +1,6 @@
 import uniHelper from '@uni-helper/eslint-config'
 
+// 配置参考 https://github.com/antfu/eslint-config?tab=readme-ov-file#customization (工厂函数还接受任意数量的自定义配置覆盖：antfu)
 export default uniHelper(
   {
     ignores: [

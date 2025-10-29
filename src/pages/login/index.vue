@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import router from '@/router'
+import router, { HOME_PAGE } from '@/router'
 
 definePage({
   style: {
@@ -98,7 +98,7 @@ function back() {
   if (pages.length > 1)
     uni.navigateBack()
   else
-    router.pushTab({ path: '/pages/index/index' })
+    router.pushTab({ path: HOME_PAGE })
 }
 
 function toProtocol(type: string) {

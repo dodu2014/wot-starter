@@ -44,6 +44,15 @@
       }
     },
     {
+      "path": "pages/demo/index",
+      "type": "page",
+      "name": "demo",
+      "layout": "tabbar",
+      "style": {
+        "navigationBarTitleText": "示例"
+      }
+    },
+    {
       "path": "pages/feedback/index",
       "type": "page",
       "name": "feedback",
@@ -220,7 +229,7 @@
         "pagePath": "pages/index/index"
       },
       {
-        "pagePath": "pages/about/index"
+        "pagePath": "pages/demo/index"
       },
       {
         "pagePath": "pages/my/index"

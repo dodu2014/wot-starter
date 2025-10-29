@@ -48,6 +48,9 @@
     "postcss"
   ],
 
+  // Use flat config
+  "eslint.useFlatConfig": true,
+
   // Enable file nesting
   "explorer.fileNesting.enabled": true,
   "explorer.fileNesting.expand": false,

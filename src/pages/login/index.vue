@@ -10,7 +10,7 @@ definePage({
 
 const toast = useGlobalToast()
 const { login } = useUserStore()
-const redirectUrl = ref('')
+const redirectUrl = ref<_LocationUrl>()
 const { confirm } = useGlobalMessage()
 const { loading } = useGlobalLoading()
 
@@ -29,11 +29,7 @@ async function handleLogin() {
   }
 
   loading('登录中..')
-  const { error } = await login(model.value)
-  if (error.value) {
-    toast.error(error.value.message)
-    return
-  }
+  await login(model.value)
 
   // 保存登录信息
   if (model.value.remember) {
@@ -51,18 +47,19 @@ async function handleLogin() {
     msg: '登录成功',
     duration: 300,
     closed() {
-      const pages = getCurrentPages()
-      console.log({ pages })
       if (!redirectUrl.value) {
-        router.back()
+        if (getCurrentPages().length > 1)
+          router.back()
+        else
+          router.pushTab({ path: HOME_PAGE })
         return
       }
       // 判断 redirectUrl 是否为 tab 页面
       if (isPageTabbar(redirectUrl.value)) {
-        router.pushTab(redirectUrl.value as _LocationUrl)
+        router.pushTab(redirectUrl.value)
       }
       else {
-        router.replace(redirectUrl.value as _LocationUrl)
+        router.replace(redirectUrl.value)
       }
     },
   })

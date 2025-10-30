@@ -51,7 +51,7 @@ export function getAllExcludePages(key = 'needLogin') {
 }
 
 /** 判断是否是 tabbar 页面 */
-export function isPageTabbar(path: string) {
+export function isPageTabbar(path: _LocationUrl) {
   let _path = path.split('?')[0]
   if (_path.startsWith('/')) {
     _path = _path.slice(1)

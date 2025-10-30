@@ -49,10 +49,13 @@ export const useUserStore = defineStore(
 
     /* 登录 */
     async function login(model: LoginModel) {
-      const { error, data, send } = useRequest(() => Webapi_Base.auth.Login({ data: model })).onError((error) => {
-        hideLoading()
-        toast.error(error.error?.message || '')
-      })
+      const { error, data, send } = useRequest(() => Webapi_Base.auth.Login({ data: model }))
+        .onError((error) => {
+          toast.error(error.error?.message || '')
+        })
+        .onComplete(() => {
+          hideLoading()
+        })
       await send()
       if (!error.value) {
         console.log('成功登录', data.value)

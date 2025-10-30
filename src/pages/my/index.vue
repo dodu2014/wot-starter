@@ -102,7 +102,7 @@ onLoad(async () => {
 <template>
   <view class="page">
     <!-- 用户信息头部 -->
-    <view class="from-orange-600 to-red-700 bg-gradient-to-r text-white">
+    <view class="from-orange/75 to-[var(--wot-color-theme)]/100 bg-gradient-to-rb text-white">
       <wd-navbar
         title="个人中心"
         safeareainsettop placeholder fixed
@@ -123,8 +123,8 @@ onLoad(async () => {
               <view class="text-xl font-semibold">
                 {{ userInfo?.name || userInfo?.userName || '未登录用户' }}
               </view>
-              <view class="mt-1 text-sm opacity-75">
-                {{ userInfo?.description || '点击此处登录' }}
+              <view class="mt-1 text-xs opacity-75">
+                {{ !logined ? '点击此处登录' : userInfo?.description || '这家伙很懒，什么都没有写' }}
               </view>
             </view>
           </view>

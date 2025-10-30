@@ -71,4 +71,7 @@ export const useThemeStore = defineStore('theme', {
       console.log('初始化系统主题:', this.theme)
     },
   },
+
+  // 持久化
+  persist: true,
 })

@@ -134,4 +134,7 @@ export const useManualThemeStore = defineStore('manualTheme', {
       this.setNavigationBarColor()
     },
   },
+
+  // 持久化
+  persist: true,
 })

@@ -37,4 +37,15 @@ export default defineConfig({
       'flex-col': 'flex flex-col',
     },
   ],
+  theme: {
+    colors: {
+      /** 主题色，用法如: text-primary */
+      primary: 'var(--wot-color-theme, #4d80f0)',
+    },
+    fontSize: {
+      /** 提供更小号的字体，用法如：text-2xs */
+      '2xs': ['20rpx', '28rpx'],
+      '3xs': ['18rpx', '26rpx'],
+    },
+  },
 })

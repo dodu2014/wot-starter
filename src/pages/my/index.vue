@@ -162,7 +162,7 @@ onLoad(async () => {
           class="flex flex-col items-center py-3"
           @click="() => router.push(item.path)"
         >
-          <wd-icon :name="item.icon" size="24px" class="mb-2 text-#d7421a" />
+          <wd-icon :name="item.icon" size="24px" class="mb-2 !text-primary" />
           <wd-text :text="item.title" size="12px" />
         </view>
       </view>
@@ -184,7 +184,7 @@ onLoad(async () => {
 
     <!-- 退出登录/操作区域 -->
     <view v-if="logined" class="mt-6 text-center">
-      <wd-button plain size="small" type="error" @click="logout">
+      <wd-button plain size="small" type="primary" @click="logout">
         <wd-icon name="logout" class="mr-1" />
         退出登录
       </wd-button>

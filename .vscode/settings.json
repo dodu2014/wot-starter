@@ -67,5 +67,7 @@
   },
 
   // Disable emoji in commit messages
-  "GitCommitPlugin.ShowEmoji": false
+  "GitCommitPlugin.ShowEmoji": false,
+  // Adjust the maximum length of submission information
+  "GitCommitPlugin.MaxSubjectCharacters": 50
 }

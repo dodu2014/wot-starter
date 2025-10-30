@@ -23,3 +23,5 @@ dist
 # unh
 pages.json
 manifest.json
+
+components.d.ts

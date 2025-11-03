@@ -1084,7 +1084,7 @@ export interface ApiResultOfSyncApiResult {
   isSuccess?: boolean;
 }
 declare global {
-  interface WebApi_Weixin {
+  interface Webapi_Weixin {
     customService: {
       /**
        * ---
@@ -3450,5 +3450,5 @@ declare global {
     };
   }
 
-  var WebApi_Weixin: WebApi_Weixin;
+  var Webapi_Weixin: Webapi_Weixin;
 }

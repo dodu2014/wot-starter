@@ -78,7 +78,7 @@ const createFunctionalProxy = (array: (string | symbol)[], alovaInstance: Alova<
 };
 
 export const createApis = (alovaInstance: Alova<AlovaGenerics>, configMap: any) => {
-  const Apis = new Proxy({} as WebApi_Weixin, {
+  const Apis = new Proxy({} as Webapi_Weixin, {
     get(_, property) {
       return createFunctionalProxy([property], alovaInstance, configMap);
     }
@@ -86,9 +86,9 @@ export const createApis = (alovaInstance: Alova<AlovaGenerics>, configMap: any) 
   return Apis;
 };
 
-export const mountApis = (Apis: WebApi_Weixin) => {
+export const mountApis = (Apis: Webapi_Weixin) => {
   // define global variable `Apis`
-  (globalThis as any).WebApi_Weixin = Apis;
+  (globalThis as any).Webapi_Weixin = Apis;
 };
 
 type MethodConfig<T> = AlovaMethodCreateConfig<
@@ -96,10 +96,10 @@ type MethodConfig<T> = AlovaMethodCreateConfig<
   any,
   T
 >;
-type APISofParameters<Tag extends string, Url extends string> = Tag extends keyof WebApi_Weixin
-  ? Url extends keyof WebApi_Weixin[Tag]
-    ? WebApi_Weixin[Tag][Url] extends (...args: any) => any
-      ? Parameters<WebApi_Weixin[Tag][Url]>
+type APISofParameters<Tag extends string, Url extends string> = Tag extends keyof Webapi_Weixin
+  ? Url extends keyof Webapi_Weixin[Tag]
+    ? Webapi_Weixin[Tag][Url] extends (...args: any) => any
+      ? Parameters<Webapi_Weixin[Tag][Url]>
       : any
     : any
   : any;

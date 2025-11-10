@@ -1,9 +1,9 @@
 /* tslint:disable */
 /* eslint-disable */
 /**
- * 后羿 接口文档 | 微信模块 - version v9.0.9.0
+ * TNT.WebApi 接口文档 | 微信模块 - version v9.0.10.1
  *
- * 后羿 项目接口文档, Powered By .NET 9.0.10
+ * TNT.WebApi 项目接口文档, Powered By .NET 9.0.10
  *
  * OpenAPI version: 3.0.1
  *

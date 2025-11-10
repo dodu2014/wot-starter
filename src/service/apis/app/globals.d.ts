@@ -1,9 +1,9 @@
 /* tslint:disable */
 /* eslint-disable */
 /**
- * 后羿 接口文档 | App 模块 - version v9.0.9.0
+ * TNT.WebApi 接口文档 | App 模块 - version v9.0.10.1
  *
- * 后羿 项目接口文档, Powered By .NET 9.0.10
+ * TNT.WebApi 项目接口文档, Powered By .NET 9.0.10
  *
  * OpenAPI version: 3.0.1
  *
@@ -187,7 +187,7 @@ export interface ApiResultOfint {
 }
 declare global {
   interface Webapi_App {
-    app: {
+    appVersion: {
       /**
        * ---
        *
@@ -233,7 +233,7 @@ declare global {
        * }
        * ```
        */
-      CheckAppVersion<
+      checkAppVersion<
         Config extends Alova2MethodConfig<ApiResultOfAppVersion> & {
           params: {
             appid?: string;
@@ -242,7 +242,7 @@ declare global {
         }
       >(
         config: Config
-      ): Alova2Method<ApiResultOfAppVersion, 'app.CheckAppVersion', Config>;
+      ): Alova2Method<ApiResultOfAppVersion, 'appVersion.checkAppVersion', Config>;
       /**
        * ---
        *
@@ -287,7 +287,7 @@ declare global {
        * }
        * ```
        */
-      GetAppVersion<
+      getAppVersion<
         Config extends Alova2MethodConfig<ApiResultOfAppVersion> & {
           params: {
             id?: string;
@@ -295,7 +295,7 @@ declare global {
         }
       >(
         config: Config
-      ): Alova2Method<ApiResultOfAppVersion, 'app.GetAppVersion', Config>;
+      ): Alova2Method<ApiResultOfAppVersion, 'appVersion.getAppVersion', Config>;
       /**
        * ---
        *
@@ -310,9 +310,9 @@ declare global {
        * type Response = null
        * ```
        */
-      DownloadLastAppVersion<Config extends Alova2MethodConfig<null>>(
+      downloadAppVersion<Config extends Alova2MethodConfig<null>>(
         config?: Config
-      ): Alova2Method<null, 'app.DownloadLastAppVersion', Config>;
+      ): Alova2Method<null, 'appVersion.downloadAppVersion', Config>;
       /**
        * ---
        *
@@ -328,7 +328,7 @@ declare global {
        *   enabled?: boolean
        *   keyword?: string
        *   page?: number
-       *   pagesize?: number
+       *   pageSize?: number
        * }
        * ```
        *
@@ -369,18 +369,18 @@ declare global {
        * }
        * ```
        */
-      GetAppVersionList<
+      getAppVersionList<
         Config extends Alova2MethodConfig<ApiResultOfPageListOfAppVersion> & {
           params: {
             enabled?: boolean;
             keyword?: string;
             page?: number;
-            pagesize?: number;
+            pageSize?: number;
           };
         }
       >(
         config: Config
-      ): Alova2Method<ApiResultOfPageListOfAppVersion, 'app.GetAppVersionList', Config>;
+      ): Alova2Method<ApiResultOfPageListOfAppVersion, 'appVersion.getAppVersionList', Config>;
       /**
        * ---
        *
@@ -433,13 +433,13 @@ declare global {
        * }
        * ```
        */
-      CreateAppVersion<
+      createAppVersion<
         Config extends Alova2MethodConfig<ApiResultOfAppVersion> & {
           data: AppVersion2;
         }
       >(
         config: Config
-      ): Alova2Method<ApiResultOfAppVersion, 'app.CreateAppVersion', Config>;
+      ): Alova2Method<ApiResultOfAppVersion, 'appVersion.createAppVersion', Config>;
       /**
        * ---
        *
@@ -492,13 +492,13 @@ declare global {
        * }
        * ```
        */
-      UpdateAppVersion<
+      updateAppVersion<
         Config extends Alova2MethodConfig<ApiResultOfAppVersion> & {
           data: AppVersion2;
         }
       >(
         config: Config
-      ): Alova2Method<ApiResultOfAppVersion, 'app.UpdateAppVersion', Config>;
+      ): Alova2Method<ApiResultOfAppVersion, 'appVersion.updateAppVersion', Config>;
       /**
        * ---
        *
@@ -543,7 +543,7 @@ declare global {
        * }
        * ```
        */
-      DeleteAppVersion<
+      deleteAppVersion<
         Config extends Alova2MethodConfig<ApiResultOfAppVersion> & {
           params: {
             id?: string;
@@ -551,7 +551,7 @@ declare global {
         }
       >(
         config: Config
-      ): Alova2Method<ApiResultOfAppVersion, 'app.DeleteAppVersion', Config>;
+      ): Alova2Method<ApiResultOfAppVersion, 'appVersion.deleteAppVersion', Config>;
       /**
        * ---
        *
@@ -584,13 +584,13 @@ declare global {
        * }
        * ```
        */
-      DeleteAppVersions<
+      deleteAppVersions<
         Config extends Alova2MethodConfig<ApiResultOfint> & {
           data: string[];
         }
       >(
         config: Config
-      ): Alova2Method<ApiResultOfint, 'app.DeleteAppVersions', Config>;
+      ): Alova2Method<ApiResultOfint, 'appVersion.deleteAppVersions', Config>;
     };
   }
 

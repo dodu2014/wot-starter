@@ -98,7 +98,7 @@ const {
   error: appVersionError,
   send: loadAppVersionData,
 } = useRequest(
-  (keyword?: string) => Webapi_App.app.GetAppVersionList({
+  (keyword?: string) => Webapi_App.appVersion.getAppVersionList({
     params: { keyword },
   }),
   {

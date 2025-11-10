@@ -196,69 +196,6 @@ export default <Config>{
         return apiDescriptor
       },
     },
-    // business
-    {
-      /**
-       * file input. support:
-       * 1. openapi json file url
-       * 2. local file
-       */
-      input: 'http://localhost:5001/openapi/Business.json',
-      /**
-       * input file platform. Currently only swagger is supported.
-       * When this parameter is specified, the input field only needs to specify the document address without specifying the openapi file
-       */
-      platform: 'swagger',
-
-      /**
-       * output path of interface file and type file.
-       * Multiple generators cannot have the same address, otherwise the generated code will overwrite each other.
-       */
-      output: 'src/service/apis/business',
-
-      /**
-       * the mediaType of the generated response data. default is `application/json`
-       */
-      responseMediaType: 'application/json',
-
-      /**
-       * the bodyMediaType of the generated request body data. default is `application/json`
-       */
-      bodyMediaType: 'application/json',
-
-      /**
-       * the generated api version. options are `2` or `3`, default is `auto`.
-       */
-      // version: 3,
-
-      /**
-       * type of generated code. The options ​​are `auto/ts/typescript/module/commonjs`.
-       */
-      type: 'typescript',
-
-      /**
-       * exported global api name, you can access the generated api globally through this name, default is `Apis`.
-       * it is required when multiple generators are configured, and it cannot be repeated
-       */
-      global: 'Webapi_Business',
-
-      /**
-       * filter or convert the generated api information, return an apiDescriptor, if this function is not specified, the apiDescripor object is not converted
-       */
-      handleApi: (apiDescriptor) => {
-        // Skip logging to console
-        // console.log(apiDescriptor)
-
-        // Filter out any deprecated APIs if needed
-        if (apiDescriptor.deprecated) {
-          return undefined // Skip this API
-        }
-        // You can transform the API descriptor here if needed
-        // For example, add custom headers, modify parameters, etc.
-
-        return apiDescriptor
-      },
-    },
     // weixin
     {
       /**

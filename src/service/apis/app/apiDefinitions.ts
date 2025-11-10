@@ -2,9 +2,9 @@
 /* tslint:disable */
 /* eslint-disable */
 /**
- * 后羿 接口文档 | App 模块 - version v9.0.9.0
+ * TNT.WebApi 接口文档 | App 模块 - version v9.0.10.1
  *
- * 后羿 项目接口文档, Powered By .NET 9.0.10
+ * TNT.WebApi 项目接口文档, Powered By .NET 9.0.10
  *
  * OpenAPI version: 3.0.1
  *
@@ -17,12 +17,12 @@
  * **Do not edit the file manually.**
  */
 export default {
-  'app.CheckAppVersion': ['GET', '/api/App/AppVersions/check'],
-  'app.GetAppVersion': ['GET', '/api/App/AppVersions/get'],
-  'app.DownloadLastAppVersion': ['GET', '/api/App/AppVersions/download/last.apk'],
-  'app.GetAppVersionList': ['GET', '/api/App/AppVersions/list'],
-  'app.CreateAppVersion': ['POST', '/api/App/AppVersions/create'],
-  'app.UpdateAppVersion': ['PUT', '/api/App/AppVersions/update'],
-  'app.DeleteAppVersion': ['DELETE', '/api/App/AppVersions/delete'],
-  'app.DeleteAppVersions': ['DELETE', '/api/App/AppVersions/deletes']
+  'appVersion.checkAppVersion': ['GET', '/api/App/AppVersions/check'],
+  'appVersion.getAppVersion': ['GET', '/api/App/AppVersions/get'],
+  'appVersion.downloadAppVersion': ['GET', '/api/App/AppVersions/download/last.apk'],
+  'appVersion.getAppVersionList': ['GET', '/api/App/AppVersions/list'],
+  'appVersion.createAppVersion': ['POST', '/api/App/AppVersions/create'],
+  'appVersion.updateAppVersion': ['PUT', '/api/App/AppVersions/update'],
+  'appVersion.deleteAppVersion': ['DELETE', '/api/App/AppVersions/delete'],
+  'appVersion.deleteAppVersions': ['DELETE', '/api/App/AppVersions/deletes']
 };

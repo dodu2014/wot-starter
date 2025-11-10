@@ -1,9 +1,9 @@
 /* tslint:disable */
 /* eslint-disable */
 /**
- * 后羿 接口文档 | 基础模块 - version v9.0.9.0
+ * TNT.WebApi 接口文档 | 基础模块 - version v9.0.10.1
  *
- * 后羿 项目接口文档, Powered By .NET 9.0.10
+ * TNT.WebApi 项目接口文档, Powered By .NET 9.0.10
  *
  * OpenAPI version: 3.0.1
  *
@@ -215,6 +215,20 @@ export interface UserOperateLog {
   ua?: string;
   creationDate?: string;
 }
+export interface CreateModel {
+  email?: string | null;
+  name?: string;
+  avatarUrl?: string;
+  phoneNumber?: string | null;
+  description?: string;
+  rights?: string;
+  rightsList?: string[];
+  signature?: string;
+  date?: string;
+  confirmPassword?: string;
+  userName: string;
+  password: string;
+}
 export interface UserProfileModel {
   email?: string | null;
   userName: string;
@@ -300,28 +314,113 @@ export interface ApiResult {
    */
   isSuccess?: boolean;
 }
-export interface RegisterByEmailModel {
-  email: string;
-  validateCode: string;
-  password: string;
-  confirmPassword?: string;
-  inviterUserName: string;
+export interface MenuButton {
+  code?: string;
+  desc?: string;
+}
+export interface Menu {
+  id?: string;
+  status?: string;
+  parentId?: string | null;
+  menuType?: string;
+  menuName?: string;
+  routeName?: string;
+  routePath?: string;
+  component?: string | null;
+  i18nKey?: string | null;
+  icon?: string;
+  iconType?: string;
+  order?: number;
+  keepAlive?: boolean | null;
+  href?: string | null;
+  hideInMenu?: boolean | null;
+  activeMenu?: string | null;
+  multiTab?: boolean | null;
+  fixedIndexInTab?: number | null;
+  buttons?: MenuButton[] | null;
+  children?: null[] | null;
+}
+export type PageListOfMenu = {
+  list?: Menu[];
+  page?: number;
+  pageSize?: number;
+  totalPageCount?: number;
+  totalItemCount?: number;
+  extendData?: null;
+} | null;
+export interface ApiResultOfPageListOfMenu {
+  /**
+   * 响应编号
+   */
+  code?: number;
+  /**
+   * 响应消息
+   */
+  message?: string;
+  /**
+   * 响应数据 T
+   */
+  data?: PageListOfMenu;
+  /**
+   * 扩展数据
+   */
+  extend?: null;
+  /**
+   * 请求是否返回正确
+   */
+  isSuccess?: boolean;
+}
+export interface MenuTree {
+  id?: string;
+  label?: string;
+  pId?: string;
+  children?: null[] | null;
+}
+export interface Api_result_of_menu_tree {
+  /**
+   * 响应编号
+   */
+  code?: number;
+  /**
+   * 响应消息
+   */
+  message?: string;
+  /**
+   * 响应数据 T
+   */
+  data?: MenuTree[] | null;
+  /**
+   * 扩展数据
+   */
+  extend?: null;
+  /**
+   * 请求是否返回正确
+   */
+  isSuccess?: boolean;
+}
+export interface Api_result_of_string {
+  /**
+   * 响应编号
+   */
+  code?: number;
+  /**
+   * 响应消息
+   */
+  message?: string;
+  /**
+   * 响应数据 T
+   */
+  data?: string[] | null;
+  /**
+   * 扩展数据
+   */
+  extend?: null;
+  /**
+   * 请求是否返回正确
+   */
+  isSuccess?: boolean;
 }
 export type IFormFile = Blob;
-export interface CreateModel {
-  email?: string | null;
-  name?: string;
-  avatarUrl?: string;
-  phoneNumber?: string | null;
-  description?: string;
-  rights?: string;
-  rightsList?: string[];
-  signature?: string;
-  date?: string;
-  confirmPassword?: string;
-  userName: string;
-  password: string;
-}
 export type ValueTupleOfintAndint = object;
 export interface ApiResultOfValueTupleOfintAndint {
   /**
@@ -868,7 +967,7 @@ export interface ApiResultOfUserOperateLog {
    */
   isSuccess?: boolean;
 }
-export interface ApplicationUser2 {
+export interface ApplicationUser {
   userName: string;
   email?: string | null;
   name?: string;
@@ -894,7 +993,7 @@ export interface ApplicationUser2 {
   accessFailedCount?: number;
 }
 export type PageListOfApplicationUser = {
-  list?: ApplicationUser2[];
+  list?: ApplicationUser[];
   page?: number;
   pageSize?: number;
   totalPageCount?: number;
@@ -978,7 +1077,7 @@ export interface Api_result_of_client_route {
    */
   isSuccess?: boolean;
 }
-export type ApplicationUser = {
+export type ApplicationUser2 = {
   userName: string;
   email?: string | null;
   name?: string;
@@ -1015,7 +1114,7 @@ export interface ApiResultOfApplicationUser {
   /**
    * 响应数据 T
    */
-  data?: ApplicationUser;
+  data?: ApplicationUser2;
   /**
    * 扩展数据
    */
@@ -1116,7 +1215,7 @@ declare global {
        * }
        * ```
        */
-      CountArticleAgreeLogs<
+      countArticleAgreeLog<
         Config extends Alova2MethodConfig<ApiResultOfValueTupleOfintAndint> & {
           params: {
             articleid?: string;
@@ -1125,7 +1224,7 @@ declare global {
         }
       >(
         config: Config
-      ): Alova2Method<ApiResultOfValueTupleOfintAndint, 'articleAgreeLog.CountArticleAgreeLogs', Config>;
+      ): Alova2Method<ApiResultOfValueTupleOfintAndint, 'articleAgreeLog.countArticleAgreeLog', Config>;
       /**
        * ---
        *
@@ -1162,7 +1261,7 @@ declare global {
        * }
        * ```
        */
-      SetArticleAgreeLog<
+      setArticleAgreeLog<
         Config extends Alova2MethodConfig<ApiResultOfValueTupleOfintAndint> & {
           params: {
             articleid?: string;
@@ -1172,7 +1271,7 @@ declare global {
         }
       >(
         config: Config
-      ): Alova2Method<ApiResultOfValueTupleOfintAndint, 'articleAgreeLog.SetArticleAgreeLog', Config>;
+      ): Alova2Method<ApiResultOfValueTupleOfintAndint, 'articleAgreeLog.setArticleAgreeLog', Config>;
     };
     articleCategory: {
       /**
@@ -1191,7 +1290,7 @@ declare global {
        *   visible?: string
        *   keyword?: string
        *   page?: number
-       *   pagesize?: number
+       *   pageSize?: number
        * }
        * ```
        *
@@ -1232,19 +1331,19 @@ declare global {
        * }
        * ```
        */
-      GetArticleCategoryList<
+      getArticleCategoryList<
         Config extends Alova2MethodConfig<ApiResultOfPageListOfArticleCategory> & {
           params: {
             pid?: string;
             visible?: string;
             keyword?: string;
             page?: number;
-            pagesize?: number;
+            pageSize?: number;
           };
         }
       >(
         config: Config
-      ): Alova2Method<ApiResultOfPageListOfArticleCategory, 'articleCategory.GetArticleCategoryList', Config>;
+      ): Alova2Method<ApiResultOfPageListOfArticleCategory, 'articleCategory.getArticleCategoryList', Config>;
       /**
        * ---
        *
@@ -1295,7 +1394,7 @@ declare global {
        * }
        * ```
        */
-      GetArticleCategoryNodeList<
+      nodeListArticleCategory<
         Config extends Alova2MethodConfig<ApiResultOfIEnumerableOfArticleCategory> & {
           params: {
             pid?: string;
@@ -1305,7 +1404,7 @@ declare global {
         }
       >(
         config: Config
-      ): Alova2Method<ApiResultOfIEnumerableOfArticleCategory, 'articleCategory.GetArticleCategoryNodeList', Config>;
+      ): Alova2Method<ApiResultOfIEnumerableOfArticleCategory, 'articleCategory.nodeListArticleCategory', Config>;
       /**
        * ---
        *
@@ -1370,7 +1469,7 @@ declare global {
        * }
        * ```
        */
-      GetArticleCategory<
+      getArticleCategory<
         Config extends Alova2MethodConfig<ApiResultOfArticleCategory> & {
           params: {
             num?: string;
@@ -1378,7 +1477,7 @@ declare global {
         }
       >(
         config: Config
-      ): Alova2Method<ApiResultOfArticleCategory, 'articleCategory.GetArticleCategory', Config>;
+      ): Alova2Method<ApiResultOfArticleCategory, 'articleCategory.getArticleCategory', Config>;
       /**
        * ---
        *
@@ -1461,13 +1560,13 @@ declare global {
        * }
        * ```
        */
-      CreateArticleCategory<
+      createArticleCategory<
         Config extends Alova2MethodConfig<ApiResultOfArticleCategory> & {
           data: ArticleCategory3;
         }
       >(
         config: Config
-      ): Alova2Method<ApiResultOfArticleCategory, 'articleCategory.CreateArticleCategory', Config>;
+      ): Alova2Method<ApiResultOfArticleCategory, 'articleCategory.createArticleCategory', Config>;
       /**
        * ---
        *
@@ -1550,13 +1649,13 @@ declare global {
        * }
        * ```
        */
-      UpdateArticleCategory<
+      updateArticleCategory<
         Config extends Alova2MethodConfig<ApiResultOfArticleCategory> & {
           data: ArticleCategory3;
         }
       >(
         config: Config
-      ): Alova2Method<ApiResultOfArticleCategory, 'articleCategory.UpdateArticleCategory', Config>;
+      ): Alova2Method<ApiResultOfArticleCategory, 'articleCategory.updateArticleCategory', Config>;
       /**
        * ---
        *
@@ -1621,7 +1720,7 @@ declare global {
        * }
        * ```
        */
-      DeleteArticleCategory<
+      deleteArticleCategory<
         Config extends Alova2MethodConfig<ApiResultOfArticleCategory> & {
           params: {
             num?: string;
@@ -1629,7 +1728,7 @@ declare global {
         }
       >(
         config: Config
-      ): Alova2Method<ApiResultOfArticleCategory, 'articleCategory.DeleteArticleCategory', Config>;
+      ): Alova2Method<ApiResultOfArticleCategory, 'articleCategory.deleteArticleCategory', Config>;
       /**
        * ---
        *
@@ -1662,13 +1761,13 @@ declare global {
        * }
        * ```
        */
-      DeleteArticleCategories<
+      deleteArticleCategories<
         Config extends Alova2MethodConfig<ApiResult> & {
           data: string[];
         }
       >(
         config: Config
-      ): Alova2Method<ApiResult, 'articleCategory.DeleteArticleCategories', Config>;
+      ): Alova2Method<ApiResult, 'articleCategory.deleteArticleCategories', Config>;
     };
     article: {
       /**
@@ -1689,7 +1788,7 @@ declare global {
        *   keyword?: string
        *   top?: number
        *   page?: number
-       *   pagesize?: number
+       *   pageSize?: number
        * }
        * ```
        *
@@ -1778,7 +1877,7 @@ declare global {
        * }
        * ```
        */
-      GetArticleList<
+      getArticleList<
         Config extends Alova2MethodConfig<ApiResultOfPageListOfArticle> & {
           params: {
             categorynum?: string;
@@ -1787,12 +1886,12 @@ declare global {
             keyword?: string;
             top?: number;
             page?: number;
-            pagesize?: number;
+            pageSize?: number;
           };
         }
       >(
         config: Config
-      ): Alova2Method<ApiResultOfPageListOfArticle, 'article.GetArticleList', Config>;
+      ): Alova2Method<ApiResultOfPageListOfArticle, 'article.getArticleList', Config>;
       /**
        * ---
        *
@@ -1885,7 +1984,7 @@ declare global {
        * }
        * ```
        */
-      GetArticle<
+      getArticle<
         Config extends Alova2MethodConfig<ApiResultOfArticle> & {
           params: {
             id?: string;
@@ -1893,7 +1992,7 @@ declare global {
         }
       >(
         config: Config
-      ): Alova2Method<ApiResultOfArticle, 'article.GetArticle', Config>;
+      ): Alova2Method<ApiResultOfArticle, 'article.getArticle', Config>;
       /**
        * ---
        *
@@ -2042,13 +2141,13 @@ declare global {
        * }
        * ```
        */
-      CreateArticle<
+      createArticle<
         Config extends Alova2MethodConfig<ApiResultOfArticle> & {
           data: Article;
         }
       >(
         config: Config
-      ): Alova2Method<ApiResultOfArticle, 'article.CreateArticle', Config>;
+      ): Alova2Method<ApiResultOfArticle, 'article.createArticle', Config>;
       /**
        * ---
        *
@@ -2197,13 +2296,13 @@ declare global {
        * }
        * ```
        */
-      UpdateArticle<
+      updateArticle<
         Config extends Alova2MethodConfig<ApiResultOfArticle> & {
           data: Article;
         }
       >(
         config: Config
-      ): Alova2Method<ApiResultOfArticle, 'article.UpdateArticle', Config>;
+      ): Alova2Method<ApiResultOfArticle, 'article.updateArticle', Config>;
       /**
        * ---
        *
@@ -2296,7 +2395,7 @@ declare global {
        * }
        * ```
        */
-      DeleteArticle<
+      deleteArticle<
         Config extends Alova2MethodConfig<ApiResultOfArticle> & {
           params: {
             id?: string;
@@ -2304,7 +2403,7 @@ declare global {
         }
       >(
         config: Config
-      ): Alova2Method<ApiResultOfArticle, 'article.DeleteArticle', Config>;
+      ): Alova2Method<ApiResultOfArticle, 'article.deleteArticle', Config>;
       /**
        * ---
        *
@@ -2337,13 +2436,13 @@ declare global {
        * }
        * ```
        */
-      DeleteArticles<
+      deleteArticles<
         Config extends Alova2MethodConfig<ApiResultOfint> & {
           data: string[];
         }
       >(
         config: Config
-      ): Alova2Method<ApiResultOfint, 'article.DeleteArticles', Config>;
+      ): Alova2Method<ApiResultOfint, 'article.deleteArticles', Config>;
       /**
        * ---
        *
@@ -2392,7 +2491,7 @@ declare global {
        * }
        * ```
        */
-      post_api_base_articles_publish_to_draft<
+      publishArticleToDraft<
         Config extends Alova2MethodConfig<ApiResultOfAddDraftResultJson> & {
           params: {
             publish?: boolean;
@@ -2401,7 +2500,7 @@ declare global {
         }
       >(
         config: Config
-      ): Alova2Method<ApiResultOfAddDraftResultJson, 'article.post_api_base_articles_publish_to_draft', Config>;
+      ): Alova2Method<ApiResultOfAddDraftResultJson, 'article.publishArticleToDraft', Config>;
     };
     auth: {
       /**
@@ -2446,13 +2545,13 @@ declare global {
        * }
        * ```
        */
-      Login<
+      login<
         Config extends Alova2MethodConfig<ApiResultOfAccessTokenModel> & {
           data: LoginModel;
         }
       >(
         config: Config
-      ): Alova2Method<ApiResultOfAccessTokenModel, 'auth.Login', Config>;
+      ): Alova2Method<ApiResultOfAccessTokenModel, 'auth.login', Config>;
       /**
        * ---
        *
@@ -2495,7 +2594,7 @@ declare global {
        * }
        * ```
        */
-      EasyLogin<
+      easyLogin<
         Config extends Alova2MethodConfig<ApiResultOfAccessTokenModel> & {
           params: {
             phoneNumber?: string;
@@ -2504,7 +2603,7 @@ declare global {
         }
       >(
         config: Config
-      ): Alova2Method<ApiResultOfAccessTokenModel, 'auth.EasyLogin', Config>;
+      ): Alova2Method<ApiResultOfAccessTokenModel, 'auth.easyLogin', Config>;
       /**
        * ---
        *
@@ -2553,7 +2652,7 @@ declare global {
        * }
        * ```
        */
-      GetProfileInfoByToken<
+      getProfileInfoByToken<
         Config extends Alova2MethodConfig<ApiResultOfUserProfileInfo> & {
           params: {
             token?: string;
@@ -2561,7 +2660,7 @@ declare global {
         }
       >(
         config: Config
-      ): Alova2Method<ApiResultOfUserProfileInfo, 'auth.GetProfileInfoByToken', Config>;
+      ): Alova2Method<ApiResultOfUserProfileInfo, 'auth.getProfileInfoByToken', Config>;
       /**
        * ---
        *
@@ -2601,9 +2700,9 @@ declare global {
        * }
        * ```
        */
-      GetProfileInfo<Config extends Alova2MethodConfig<ApiResultOfUserProfileInfo>>(
+      getProfileInfo<Config extends Alova2MethodConfig<ApiResultOfUserProfileInfo>>(
         config?: Config
-      ): Alova2Method<ApiResultOfUserProfileInfo, 'auth.GetProfileInfo', Config>;
+      ): Alova2Method<ApiResultOfUserProfileInfo, 'auth.getProfileInfo', Config>;
       /**
        * ---
        *
@@ -2629,15 +2728,15 @@ declare global {
        * }
        * ```
        */
-      Logout<Config extends Alova2MethodConfig<ApiResult>>(
+      logout<Config extends Alova2MethodConfig<ApiResult>>(
         config?: Config
-      ): Alova2Method<ApiResult, 'auth.Logout', Config>;
+      ): Alova2Method<ApiResult, 'auth.logout', Config>;
       /**
        * ---
        *
        * [POST] 发送账号激活码邮件
        *
-       * **path:** /api/Base/Auth/sendEmailValidateCode
+       * **path:** /api/Base/Auth/sendEmail
        *
        * ---
        *
@@ -2666,7 +2765,7 @@ declare global {
        * }
        * ```
        */
-      SendEmailValidateCode<
+      sendEmail<
         Config extends Alova2MethodConfig<ApiResult> & {
           params: {
             email?: string;
@@ -2674,90 +2773,7 @@ declare global {
         }
       >(
         config: Config
-      ): Alova2Method<ApiResult, 'auth.SendEmailValidateCode', Config>;
-      /**
-       * ---
-       *
-       * [POST] 注册用户
-       *
-       * **path:** /api/Base/Auth/register
-       *
-       * ---
-       *
-       * **Query Parameters**
-       * ```ts
-       * type QueryParameters = {
-       *   rate?: number
-       * }
-       * ```
-       *
-       * ---
-       *
-       * **RequestBody**
-       * ```ts
-       * type RequestBody = {
-       *   email: string
-       *   validateCode: string
-       *   password: string
-       *   confirmPassword?: string
-       *   inviterUserName: string
-       * }
-       * ```
-       *
-       * ---
-       *
-       * **Response**
-       * ```ts
-       * type Response = {
-       *   // 响应编号
-       *   code?: number
-       *   // 响应消息
-       *   message?: string
-       *   // 响应数据 T
-       *   data?: {
-       *     userName: string
-       *     email?: string | null
-       *     name?: string
-       *     avatarUrl?: string
-       *     phoneNumber?: string | null
-       *     description?: string
-       *     rights?: string
-       *     // [items] start
-       *     // [items] end
-       *     rightsList?: string[]
-       *     signature?: string
-       *     enabled?: boolean
-       *     date?: string
-       *     id?: string | null
-       *     normalizedUserName?: string | null
-       *     normalizedEmail?: string | null
-       *     emailConfirmed?: boolean
-       *     passwordHash?: string | null
-       *     securityStamp?: string | null
-       *     concurrencyStamp?: string | null
-       *     phoneNumberConfirmed?: boolean
-       *     twoFactorEnabled?: boolean
-       *     lockoutEnd?: string | null
-       *     lockoutEnabled?: boolean
-       *     accessFailedCount?: number
-       *   } | null
-       *   // 扩展数据
-       *   extend?: null
-       *   // 请求是否返回正确
-       *   isSuccess?: boolean
-       * }
-       * ```
-       */
-      Register<
-        Config extends Alova2MethodConfig<ApiResultOfApplicationUser> & {
-          params: {
-            rate?: number;
-          };
-          data: RegisterByEmailModel;
-        }
-      >(
-        config: Config
-      ): Alova2Method<ApiResultOfApplicationUser, 'auth.Register', Config>;
+      ): Alova2Method<ApiResult, 'auth.sendEmail', Config>;
     };
     carousel: {
       /**
@@ -2772,9 +2788,9 @@ declare global {
        * **Query Parameters**
        * ```ts
        * type QueryParameters = {
-       *   keyword?: string
+       *   key?: string
        *   page?: number
-       *   pagesize?: number
+       *   pageSize?: number
        * }
        * ```
        *
@@ -2813,17 +2829,17 @@ declare global {
        * }
        * ```
        */
-      GetCarouselList<
+      getCarouselList<
         Config extends Alova2MethodConfig<ApiResultOfPageListOfCarousel> & {
           params: {
-            keyword?: string;
+            key?: string;
             page?: number;
-            pagesize?: number;
+            pageSize?: number;
           };
         }
       >(
         config: Config
-      ): Alova2Method<ApiResultOfPageListOfCarousel, 'carousel.GetCarouselList', Config>;
+      ): Alova2Method<ApiResultOfPageListOfCarousel, 'carousel.getCarouselList', Config>;
       /**
        * ---
        *
@@ -2866,7 +2882,7 @@ declare global {
        * }
        * ```
        */
-      GetCarousel<
+      getCarousel<
         Config extends Alova2MethodConfig<ApiResultOfCarousel> & {
           params: {
             id?: string;
@@ -2874,7 +2890,7 @@ declare global {
         }
       >(
         config: Config
-      ): Alova2Method<ApiResultOfCarousel, 'carousel.GetCarousel', Config>;
+      ): Alova2Method<ApiResultOfCarousel, 'carousel.getCarousel', Config>;
       /**
        * ---
        *
@@ -2917,7 +2933,7 @@ declare global {
        * }
        * ```
        */
-      GetCarouselByKey<
+      getCarouselByKey<
         Config extends Alova2MethodConfig<ApiResultOfCarousel> & {
           params: {
             key?: string;
@@ -2925,7 +2941,7 @@ declare global {
         }
       >(
         config: Config
-      ): Alova2Method<ApiResultOfCarousel, 'carousel.GetCarouselByKey', Config>;
+      ): Alova2Method<ApiResultOfCarousel, 'carousel.getCarouselByKey', Config>;
       /**
        * ---
        *
@@ -2974,13 +2990,13 @@ declare global {
        * }
        * ```
        */
-      CreateCarousel<
+      createCarousel<
         Config extends Alova2MethodConfig<ApiResultOfCarousel> & {
           data: Carousel;
         }
       >(
         config: Config
-      ): Alova2Method<ApiResultOfCarousel, 'carousel.CreateCarousel', Config>;
+      ): Alova2Method<ApiResultOfCarousel, 'carousel.createCarousel', Config>;
       /**
        * ---
        *
@@ -3029,13 +3045,13 @@ declare global {
        * }
        * ```
        */
-      UpdateCarousel<
+      updateCarousel<
         Config extends Alova2MethodConfig<ApiResultOfCarousel> & {
           data: Carousel;
         }
       >(
         config: Config
-      ): Alova2Method<ApiResultOfCarousel, 'carousel.UpdateCarousel', Config>;
+      ): Alova2Method<ApiResultOfCarousel, 'carousel.updateCarousel', Config>;
       /**
        * ---
        *
@@ -3078,7 +3094,7 @@ declare global {
        * }
        * ```
        */
-      DeleteCarousel<
+      deleteCarousel<
         Config extends Alova2MethodConfig<ApiResultOfCarousel> & {
           params: {
             id?: string;
@@ -3086,46 +3102,7 @@ declare global {
         }
       >(
         config: Config
-      ): Alova2Method<ApiResultOfCarousel, 'carousel.DeleteCarousel', Config>;
-      /**
-       * ---
-       *
-       * [DELETE] 批量删除轮播图
-       *
-       * **path:** /api/Base/Carousels/deletes
-       *
-       * ---
-       *
-       * **RequestBody**
-       * ```ts
-       * type RequestBody = string[]
-       * ```
-       *
-       * ---
-       *
-       * **Response**
-       * ```ts
-       * type Response = {
-       *   // 响应编号
-       *   code?: number
-       *   // 响应消息
-       *   message?: string
-       *   // 响应数据 T
-       *   data?: number
-       *   // 扩展数据
-       *   extend?: null
-       *   // 请求是否返回正确
-       *   isSuccess?: boolean
-       * }
-       * ```
-       */
-      DeleteCarousels<
-        Config extends Alova2MethodConfig<ApiResultOfint> & {
-          data: string[];
-        }
-      >(
-        config: Config
-      ): Alova2Method<ApiResultOfint, 'carousel.DeleteCarousels', Config>;
+      ): Alova2Method<ApiResultOfCarousel, 'carousel.deleteCarousel', Config>;
     };
     dynamicMenu: {
       /**
@@ -3207,7 +3184,7 @@ declare global {
        * }
        * ```
        */
-      GetDynamicMenuList<
+      getDynamicMenuList<
         Config extends Alova2MethodConfig<ApiResultOfIEnumerableOfDynamicMenu> & {
           params: {
             keyword?: string;
@@ -3215,7 +3192,7 @@ declare global {
         }
       >(
         config: Config
-      ): Alova2Method<ApiResultOfIEnumerableOfDynamicMenu, 'dynamicMenu.GetDynamicMenuList', Config>;
+      ): Alova2Method<ApiResultOfIEnumerableOfDynamicMenu, 'dynamicMenu.getDynamicMenuList', Config>;
       /**
        * ---
        *
@@ -3291,7 +3268,7 @@ declare global {
        * }
        * ```
        */
-      GetDynamicMenu<
+      getDynamicMenu<
         Config extends Alova2MethodConfig<ApiResultOfDynamicMenu> & {
           params: {
             id?: string;
@@ -3299,7 +3276,7 @@ declare global {
         }
       >(
         config: Config
-      ): Alova2Method<ApiResultOfDynamicMenu, 'dynamicMenu.GetDynamicMenu', Config>;
+      ): Alova2Method<ApiResultOfDynamicMenu, 'dynamicMenu.getDynamicMenu', Config>;
       /**
        * ---
        *
@@ -3414,13 +3391,13 @@ declare global {
        * }
        * ```
        */
-      CreateDynamicMenu<
+      createDynamicMenu<
         Config extends Alova2MethodConfig<ApiResultOfDynamicMenu> & {
           data: DynamicMenu;
         }
       >(
         config: Config
-      ): Alova2Method<ApiResultOfDynamicMenu, 'dynamicMenu.CreateDynamicMenu', Config>;
+      ): Alova2Method<ApiResultOfDynamicMenu, 'dynamicMenu.createDynamicMenu', Config>;
       /**
        * ---
        *
@@ -3535,13 +3512,13 @@ declare global {
        * }
        * ```
        */
-      UpdateDynamicMenu<
+      updateDynamicMenu<
         Config extends Alova2MethodConfig<ApiResultOfDynamicMenu> & {
           data: DynamicMenu;
         }
       >(
         config: Config
-      ): Alova2Method<ApiResultOfDynamicMenu, 'dynamicMenu.UpdateDynamicMenu', Config>;
+      ): Alova2Method<ApiResultOfDynamicMenu, 'dynamicMenu.updateDynamicMenu', Config>;
       /**
        * ---
        *
@@ -3617,7 +3594,7 @@ declare global {
        * }
        * ```
        */
-      DeleteDynamicMenu<
+      deleteDynamicMenu<
         Config extends Alova2MethodConfig<ApiResultOfDynamicMenu> & {
           params: {
             id?: string;
@@ -3625,54 +3602,15 @@ declare global {
         }
       >(
         config: Config
-      ): Alova2Method<ApiResultOfDynamicMenu, 'dynamicMenu.DeleteDynamicMenu', Config>;
-      /**
-       * ---
-       *
-       * [DELETE] 批量删除动态菜单
-       *
-       * **path:** /api/Base/DynamicMenus/deletes
-       *
-       * ---
-       *
-       * **RequestBody**
-       * ```ts
-       * type RequestBody = string[]
-       * ```
-       *
-       * ---
-       *
-       * **Response**
-       * ```ts
-       * type Response = {
-       *   // 响应编号
-       *   code?: number
-       *   // 响应消息
-       *   message?: string
-       *   // 响应数据 T
-       *   data?: number
-       *   // 扩展数据
-       *   extend?: null
-       *   // 请求是否返回正确
-       *   isSuccess?: boolean
-       * }
-       * ```
-       */
-      DeleteDynamicMenus<
-        Config extends Alova2MethodConfig<ApiResultOfint> & {
-          data: string[];
-        }
-      >(
-        config: Config
-      ): Alova2Method<ApiResultOfint, 'dynamicMenu.DeleteDynamicMenus', Config>;
+      ): Alova2Method<ApiResultOfDynamicMenu, 'dynamicMenu.deleteDynamicMenu', Config>;
     };
-    imageBridge: {
+    image: {
       /**
        * ---
        *
        * [GET] 获取远程图片
        *
-       * **path:** /api/Base/ImageBridge/getRemote
+       * **path:** /api/Base/Images/getRemote
        *
        * ---
        *
@@ -3691,7 +3629,7 @@ declare global {
        * type Response = null
        * ```
        */
-      GetRemoteImage<
+      getRemoteImage<
         Config extends Alova2MethodConfig<null> & {
           params: {
             remoteUrl?: string;
@@ -3700,7 +3638,7 @@ declare global {
         }
       >(
         config: Config
-      ): Alova2Method<null, 'imageBridge.GetRemoteImage', Config>;
+      ): Alova2Method<null, 'image.getRemoteImage', Config>;
     };
     lbs: {
       /**
@@ -3761,7 +3699,7 @@ declare global {
        * }
        * ```
        */
-      GetGeocoderByLocation<
+      geocoderByLocation<
         Config extends Alova2MethodConfig<ApiResultOfAddressInfo> & {
           params: {
             longitude?: number;
@@ -3770,7 +3708,7 @@ declare global {
         }
       >(
         config: Config
-      ): Alova2Method<ApiResultOfAddressInfo, 'lbs.GetGeocoderByLocation', Config>;
+      ): Alova2Method<ApiResultOfAddressInfo, 'lbs.geocoderByLocation', Config>;
       /**
        * ---
        *
@@ -3811,7 +3749,7 @@ declare global {
        * }
        * ```
        */
-      GetGeocoderLocation<
+      geocoderGetLocation<
         Config extends Alova2MethodConfig<ApiResultOfLocationInfo> & {
           params: {
             address?: string;
@@ -3819,7 +3757,7 @@ declare global {
         }
       >(
         config: Config
-      ): Alova2Method<ApiResultOfLocationInfo, 'lbs.GetGeocoderLocation', Config>;
+      ): Alova2Method<ApiResultOfLocationInfo, 'lbs.geocoderGetLocation', Config>;
     };
     qrcode: {
       /**
@@ -3845,7 +3783,7 @@ declare global {
        * type Response = null
        * ```
        */
-      GetQrcode<
+      getQrcode<
         Config extends Alova2MethodConfig<null> & {
           params: {
             content?: string;
@@ -3853,7 +3791,7 @@ declare global {
         }
       >(
         config: Config
-      ): Alova2Method<null, 'qrcode.GetQrcode', Config>;
+      ): Alova2Method<null, 'qrcode.getQrcode', Config>;
     };
     role: {
       /**
@@ -3871,7 +3809,7 @@ declare global {
        *   keyword?: string
        *   enabled?: string
        *   page?: number
-       *   pagesize?: number
+       *   pageSize?: number
        * }
        * ```
        *
@@ -3915,18 +3853,18 @@ declare global {
        * }
        * ```
        */
-      GetRolesList<
+      getRoleList<
         Config extends Alova2MethodConfig<ApiResultOfPageListOfApplicationRole> & {
           params: {
             keyword?: string;
             enabled?: string;
             page?: number;
-            pagesize?: number;
+            pageSize?: number;
           };
         }
       >(
         config: Config
-      ): Alova2Method<ApiResultOfPageListOfApplicationRole, 'role.GetRolesList', Config>;
+      ): Alova2Method<ApiResultOfPageListOfApplicationRole, 'role.getRoleList', Config>;
       /**
        * ---
        *
@@ -3974,7 +3912,7 @@ declare global {
        * }
        * ```
        */
-      GetRole<
+      getRole<
         Config extends Alova2MethodConfig<ApiResultOfApplicationRole> & {
           params: {
             id?: string;
@@ -3982,7 +3920,7 @@ declare global {
         }
       >(
         config: Config
-      ): Alova2Method<ApiResultOfApplicationRole, 'role.GetRole', Config>;
+      ): Alova2Method<ApiResultOfApplicationRole, 'role.getRole', Config>;
       /**
        * ---
        *
@@ -4030,7 +3968,7 @@ declare global {
        * }
        * ```
        */
-      GetRoleByName<
+      getRoleByName<
         Config extends Alova2MethodConfig<ApiResultOfApplicationRole> & {
           params: {
             name?: string;
@@ -4038,7 +3976,7 @@ declare global {
         }
       >(
         config: Config
-      ): Alova2Method<ApiResultOfApplicationRole, 'role.GetRoleByName', Config>;
+      ): Alova2Method<ApiResultOfApplicationRole, 'role.getRoleByName', Config>;
       /**
        * ---
        *
@@ -4097,13 +4035,13 @@ declare global {
        * }
        * ```
        */
-      CreateRole<
+      createRole<
         Config extends Alova2MethodConfig<ApiResultOfApplicationRole> & {
           data: ApplicationRole;
         }
       >(
         config: Config
-      ): Alova2Method<ApiResultOfApplicationRole, 'role.CreateRole', Config>;
+      ): Alova2Method<ApiResultOfApplicationRole, 'role.createRole', Config>;
       /**
        * ---
        *
@@ -4162,13 +4100,13 @@ declare global {
        * }
        * ```
        */
-      UpdateRole<
+      updateRole<
         Config extends Alova2MethodConfig<ApiResultOfApplicationRole> & {
           data: ApplicationRole;
         }
       >(
         config: Config
-      ): Alova2Method<ApiResultOfApplicationRole, 'role.UpdateRole', Config>;
+      ): Alova2Method<ApiResultOfApplicationRole, 'role.updateRole', Config>;
       /**
        * ---
        *
@@ -4216,7 +4154,7 @@ declare global {
        * }
        * ```
        */
-      DeleteRole<
+      deleteRole<
         Config extends Alova2MethodConfig<ApiResultOfApplicationRole> & {
           params: {
             id?: string;
@@ -4224,7 +4162,7 @@ declare global {
         }
       >(
         config: Config
-      ): Alova2Method<ApiResultOfApplicationRole, 'role.DeleteRole', Config>;
+      ): Alova2Method<ApiResultOfApplicationRole, 'role.deleteRole', Config>;
       /**
        * ---
        *
@@ -4272,7 +4210,7 @@ declare global {
        * }
        * ```
        */
-      DeleteRoleByName<
+      deleteRoleByName<
         Config extends Alova2MethodConfig<ApiResultOfApplicationRole> & {
           params: {
             name?: string;
@@ -4280,7 +4218,7 @@ declare global {
         }
       >(
         config: Config
-      ): Alova2Method<ApiResultOfApplicationRole, 'role.DeleteRoleByName', Config>;
+      ): Alova2Method<ApiResultOfApplicationRole, 'role.deleteRoleByName', Config>;
       /**
        * ---
        *
@@ -4315,7 +4253,7 @@ declare global {
        * }
        * ```
        */
-      SyncRightsToUsers<
+      syncRoleRightsToUsers<
         Config extends Alova2MethodConfig<ApiResultOfint> & {
           params: {
             name?: string;
@@ -4323,7 +4261,7 @@ declare global {
         }
       >(
         config: Config
-      ): Alova2Method<ApiResultOfint, 'role.SyncRightsToUsers', Config>;
+      ): Alova2Method<ApiResultOfint, 'role.syncRoleRightsToUsers', Config>;
     };
     upFile: {
       /**
@@ -4403,7 +4341,7 @@ declare global {
        *   enddate?: string
        *   keyword?: string
        *   page?: number
-       *   pagesize?: number
+       *   pageSize?: number
        * }
        * ```
        *
@@ -4451,7 +4389,7 @@ declare global {
        * }
        * ```
        */
-      GetUserOperateLogList<
+      getUserOperateLogList<
         Config extends Alova2MethodConfig<ApiResultOfPageListOfUserOperateLog> & {
           params: {
             type?: string;
@@ -4459,12 +4397,12 @@ declare global {
             enddate?: string;
             keyword?: string;
             page?: number;
-            pagesize?: number;
+            pageSize?: number;
           };
         }
       >(
         config: Config
-      ): Alova2Method<ApiResultOfPageListOfUserOperateLog, 'userOperateLog.GetUserOperateLogList', Config>;
+      ): Alova2Method<ApiResultOfPageListOfUserOperateLog, 'userOperateLog.getUserOperateLogList', Config>;
       /**
        * ---
        *
@@ -4516,7 +4454,7 @@ declare global {
        * }
        * ```
        */
-      GetUserOperateLog<
+      getUserOperateLog<
         Config extends Alova2MethodConfig<ApiResultOfUserOperateLog> & {
           params: {
             id?: string;
@@ -4524,7 +4462,7 @@ declare global {
         }
       >(
         config: Config
-      ): Alova2Method<ApiResultOfUserOperateLog, 'userOperateLog.GetUserOperateLog', Config>;
+      ): Alova2Method<ApiResultOfUserOperateLog, 'userOperateLog.getUserOperateLog', Config>;
       /**
        * ---
        *
@@ -4591,13 +4529,13 @@ declare global {
        * }
        * ```
        */
-      CreateUserOperateLog<
+      createUserOperateLog<
         Config extends Alova2MethodConfig<ApiResultOfUserOperateLog> & {
           data: UserOperateLog;
         }
       >(
         config: Config
-      ): Alova2Method<ApiResultOfUserOperateLog, 'userOperateLog.CreateUserOperateLog', Config>;
+      ): Alova2Method<ApiResultOfUserOperateLog, 'userOperateLog.createUserOperateLog', Config>;
       /**
        * ---
        *
@@ -4664,13 +4602,13 @@ declare global {
        * }
        * ```
        */
-      UpdateUserOperateLog<
+      updateUserOperateLog<
         Config extends Alova2MethodConfig<ApiResultOfUserOperateLog> & {
           data: UserOperateLog;
         }
       >(
         config: Config
-      ): Alova2Method<ApiResultOfUserOperateLog, 'userOperateLog.UpdateUserOperateLog', Config>;
+      ): Alova2Method<ApiResultOfUserOperateLog, 'userOperateLog.updateUserOperateLog', Config>;
       /**
        * ---
        *
@@ -4722,7 +4660,7 @@ declare global {
        * }
        * ```
        */
-      DeleteUserOperateLog<
+      deleteUserOperateLog<
         Config extends Alova2MethodConfig<ApiResultOfUserOperateLog> & {
           params: {
             id?: string;
@@ -4730,7 +4668,7 @@ declare global {
         }
       >(
         config: Config
-      ): Alova2Method<ApiResultOfUserOperateLog, 'userOperateLog.DeleteUserOperateLog', Config>;
+      ): Alova2Method<ApiResultOfUserOperateLog, 'userOperateLog.deleteUserOperateLog', Config>;
       /**
        * ---
        *
@@ -4768,7 +4706,7 @@ declare global {
        * }
        * ```
        */
-      ClearUserOperateLogs<
+      clearUserOperateLog<
         Config extends Alova2MethodConfig<ApiResultOfint> & {
           params: {
             type?: string;
@@ -4779,7 +4717,7 @@ declare global {
         }
       >(
         config: Config
-      ): Alova2Method<ApiResultOfint, 'userOperateLog.ClearUserOperateLogs', Config>;
+      ): Alova2Method<ApiResultOfint, 'userOperateLog.clearUserOperateLog', Config>;
     };
     user: {
       /**
@@ -4800,7 +4738,7 @@ declare global {
        *   enabled?: string
        *   keyword?: string
        *   page?: number
-       *   pagesize?: number
+       *   pageSize?: number
        * }
        * ```
        *
@@ -4857,7 +4795,7 @@ declare global {
        * }
        * ```
        */
-      GetUserList<
+      getUserList<
         Config extends Alova2MethodConfig<ApiResultOfPageListOfApplicationUser> & {
           params: {
             role?: string;
@@ -4866,12 +4804,12 @@ declare global {
             enabled?: string;
             keyword?: string;
             page?: number;
-            pagesize?: number;
+            pageSize?: number;
           };
         }
       >(
         config: Config
-      ): Alova2Method<ApiResultOfPageListOfApplicationUser, 'user.GetUserList', Config>;
+      ): Alova2Method<ApiResultOfPageListOfApplicationUser, 'user.getUserList', Config>;
       /**
        * ---
        *
@@ -4916,7 +4854,7 @@ declare global {
        * }
        * ```
        */
-      GetUser<
+      getUser<
         Config extends Alova2MethodConfig<ApiResultOfIUserProfile> & {
           params: {
             id?: string;
@@ -4924,7 +4862,7 @@ declare global {
         }
       >(
         config: Config
-      ): Alova2Method<ApiResultOfIUserProfile, 'user.GetUser', Config>;
+      ): Alova2Method<ApiResultOfIUserProfile, 'user.getUser', Config>;
       /**
        * ---
        *
@@ -4969,7 +4907,7 @@ declare global {
        * }
        * ```
        */
-      GetUserByName<
+      getUserByName<
         Config extends Alova2MethodConfig<ApiResultOfIUserProfile> & {
           params: {
             username?: string;
@@ -4977,7 +4915,7 @@ declare global {
         }
       >(
         config: Config
-      ): Alova2Method<ApiResultOfIUserProfile, 'user.GetUserByName', Config>;
+      ): Alova2Method<ApiResultOfIUserProfile, 'user.getUserByName', Config>;
       /**
        * ---
        *
@@ -5034,7 +4972,7 @@ declare global {
        * }
        * ```
        */
-      GetUserPermission<
+      getUserPermission<
         Config extends Alova2MethodConfig<Api_result_of_client_route> & {
           params: {
             userName?: string;
@@ -5042,26 +4980,158 @@ declare global {
         }
       >(
         config: Config
-      ): Alova2Method<Api_result_of_client_route, 'user.GetUserPermission', Config>;
+      ): Alova2Method<Api_result_of_client_route, 'user.getUserPermission', Config>;
       /**
        * ---
        *
-       * [POST]
+       * [GET] 获取用户管理菜单(分页)
+       *
+       * **path:** /api/Base/Users/getUserMenu
+       *
+       * ---
+       *
+       * **Response**
+       * ```ts
+       * type Response = {
+       *   // 响应编号
+       *   code?: number
+       *   // 响应消息
+       *   message?: string
+       *   // 响应数据 T
+       *   data?: {
+       *     // [items] start
+       *     // [items] end
+       *     list?: Array<{
+       *       id?: string
+       *       status?: string
+       *       parentId?: string | null
+       *       menuType?: string
+       *       menuName?: string
+       *       routeName?: string
+       *       routePath?: string
+       *       component?: string | null
+       *       i18nKey?: string | null
+       *       icon?: string
+       *       iconType?: string
+       *       order?: number
+       *       keepAlive?: boolean | null
+       *       href?: string | null
+       *       hideInMenu?: boolean | null
+       *       activeMenu?: string | null
+       *       multiTab?: boolean | null
+       *       fixedIndexInTab?: number | null
+       *       // [params1] start
+       *       // [items] start
+       *       // [items] end
+       *       // [params1] end
+       *       buttons?: Array<{
+       *         code?: string
+       *         desc?: string
+       *       }> | null
+       *       // [params1] start
+       *       // [items] start
+       *       // [items] end
+       *       // [params1] end
+       *       children?: null[] | null
+       *     }>
+       *     page?: number
+       *     pageSize?: number
+       *     totalPageCount?: number
+       *     totalItemCount?: number
+       *     extendData?: null
+       *   } | null
+       *   // 扩展数据
+       *   extend?: null
+       *   // 请求是否返回正确
+       *   isSuccess?: boolean
+       * }
+       * ```
+       */
+      getUserMenu<Config extends Alova2MethodConfig<ApiResultOfPageListOfMenu>>(
+        config?: Config
+      ): Alova2Method<ApiResultOfPageListOfMenu, 'user.getUserMenu', Config>;
+      /**
+       * ---
+       *
+       * [GET] 获取用户管理菜单(树结构)
+       *
+       * **path:** /api/Base/Users/getUserMenuTree
+       *
+       * ---
+       *
+       * **Response**
+       * ```ts
+       * type Response = {
+       *   // 响应编号
+       *   code?: number
+       *   // 响应消息
+       *   message?: string
+       *   // 响应数据 T
+       *   // [params1] start
+       *   // [items] start
+       *   // [items] end
+       *   // [params1] end
+       *   data?: Array<{
+       *     id?: string
+       *     label?: string
+       *     pId?: string
+       *     // [params1] start
+       *     // [items] start
+       *     // [items] end
+       *     // [params1] end
+       *     children?: null[] | null
+       *   }> | null
+       *   // 扩展数据
+       *   extend?: null
+       *   // 请求是否返回正确
+       *   isSuccess?: boolean
+       * }
+       * ```
+       */
+      getUserMenuTree<Config extends Alova2MethodConfig<Api_result_of_menu_tree>>(
+        config?: Config
+      ): Alova2Method<Api_result_of_menu_tree, 'user.getUserMenuTree', Config>;
+      /**
+       * ---
+       *
+       * [GET] 获取所有页面路由name列表
+       *
+       * **path:** /api/Base/Users/getAllPages
+       *
+       * ---
+       *
+       * **Response**
+       * ```ts
+       * type Response = {
+       *   // 响应编号
+       *   code?: number
+       *   // 响应消息
+       *   message?: string
+       *   // 响应数据 T
+       *   // [params1] start
+       *   // [items] start
+       *   // [items] end
+       *   // [params1] end
+       *   data?: string[] | null
+       *   // 扩展数据
+       *   extend?: null
+       *   // 请求是否返回正确
+       *   isSuccess?: boolean
+       * }
+       * ```
+       */
+      getUserAllPages<Config extends Alova2MethodConfig<Api_result_of_string>>(
+        config?: Config
+      ): Alova2Method<Api_result_of_string, 'user.getUserAllPages', Config>;
+      /**
+       * ---
+       *
+       * [POST] 创建新用户
        *
        * **path:** /api/Base/Users/create
        *
        * ---
        *
-       * **Query Parameters**
-       * ```ts
-       * type QueryParameters = {
-       *   parentUserId?: string
-       *   rate?: number
-       * }
-       * ```
-       *
-       * ---
-       *
        * **RequestBody**
        * ```ts
        * type RequestBody = {
@@ -5126,111 +5196,13 @@ declare global {
        * }
        * ```
        */
-      CreateUser<
+      createUser<
         Config extends Alova2MethodConfig<ApiResultOfApplicationUser> & {
-          params: {
-            parentUserId?: string;
-            rate?: number;
-          };
           data: CreateModel;
         }
       >(
         config: Config
-      ): Alova2Method<ApiResultOfApplicationUser, 'user.CreateUser', Config>;
-      /**
-       * ---
-       *
-       * [POST]
-       *
-       * **path:** /api/Base/Users/createByParent
-       *
-       * ---
-       *
-       * **Query Parameters**
-       * ```ts
-       * type QueryParameters = {
-       *   parentUserId?: string
-       *   rate?: number
-       * }
-       * ```
-       *
-       * ---
-       *
-       * **RequestBody**
-       * ```ts
-       * type RequestBody = {
-       *   email?: string | null
-       *   name?: string
-       *   avatarUrl?: string
-       *   phoneNumber?: string | null
-       *   description?: string
-       *   rights?: string
-       *   // [items] start
-       *   // [items] end
-       *   rightsList?: string[]
-       *   signature?: string
-       *   date?: string
-       *   confirmPassword?: string
-       *   userName: string
-       *   password: string
-       * }
-       * ```
-       *
-       * ---
-       *
-       * **Response**
-       * ```ts
-       * type Response = {
-       *   // 响应编号
-       *   code?: number
-       *   // 响应消息
-       *   message?: string
-       *   // 响应数据 T
-       *   data?: {
-       *     userName: string
-       *     email?: string | null
-       *     name?: string
-       *     avatarUrl?: string
-       *     phoneNumber?: string | null
-       *     description?: string
-       *     rights?: string
-       *     // [items] start
-       *     // [items] end
-       *     rightsList?: string[]
-       *     signature?: string
-       *     enabled?: boolean
-       *     date?: string
-       *     id?: string | null
-       *     normalizedUserName?: string | null
-       *     normalizedEmail?: string | null
-       *     emailConfirmed?: boolean
-       *     passwordHash?: string | null
-       *     securityStamp?: string | null
-       *     concurrencyStamp?: string | null
-       *     phoneNumberConfirmed?: boolean
-       *     twoFactorEnabled?: boolean
-       *     lockoutEnd?: string | null
-       *     lockoutEnabled?: boolean
-       *     accessFailedCount?: number
-       *   } | null
-       *   // 扩展数据
-       *   extend?: null
-       *   // 请求是否返回正确
-       *   isSuccess?: boolean
-       * }
-       * ```
-       */
-      CreateUserByParent<
-        Config extends Alova2MethodConfig<ApiResultOfApplicationUser> & {
-          params: {
-            parentUserId?: string;
-            rate?: number;
-          };
-          data: CreateModel;
-        }
-      >(
-        config: Config
-      ): Alova2Method<ApiResultOfApplicationUser, 'user.CreateUserByParent', Config>;
+      ): Alova2Method<ApiResultOfApplicationUser, 'user.createUser', Config>;
       /**
        * ---
        *
@@ -5302,13 +5274,13 @@ declare global {
        * }
        * ```
        */
-      UpdateUserProfile<
+      updateUser<
         Config extends Alova2MethodConfig<ApiResultOfApplicationUser> & {
           data: UserProfileModel;
         }
       >(
         config: Config
-      ): Alova2Method<ApiResultOfApplicationUser, 'user.UpdateUserProfile', Config>;
+      ): Alova2Method<ApiResultOfApplicationUser, 'user.updateUser', Config>;
       /**
        * ---
        *
@@ -5347,7 +5319,7 @@ declare global {
        * }
        * ```
        */
-      GetUserRoles<
+      getUserRoles<
         Config extends Alova2MethodConfig<ApiResultOfIListOfstring> & {
           params: {
             userId?: string;
@@ -5355,7 +5327,7 @@ declare global {
         }
       >(
         config: Config
-      ): Alova2Method<ApiResultOfIListOfstring, 'user.GetUserRoles', Config>;
+      ): Alova2Method<ApiResultOfIListOfstring, 'user.getUserRoles', Config>;
       /**
        * ---
        *
@@ -5419,13 +5391,13 @@ declare global {
        * }
        * ```
        */
-      SetUserRoles<
+      setUserRoles<
         Config extends Alova2MethodConfig<ApiResultOfApplicationUser> & {
           data: SetUserRolesModel;
         }
       >(
         config: Config
-      ): Alova2Method<ApiResultOfApplicationUser, 'user.SetUserRoles', Config>;
+      ): Alova2Method<ApiResultOfApplicationUser, 'user.setUserRoles', Config>;
       /**
        * ---
        *
@@ -5463,13 +5435,13 @@ declare global {
        * }
        * ```
        */
-      ChangeUserPassword<
+      changeUserPassword<
         Config extends Alova2MethodConfig<ApiResult> & {
           data: ChangePasswordModel;
         }
       >(
         config: Config
-      ): Alova2Method<ApiResult, 'user.ChangeUserPassword', Config>;
+      ): Alova2Method<ApiResult, 'user.changeUserPassword', Config>;
       /**
        * ---
        *
@@ -5507,13 +5479,13 @@ declare global {
        * }
        * ```
        */
-      ResetUserPassword<
+      resetUserPassword<
         Config extends Alova2MethodConfig<ApiResult> & {
           data: ResetPasswordModel;
         }
       >(
         config: Config
-      ): Alova2Method<ApiResult, 'user.ResetUserPassword', Config>;
+      ): Alova2Method<ApiResult, 'user.resetUserPassword', Config>;
       /**
        * ---
        *
@@ -5574,7 +5546,7 @@ declare global {
        * }
        * ```
        */
-      DeleteUser<
+      deleteUser<
         Config extends Alova2MethodConfig<ApiResultOfApplicationUser> & {
           params: {
             id?: string;
@@ -5582,7 +5554,7 @@ declare global {
         }
       >(
         config: Config
-      ): Alova2Method<ApiResultOfApplicationUser, 'user.DeleteUser', Config>;
+      ): Alova2Method<ApiResultOfApplicationUser, 'user.deleteUser', Config>;
       /**
        * ---
        *
@@ -5643,7 +5615,7 @@ declare global {
        * }
        * ```
        */
-      DeleteUserByName<
+      deleteUserByName<
         Config extends Alova2MethodConfig<ApiResultOfApplicationUser> & {
           params: {
             username?: string;
@@ -5651,7 +5623,7 @@ declare global {
         }
       >(
         config: Config
-      ): Alova2Method<ApiResultOfApplicationUser, 'user.DeleteUserByName', Config>;
+      ): Alova2Method<ApiResultOfApplicationUser, 'user.deleteUserByName', Config>;
       /**
        * ---
        *
@@ -5684,13 +5656,13 @@ declare global {
        * }
        * ```
        */
-      DeleteUsers<
+      deleteUsers<
         Config extends Alova2MethodConfig<ApiResult> & {
           data: string[];
         }
       >(
         config: Config
-      ): Alova2Method<ApiResult, 'user.DeleteUsers', Config>;
+      ): Alova2Method<ApiResult, 'user.deleteUsers', Config>;
     };
   }
 

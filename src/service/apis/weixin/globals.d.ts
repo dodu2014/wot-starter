@@ -1,9 +1,9 @@
 /* tslint:disable */
 /* eslint-disable */
 /**
- * 后羿 接口文档 | 微信模块 - version v9.0.9.0
+ * TNT.WebApi 接口文档 | 微信模块 - version v9.0.10.1
  *
- * 后羿 项目接口文档, Powered By .NET 9.0.10
+ * TNT.WebApi 项目接口文档, Powered By .NET 9.0.10
  *
  * OpenAPI version: 3.0.1
  *
@@ -1131,9 +1131,9 @@ declare global {
        * }
        * ```
        */
-      GetCustomServiceList<Config extends Alova2MethodConfig<ApiResultOfCustomInfoJson>>(
+      getCustomServiceList<Config extends Alova2MethodConfig<ApiResultOfCustomInfoJson>>(
         config?: Config
-      ): Alova2Method<ApiResultOfCustomInfoJson, 'customService.GetCustomServiceList', Config>;
+      ): Alova2Method<ApiResultOfCustomInfoJson, 'customService.getCustomServiceList', Config>;
     };
     draft: {
       /**
@@ -1149,7 +1149,7 @@ declare global {
        * ```ts
        * type QueryParameters = {
        *   page?: number
-       *   pagesize?: number
+       *   pageSize?: number
        * }
        * ```
        *
@@ -1201,16 +1201,16 @@ declare global {
        * }
        * ```
        */
-      GetDraftList<
+      getDraftList<
         Config extends Alova2MethodConfig<ApiResultOfPageListOfDraftList_Item> & {
           params: {
             page?: number;
-            pagesize?: number;
+            pageSize?: number;
           };
         }
       >(
         config: Config
-      ): Alova2Method<ApiResultOfPageListOfDraftList_Item, 'draft.GetDraftList', Config>;
+      ): Alova2Method<ApiResultOfPageListOfDraftList_Item, 'draft.getDraftList', Config>;
       /**
        * ---
        *
@@ -1267,7 +1267,7 @@ declare global {
        * }
        * ```
        */
-      GetDraft<
+      getDraft<
         Config extends Alova2MethodConfig<ApiResultOfGetDraftResultJson> & {
           params: {
             mediaid?: string;
@@ -1275,7 +1275,7 @@ declare global {
         }
       >(
         config: Config
-      ): Alova2Method<ApiResultOfGetDraftResultJson, 'draft.GetDraft', Config>;
+      ): Alova2Method<ApiResultOfGetDraftResultJson, 'draft.getDraft', Config>;
       /**
        * ---
        *
@@ -1325,13 +1325,13 @@ declare global {
        * }
        * ```
        */
-      CreateDraft<
+      createDraft<
         Config extends Alova2MethodConfig<ApiResultOfAddDraftResultJson> & {
           data: DraftModel[];
         }
       >(
         config: Config
-      ): Alova2Method<ApiResultOfAddDraftResultJson, 'draft.CreateDraft', Config>;
+      ): Alova2Method<ApiResultOfAddDraftResultJson, 'draft.createDraft', Config>;
       /**
        * ---
        *
@@ -1390,7 +1390,7 @@ declare global {
        * }
        * ```
        */
-      UpdateDraft<
+      updateDraft<
         Config extends Alova2MethodConfig<ApiResultOfWxJsonResult> & {
           params: {
             mediaid?: string;
@@ -1400,7 +1400,7 @@ declare global {
         }
       >(
         config: Config
-      ): Alova2Method<ApiResultOfWxJsonResult, 'draft.UpdateDraft', Config>;
+      ): Alova2Method<ApiResultOfWxJsonResult, 'draft.updateDraft', Config>;
       /**
        * ---
        *
@@ -1441,7 +1441,7 @@ declare global {
        * }
        * ```
        */
-      DeleteDraft<
+      deleteDraft<
         Config extends Alova2MethodConfig<ApiResultOfWxJsonResult> & {
           params: {
             mediaid?: string;
@@ -1449,7 +1449,7 @@ declare global {
         }
       >(
         config: Config
-      ): Alova2Method<ApiResultOfWxJsonResult, 'draft.DeleteDraft', Config>;
+      ): Alova2Method<ApiResultOfWxJsonResult, 'draft.deleteDraft', Config>;
       /**
        * ---
        *
@@ -1493,7 +1493,7 @@ declare global {
        * }
        * ```
        */
-      BatchSendMessage<
+      batchSendMessage<
         Config extends Alova2MethodConfig<ApiResultOfSendResult> & {
           params: {
             mediaid?: string;
@@ -1501,7 +1501,7 @@ declare global {
         }
       >(
         config: Config
-      ): Alova2Method<ApiResultOfSendResult, 'draft.BatchSendMessage', Config>;
+      ): Alova2Method<ApiResultOfSendResult, 'draft.batchSendMessage', Config>;
       /**
        * ---
        *
@@ -1543,7 +1543,7 @@ declare global {
        * }
        * ```
        */
-      PublishDraft<
+      publishDraft<
         Config extends Alova2MethodConfig<ApiResultOfSubmitFreePublishResultJson> & {
           params: {
             mediaid?: string;
@@ -1551,7 +1551,7 @@ declare global {
         }
       >(
         config: Config
-      ): Alova2Method<ApiResultOfSubmitFreePublishResultJson, 'draft.PublishDraft', Config>;
+      ): Alova2Method<ApiResultOfSubmitFreePublishResultJson, 'draft.publishDraft', Config>;
     };
     freePublish: {
       /**
@@ -1567,7 +1567,7 @@ declare global {
        * ```ts
        * type QueryParameters = {
        *   page?: number
-       *   pagesize?: number
+       *   pageSize?: number
        * }
        * ```
        *
@@ -1625,16 +1625,16 @@ declare global {
        * }
        * ```
        */
-      GetFreePublishList<
+      getFreePublishList<
         Config extends Alova2MethodConfig<ApiResultOfPageListOfFreePublishList_Item> & {
           params: {
             page?: number;
-            pagesize?: number;
+            pageSize?: number;
           };
         }
       >(
         config: Config
-      ): Alova2Method<ApiResultOfPageListOfFreePublishList_Item, 'freePublish.GetFreePublishList', Config>;
+      ): Alova2Method<ApiResultOfPageListOfFreePublishList_Item, 'freePublish.getFreePublishList', Config>;
       /**
        * ---
        *
@@ -1692,7 +1692,7 @@ declare global {
        * }
        * ```
        */
-      GetFreePublishByArticleId<
+      getFreePublishByArticleId<
         Config extends Alova2MethodConfig<ApiResultOfFreePublishGetArticleResultJson> & {
           params: {
             articleId?: string;
@@ -1700,7 +1700,7 @@ declare global {
         }
       >(
         config: Config
-      ): Alova2Method<ApiResultOfFreePublishGetArticleResultJson, 'freePublish.GetFreePublishByArticleId', Config>;
+      ): Alova2Method<ApiResultOfFreePublishGetArticleResultJson, 'freePublish.getFreePublishByArticleId', Config>;
       /**
        * ---
        *
@@ -1760,7 +1760,7 @@ declare global {
        * }
        * ```
        */
-      GetFreePublishStatus<
+      getFreePublishStatus<
         Config extends Alova2MethodConfig<ApiResultOfGetFreePublishResultJson> & {
           params: {
             publishId?: string;
@@ -1768,7 +1768,7 @@ declare global {
         }
       >(
         config: Config
-      ): Alova2Method<ApiResultOfGetFreePublishResultJson, 'freePublish.GetFreePublishStatus', Config>;
+      ): Alova2Method<ApiResultOfGetFreePublishResultJson, 'freePublish.getFreePublishStatus', Config>;
       /**
        * ---
        *
@@ -1810,7 +1810,7 @@ declare global {
        * }
        * ```
        */
-      DeleteFreePublish<
+      deleteFreePublish<
         Config extends Alova2MethodConfig<ApiResultOfWxJsonResult> & {
           params: {
             articleId?: string;
@@ -1819,7 +1819,7 @@ declare global {
         }
       >(
         config: Config
-      ): Alova2Method<ApiResultOfWxJsonResult, 'freePublish.DeleteFreePublish', Config>;
+      ): Alova2Method<ApiResultOfWxJsonResult, 'freePublish.deleteFreePublish', Config>;
       /**
        * ---
        *
@@ -1854,7 +1854,7 @@ declare global {
        * }
        * ```
        */
-      SendFreePublishTemplateMessage<
+      sendTemplateMessage<
         Config extends Alova2MethodConfig<ApiResultOfValueTupleOfintAndint> & {
           params: {
             articleId?: string;
@@ -1862,7 +1862,7 @@ declare global {
         }
       >(
         config: Config
-      ): Alova2Method<ApiResultOfValueTupleOfintAndint, 'freePublish.SendFreePublishTemplateMessage', Config>;
+      ): Alova2Method<ApiResultOfValueTupleOfintAndint, 'freePublish.sendTemplateMessage', Config>;
     };
     material: {
       /**
@@ -1888,7 +1888,7 @@ declare global {
        * type Response = null
        * ```
        */
-      GetImage<
+      getImageMaterial<
         Config extends Alova2MethodConfig<null> & {
           params: {
             mediaid?: string;
@@ -1896,7 +1896,7 @@ declare global {
         }
       >(
         config: Config
-      ): Alova2Method<null, 'material.GetImage', Config>;
+      ): Alova2Method<null, 'material.getImageMaterial', Config>;
       /**
        * ---
        *
@@ -1954,7 +1954,7 @@ declare global {
        * }
        * ```
        */
-      GetNews<
+      getNewsMaterial<
         Config extends Alova2MethodConfig<ApiResultOfGetNewsResultJson> & {
           params: {
             mediaid?: string;
@@ -1962,7 +1962,7 @@ declare global {
         }
       >(
         config: Config
-      ): Alova2Method<ApiResultOfGetNewsResultJson, 'material.GetNews', Config>;
+      ): Alova2Method<ApiResultOfGetNewsResultJson, 'material.getNewsMaterial', Config>;
       /**
        * ---
        *
@@ -2006,7 +2006,7 @@ declare global {
        * }
        * ```
        */
-      GetVideo<
+      getVideoMaterial<
         Config extends Alova2MethodConfig<ApiResultOfGetForeverMediaVideoResultJson> & {
           params: {
             mediaid?: string;
@@ -2014,7 +2014,7 @@ declare global {
         }
       >(
         config: Config
-      ): Alova2Method<ApiResultOfGetForeverMediaVideoResultJson, 'material.GetVideo', Config>;
+      ): Alova2Method<ApiResultOfGetForeverMediaVideoResultJson, 'material.getVideoMaterial', Config>;
       /**
        * ---
        *
@@ -2055,7 +2055,7 @@ declare global {
        * }
        * ```
        */
-      DeleteMaterial<
+      deleteMaterial<
         Config extends Alova2MethodConfig<ApiResultOfWxJsonResult> & {
           params: {
             mediaid?: string;
@@ -2063,7 +2063,7 @@ declare global {
         }
       >(
         config: Config
-      ): Alova2Method<ApiResultOfWxJsonResult, 'material.DeleteMaterial', Config>;
+      ): Alova2Method<ApiResultOfWxJsonResult, 'material.deleteMaterial', Config>;
     };
     menu: {
       /**
@@ -2128,9 +2128,9 @@ declare global {
        * }
        * ```
        */
-      GetMenu<Config extends Alova2MethodConfig<ApiResultOfGetMenuResult>>(
+      getMenu<Config extends Alova2MethodConfig<ApiResultOfGetMenuResult>>(
         config?: Config
-      ): Alova2Method<ApiResultOfGetMenuResult, 'menu.GetMenu', Config>;
+      ): Alova2Method<ApiResultOfGetMenuResult, 'menu.getMenu', Config>;
       /**
        * ---
        *
@@ -2233,13 +2233,13 @@ declare global {
        * }
        * ```
        */
-      UpdateMenu<
+      updateMenu<
         Config extends Alova2MethodConfig<ApiResultOfWxJsonResult> & {
           data: GetMenuResultFull;
         }
       >(
         config: Config
-      ): Alova2Method<ApiResultOfWxJsonResult, 'menu.UpdateMenu', Config>;
+      ): Alova2Method<ApiResultOfWxJsonResult, 'menu.updateMenu', Config>;
     };
     mp: {
       /**
@@ -2247,7 +2247,7 @@ declare global {
        *
        * [GET] 创建临时带参二维码
        *
-       * **path:** /api/Weixin/Mp/createSceneQrcode
+       * **path:** /api/Weixin/Mp/createMpSceneQrcode
        *
        * ---
        *
@@ -2276,7 +2276,7 @@ declare global {
        * }
        * ```
        */
-      CreateSceneQrCode<
+      createSceneQrcode<
         Config extends Alova2MethodConfig<ApiResultOfstring> & {
           params: {
             scene?: string;
@@ -2284,13 +2284,13 @@ declare global {
         }
       >(
         config: Config
-      ): Alova2Method<ApiResultOfstring, 'mp.CreateSceneQrCode', Config>;
+      ): Alova2Method<ApiResultOfstring, 'mp.createSceneQrcode', Config>;
       /**
        * ---
        *
        * [GET] 创建永久带参二维码
        *
-       * **path:** /api/Weixin/Mp/createLimitSceneQrcode
+       * **path:** /api/Weixin/Mp/createMpLimitSceneQrcode
        *
        * ---
        *
@@ -2319,7 +2319,7 @@ declare global {
        * }
        * ```
        */
-      CreateLimitSceneQrCode<
+      createLimitSceneQrcode<
         Config extends Alova2MethodConfig<ApiResultOfstring> & {
           params: {
             scene?: string;
@@ -2327,7 +2327,7 @@ declare global {
         }
       >(
         config: Config
-      ): Alova2Method<ApiResultOfstring, 'mp.CreateLimitSceneQrCode', Config>;
+      ): Alova2Method<ApiResultOfstring, 'mp.createLimitSceneQrcode', Config>;
     };
     mpService: {
       /**
@@ -2369,7 +2369,7 @@ declare global {
        * type Response = null
        * ```
        */
-      GetWeixinServices<
+      getMpService<
         Config extends Alova2MethodConfig<null> & {
           params: {
             echostr?: string;
@@ -2378,7 +2378,7 @@ declare global {
         }
       >(
         config: Config
-      ): Alova2Method<null, 'mpService.GetWeixinServices', Config>;
+      ): Alova2Method<null, 'mpService.getMpService', Config>;
       /**
        * ---
        *
@@ -2409,13 +2409,13 @@ declare global {
        * type Response = null
        * ```
        */
-      PostWeixinServices<
+      postMpService<
         Config extends Alova2MethodConfig<null> & {
           data: PostModel;
         }
       >(
         config: Config
-      ): Alova2Method<null, 'mpService.PostWeixinServices', Config>;
+      ): Alova2Method<null, 'mpService.postMpService', Config>;
     };
     oAuth: {
       /**
@@ -2491,7 +2491,7 @@ declare global {
        * }
        * ```
        */
-      OnLogin<
+      onLogin<
         Config extends Alova2MethodConfig<ApiResult> & {
           params: {
             code?: string;
@@ -2500,7 +2500,7 @@ declare global {
         }
       >(
         config: Config
-      ): Alova2Method<ApiResult, 'wxOpen.OnLogin', Config>;
+      ): Alova2Method<ApiResult, 'wxOpen.onLogin', Config>;
       /**
        * ---
        *
@@ -2551,13 +2551,13 @@ declare global {
        * }
        * ```
        */
-      DecryptUserInfo<
+      decryptUserInfo<
         Config extends Alova2MethodConfig<ApiResultOfDecodedUserInfo> & {
           data: EncryptedDataModel;
         }
       >(
         config: Config
-      ): Alova2Method<ApiResultOfDecodedUserInfo, 'wxOpen.DecryptUserInfo', Config>;
+      ): Alova2Method<ApiResultOfDecodedUserInfo, 'wxOpen.decryptUserInfo', Config>;
       /**
        * ---
        *
@@ -2594,13 +2594,13 @@ declare global {
        * }
        * ```
        */
-      DecryptPhoneNumber<
+      decryptPhoneNumber<
         Config extends Alova2MethodConfig<ApiResultOfstring> & {
           data: EncryptedDataModel;
         }
       >(
         config: Config
-      ): Alova2Method<ApiResultOfstring, 'wxOpen.DecryptPhoneNumber', Config>;
+      ): Alova2Method<ApiResultOfstring, 'wxOpen.decryptPhoneNumber', Config>;
       /**
        * ---
        *
@@ -2636,7 +2636,7 @@ declare global {
        * }
        * ```
        */
-      GetUserPhoneNumberFromCode<
+      getUserPhoneNumberFromCode<
         Config extends Alova2MethodConfig<ApiResultOfstring> & {
           params: {
             code?: string;
@@ -2645,7 +2645,7 @@ declare global {
         }
       >(
         config: Config
-      ): Alova2Method<ApiResultOfstring, 'wxOpen.GetUserPhoneNumberFromCode', Config>;
+      ): Alova2Method<ApiResultOfstring, 'wxOpen.getUserPhoneNumberFromCode', Config>;
       /**
        * ---
        *
@@ -2671,7 +2671,7 @@ declare global {
        * type Response = null
        * ```
        */
-      GenerateWxcode<
+      generateWxcode<
         Config extends Alova2MethodConfig<null> & {
           params: {
             path?: string;
@@ -2681,7 +2681,7 @@ declare global {
         }
       >(
         config: Config
-      ): Alova2Method<null, 'wxOpen.GenerateWxcode', Config>;
+      ): Alova2Method<null, 'wxOpen.generateWxcode', Config>;
     };
     wxPay: {
       /**
@@ -2723,7 +2723,7 @@ declare global {
        * }
        * ```
        */
-      CreateUnifiedorder<
+      createWxPayUnifiedorder<
         Config extends Alova2MethodConfig<ApiResult> & {
           params: {
             openId?: string;
@@ -2736,7 +2736,7 @@ declare global {
         }
       >(
         config: Config
-      ): Alova2Method<ApiResult, 'wxPay.CreateUnifiedorder', Config>;
+      ): Alova2Method<ApiResult, 'wxPay.createWxPayUnifiedorder', Config>;
       /**
        * ---
        *
@@ -2751,9 +2751,9 @@ declare global {
        * type Response = null
        * ```
        */
-      paymentNotify<Config extends Alova2MethodConfig<null>>(
+      wxPayPaymentNotify<Config extends Alova2MethodConfig<null>>(
         config?: Config
-      ): Alova2Method<null, 'wxPay.paymentNotify', Config>;
+      ): Alova2Method<null, 'wxPay.wxPayPaymentNotify', Config>;
       /**
        * ---
        *
@@ -2852,7 +2852,7 @@ declare global {
        * }
        * ```
        */
-      Query<
+      queryWxPay<
         Config extends Alova2MethodConfig<ApiResultOfOrderReturnJson> & {
           params: {
             orderNum?: string;
@@ -2860,7 +2860,7 @@ declare global {
         }
       >(
         config: Config
-      ): Alova2Method<ApiResultOfOrderReturnJson, 'wxPay.Query', Config>;
+      ): Alova2Method<ApiResultOfOrderReturnJson, 'wxPay.queryWxPay', Config>;
       /**
        * ---
        *
@@ -2958,7 +2958,7 @@ declare global {
        * }
        * ```
        */
-      Refund<
+      refundWxPay<
         Config extends Alova2MethodConfig<ApiResultOfRefundReturnJson> & {
           params: {
             orderNum?: string;
@@ -2968,7 +2968,7 @@ declare global {
         }
       >(
         config: Config
-      ): Alova2Method<ApiResultOfRefundReturnJson, 'wxPay.Refund', Config>;
+      ): Alova2Method<ApiResultOfRefundReturnJson, 'wxPay.refundWxPay', Config>;
       /**
        * ---
        *
@@ -2983,9 +2983,9 @@ declare global {
        * type Response = null
        * ```
        */
-      refundNotify<Config extends Alova2MethodConfig<null>>(
+      refundNotifyWxPay<Config extends Alova2MethodConfig<null>>(
         config?: Config
-      ): Alova2Method<null, 'wxPay.refundNotify', Config>;
+      ): Alova2Method<null, 'wxPay.refundNotifyWxPay', Config>;
       /**
        * ---
        *
@@ -3048,7 +3048,7 @@ declare global {
        * }
        * ```
        */
-      extract<
+      extractWxPay<
         Config extends Alova2MethodConfig<ApiResultOfApplicationUser> & {
           params: {
             id?: string;
@@ -3058,7 +3058,7 @@ declare global {
         }
       >(
         config: Config
-      ): Alova2Method<ApiResultOfApplicationUser, 'wxPay.extract', Config>;
+      ): Alova2Method<ApiResultOfApplicationUser, 'wxPay.extractWxPay', Config>;
     };
     wxUser: {
       /**
@@ -3079,7 +3079,7 @@ declare global {
        *   enddate?: string
        *   keyword?: string
        *   page?: number
-       *   pagesize?: number
+       *   pageSize?: number
        * }
        * ```
        *
@@ -3135,7 +3135,7 @@ declare global {
             enddate?: string;
             keyword?: string;
             page?: number;
-            pagesize?: number;
+            pageSize?: number;
           };
         }
       >(

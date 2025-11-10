@@ -119,7 +119,7 @@ onLoad((options: any) => {
   <view class="page">
     <wd-navbar
       title="用户登陆"
-      safeareainsettop left-arrow placeholder fixed
+      safe-area-inset-top left-arrow placeholder fixed
       custom-style="background-color: transparent !important;"
       :bordered="false"
       @click-left="back"

@@ -105,7 +105,7 @@ onLoad(async () => {
     <view class="from-orange/75 to-[var(--wot-color-theme)]/100 bg-gradient-to-rb text-white">
       <wd-navbar
         title="个人中心"
-        safeareainsettop placeholder fixed
+        safe-area-inset-top placeholder fixed
         custom-style="background-color: transparent !important;"
         :bordered="false"
       />

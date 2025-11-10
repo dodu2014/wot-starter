@@ -1,5 +1,5 @@
 // 扩展uni-mini-router的RoutePathLocation接口
-import type { RouteLocationBase, RouteNameLocation, Router } from 'uni-mini-router'
+import type { RouteLocationBase, Router } from 'uni-mini-router'
 
 export {}
 
@@ -11,8 +11,15 @@ declare module 'vue' {
 // 'uni-mini-router' 模块的类型定义
 
 // 扩展RoutePathLocation接口，使path支持自定义类型
+export interface RouteNameLocation extends RouteLocationBase {
+  name: string
+  query?: Record<string, string | number>
+}
+
+// 扩展RoutePathLocation接口，使path支持自定义类型
 export interface RoutePathLocation extends RouteLocationBase {
   path: _LocationUrl
+  query?: Record<string, string | number>
 }
 
 /** 原始本地路由 */

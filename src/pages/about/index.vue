@@ -1,7 +1,6 @@
 <script setup lang="ts">
 definePage({
   name: 'about',
-  layout: 'tabbar',
   style: {
     navigationBarTitleText: '关于',
   },

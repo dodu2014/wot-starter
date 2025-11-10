@@ -10,9 +10,11 @@
   "scripts": {
     "dev": "unh dev",
     "build": "unh build",
+    "wx:dev": "unh dev wx",
+    "wx:build": "unh build wx",
     "about": "unh info",
     "type-check": "vue-tsc --noEmit",
-    "lint": "eslint .",
+    "lint": "eslint . --debug",
     "lint:fix": "eslint . --fix",
     "postinstall": "npx simple-git-hooks",
     "prepare": "husky install",

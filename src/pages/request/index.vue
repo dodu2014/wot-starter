@@ -169,7 +169,7 @@ onMounted(async () => {
         <wd-card
           v-for="feature in alovaFeatures"
           :key="feature.title"
-          class="!mx-0 !mb-0"
+          custom-class="!mx-0 !mb-0"
           custom-content-class="py-4 text-center"
         >
           <view class="mr-2 text-6">

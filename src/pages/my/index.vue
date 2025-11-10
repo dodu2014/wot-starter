@@ -199,11 +199,18 @@ onLoad(async () => {
 </template>
 
 <style lang="scss" scoped>
-.page {
-  min-height: 100vh;
-  // background: linear-gradient(115deg, #bcd3e8 0%, #94d0d3 100%);
-  background: url('/static/images/bg-user.png') no-repeat center center / cover;
+/* #ifdef WEB */
+.page-wraper {
+  background: url('/static/web/bg-user.png') no-repeat center center / cover;
   background-attachment: fixed;
+}
+/* #endif */
+.page {
+  /* #ifdef MP-WEIXIN */
+  background: $user-bg-url no-repeat center center / cover;
+  background-attachment: fixed;
+  /* #endif */
+  flex: 1;
   display: flex;
   flex-direction: column;
   position: relative;

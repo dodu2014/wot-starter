@@ -24,7 +24,7 @@ const model = reactive<ChangePasswordModel>({
 const form = ref<FormExpose>()
 
 const { error, loading, send } = useRequest(
-  () => Webapi_Base.user.ChangeUserPassword({
+  () => Webapi_Base.user.changeUserPassword({
     data: model,
   }),
   { immediate: false },

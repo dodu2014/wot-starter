@@ -24,7 +24,7 @@ export const useUserStore = defineStore(
 
     /** 加载用户信息 */
     const loadUserInfo = async () => {
-      const { send } = useRequest(() => Webapi_Base.auth.GetProfileInfo()).onError((error) => {
+      const { send } = useRequest(() => Webapi_Base.auth.getProfileInfo()).onError((error) => {
         toast.error(error.error?.message || '获取用户档案失败')
       })
 
@@ -49,7 +49,7 @@ export const useUserStore = defineStore(
 
     /* 登录 */
     async function login(model: LoginModel) {
-      const { error, data, send } = useRequest(() => Webapi_Base.auth.Login({ data: model }))
+      const { error, data, send } = useRequest(() => Webapi_Base.auth.login({ data: model }))
         .onError((error) => {
           toast.error(error.error?.message || '')
         })
@@ -67,7 +67,7 @@ export const useUserStore = defineStore(
 
     /* 退出登录 */
     async function logout() {
-      const { error, send } = useRequest(() => Webapi_Base.auth.Logout()).onError((error) => {
+      const { error, send } = useRequest(() => Webapi_Base.auth.logout()).onError((error) => {
         toast.error(error.error?.message || '')
       })
       const res = await send()

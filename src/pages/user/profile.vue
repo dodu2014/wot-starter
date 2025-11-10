@@ -29,7 +29,7 @@ function handleUploadChange({ fileList }: UploadChangeEvent) {
 }
 
 const { error, loading, send } = useRequest(
-  () => Webapi_Base.user.UpdateUserProfile({
+  () => Webapi_Base.user.updateUser({
     data: model,
   }),
   { immediate: false },

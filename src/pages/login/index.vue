@@ -181,17 +181,10 @@ onLoad((options: any) => {
 </template>
 
 <style lang="scss" scoped>
-/* #ifdef WEB */
-.page-wraper {
-  background: url('/static/web/bg-user.png') no-repeat center center / cover;
-  background-attachment: fixed;
-}
-/* #endif */
 .page {
-  /* #ifdef MP-WEIXIN */
   background: $user-bg-url no-repeat center center / cover;
   background-attachment: fixed;
-  /* #endif */
+
   flex: 1;
   display: flex;
   flex-direction: column;

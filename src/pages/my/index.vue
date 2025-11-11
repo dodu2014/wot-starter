@@ -111,11 +111,6 @@ function logout() {
   })
 }
 
-// 跳转到设置页面
-function toSettings() {
-  router.push('/pages/user/settings')
-}
-
 onLoad(async () => {
   if (logined.value && !userInfo.value) {
     await userStore.loadUserInfo()
@@ -132,33 +127,31 @@ onShow(async () => {
 <template>
   <view class="page">
     <!-- 用户信息头部 -->
-    <view class="from-orange/75 to-[var(--wot-color-theme)]/100 bg-gradient-to-rb text-white">
+    <view class="from-orange/75 to-primary bg-gradient-to-rb text-white">
       <wd-navbar
         title="个人中心"
         safe-area-inset-top placeholder fixed
-        custom-style="background-color: transparent !important;"
+        custom-class="!bg-transparent"
         :bordered="false"
       />
 
-      <view class="mx-8 mb-12 mt-4 flex-col gap-y-6">
-        <view class="flex items-center justify-between" @click="() => router.push(LOGIN_PAGE)">
-          <view class="flex items-center gap-4">
-            <wd-img
-              :src="userInfo?.avatarUrl || defaultAvatar"
-              :width="54" :height="54"
-              round
-              class="border-2 border-white"
-            />
-            <view>
-              <view class="text-xl font-semibold">
-                {{ userInfo?.name || userInfo?.userName || '未登录用户' }}
-              </view>
-              <view class="mt-1 text-xs opacity-75">
-                {{ !logined ? '点击此处登录' : userInfo?.description || '这家伙很懒，什么都没有写' }}
-              </view>
+      <view class="mx-8 mb-16 mt-4 flex-col gap-y-6">
+        <view class="flex items-center gap-4" @click="() => !logined && router.push(LOGIN_PAGE)">
+          <wd-img
+            :src="userInfo?.avatarUrl || defaultAvatar"
+            :width="54" :height="54"
+            round
+            class="border-2 border-white"
+          />
+          <view class="mr-auto">
+            <view class="text-xl font-semibold">
+              {{ userInfo?.name || userInfo?.userName || '未登录用户' }}
+            </view>
+            <view class="mt-1 text-xs opacity-75">
+              {{ !logined ? '点击此处登录' : userInfo?.description || '这家伙很懒，什么都没有写' }}
             </view>
           </view>
-          <wd-icon v-if="logined" name="setting1" size="30px" @click.prevent.stop="toSettings" />
+          <wd-icon v-if="logined" name="setting1" size="30px" @click.prevent.stop="() => router.push({ path: '/pages/user/settings' })" />
         </view>
 
         <!-- 统计信息卡片 -->

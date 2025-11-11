@@ -5,10 +5,10 @@ import { createApis, mountApis, withConfigType } from './createApis'
 import alovaInstance from '@/api/core/instance'
 
 // Export the alova instance for direct use if needed
-// export { alovaInstance }
+export { alovaInstance }
 
 // Configure method options for specific APIs
-const $$userConfigMap = withConfigType({})
+export const $$userConfigMap = withConfigType({})
 
 export const Webapi_Weixin = createApis(alovaInstance, $$userConfigMap)
 

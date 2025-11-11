@@ -1,5 +1,5 @@
 // Export the global Apis object from the generated code
-import { createApis, mountApis, withConfigType } from './createApis'
+import { createApis, withConfigType } from './createApis'
 
 // Import the core alova instance
 import alovaInstance from '@/api/core/instance'
@@ -12,6 +12,6 @@ export const $$userConfigMap = withConfigType({})
 
 export const Webapi_Weixin = createApis(alovaInstance, $$userConfigMap)
 
-mountApis(Webapi_Weixin)
+// mountApis(Webapi_Weixin)
 
 // export default Webapi_Weixin

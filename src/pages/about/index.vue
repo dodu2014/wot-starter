@@ -67,14 +67,11 @@ function donate() {
 <template>
   <view class="min-h-screen flex-col gap-y-3 py-3">
     <!-- 头部介绍 -->
-    <view class="mx-4 flex-col gap-2">
-      <text class="text-6 text-gray-800 font-bold dark:text-[var(--wot-dark-color)]">
-        关于我们
-      </text>
+    <wd-card title="关于我们" custom-class="!mb-0" custom-content-class="pb-3">
       <text class="text-3.5">
         我是不如摸鱼去，一个前端打工仔，我和我的小伙伴们正在致力于开发轻量、高效的uni-app组件库和高效、易用的uni-app快速开发模板。
       </text>
-    </view>
+    </wd-card>
 
     <!-- 核心团队 -->
     <demo-block title="核心团队" custom-card-content-class="p-4 flex-col gap-y-3">

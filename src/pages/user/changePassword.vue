@@ -59,6 +59,7 @@ async function handleSubmit() {
           clearable
           disabled
           placeholder="请输入用户名"
+          marker-side="after"
           :rules="[{ required: true, message: '请填写用户名' }]"
         />
         <wd-input
@@ -69,6 +70,7 @@ async function handleSubmit() {
           show-password
           clearable
           placeholder="请输入原密码"
+          marker-side="after"
           :rules="[
             { required: true, message: '必填' },
             { required: false, validator: (value: string, rule) => value.length >= 6, message: '格式不正确, 6-16位' },
@@ -82,6 +84,7 @@ async function handleSubmit() {
           show-password
           clearable
           placeholder="请输入新密码"
+          marker-side="after"
           :rules="[
             { required: true, message: '必填' },
             { required: false, validator: (value: string, rule) => value.length >= 6, message: '格式不正确, 6-16位' },
@@ -95,6 +98,7 @@ async function handleSubmit() {
           show-password
           clearable
           placeholder="请输入确认密码"
+          marker-side="after"
           :rules="[
             { required: true, message: '必填' },
             { required: false, validator: (value: string, rule) => value.length >= 6, message: '格式不正确, 6-16位' },

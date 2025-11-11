@@ -84,7 +84,7 @@ export default async ({ command, mode }) => {
           imports: ['usePagination', 'useRequest'],
         }],
         dts: 'src/auto-imports.d.ts',
-        dirs: ['src/composables', 'src/store', 'src/utils', 'src/api', 'src/service/apis'],
+        dirs: ['src/composables', 'src/store', 'src/utils', 'src/api', 'src/service/apis/*'],
         vueTemplate: true,
       }),
       // https://github.com/antfu/unocss

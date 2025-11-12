@@ -1,3 +1,5 @@
+import pack from '../../package.json'
+
 const { alert } = useGlobalMessage()
 const { loading, close: hideLoading } = useGlobalLoading()
 
@@ -19,6 +21,9 @@ export function getMiniProgramVersion() {
   // #endif
   // #ifdef APP-PLUS
   return `v${plus.runtime.version}（APP）`
+  // #endif
+  // #ifdef WEB
+  return `v${pack.version}`
   // #endif
 }
 

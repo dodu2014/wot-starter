@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import type { FormExpose } from 'wot-design-uni/components/wd-form/types'
 import type { UploadChangeEvent, UploadFile } from 'wot-design-uni/components/wd-upload/types'
+import { klona as jsonClone } from 'klona/json'
 import type { UserProfileModel } from '@/service/apis/base/globals'
 
 definePage({
@@ -14,8 +15,7 @@ definePage({
 
 const { userInfo, loadUserInfo } = useUserStore()
 const { success, warning } = useGlobalToast()
-
-const model = reactive<UserProfileModel>(userInfo as UserProfileModel)
+const model = reactive<UserProfileModel>(jsonClone(userInfo) as UserProfileModel)
 
 const form = ref<FormExpose>()
 const uploadUrl = import.meta.env.VITE_UPLOAD_URL
@@ -53,7 +53,7 @@ async function handleSubmit() {
 }
 
 onLoad(() => {
-  if (userInfo) {
+  if (userInfo?.avatarUrl) {
     uploadFileList.value = [{
       uid: 0,
       name: userInfo.avatarUrl,

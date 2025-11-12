@@ -2,6 +2,7 @@
 import type { FormExpose } from 'wot-design-uni/components/wd-form/types'
 import type { UploadChangeEvent, UploadFile } from 'wot-design-uni/components/wd-upload/types'
 import { klona as jsonClone } from 'klona/json'
+import type { UploadResult } from './type'
 import type { UserProfileModel } from '@/service/apis/base/globals'
 
 definePage({
@@ -23,9 +24,27 @@ const uploadFileList = ref<UploadFile[]>([])
 
 function handleUploadChange({ fileList }: UploadChangeEvent) {
   console.log('handleUploadChange', { fileList })
-  const json = JSON.parse(fileList[0].response as string) as { url: string, absUrl: string, data?: any }
+  const json = JSON.parse(fileList[0].response as string) as UploadResult
   model.avatarUrl = json.absUrl
   uploadFileList.value = fileList
+}
+
+function handleChooseAvatar(e: { avatarUrl: string }) {
+  uni.uploadFile({
+    url: uploadUrl,
+    name: 'file',
+    filePath: e.avatarUrl,
+    success(e) {
+      const { statusCode, errMsg, data } = e
+      if (statusCode !== 200) {
+        warning(errMsg!)
+        return
+      }
+      const { absUrl } = JSON.parse(data) as UploadResult
+      model.avatarUrl = absUrl
+      uploadFileList.value = [{ url: absUrl }]
+    },
+  })
 }
 
 const { error, loading, send } = useRequest(
@@ -105,14 +124,21 @@ onLoad(() => {
           clearable
           :maxlength="10"
           marker-side="after"
+          type="nickname"
           :rules="[
             { required: true, message: '必填' },
             { required: false, validator: (value: string, rule) => value.length >= 2, message: '格式不正确, 2-10位' },
           ]"
         />
-        <wd-cell title="头像" class="avatar-cell">
-          <wd-upload :file-list="uploadFileList" image-mode="aspectFill" :action="uploadUrl" :limit="1" @change="handleUploadChange" />
+        <wd-cell title="头像" title-width="100px">
+          <view class="flex-col items-start gap-1">
+            <wd-upload :file-list="uploadFileList" image-mode="aspectFill" :action="uploadUrl" :limit="1" @change="handleUploadChange" />
+            <wd-button type="info" size="small" open-type="chooseAvatar" @chooseavatar="handleChooseAvatar">
+              使用微信头像
+            </wd-button>
+          </view>
         </wd-cell>
+
         <wd-textarea
           v-model="model.description"
           label="描述"
@@ -133,16 +159,3 @@ onLoad(() => {
     </wd-form>
   </view>
 </template>
-
-<style lang="scss" scoped>
-.avatar-cell :deep() {
-  .wd-cell__left{
-    flex:none;
-    width: 100px;
-  }
-
-  .wd-upload__evoke, .wd-upload__preview {
-    margin-bottom: 0 !important;
-  }
-}
-</style>

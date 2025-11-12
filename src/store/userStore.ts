@@ -8,16 +8,16 @@ export const useUserStore = defineStore(
     const toast = useGlobalToast()
     const { close: hideLoading } = useGlobalLoading()
 
-    /* 定义用户信息 */
+    /** 定义用户信息 */
     const userInfo = ref<UserProfileInfo>()
 
-    /* 设置用户信息 */
+    /** 设置用户信息 */
     const setUserInfo = (val?: UserProfileInfo) => {
       console.log('设置用户信息', val)
       userInfo.value = val || undefined
     }
 
-    /* 清除用户信息 */
+    /** 清除用户信息 */
     const clearUserInfo = () => {
       userInfo.value = undefined
     }
@@ -33,21 +33,21 @@ export const useUserStore = defineStore(
       setUserInfo(res.data)
     }
 
-    /* 定义token */
+    /** 定义token */
     const token = ref<string>()
 
-    /* 设置用户信息 */
+    /** 设置用户信息 */
     const setToken = (val?: string) => {
       console.log('设置用户信息', val)
       token.value = val || undefined
     }
 
-    /* 是否登录 */
+    /** 是否登录 */
     const logined = computed(() => {
       return Boolean(token.value && userInfo.value)
     })
 
-    /* 登录 */
+    /** 登录 */
     async function login(model: LoginModel) {
       const { error, data, send } = useRequest(() => Webapi_Base.auth.login({ data: model }))
         .onError((error) => {
@@ -65,7 +65,25 @@ export const useUserStore = defineStore(
       return { error, data }
     }
 
-    /* 退出登录 */
+    /** 简易登录 */
+    async function easyLogin(phoneNumber: string, userId = '', openId = '', unionId = '') {
+      const { send } = useRequest(
+        (phoneNumber: string, userId = '', openId = '', unionId = '') => Webapi_Base.auth.easyLogin({ params: { phoneNumber, userId, openId, unionId } }),
+        { immediate: false },
+      ).onError((error) => {
+        toast.error(error.error?.message || '登录失败')
+      }).onComplete(() => {
+        hideLoading()
+      })
+      const { isSuccess, data } = await send(phoneNumber, userId, openId, unionId)
+      if (isSuccess) {
+        setToken(data?.token)
+        await loadUserInfo()
+      }
+      return { isSuccess, data }
+    }
+
+    /** 退出登录 */
     async function logout() {
       const { error, send } = useRequest(() => Webapi_Base.auth.logout()).onError((error) => {
         toast.error(error.error?.message || '')
@@ -79,23 +97,25 @@ export const useUserStore = defineStore(
     }
 
     return {
-      /* 定义用户信息 */
+      /** 定义用户信息 */
       userInfo,
-      /* 清除用户信息 */
+      /** 清除用户信息 */
       clearUserInfo,
-      /* 加载用户信息 */
+      /** 加载用户信息 */
       loadUserInfo,
-      /* 设置用户信息 */
+      /** 设置用户信息 */
       setUserInfo,
-      /* 定义token */
+      /** 定义token */
       token,
-      /* 设置token */
+      /** 设置token */
       setToken,
-      /* 是否登录 */
+      /** 是否登录 */
       logined,
-      /* 登录 */
+      /** 登录 */
       login,
-      /* 退出登录 */
+      /** 简易登录 */
+      easyLogin,
+      /** 退出登录 */
       logout,
     }
   },

@@ -3,7 +3,7 @@
 /**
  * TNT.WebApi 接口文档 | 微信模块 - version v9.0.10.1
  *
- * TNT.WebApi 项目接口文档, Powered By .NET 9.0.10
+ * TNT.WebApi 项目接口文档, Powered By .NET 9.0.11
  *
  * OpenAPI version: 3.0.1
  *
@@ -950,6 +950,8 @@ export type ApplicationUser = {
   description?: string;
   rights?: string;
   rightsList?: string[];
+  openId?: string;
+  unionId?: string;
   signature?: string;
   enabled?: boolean;
   date?: string;
@@ -3025,6 +3027,8 @@ declare global {
        *     // [items] start
        *     // [items] end
        *     rightsList?: string[]
+       *     openId?: string
+       *     unionId?: string
        *     signature?: string
        *     enabled?: boolean
        *     date?: string

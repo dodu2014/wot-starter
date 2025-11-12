@@ -4,7 +4,7 @@
 /**
  * TNT.WebApi 接口文档 | 基础模块 - version v9.0.10.1
  *
- * TNT.WebApi 项目接口文档, Powered By .NET 9.0.10
+ * TNT.WebApi 项目接口文档, Powered By .NET 9.0.11
  *
  * OpenAPI version: 3.0.1
  *

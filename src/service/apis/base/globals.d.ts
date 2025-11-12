@@ -3,7 +3,7 @@
 /**
  * TNT.WebApi 接口文档 | 基础模块 - version v9.0.10.1
  *
- * TNT.WebApi 项目接口文档, Powered By .NET 9.0.10
+ * TNT.WebApi 项目接口文档, Powered By .NET 9.0.11
  *
  * OpenAPI version: 3.0.1
  *
@@ -976,6 +976,8 @@ export interface ApplicationUser {
   description?: string;
   rights?: string;
   rightsList?: string[];
+  openId?: string;
+  unionId?: string;
   signature?: string;
   enabled?: boolean;
   date?: string;
@@ -1086,6 +1088,8 @@ export type ApplicationUser2 = {
   description?: string;
   rights?: string;
   rightsList?: string[];
+  openId?: string;
+  unionId?: string;
   signature?: string;
   enabled?: boolean;
   date?: string;
@@ -2566,6 +2570,8 @@ declare global {
        * type QueryParameters = {
        *   phoneNumber?: string
        *   userId?: string
+       *   openId?: string
+       *   unionId?: string
        * }
        * ```
        *
@@ -2599,6 +2605,8 @@ declare global {
           params: {
             phoneNumber?: string;
             userId?: string;
+            openId?: string;
+            unionId?: string;
           };
         }
       >(
@@ -4766,6 +4774,8 @@ declare global {
        *       // [items] start
        *       // [items] end
        *       rightsList?: string[]
+       *       openId?: string
+       *       unionId?: string
        *       signature?: string
        *       enabled?: boolean
        *       date?: string
@@ -5173,6 +5183,8 @@ declare global {
        *     // [items] start
        *     // [items] end
        *     rightsList?: string[]
+       *     openId?: string
+       *     unionId?: string
        *     signature?: string
        *     enabled?: boolean
        *     date?: string
@@ -5251,6 +5263,8 @@ declare global {
        *     // [items] start
        *     // [items] end
        *     rightsList?: string[]
+       *     openId?: string
+       *     unionId?: string
        *     signature?: string
        *     enabled?: boolean
        *     date?: string
@@ -5368,6 +5382,8 @@ declare global {
        *     // [items] start
        *     // [items] end
        *     rightsList?: string[]
+       *     openId?: string
+       *     unionId?: string
        *     signature?: string
        *     enabled?: boolean
        *     date?: string
@@ -5523,6 +5539,8 @@ declare global {
        *     // [items] start
        *     // [items] end
        *     rightsList?: string[]
+       *     openId?: string
+       *     unionId?: string
        *     signature?: string
        *     enabled?: boolean
        *     date?: string
@@ -5592,6 +5610,8 @@ declare global {
        *     // [items] start
        *     // [items] end
        *     rightsList?: string[]
+       *     openId?: string
+       *     unionId?: string
        *     signature?: string
        *     enabled?: boolean
        *     date?: string

@@ -17,3 +17,19 @@
     padding-bottom: 6px !important;
   }
 }
+
+.button-reset {
+  // 重置按钮样式
+  border-radius: 0;
+  background-color: transparent;
+  border: none;
+  line-height: normal;
+  min-width: auto;
+  padding-left: 0;
+  padding-right: 0;
+
+  // 去除按钮的伪元素样式（阴影）
+  &::after {
+    display: none;
+  }
+}

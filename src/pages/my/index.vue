@@ -189,6 +189,14 @@ onShow(async () => {
           custom-class="rounded"
           @itemclick="() => router.push({ path: item.path, query: item.query })"
         />
+        <!-- #ifdef MP-WEIXIN -->
+        <wd-grid-item custom-icon="text-primary" custom-class="rounded">
+          <button open-type="contact" class="button-reset flex-col gap-8px">
+            <wd-icon name="service" size="26px" custom-class="text-primary line-height-37px" />
+            <wd-text text="联系客服" size="12px" custom-class="!line-height-12px" />
+          </button>
+        </wd-grid-item>
+        <!-- #endif -->
       </wd-grid>
     </wd-card>
 

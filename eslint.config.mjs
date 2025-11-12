@@ -27,5 +27,8 @@ export default uniHelper(
       'no-ignore': 'off',
       'eslint-comments/no-unlimited-disable': 'off',
     },
+    ignores: [
+      'src/uni_modules/**/*',
+    ],
   },
 )

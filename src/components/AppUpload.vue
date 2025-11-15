@@ -8,9 +8,12 @@ withDefaults(defineProps<{
   limit?: number
   /** 是否支持多选, 默认单选，如果最多上传1张时无效 */
   multiple?: boolean
+  /** 上传地址 */
+  actionUrl?: string
 }>(), {
   limit: 1,
   multiple: false,
+  actionUrl: import.meta.env.VITE_UPLOAD_URL,
 })
 
 const emit = defineEmits<{
@@ -33,7 +36,6 @@ const model = defineModel<string | string[]>('value', {
   },
 })
 
-const uploadUrl = import.meta.env.VITE_UPLOAD_URL
 const filesList = computed<UploadFile[]>(() => {
   if (!model.value)
     return []
@@ -71,7 +73,7 @@ function handleRemove({ file }: UploadRemoveEvent) {
 </script>
 
 <template>
-  <wd-upload :file-list="filesList" image-mode="aspectFill" :action="uploadUrl" :limit="limit" :multiple="multiple && limit > 1" @success="handleSuccessChange" @remove="handleRemove" />
+  <wd-upload :file-list="filesList" image-mode="aspectFill" :action="actionUrl" :limit="limit" :multiple="multiple && limit > 1" @success="handleSuccessChange" @remove="handleRemove" />
 </template>
 
 <style lang="scss" scoped>

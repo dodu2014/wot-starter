@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import type { FormExpose } from 'wot-design-uni/components/wd-form/types'
-import { klona as jsonClone } from 'klona/json'
 import type { UploadResult } from './type'
 import type { UserProfileModel } from '@/service/apis/base/globals'
 

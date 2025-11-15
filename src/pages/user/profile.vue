@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import type { FormExpose } from 'wot-design-uni/components/wd-form/types'
-import type { UploadChangeEvent, UploadFile } from 'wot-design-uni/components/wd-upload/types'
 import { klona as jsonClone } from 'klona/json'
 import type { UploadResult } from './type'
 import type { UserProfileModel } from '@/service/apis/base/globals'
@@ -20,14 +19,6 @@ const model = reactive<UserProfileModel>(jsonClone(userInfo) as UserProfileModel
 
 const form = ref<FormExpose>()
 const uploadUrl = import.meta.env.VITE_UPLOAD_URL
-const uploadFileList = ref<UploadFile[]>([])
-
-function handleUploadChange({ fileList }: UploadChangeEvent) {
-  console.log('handleUploadChange', { fileList })
-  const json = JSON.parse(fileList[0].response as string) as UploadResult
-  model.avatarUrl = json.absUrl
-  uploadFileList.value = fileList
-}
 
 function handleChooseAvatar(e: { avatarUrl: string }) {
   uni.uploadFile({
@@ -42,7 +33,6 @@ function handleChooseAvatar(e: { avatarUrl: string }) {
       }
       const { absUrl } = JSON.parse(data) as UploadResult
       model.avatarUrl = absUrl
-      uploadFileList.value = [{ url: absUrl }]
     },
   })
 }
@@ -71,20 +61,7 @@ async function handleSubmit() {
   }
 }
 
-onLoad(() => {
-  if (userInfo?.avatarUrl) {
-    uploadFileList.value = [{
-      uid: 0,
-      name: userInfo.avatarUrl,
-      thumb: userInfo.avatarUrl,
-      status: 'success',
-      size: 0,
-      url: userInfo.avatarUrl || '',
-      percent: 100,
-      response: '{}',
-    }]
-  }
-})
+onLoad(() => {})
 </script>
 
 <template>
@@ -132,7 +109,7 @@ onLoad(() => {
         />
         <wd-cell title="头像" title-width="100px">
           <view class="flex-col items-start gap-1">
-            <wd-upload :file-list="uploadFileList" image-mode="aspectFill" :action="uploadUrl" :limit="1" @change="handleUploadChange" />
+            <app-upload v-model:value="model.avatarUrl!" />
             <wd-button type="info" size="small" open-type="chooseAvatar" @chooseavatar="handleChooseAvatar">
               使用微信头像
             </wd-button>

@@ -64,7 +64,7 @@ export async function handleAlovaResponse(
     console.log('[Alova Response]', json)
   }
 
-  if (!json.isSuccess) {
+  if (json.isSuccess !== undefined && !json.isSuccess) {
     globalToast.error(`${json.message}`)
     throw new ApiError(json.message, statusCode, data)
   }

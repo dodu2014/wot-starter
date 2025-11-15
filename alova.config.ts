@@ -25,7 +25,7 @@ export default <Config>{
        * output path of interface file and type file.
        * Multiple generators cannot have the same address, otherwise the generated code will overwrite each other.
        */
-      output: 'src/api',
+      output: 'src/service/apis/demo',
 
       /**
        * the mediaType of the generated response data. default is `application/json`

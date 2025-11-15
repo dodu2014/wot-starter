@@ -8,14 +8,33 @@ defineProps({
     default: true,
   },
 })
-const slots = useSlots()
+
+// 改为使用 defineSlots 定义插槽，说明参考：https://code.ifrontend.net/archives/1058
+const slots = defineSlots<Slots>()
+type SlotFn = (props?: Record<string, unknown>) => any
+interface Slots {
+  /**
+   * Slot
+   *
+   * The default content of the components
+   */
+  default?: SlotFn
+  /**
+   * Slot
+   *
+   * The pre html element of the components
+   */
+  pre?: SlotFn
+}
+const hasPre = computed(() => Boolean(slots.pre))
+
 const { success, warning } = useGlobalToast()
 
 // 复制代码到剪贴板
 function copy() {
   const defaultSlots = slots.default?.() || []
   const preSlots = slots.pre?.() || []
-  const data = preSlots.length ? preSlots.map(slot => slot.children).join('') : defaultSlots.map(slot => slot.children).join('')
+  const data = hasPre.value ? preSlots.map((slot: any) => slot.children).join('') : defaultSlots.map((slot: any) => slot.children).join('')
   if (!data) {
     warning({ msg: '没有找到代码内容' })
     return
@@ -37,12 +56,12 @@ function copy() {
     @click="copy"
   >
     <view class="flex items-center justify-between">
-      <text class="text-3 text-gray-700 dark:text-[var(--wot-dark-color)]" :class="{ 'font-bold': slots.pre }">
+      <text class="text-3 text-gray-700 dark:text-[var(--wot-dark-color)]" :class="{ 'font-bold': hasPre }">
         <slot />
       </text>
       <wd-icon v-if="showIcon" name="file-copy" size="16px" color="#666" />
     </view>
-    <view v-if="slots.pre" class="mt-2 max-h-60 overflow-y-auto">
+    <view v-if="hasPre" class="mt-2 max-h-60 overflow-y-auto">
       <pre class="whitespace-pre-wrap text-2.5 text-gray-600 leading-relaxed font-mono !indent-0 dark:text-[var(--wot-dark-color2)]"><slot name="pre" /></pre>
     </view>
   </view>

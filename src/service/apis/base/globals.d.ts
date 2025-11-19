@@ -126,7 +126,7 @@ export type ArticleCategory4 = {
   remark?: string;
   visible?: boolean;
   parentNum?: string;
-  children?: ArticleCategory3[];
+  children?: ArticleCategory[];
 } | null;
 export interface ArticleCategoryMap {
   articleId: string;
@@ -503,7 +503,7 @@ export type ArticleCategory2 = {
   remark?: string;
   visible?: boolean;
   parentNum?: string;
-  children?: ArticleCategory3[];
+  children?: ArticleCategory[];
 } | null;
 export interface ApiResultOfArticleCategory {
   /**
@@ -1453,17 +1453,7 @@ declare global {
        *       parentNum?: string
        *       // [items] start
        *       // [items] end
-       *       children?: Array<{
-       *         num: string
-       *         type?: number
-       *         name: string
-       *         remark?: string
-       *         visible?: boolean
-       *         parentNum?: string
-       *         // [items] start
-       *         // [items] end
-       *         children?: null[]
-       *       }>
+       *       children?: null[]
        *     }>
        *   } | null
        *   // 扩展数据
@@ -1544,17 +1534,7 @@ declare global {
        *       parentNum?: string
        *       // [items] start
        *       // [items] end
-       *       children?: Array<{
-       *         num: string
-       *         type?: number
-       *         name: string
-       *         remark?: string
-       *         visible?: boolean
-       *         parentNum?: string
-       *         // [items] start
-       *         // [items] end
-       *         children?: null[]
-       *       }>
+       *       children?: null[]
        *     }>
        *   } | null
        *   // 扩展数据
@@ -1633,17 +1613,7 @@ declare global {
        *       parentNum?: string
        *       // [items] start
        *       // [items] end
-       *       children?: Array<{
-       *         num: string
-       *         type?: number
-       *         name: string
-       *         remark?: string
-       *         visible?: boolean
-       *         parentNum?: string
-       *         // [items] start
-       *         // [items] end
-       *         children?: null[]
-       *       }>
+       *       children?: null[]
        *     }>
        *   } | null
        *   // 扩展数据
@@ -1704,17 +1674,7 @@ declare global {
        *       parentNum?: string
        *       // [items] start
        *       // [items] end
-       *       children?: Array<{
-       *         num: string
-       *         type?: number
-       *         name: string
-       *         remark?: string
-       *         visible?: boolean
-       *         parentNum?: string
-       *         // [items] start
-       *         // [items] end
-       *         children?: null[]
-       *       }>
+       *       children?: null[]
        *     }>
        *   } | null
        *   // 扩展数据
@@ -1853,17 +1813,7 @@ declare global {
        *             parentNum?: string
        *             // [items] start
        *             // [items] end
-       *             children?: Array<{
-       *               num: string
-       *               type?: number
-       *               name: string
-       *               remark?: string
-       *               visible?: boolean
-       *               parentNum?: string
-       *               // [items] start
-       *               // [items] end
-       *               children?: null[]
-       *             }>
+       *             children?: null[]
        *           }>
        *         } | null
        *       }>
@@ -1966,17 +1916,7 @@ declare global {
        *           parentNum?: string
        *           // [items] start
        *           // [items] end
-       *           children?: Array<{
-       *             num: string
-       *             type?: number
-       *             name: string
-       *             remark?: string
-       *             visible?: boolean
-       *             parentNum?: string
-       *             // [items] start
-       *             // [items] end
-       *             children?: null[]
-       *           }>
+       *           children?: null[]
        *         }>
        *       } | null
        *     }>
@@ -2052,17 +1992,7 @@ declare global {
        *         parentNum?: string
        *         // [items] start
        *         // [items] end
-       *         children?: Array<{
-       *           num: string
-       *           type?: number
-       *           name: string
-       *           remark?: string
-       *           visible?: boolean
-       *           parentNum?: string
-       *           // [items] start
-       *           // [items] end
-       *           children?: null[]
-       *         }>
+       *         children?: null[]
        *       }>
        *     } | null
        *   }>
@@ -2123,17 +2053,7 @@ declare global {
        *           parentNum?: string
        *           // [items] start
        *           // [items] end
-       *           children?: Array<{
-       *             num: string
-       *             type?: number
-       *             name: string
-       *             remark?: string
-       *             visible?: boolean
-       *             parentNum?: string
-       *             // [items] start
-       *             // [items] end
-       *             children?: null[]
-       *           }>
+       *           children?: null[]
        *         }>
        *       } | null
        *     }>
@@ -2207,17 +2127,7 @@ declare global {
        *         parentNum?: string
        *         // [items] start
        *         // [items] end
-       *         children?: Array<{
-       *           num: string
-       *           type?: number
-       *           name: string
-       *           remark?: string
-       *           visible?: boolean
-       *           parentNum?: string
-       *           // [items] start
-       *           // [items] end
-       *           children?: null[]
-       *         }>
+       *         children?: null[]
        *       }>
        *     } | null
        *   }>
@@ -2278,17 +2188,7 @@ declare global {
        *           parentNum?: string
        *           // [items] start
        *           // [items] end
-       *           children?: Array<{
-       *             num: string
-       *             type?: number
-       *             name: string
-       *             remark?: string
-       *             visible?: boolean
-       *             parentNum?: string
-       *             // [items] start
-       *             // [items] end
-       *             children?: null[]
-       *           }>
+       *           children?: null[]
        *         }>
        *       } | null
        *     }>
@@ -2377,17 +2277,7 @@ declare global {
        *           parentNum?: string
        *           // [items] start
        *           // [items] end
-       *           children?: Array<{
-       *             num: string
-       *             type?: number
-       *             name: string
-       *             remark?: string
-       *             visible?: boolean
-       *             parentNum?: string
-       *             // [items] start
-       *             // [items] end
-       *             children?: null[]
-       *           }>
+       *           children?: null[]
        *         }>
        *       } | null
        *     }>

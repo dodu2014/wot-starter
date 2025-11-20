@@ -1,5 +1,9 @@
 <script setup lang="ts">
-onLaunch(() => {})
+onLaunch(() => {
+  // #ifdef MP-WEIXIN
+  checkMiniProgramUpdate()
+  // #endif
+})
 </script>
 
 <style lang="scss">

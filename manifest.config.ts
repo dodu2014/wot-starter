@@ -88,6 +88,19 @@ export default defineManifestConfig({
   'h5': {
     darkmode: true,
     themeLocation: 'theme.json',
+    sdkConfigs: {
+      // 使用地图或位置相关功能必须填写其一
+      maps: {
+        amap: {
+          // 高德地图秘钥（HBuilderX 3.6.0+）https://console.amap.com/dev/key/app
+          key: '',
+          // 高德地图安全密钥（HBuilderX 3.6.0+）https://console.amap.com/dev/key/app
+          securityJsCode: '',
+          // 高德地图安全密钥代理服务器地址（HBuilderX 3.6.0+）https://lbs.amap.com/api/jsapi-v2/guide/abc/prepare
+          // serviceHost: '',
+        },
+      },
+    },
   },
   'uniStatistics': {
     enable: false,

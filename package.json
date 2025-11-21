@@ -10,8 +10,8 @@
   "scripts": {
     "dev": "unh dev",
     "build": "unh build",
-    "wx:dev": "unh dev wx",
-    "wx:build": "unh build wx",
+    "dev: mp-weixin": "unh dev wx",
+    "build: mp-weixin": "unh build wx",
     "about": "unh info",
     "type-check": "vue-tsc --noEmit",
     "lint": "eslint . --debug",

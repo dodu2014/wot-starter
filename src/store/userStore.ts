@@ -57,7 +57,7 @@ export const useUserStore = defineStore(
     })
 
     /* 登录请求 */
-    const { send: sendLoginRequest } = useRequest((model: LoginModel) => Webapi_Base.auth.login({ data: model }))
+    const { send: sendLoginRequest } = useRequest((model: LoginModel) => Webapi_Base.auth.login({ params: {}, data: model }))
       .onError((error) => {
         toast.error(error.error?.message || '')
       })

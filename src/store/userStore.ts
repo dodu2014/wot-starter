@@ -1,6 +1,7 @@
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
-import type { LoginModel, UserProfileInfo } from '@/service/apis/base/globals.d.ts'
+import dayjs from 'wot-design-uni/dayjs'
+import type { AccessTokenModel, LoginModel, UserProfileInfo } from '@/service/apis/base/globals.d.ts'
 
 export const useUserStore = defineStore(
   'userStore',
@@ -11,15 +12,19 @@ export const useUserStore = defineStore(
     /** 定义用户信息 */
     const userInfo = ref<UserProfileInfo>()
 
+    /** 定义token */
+    const tokenModel = ref<AccessTokenModel>()
+
     /** 设置用户信息 */
     const setUserInfo = (val?: UserProfileInfo) => {
       console.log('设置用户信息', val)
       userInfo.value = val || undefined
     }
 
-    /** 清除用户信息 */
-    const clearUserInfo = () => {
+    /* 清除所有信息 */
+    const clear = () => {
       userInfo.value = undefined
+      tokenModel.value = undefined
     }
 
     /** 加载用户信息 */
@@ -33,36 +38,41 @@ export const useUserStore = defineStore(
       setUserInfo(res.data)
     }
 
-    /** 定义token */
-    const token = ref<string>()
-
-    /** 设置用户信息 */
-    const setToken = (val?: string) => {
-      console.log('设置用户信息', val)
-      token.value = val || undefined
+    /* 设置 token 信息 */
+    const setToken = (val?: AccessTokenModel) => {
+      console.log('设置 token 信息', val)
+      tokenModel.value = val
     }
 
-    /** 是否登录 */
-    const logined = computed(() => {
-      return Boolean(token.value && userInfo.value)
+    // 判断 tokenModel 是否过期
+    const tokenIsExpired = computed(() => {
+      if (!tokenModel.value || !tokenModel.value.token || !tokenModel.value.expiration)
+        return true
+      return dayjs().valueOf() >= dayjs(tokenModel.value.expiration).valueOf() // 过期
     })
 
+    /* 是否登录 */
+    const logined = computed(() => {
+      return Boolean(!tokenIsExpired.value && userInfo.value)
+    })
+
+    /* 登录请求 */
+    const { send: sendLoginRequest } = useRequest((model: LoginModel) => Webapi_Base.auth.login({ data: model }))
+      .onError((error) => {
+        toast.error(error.error?.message || '')
+      })
+      .onComplete(() => {
+        hideLoading()
+      })
     /** 登录 */
     async function login(model: LoginModel) {
-      const { error, data, send } = useRequest(() => Webapi_Base.auth.login({ data: model }))
-        .onError((error) => {
-          toast.error(error.error?.message || '')
-        })
-        .onComplete(() => {
-          hideLoading()
-        })
-      await send()
-      if (!error.value) {
-        console.log('成功登录', data.value)
-        setToken(data.value.data?.token)
+      const { isSuccess, data } = await sendLoginRequest(model)
+      if (isSuccess) {
+        console.log('成功登录', data)
+        setToken(data)
         await loadUserInfo()
       }
-      return { error, data }
+      return { isSuccess, data }
     }
 
     /** 简易登录 */
@@ -77,7 +87,7 @@ export const useUserStore = defineStore(
       })
       const { isSuccess, data } = await send(phoneNumber, userId, openId, unionId)
       if (isSuccess) {
-        setToken(data?.token)
+        setToken(data)
         await loadUserInfo()
       }
       return { isSuccess, data }
@@ -91,8 +101,7 @@ export const useUserStore = defineStore(
       const res = await send()
       if (!error.value) {
         console.log('成功退出登录', res)
-        setToken()
-        setUserInfo()
+        clear()
       }
     }
 
@@ -100,13 +109,13 @@ export const useUserStore = defineStore(
       /** 定义用户信息 */
       userInfo,
       /** 清除用户信息 */
-      clearUserInfo,
+      clear,
       /** 加载用户信息 */
       loadUserInfo,
       /** 设置用户信息 */
       setUserInfo,
       /** 定义token */
-      token,
+      tokenModel,
       /** 设置token */
       setToken,
       /** 是否登录 */

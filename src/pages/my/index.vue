@@ -138,17 +138,17 @@ onShow(async () => {
       <view class="mx-8 mb-16 mt-4 flex-col gap-y-6">
         <view class="flex items-center gap-4" @click="() => !logined && router.push(LOGIN_PAGE)">
           <wd-img
-            :src="userInfo?.avatarUrl || defaultAvatar"
+            :src="logined && userInfo?.avatarUrl || defaultAvatar"
             :width="54" :height="54"
             round
-            class="border-2 border-white"
+            custom-class="mr-4 !border-2 !border-white !block"
           />
           <view class="mr-auto">
             <view class="text-xl font-semibold">
-              {{ userInfo?.name || userInfo?.userName || '未登录用户' }}
+              {{ logined && (userInfo?.name || userInfo?.userName) || '未登录用户' }}
             </view>
             <view class="mt-1 text-xs opacity-75">
-              {{ !logined ? '点击此处登录' : userInfo?.description || '这家伙很懒，什么都没有写' }}
+              {{ logined && (userInfo?.description || '这家伙很懒，什么都没有写') || '点击此处登录' }}
             </view>
           </view>
           <wd-icon v-if="logined" name="setting1" size="30px" @click.prevent.stop="() => router.push({ path: '/pages/user/settings' })" />

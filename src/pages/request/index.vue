@@ -225,15 +225,13 @@ onMounted(async () => {
         </view>
 
         <!-- 代码示例 -->
-        <code-content>
-          代码示例:
-          <template #pre>
-            {{ `const { data, loading, send } = useRequest(
+        <code-content
+          code="代码示例:"
+          code-remark="const { data, loading, send } = useRequest(
   (status) => Apis.pet.findPetsByStatus({ params: { status } }),
   { immediate: false }
-).onError((error) => { ... })` }}
-          </template>
-        </code-content>
+).onError((error) => { ... })"
+        />
       </view>
 
       <!-- 用户登录请求 -->
@@ -272,17 +270,15 @@ onMounted(async () => {
         </view>
 
         <!-- 代码示例 -->
-        <code-content>
-          代码示例:
-          <template #pre>
-            {{ `const { data, loading, send } = useRequest(
+        <code-content
+          code="代码示例:"
+          code-remark="const { data, loading, send } = useRequest(
   (username, password) => Apis.user.loginUser({
     params: { username, password }
   }),
   { immediate: false }
-).onError((error) => { ... })` }}
-          </template>
-        </code-content>
+).onError((error) => { ... })"
+        />
       </view>
 
       <!-- app版本列表请求 -->
@@ -321,15 +317,13 @@ onMounted(async () => {
         </view>
 
         <!-- 代码示例 -->
-        <code-content>
-          代码示例:
-          <template #pre>
-            {{ `const { data, loading, send } = useRequest(
+        <code-content
+          code="代码示例:"
+          code-remark="const { data, loading, send } = useRequest(
   (status) => Webapi_App.app.GetAppVersionList({ params: { keyword } }),
   { immediate: false }
-).onError((error) => { ... })` }}
-          </template>
-        </code-content>
+).onError((error) => { ... })"
+        />
       </view>
     </demo-block>
 

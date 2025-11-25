@@ -1,7 +1,7 @@
 /* tslint:disable */
 /* eslint-disable */
 /**
- * TNT.WebApi 接口文档 | 微信模块 - version v9.0.10.1
+ * TNT.WebApi 接口文档 | 微信模块 - version v9.0.11.0
  *
  * TNT.WebApi 项目接口文档, Powered By .NET 9.0.11
  *

@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { userAgreementContent } from './content'
 // @ts-expect-error vue2 在 vue3 中不可识别
 import mpHtml from '@/uni_modules/mp-html/components/mp-html/mp-html.vue'
+import { userAgreementContent } from './content'
 
 definePage({
   name: 'privacy-policy',

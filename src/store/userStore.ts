@@ -1,7 +1,7 @@
+import type { AccessTokenModel, LoginModel, UserProfileInfo } from '@/service/apis/base/globals.d.ts'
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
 import dayjs from 'wot-design-uni/dayjs'
-import type { AccessTokenModel, LoginModel, UserProfileInfo } from '@/service/apis/base/globals.d.ts'
 
 export const useUserStore = defineStore(
   'userStore',

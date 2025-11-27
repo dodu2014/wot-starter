@@ -1,7 +1,7 @@
 <script lang="ts" setup>
-import PhoneLogin from './components/phoneLogin.vue'
-import PassLogin from './components/passLogin.vue'
 import router, { HOME_PAGE } from '@/router'
+import PassLogin from './components/passLogin.vue'
+import PhoneLogin from './components/phoneLogin.vue'
 
 definePage({
   style: {

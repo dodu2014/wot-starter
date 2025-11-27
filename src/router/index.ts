@@ -1,7 +1,7 @@
 /// <reference types="@uni-helper/vite-plugin-uni-pages/client" />
 import type { PageMetaDatum } from '@uni-helper/vite-plugin-uni-pages'
-import { pages, subPackages } from 'virtual:uni-pages'
 import type { RouterExt } from '@/shims'
+import { pages, subPackages } from 'virtual:uni-pages'
 
 // 定义固定路由页面
 export const HOME_PAGE: _LocationUrl = '/pages/index/index'

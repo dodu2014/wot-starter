@@ -29,6 +29,8 @@ export default uniHelper(
     },
     ignores: [
       'src/uni_modules/**/*',
+      'docs/.vitepress/dist',
+      'docs/.vitepress/cache',
     ],
   },
 )

@@ -105,13 +105,13 @@ function donate() {
     <!-- 关于 uni-helper -->
     <demo-block title="关于 uni-helper 团队" custom-card-content-class="p-4 flex-col gap-y-3">
       <text class="block text-3.5">
-        <text class="text-blue-600" @click="openUrl('https://uni-helper.js.org/')">
+        <text class="text-blue-600" @click="openUrl('https://uni-helper.cn/')">
           uni-helper
         </text>
         是一个旨在增强 uni-app 系列产品的开发体验为爱发电的非官方组织。作为靠爱发电的非官方项目，uni-helper 提供了打包工具插件支持、编辑器扩展支持、NPM 包等并尽力维护它们。
       </text>
       <text class="text-3.5">
-        在此我们特别向 uni-helper 团队表示感谢，他们为 uni-app 系列产品提供了强大的支持，包括打包工具插件支持、编辑器扩展支持等，这使我们得以站在巨人的巨人的肩膀上完成此项目。
+        在此我们特别向 uni-helper 团队表示感谢，他们为 uni-app 系列产品提供了强大的支持，包括打包工具插件支持、编辑器扩展支持等，这使我们得以站在巨人的肩膀上完成此项目。
       </text>
     </demo-block>
 

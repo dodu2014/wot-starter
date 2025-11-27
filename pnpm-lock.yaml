@@ -148,8 +148,8 @@ importers:
         specifier: ^0.2.0
         version: 0.2.0
       '@uni-helper/uni-types':
-        specifier: 1.0.0-alpha.6
-        version: 1.0.0-alpha.6(@uni-helper/uni-app-types@1.0.0-alpha.6(typescript@5.9.3)(vue@3.4.38(typescript@5.9.3)))(@uni-helper/uni-cloud-types@1.0.0-alpha.6(typescript@5.9.3)(vue@3.4.38(typescript@5.9.3)))(@uni-helper/uni-ui-types@1.0.0-alpha.6(@uni-helper/uni-app-types@1.0.0-alpha.6(typescript@5.9.3)(vue@3.4.38(typescript@5.9.3)))(typescript@5.9.3)(vue@3.4.38(typescript@5.9.3)))(typescript@5.9.3)(vue@3.4.38(typescript@5.9.3))
+        specifier: 1.0.0-alpha.7
+        version: 1.0.0-alpha.7(@uni-helper/uni-app-types@1.0.0-alpha.6(typescript@5.9.3)(vue@3.4.38(typescript@5.9.3)))(@uni-helper/uni-cloud-types@1.0.0-alpha.6(typescript@5.9.3)(vue@3.4.38(typescript@5.9.3)))(@uni-helper/uni-ui-types@1.0.0-alpha.6(@uni-helper/uni-app-types@1.0.0-alpha.6(typescript@5.9.3)(vue@3.4.38(typescript@5.9.3)))(typescript@5.9.3)(vue@3.4.38(typescript@5.9.3)))(typescript@5.9.3)(vue@3.4.38(typescript@5.9.3))
       '@uni-helper/unocss-preset-uni':
         specifier: ^0.2.11
         version: 0.2.11(@unocss/preset-legacy-compat@66.5.6)(@unocss/preset-mini@66.5.9)(@unocss/rule-utils@66.5.9)(@unocss/vite@66.5.9(vite@5.2.8(@types/node@20.16.2)(sass@1.78.0)(terser@5.31.6)))(unocss-applet@0.12.2(unocss@66.0.0(postcss@8.5.6)(vite@5.2.8(@types/node@20.16.2)(sass@1.78.0)(terser@5.31.6))(vue@3.4.38(typescript@5.9.3))))(unocss@66.0.0(postcss@8.5.6)(vite@5.2.8(@types/node@20.16.2)(sass@1.78.0)(terser@5.31.6))(vue@3.4.38(typescript@5.9.3)))
@@ -160,8 +160,8 @@ importers:
         specifier: ^0.1.11
         version: 0.1.11(rollup@4.53.2)
       '@uni-helper/vite-plugin-uni-manifest':
-        specifier: ^0.2.10
-        version: 0.2.10(vite@5.2.8(@types/node@20.16.2)(sass@1.78.0)(terser@5.31.6))
+        specifier: ^0.2.11
+        version: 0.2.11(vite@5.2.8(@types/node@20.16.2)(sass@1.78.0)(terser@5.31.6))
       '@uni-helper/vite-plugin-uni-pages':
         specifier: ^0.3.22
         version: 0.3.22(vite@5.2.8(@types/node@20.16.2)(sass@1.78.0)(terser@5.31.6))
@@ -3004,13 +3004,13 @@ packages:
   '@uni-helper/uni-env@0.2.0':
     resolution: {integrity: sha512-uEtnVBJcqjhauJxbh4VTpU4GPV6FGIFZrKyIOG4jjWAXmAg2C4T2yVNGSUPcMXLmSJLxHZe3y8IsV9vgTbPmIA==}
 
-  '@uni-helper/uni-types@1.0.0-alpha.6':
-    resolution: {integrity: sha512-lGSm3RUOQThyYIUuJI46b8ug3nGZMyRfMQ/ktOGNxOXBukGA1TF1TN2m4MjKUklIQ+kiIuIgZJoU3S7oIK5emw==}
+  '@uni-helper/uni-types@1.0.0-alpha.7':
+    resolution: {integrity: sha512-dpKIPz10TIYdVkw8GTzN6fdfUlzJFm82sNmxztBQyhe02+tGm/QUrgZO2A0iEPko505XqCN4u6IbczOD2f1pzA==}
     engines: {node: '>=14.18'}
     peerDependencies:
-      '@uni-helper/uni-app-types': 1.0.0-alpha.6
-      '@uni-helper/uni-cloud-types': 1.0.0-alpha.6
-      '@uni-helper/uni-ui-types': 1.0.0-alpha.6
+      '@uni-helper/uni-app-types': 1.0.0-alpha.7
+      '@uni-helper/uni-cloud-types': 1.0.0-alpha.7
+      '@uni-helper/uni-ui-types': 1.0.0-alpha.7
       typescript: ^5.0.0
       vue: ^3.0.0
 
@@ -3043,8 +3043,8 @@ packages:
   '@uni-helper/vite-plugin-uni-layouts@0.1.11':
     resolution: {integrity: sha512-FXdFATBFsHAl7xY9q3KO0EexMRGua/7txIiQTm2rQi1/bXcft4CUXldtuHl9Upq0V6CT47aanmfzcOF5CpHK7Q==}
 
-  '@uni-helper/vite-plugin-uni-manifest@0.2.10':
-    resolution: {integrity: sha512-UQgFpY1+SLm0HEFUvV6C9z19+NV+uqmqaLrWPtv8dInW8DOMihD6CoVJJsxcSNCS+XSR7x5HaI+hhkNYs8azjA==}
+  '@uni-helper/vite-plugin-uni-manifest@0.2.11':
+    resolution: {integrity: sha512-0qc+XexlyngeC+TukIM4ogjTj8S9FwU1Ab607EgUIuuhaqbhxhPdEIb406VcAF1klRRwKIxBzZWfNoW9fv+AwQ==}
     peerDependencies:
       vite: ^4.0.0 || ^5.0.0 || ^6.0.0
 
@@ -10727,7 +10727,7 @@ snapshots:
   '@jest/console@30.2.0':
     dependencies:
       '@jest/types': 30.2.0
-      '@types/node': 20.19.25
+      '@types/node': 24.10.1
       chalk: 4.1.2
       jest-message-util: 30.2.0
       jest-util: 30.2.0
@@ -10741,14 +10741,14 @@ snapshots:
       '@jest/test-result': 30.2.0
       '@jest/transform': 30.2.0
       '@jest/types': 30.2.0
-      '@types/node': 20.19.25
+      '@types/node': 24.10.1
       ansi-escapes: 4.3.2
       chalk: 4.1.2
       ci-info: 4.3.1
       exit-x: 0.2.2
       graceful-fs: 4.2.11
       jest-changed-files: 30.2.0
-      jest-config: 30.2.0(@types/node@20.19.25)
+      jest-config: 30.2.0(@types/node@24.10.1)
       jest-haste-map: 30.2.0
       jest-message-util: 30.2.0
       jest-regex-util: 30.0.1
@@ -10775,7 +10775,7 @@ snapshots:
     dependencies:
       '@jest/fake-timers': 30.2.0
       '@jest/types': 30.2.0
-      '@types/node': 20.19.25
+      '@types/node': 24.10.1
       jest-mock: 30.2.0
 
   '@jest/expect-utils@30.2.0':
@@ -10793,7 +10793,7 @@ snapshots:
     dependencies:
       '@jest/types': 30.2.0
       '@sinonjs/fake-timers': 13.0.5
-      '@types/node': 20.19.25
+      '@types/node': 24.10.1
       jest-message-util: 30.2.0
       jest-mock: 30.2.0
       jest-util: 30.2.0
@@ -10811,7 +10811,7 @@ snapshots:
 
   '@jest/pattern@30.0.1':
     dependencies:
-      '@types/node': 20.19.25
+      '@types/node': 24.10.1
       jest-regex-util: 30.0.1
 
   '@jest/reporters@30.2.0':
@@ -10822,7 +10822,7 @@ snapshots:
       '@jest/transform': 30.2.0
       '@jest/types': 30.2.0
       '@jridgewell/trace-mapping': 0.3.31
-      '@types/node': 20.19.25
+      '@types/node': 24.10.1
       chalk: 4.1.2
       collect-v8-coverage: 1.0.3
       exit-x: 0.2.2
@@ -10899,7 +10899,7 @@ snapshots:
       '@jest/schemas': 30.0.5
       '@types/istanbul-lib-coverage': 2.0.6
       '@types/istanbul-reports': 3.0.4
-      '@types/node': 20.19.25
+      '@types/node': 24.10.1
       '@types/yargs': 17.0.35
       chalk: 4.1.2
 
@@ -11864,7 +11864,7 @@ snapshots:
     dependencies:
       std-env: 3.10.0
 
-  '@uni-helper/uni-types@1.0.0-alpha.6(@uni-helper/uni-app-types@1.0.0-alpha.6(typescript@5.9.3)(vue@3.4.38(typescript@5.9.3)))(@uni-helper/uni-cloud-types@1.0.0-alpha.6(typescript@5.9.3)(vue@3.4.38(typescript@5.9.3)))(@uni-helper/uni-ui-types@1.0.0-alpha.6(@uni-helper/uni-app-types@1.0.0-alpha.6(typescript@5.9.3)(vue@3.4.38(typescript@5.9.3)))(typescript@5.9.3)(vue@3.4.38(typescript@5.9.3)))(typescript@5.9.3)(vue@3.4.38(typescript@5.9.3))':
+  '@uni-helper/uni-types@1.0.0-alpha.7(@uni-helper/uni-app-types@1.0.0-alpha.6(typescript@5.9.3)(vue@3.4.38(typescript@5.9.3)))(@uni-helper/uni-cloud-types@1.0.0-alpha.6(typescript@5.9.3)(vue@3.4.38(typescript@5.9.3)))(@uni-helper/uni-ui-types@1.0.0-alpha.6(@uni-helper/uni-app-types@1.0.0-alpha.6(typescript@5.9.3)(vue@3.4.38(typescript@5.9.3)))(typescript@5.9.3)(vue@3.4.38(typescript@5.9.3)))(typescript@5.9.3)(vue@3.4.38(typescript@5.9.3))':
     dependencies:
       '@uni-helper/uni-app-types': 1.0.0-alpha.6(typescript@5.9.3)(vue@3.4.38(typescript@5.9.3))
       '@uni-helper/uni-cloud-types': 1.0.0-alpha.6(typescript@5.9.3)(vue@3.4.38(typescript@5.9.3))
@@ -11921,7 +11921,7 @@ snapshots:
       - magicast
       - rollup
 
-  '@uni-helper/vite-plugin-uni-manifest@0.2.10(vite@5.2.8(@types/node@20.16.2)(sass@1.78.0)(terser@5.31.6))':
+  '@uni-helper/vite-plugin-uni-manifest@0.2.11(vite@5.2.8(@types/node@20.16.2)(sass@1.78.0)(terser@5.31.6))':
     dependencies:
       c12: 2.0.4
       vite: 5.2.8(@types/node@20.16.2)(sass@1.78.0)(terser@5.31.6)
@@ -14888,7 +14888,7 @@ snapshots:
       '@jest/expect': 30.2.0
       '@jest/test-result': 30.2.0
       '@jest/types': 30.2.0
-      '@types/node': 20.19.25
+      '@types/node': 24.10.1
       chalk: 4.1.2
       co: 4.6.0
       dedent: 1.7.0
@@ -14959,7 +14959,7 @@ snapshots:
       - babel-plugin-macros
       - supports-color
 
-  jest-config@30.2.0(@types/node@20.19.25):
+  jest-config@30.2.0(@types/node@24.10.1):
     dependencies:
       '@babel/core': 7.28.5
       '@jest/get-type': 30.1.0
@@ -14986,7 +14986,7 @@ snapshots:
       slash: 3.0.0
       strip-json-comments: 3.1.1
     optionalDependencies:
-      '@types/node': 20.19.25
+      '@types/node': 24.10.1
     transitivePeerDependencies:
       - babel-plugin-macros
       - supports-color
@@ -15015,7 +15015,7 @@ snapshots:
       '@jest/environment': 30.2.0
       '@jest/fake-timers': 30.2.0
       '@jest/types': 30.2.0
-      '@types/node': 20.19.25
+      '@types/node': 24.10.1
       jest-mock: 30.2.0
       jest-util: 30.2.0
       jest-validate: 30.2.0
@@ -15023,7 +15023,7 @@ snapshots:
   jest-haste-map@30.2.0:
     dependencies:
       '@jest/types': 30.2.0
-      '@types/node': 20.19.25
+      '@types/node': 24.10.1
       anymatch: 3.1.3
       fb-watchman: 2.0.2
       graceful-fs: 4.2.11
@@ -15062,7 +15062,7 @@ snapshots:
   jest-mock@30.2.0:
     dependencies:
       '@jest/types': 30.2.0
-      '@types/node': 20.19.25
+      '@types/node': 24.10.1
       jest-util: 30.2.0
 
   jest-pnp-resolver@1.2.3(jest-resolve@30.2.0):
@@ -15096,7 +15096,7 @@ snapshots:
       '@jest/test-result': 30.2.0
       '@jest/transform': 30.2.0
       '@jest/types': 30.2.0
-      '@types/node': 20.19.25
+      '@types/node': 24.10.1
       chalk: 4.1.2
       emittery: 0.13.1
       exit-x: 0.2.2
@@ -15125,7 +15125,7 @@ snapshots:
       '@jest/test-result': 30.2.0
       '@jest/transform': 30.2.0
       '@jest/types': 30.2.0
-      '@types/node': 20.19.25
+      '@types/node': 24.10.1
       chalk: 4.1.2
       cjs-module-lexer: 2.1.1
       collect-v8-coverage: 1.0.3
@@ -15172,7 +15172,7 @@ snapshots:
   jest-util@30.2.0:
     dependencies:
       '@jest/types': 30.2.0
-      '@types/node': 20.19.25
+      '@types/node': 24.10.1
       chalk: 4.1.2
       ci-info: 4.3.1
       graceful-fs: 4.2.11
@@ -15191,7 +15191,7 @@ snapshots:
     dependencies:
       '@jest/test-result': 30.2.0
       '@jest/types': 30.2.0
-      '@types/node': 20.19.25
+      '@types/node': 24.10.1
       ansi-escapes: 4.3.2
       chalk: 4.1.2
       emittery: 0.13.1
@@ -15200,7 +15200,7 @@ snapshots:
 
   jest-worker@30.2.0:
     dependencies:
-      '@types/node': 20.19.25
+      '@types/node': 24.10.1
       '@ungap/structured-clone': 1.3.0
       jest-util: 30.2.0
       merge-stream: 2.0.0

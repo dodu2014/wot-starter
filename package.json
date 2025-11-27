@@ -111,6 +111,6 @@
     }
   },
   "lint-staged": {
-    "*": "eslint --fix"
+    "*.{js,ts,vue,mjs,cts}": "eslint --fix"
   }
 }

@@ -4,7 +4,7 @@ import uniHelper from '@uni-helper/eslint-config'
 export default uniHelper(
   {
     ignores: [
-      '.github/**',
+      './.github/**',
       './node_modules/**',
       './dist/**',
       // 忽略 uni_modules 目录
@@ -18,6 +18,13 @@ export default uniHelper(
       './src/manifest.json',
       // 忽略自动生成文件
       './src/service/**',
+      // 忽略文档文件
+      './docs/**/*',
+      './CHANGELOG.md',
+      './index.html',
+      './pnpm-lock.yaml',
+      // 忽略所有 markdown 文件
+      '**/*.md',
     ],
   },
   {

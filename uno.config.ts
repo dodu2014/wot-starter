@@ -33,6 +33,7 @@ export default defineConfig({
     {
       'flex-center': 'flex justify-center items-center',
       'flex-col': 'flex flex-col',
+      'text-default': 'text-gray-800 dark:text-[var(--wot-dark-color)]',
     },
   ],
   theme: {

@@ -76,7 +76,7 @@ async function handleLogin(e: { code: string, errMsg: string, encryptedData: str
   <view class="flex-col gap-y-8 items-center">
     <view class="flex-center gap-x-2">
       <wd-icon name="phone" size="64px" custom-class="text-primary" />
-      <wd-icon name="swap" />
+      <wd-icon name="swap" custom-class="text-default" />
       <wd-icon name="logo-codepen" size="64px" custom-class="text-primary" />
     </view>
 

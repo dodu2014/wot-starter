@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import router, { LOGIN_PAGE } from '@/router'
-import defaultAvatar from '/static/logo.png'
+import defaultAvatar from '/static/logo.svg'
 
 definePage({
   name: 'my',
@@ -141,7 +141,6 @@ onShow(async () => {
             :src="logined && userInfo?.avatarUrl || defaultAvatar"
             :width="54" :height="54"
             round
-            custom-class="mr-4 !border-2 !border-white !block"
           />
           <view class="mr-auto">
             <view class="text-xl font-semibold">

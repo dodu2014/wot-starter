@@ -57,13 +57,14 @@ export const useUserStore = defineStore(
     })
 
     /* 登录请求 */
-    const { send: sendLoginRequest } = useRequest((model: LoginModel) => Webapi_Base.auth.login({ params: {}, data: model }))
-      .onError((error) => {
-        toast.error(error.error?.message || '')
-      })
-      .onComplete(() => {
-        hideLoading()
-      })
+    const { send: sendLoginRequest } = useRequest(
+      (model: LoginModel) => Webapi_Base.auth.login({ params: {}, data: model }),
+      { immediate: false },
+    ).onError((error) => {
+      toast.error(error.error?.message || '')
+    }).onComplete(() => {
+      hideLoading()
+    })
     /** 登录 */
     async function login(model: LoginModel) {
       const { isSuccess, data } = await sendLoginRequest(model)

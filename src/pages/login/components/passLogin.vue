@@ -61,7 +61,7 @@ async function handleLogin() {
 <template>
   <view class="flex-col gap-y-5">
     <wd-card custom-class="!rounded-lg !shadow-sm !shadow-gray !shadow-op-10 !m-0 !bg-#ffffff98 !dark:bg-#1a1a1a98" custom-content-class="flex flex-col gap-15px py-6">
-      <wd-text text="欢迎登录" custom-class="text-center font-bold !text-black !dark:text-[var(--wot-dark-color)]" size="20px" />
+      <wd-text text="欢迎登录" custom-class="text-center font-bold !text-default" size="20px" />
       <wd-form ref="loginFormRef" :model="model" error-type="message">
         <wd-cell-group custom-class="!bg-transparent">
           <!-- 用户名输入 -->
@@ -90,16 +90,16 @@ async function handleLogin() {
       </wd-form>
     </wd-card>
 
-    <view class="flex justify-center">
-      <wd-checkbox v-model="model.remember" shape="square">
-        记住密码
-      </wd-checkbox>
-    </view>
-
     <!-- 登录按钮 -->
-    <wd-button type="primary" custom-class="mx-4" @click="handleLogin">
+    <wd-button type="primary" icon="login" custom-class="mx-4" @click="handleLogin">
       立即登录
     </wd-button>
+
+    <view class="flex justify-center">
+      <wd-checkbox v-model="model.remember" shape="square">
+        记住账号
+      </wd-checkbox>
+    </view>
   </view>
 </template>
 

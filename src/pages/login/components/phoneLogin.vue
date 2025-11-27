@@ -73,15 +73,15 @@ async function handleLogin(e: { code: string, errMsg: string, encryptedData: str
 </script>
 
 <template>
-  <view class="flex-col gap-y-8 items-center">
-    <view class="flex-center gap-x-2">
-      <wd-icon name="phone" size="64px" custom-class="text-primary" />
-      <wd-icon name="swap" custom-class="text-default" />
-      <wd-icon name="logo-codepen" size="64px" custom-class="text-primary" />
+  <view class="flex-col gap-y-3rem items-center">
+    <view class="flex-center gap-x-20px">
+      <text class="i-carbon:application-mobile text-50px text-primary block" />
+      <text class="i-carbon:direct-link text-24px text-default block" />
+      <text class="i-carbon:bare-metal-server text-50px text-primary block" />
     </view>
 
     <!-- 登录按钮 -->
-    <wd-button type="primary" block custom-class="mx-4 w-full" open-type="getPhoneNumber" @getphonenumber="handleLogin">
+    <wd-button type="primary" icon="mobile" block custom-class="mx-4 w-full" open-type="getPhoneNumber" @getphonenumber="handleLogin">
       一键快捷登录
     </wd-button>
   </view>

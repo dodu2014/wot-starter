@@ -42,7 +42,7 @@ onLoad(async (e: any) => {
 </script>
 
 <template>
-  <view class="p-15px">
+  <view class="p-15px text-default">
     <mp-html v-if="article" :content="article.content" :tag-style="tagStyle" />
   </view>
 </template>

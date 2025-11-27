@@ -19,7 +19,7 @@ const tagStyle = {
 </script>
 
 <template>
-  <view class="p-15px">
+  <view class="p-15px text-default">
     <mp-html :content="userAgreementContent" :tag-style="tagStyle" />
   </view>
 </template>

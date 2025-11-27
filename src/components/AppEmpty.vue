@@ -1,6 +1,6 @@
 <script setup lang="ts">
 defineOptions({
-  name: 'WdEmpty',
+  name: 'AppEmpty',
   inheritAttrs: true,
 })
 const baseUrl = import.meta.env.VITE_API_BASE_URL

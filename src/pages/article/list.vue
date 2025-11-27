@@ -86,7 +86,7 @@ onReachBottom(async () => {
 
     <!-- 缺省内容 -->
     <view v-if="loading === false && !modelList.length" class="flex-center flex-col h-65vh">
-      <wd-empty image="content" tip="暂无内容" />
+      <app-empty image="content" tip="暂无内容" />
     </view>
 
     <!-- 列表 -->

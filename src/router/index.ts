@@ -60,20 +60,17 @@ router.beforeEach((to, from, next) => {
     })
   }
 
-  if ((to as any)?.needLogin) {
-    console.log('🚀 当前页面需要登录')
-    const { logined } = useUserStore()
-    if (!logined) {
-      console.log('🚀 当前用户未登录，跳转到登录页面')
-      // 跳转到登陆页
-      next({
-        path: LOGIN_PAGE,
-        query: {
-          redirect: to.path as string,
-        },
-      })
-      return
-    }
+  const { isExpired } = useUserStore()
+  if ((to as any)?.needLogin && isExpired()) {
+    console.log('🚀 当前用户未登录，跳转到登录页面')
+    // 跳转到登陆页
+    next({
+      path: LOGIN_PAGE,
+      query: {
+        redirect: to.path as string,
+      },
+    })
+    return
   }
 
   // 继续导航

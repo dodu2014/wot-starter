@@ -44,16 +44,21 @@ export const useUserStore = defineStore(
       tokenModel.value = val
     }
 
-    // 判断 tokenModel 是否过期
-    const tokenIsExpired = computed(() => {
+    // 验证是否过期
+    function isExpired() {
       if (!tokenModel.value || !tokenModel.value.token || !tokenModel.value.expiration)
         return true
-      return dayjs().valueOf() >= dayjs(tokenModel.value.expiration).valueOf() // 过期
-    })
+      const expired = dayjs().valueOf() >= dayjs(tokenModel.value.expiration).valueOf()
+      console.log('☑️☑️ userStore: token is expired?', expired)
+      if (expired) {
+        clear()
+      }
+      return expired // 是否过期
+    }
 
     /* 是否登录 */
     const logined = computed(() => {
-      return Boolean(!tokenIsExpired.value && userInfo.value)
+      return !isExpired() && Boolean(userInfo.value)
     })
 
     /* 登录请求 */
@@ -121,6 +126,8 @@ export const useUserStore = defineStore(
       setToken,
       /** 是否登录 */
       logined,
+      /** 是否过期 */
+      isExpired,
       /** 登录 */
       login,
       /** 简易登录 */

@@ -118,7 +118,7 @@ onLoad(async () => {
 })
 
 onShow(async () => {
-  if (logined.value) {
+  if (!userStore.isExpired()) {
     //
   }
 })

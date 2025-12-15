@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import type { FormExpose } from 'wot-design-uni/components/wd-form/types'
-import type { UploadResult } from './type'
-import type { UserProfileModel } from '@/service/apis/base/globals'
+import type { UpFileUploadResult, UserProfileModel } from '@/service/apis/base/globals'
 
 definePage({
   name: 'user-profile',
@@ -30,8 +29,8 @@ function handleChooseAvatar(e: { avatarUrl: string }) {
         warning(errMsg!)
         return
       }
-      const { absUrl } = JSON.parse(data) as UploadResult
-      model.avatarUrl = absUrl
+      const json = JSON.parse(data) as UpFileUploadResult
+      model.avatarUrl = json?.absUrl
     },
   })
 }
@@ -103,15 +102,17 @@ onLoad(() => {})
           type="nickname"
           :rules="[
             { required: true, message: '必填' },
-            { required: false, validator: (value: string, rule) => value.length >= 2, message: '格式不正确, 2-10位' },
+            { required: false, validator: (value: string) => value.length >= 2, message: '格式不正确, 2-10位' },
           ]"
         />
         <wd-cell title="头像" title-width="100px">
-          <view class="flex-col items-start gap-1">
+          <view class="flex-col items-start gap-3">
             <app-upload v-model:value="model.avatarUrl!" />
+            <!-- #ifdef MP-WEIXIN -->
             <wd-button type="info" size="small" open-type="chooseAvatar" @chooseavatar="handleChooseAvatar">
               使用微信头像
             </wd-button>
+            <!-- #endif -->
           </view>
         </wd-cell>
 

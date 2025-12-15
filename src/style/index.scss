@@ -33,3 +33,12 @@
     display: none;
   }
 }
+
+// 上传组件样式
+.wd-upload{
+  gap: 10px !important;
+
+  .wd-upload__evoke, .wd-upload__preview {
+    margin-bottom: 0 !important;
+  }
+}

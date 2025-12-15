@@ -126,7 +126,7 @@ export type ArticleCategory4 = {
   remark?: string;
   visible?: boolean;
   parentNum?: string;
-  children?: ArticleCategory3[];
+  children?: ArticleCategory[];
 } | null;
 export interface ArticleCategoryMap {
   articleId: string;
@@ -503,7 +503,7 @@ export type ArticleCategory2 = {
   remark?: string;
   visible?: boolean;
   parentNum?: string;
-  children?: ArticleCategory3[];
+  children?: ArticleCategory[];
 } | null;
 export interface ApiResultOfArticleCategory {
   /**
@@ -1181,6 +1181,33 @@ export interface ApiResultOfAddDraftResultJson {
    */
   isSuccess?: boolean;
 }
+export type UpFileUploadResult = {
+  url?: string;
+  absUrl?: string;
+  data?: null;
+} | null;
+export interface ApiResultOfUpFileUploadResult {
+  /**
+   * 响应编号
+   */
+  code?: number;
+  /**
+   * 响应消息
+   */
+  message?: string;
+  /**
+   * 响应数据 T
+   */
+  data?: UpFileUploadResult;
+  /**
+   * 扩展数据
+   */
+  extend?: null;
+  /**
+   * 请求是否返回正确
+   */
+  isSuccess?: boolean;
+}
 declare global {
   interface Webapi_Base {
     articleAgreeLog: {
@@ -1453,17 +1480,7 @@ declare global {
        *       parentNum?: string
        *       // [items] start
        *       // [items] end
-       *       children?: Array<{
-       *         num: string
-       *         type?: number
-       *         name: string
-       *         remark?: string
-       *         visible?: boolean
-       *         parentNum?: string
-       *         // [items] start
-       *         // [items] end
-       *         children?: null[]
-       *       }>
+       *       children?: null[]
        *     }>
        *   } | null
        *   // 扩展数据
@@ -1544,17 +1561,7 @@ declare global {
        *       parentNum?: string
        *       // [items] start
        *       // [items] end
-       *       children?: Array<{
-       *         num: string
-       *         type?: number
-       *         name: string
-       *         remark?: string
-       *         visible?: boolean
-       *         parentNum?: string
-       *         // [items] start
-       *         // [items] end
-       *         children?: null[]
-       *       }>
+       *       children?: null[]
        *     }>
        *   } | null
        *   // 扩展数据
@@ -1633,17 +1640,7 @@ declare global {
        *       parentNum?: string
        *       // [items] start
        *       // [items] end
-       *       children?: Array<{
-       *         num: string
-       *         type?: number
-       *         name: string
-       *         remark?: string
-       *         visible?: boolean
-       *         parentNum?: string
-       *         // [items] start
-       *         // [items] end
-       *         children?: null[]
-       *       }>
+       *       children?: null[]
        *     }>
        *   } | null
        *   // 扩展数据
@@ -1704,17 +1701,7 @@ declare global {
        *       parentNum?: string
        *       // [items] start
        *       // [items] end
-       *       children?: Array<{
-       *         num: string
-       *         type?: number
-       *         name: string
-       *         remark?: string
-       *         visible?: boolean
-       *         parentNum?: string
-       *         // [items] start
-       *         // [items] end
-       *         children?: null[]
-       *       }>
+       *       children?: null[]
        *     }>
        *   } | null
        *   // 扩展数据
@@ -1853,17 +1840,7 @@ declare global {
        *             parentNum?: string
        *             // [items] start
        *             // [items] end
-       *             children?: Array<{
-       *               num: string
-       *               type?: number
-       *               name: string
-       *               remark?: string
-       *               visible?: boolean
-       *               parentNum?: string
-       *               // [items] start
-       *               // [items] end
-       *               children?: null[]
-       *             }>
+       *             children?: null[]
        *           }>
        *         } | null
        *       }>
@@ -1966,17 +1943,7 @@ declare global {
        *           parentNum?: string
        *           // [items] start
        *           // [items] end
-       *           children?: Array<{
-       *             num: string
-       *             type?: number
-       *             name: string
-       *             remark?: string
-       *             visible?: boolean
-       *             parentNum?: string
-       *             // [items] start
-       *             // [items] end
-       *             children?: null[]
-       *           }>
+       *           children?: null[]
        *         }>
        *       } | null
        *     }>
@@ -2052,17 +2019,7 @@ declare global {
        *         parentNum?: string
        *         // [items] start
        *         // [items] end
-       *         children?: Array<{
-       *           num: string
-       *           type?: number
-       *           name: string
-       *           remark?: string
-       *           visible?: boolean
-       *           parentNum?: string
-       *           // [items] start
-       *           // [items] end
-       *           children?: null[]
-       *         }>
+       *         children?: null[]
        *       }>
        *     } | null
        *   }>
@@ -2123,17 +2080,7 @@ declare global {
        *           parentNum?: string
        *           // [items] start
        *           // [items] end
-       *           children?: Array<{
-       *             num: string
-       *             type?: number
-       *             name: string
-       *             remark?: string
-       *             visible?: boolean
-       *             parentNum?: string
-       *             // [items] start
-       *             // [items] end
-       *             children?: null[]
-       *           }>
+       *           children?: null[]
        *         }>
        *       } | null
        *     }>
@@ -2207,17 +2154,7 @@ declare global {
        *         parentNum?: string
        *         // [items] start
        *         // [items] end
-       *         children?: Array<{
-       *           num: string
-       *           type?: number
-       *           name: string
-       *           remark?: string
-       *           visible?: boolean
-       *           parentNum?: string
-       *           // [items] start
-       *           // [items] end
-       *           children?: null[]
-       *         }>
+       *         children?: null[]
        *       }>
        *     } | null
        *   }>
@@ -2278,17 +2215,7 @@ declare global {
        *           parentNum?: string
        *           // [items] start
        *           // [items] end
-       *           children?: Array<{
-       *             num: string
-       *             type?: number
-       *             name: string
-       *             remark?: string
-       *             visible?: boolean
-       *             parentNum?: string
-       *             // [items] start
-       *             // [items] end
-       *             children?: null[]
-       *           }>
+       *           children?: null[]
        *         }>
        *       } | null
        *     }>
@@ -2377,17 +2304,7 @@ declare global {
        *           parentNum?: string
        *           // [items] start
        *           // [items] end
-       *           children?: Array<{
-       *             num: string
-       *             type?: number
-       *             name: string
-       *             remark?: string
-       *             visible?: boolean
-       *             parentNum?: string
-       *             // [items] start
-       *             // [items] end
-       *             children?: null[]
-       *           }>
+       *           children?: null[]
        *         }>
        *       } | null
        *     }>
@@ -4320,11 +4237,26 @@ declare global {
        *
        * **Response**
        * ```ts
-       * type Response = null
+       * type Response = {
+       *   // 响应编号
+       *   code?: number
+       *   // 响应消息
+       *   message?: string
+       *   // 响应数据 T
+       *   data?: {
+       *     url?: string
+       *     absUrl?: string
+       *     data?: null
+       *   } | null
+       *   // 扩展数据
+       *   extend?: null
+       *   // 请求是否返回正确
+       *   isSuccess?: boolean
+       * }
        * ```
        */
       upload<
-        Config extends Alova2MethodConfig<null> & {
+        Config extends Alova2MethodConfig<ApiResultOfUpFileUploadResult> & {
           params: {
             path?: string;
             maxWidth?: number;
@@ -4341,7 +4273,7 @@ declare global {
         }
       >(
         config: Config
-      ): Alova2Method<null, 'upFile.upload', Config>;
+      ): Alova2Method<ApiResultOfUpFileUploadResult, 'upFile.upload', Config>;
     };
     userOperateLog: {
       /**

@@ -38,6 +38,7 @@ export default uniHelper(
       'src/uni_modules/**/*',
       'docs/.vitepress/dist',
       'docs/.vitepress/cache',
+      '**/*.md',
     ],
   },
 )

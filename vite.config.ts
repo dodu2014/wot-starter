@@ -53,7 +53,7 @@ export default defineConfig({
     Uni(),
     // https://github.com/uni-ku/bundle-optimizer
     Optimization({
-      logger: true,
+      logger: false,
     }),
     // https://github.com/antfu/unplugin-auto-import
     AutoImport({

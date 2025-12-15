@@ -144,9 +144,11 @@ var _hmt = _hmt || [];
       { text: '首页', link: '/' },
       { text: '快速开始', link: '/guide/installation' },
       { text: '更新日志', link: '/guide/changelog' },
+      { text: '🥤一杯咖啡', link: 'https://wot-ui.cn/reward/reward' },
       { text: 'Wot UI', link: 'https://wot-ui.cn/' },
-      { text: '博客', link: 'https://blog.wot-ui.cn/' },
+      { text: '关于作者', link: 'https://blog.wot-ui.cn/about' },
       { text: 'Uni Helper', link: 'https://uni-helper.cn/' },
+      { text: 'Uni Ku 插件', link: 'https://uni-ku.js.org/' },
     ],
     sidebar: [
       {
@@ -170,7 +172,7 @@ var _hmt = _hmt || [];
           { text: '虚拟根组件', link: '/guide/uni-ku-root' },
           { text: 'Echarts 图表', link: '/guide/uni-echarts' },
           { text: '国际化', link: '/guide/i18n' },
-
+          { text: '远程调试', link: 'https://blog.wot-ui.cn/uni-app/pagespy.html' },
         ],
       },
     ],

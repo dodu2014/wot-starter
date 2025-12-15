@@ -78,6 +78,7 @@ const moreItems = ref<MenuItem[]>([
 
 const {
   theme,
+  followSystem,
   toggleTheme,
   currentThemeColor,
   showThemeColorSheet,
@@ -85,7 +86,17 @@ const {
   openThemeColorPicker,
   closeThemeColorPicker,
   selectThemeColor,
+  setFollowSystem,
 } = useManualTheme()
+
+const useSystemTheme = computed<boolean>({
+  get() {
+    return followSystem.value
+  },
+  set(val) {
+    setFollowSystem(val)
+  },
+})
 
 const darkMode = computed({
   get() {
@@ -202,9 +213,14 @@ onShow(async () => {
     <!-- 主题设置 -->
     <demo-block custom-card-class="!mx-8 !mt-4" custom-card-content-class="!p-0">
       <wd-cell-group border custom-class="rounded-2! overflow-hidden">
+        <wd-cell title="跟随系统" center>
+          <view class="flex justify-end">
+            <wd-switch v-model="useSystemTheme" size="14px" />
+          </view>
+        </wd-cell>
         <wd-cell title="暗黑模式" center>
           <view class="flex justify-end">
-            <wd-switch v-model="darkMode" size="14px" />
+            <wd-switch v-model="darkMode" size="14px" :disabled="useSystemTheme" />
           </view>
         </wd-cell>
         <wd-cell title="选择主题色" is-link @click="openThemeColorPicker">

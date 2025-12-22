@@ -50,6 +50,7 @@
     "@dcloudio/uni-mp-xhs": "3.0.0-4080520251106001",
     "@dcloudio/uni-quickapp-webview": "3.0.0-4080520251106001",
     "@uni-helper/unh": "^0.2.7",
+    "@vant/area-data": "^2.1.0",
     "@vueuse/core": "^11.0.3",
     "alova": "^3.3.4",
     "echarts": "^6.0.0",

@@ -1,11 +1,11 @@
 /* tslint:disable */
 /* eslint-disable */
 /**
- * TNT.WebApi 接口文档 | 基础模块 - version v9.0.11.0
+ * TNT.WebApi 接口文档 | 基础模块 - version v10.0.1.0
  *
- * TNT.WebApi 项目接口文档, Powered By .NET 9.0.11
+ * TNT.WebApi 项目接口文档, Powered By .NET 10.0.1
  *
- * OpenAPI version: 3.0.1
+ * OpenAPI version: 3.1.1
  *
  * Contact:
  *

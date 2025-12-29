@@ -1,11 +1,11 @@
 /* tslint:disable */
 /* eslint-disable */
 /**
- * TNT.WebApi 接口文档 | App 模块 - version v9.0.11.0
+ * TNT.WebApi 接口文档 | App 模块 - version v10.0.1.0
  *
- * TNT.WebApi 项目接口文档, Powered By .NET 9.0.11
+ * TNT.WebApi 项目接口文档, Powered By .NET 10.0.1
  *
- * OpenAPI version: 3.0.1
+ * OpenAPI version: 3.1.1
  *
  * Contact:
  *
@@ -89,41 +89,27 @@ type Alova2Method<
       >
     : never;
 
-export interface AppVersion2 {
+export interface AppVersion {
   id?: string;
   appId: string;
   version: string;
-  versionValue: number;
+  versionValue: number | string;
   androidFileUrl?: string;
   iosFileUrl?: string;
   description?: string;
   enabled?: boolean;
   date?: string;
 }
-export type AppVersion = {
-  id?: string;
-  appId: string;
-  version: string;
-  versionValue: number;
-  androidFileUrl?: string;
-  iosFileUrl?: string;
-  description?: string;
-  enabled?: boolean;
-  date?: string;
-} | null;
 export interface ApiResultOfAppVersion {
   /**
    * 响应编号
    */
-  code?: number;
+  code?: number | string;
   /**
    * 响应消息
    */
   message?: string;
-  /**
-   * 响应数据 T
-   */
-  data?: AppVersion;
+  data?: null | AppVersion;
   /**
    * 扩展数据
    */
@@ -133,27 +119,24 @@ export interface ApiResultOfAppVersion {
    */
   isSuccess?: boolean;
 }
-export type PageListOfAppVersion = {
-  list?: AppVersion2[];
-  page?: number;
-  pageSize?: number;
-  totalPageCount?: number;
-  totalItemCount?: number;
+export interface PageListOfAppVersion {
+  list?: AppVersion[];
+  page?: number | string;
+  pageSize?: number | string;
+  totalPageCount?: number | string;
+  totalItemCount?: number | string;
   extendData?: null;
-} | null;
+}
 export interface ApiResultOfPageListOfAppVersion {
   /**
    * 响应编号
    */
-  code?: number;
+  code?: number | string;
   /**
    * 响应消息
    */
   message?: string;
-  /**
-   * 响应数据 T
-   */
-  data?: PageListOfAppVersion;
+  data?: null | PageListOfAppVersion;
   /**
    * 扩展数据
    */
@@ -167,7 +150,7 @@ export interface ApiResultOfint {
   /**
    * 响应编号
    */
-  code?: number;
+  code?: number | string;
   /**
    * 响应消息
    */
@@ -175,7 +158,7 @@ export interface ApiResultOfint {
   /**
    * 响应数据 T
    */
-  data?: number;
+  data?: number | string;
   /**
    * 扩展数据
    */
@@ -191,7 +174,7 @@ declare global {
       /**
        * ---
        *
-       * [GET] 检测app版本信息
+       * [GET] 检测升级包
        *
        * **path:** /api/App/AppVersions/check
        *
@@ -200,7 +183,9 @@ declare global {
        * **Query Parameters**
        * ```ts
        * type QueryParameters = {
+       *   // appid
        *   appid?: string
+       *   // 应用当前的版本号
        *   version?: string
        * }
        * ```
@@ -211,21 +196,23 @@ declare global {
        * ```ts
        * type Response = {
        *   // 响应编号
-       *   code?: number
+       *   code?: number | string
        *   // 响应消息
        *   message?: string
+       *   // [params2] start
        *   // 响应数据 T
-       *   data?: {
+       *   // [params2] end
+       *   data?: null | {
        *     id?: string
        *     appId: string
        *     version: string
-       *     versionValue: number
+       *     versionValue: number | string
        *     androidFileUrl?: string
        *     iosFileUrl?: string
        *     description?: string
        *     enabled?: boolean
        *     date?: string
-       *   } | null
+       *   }
        *   // 扩展数据
        *   extend?: null
        *   // 请求是否返回正确
@@ -236,7 +223,13 @@ declare global {
       checkAppVersion<
         Config extends Alova2MethodConfig<ApiResultOfAppVersion> & {
           params: {
+            /**
+             * appid
+             */
             appid?: string;
+            /**
+             * 应用当前的版本号
+             */
             version?: string;
           };
         }
@@ -246,7 +239,7 @@ declare global {
       /**
        * ---
        *
-       * [GET] 查询app版本详情
+       * [GET] 获取app版本控制详情
        *
        * **path:** /api/App/AppVersions/get
        *
@@ -255,6 +248,7 @@ declare global {
        * **Query Parameters**
        * ```ts
        * type QueryParameters = {
+       *   // id
        *   id?: string
        * }
        * ```
@@ -265,21 +259,23 @@ declare global {
        * ```ts
        * type Response = {
        *   // 响应编号
-       *   code?: number
+       *   code?: number | string
        *   // 响应消息
        *   message?: string
+       *   // [params2] start
        *   // 响应数据 T
-       *   data?: {
+       *   // [params2] end
+       *   data?: null | {
        *     id?: string
        *     appId: string
        *     version: string
-       *     versionValue: number
+       *     versionValue: number | string
        *     androidFileUrl?: string
        *     iosFileUrl?: string
        *     description?: string
        *     enabled?: boolean
        *     date?: string
-       *   } | null
+       *   }
        *   // 扩展数据
        *   extend?: null
        *   // 请求是否返回正确
@@ -290,6 +286,9 @@ declare global {
       getAppVersion<
         Config extends Alova2MethodConfig<ApiResultOfAppVersion> & {
           params: {
+            /**
+             * id
+             */
             id?: string;
           };
         }
@@ -325,10 +324,14 @@ declare global {
        * **Query Parameters**
        * ```ts
        * type QueryParameters = {
+       *   // 是否启用
        *   enabled?: boolean
+       *   // 关键词
        *   keyword?: string
-       *   page?: number
-       *   pageSize?: number
+       *   // 页码
+       *   page?: number | string
+       *   // 页面大小
+       *   pageSize?: number | string
        * }
        * ```
        *
@@ -338,30 +341,32 @@ declare global {
        * ```ts
        * type Response = {
        *   // 响应编号
-       *   code?: number
+       *   code?: number | string
        *   // 响应消息
        *   message?: string
+       *   // [params2] start
        *   // 响应数据 T
-       *   data?: {
+       *   // [params2] end
+       *   data?: null | {
        *     // [items] start
        *     // [items] end
        *     list?: Array<{
        *       id?: string
        *       appId: string
        *       version: string
-       *       versionValue: number
+       *       versionValue: number | string
        *       androidFileUrl?: string
        *       iosFileUrl?: string
        *       description?: string
        *       enabled?: boolean
        *       date?: string
        *     }>
-       *     page?: number
-       *     pageSize?: number
-       *     totalPageCount?: number
-       *     totalItemCount?: number
+       *     page?: number | string
+       *     pageSize?: number | string
+       *     totalPageCount?: number | string
+       *     totalItemCount?: number | string
        *     extendData?: null
-       *   } | null
+       *   }
        *   // 扩展数据
        *   extend?: null
        *   // 请求是否返回正确
@@ -372,10 +377,22 @@ declare global {
       getAppVersionList<
         Config extends Alova2MethodConfig<ApiResultOfPageListOfAppVersion> & {
           params: {
+            /**
+             * 是否启用
+             */
             enabled?: boolean;
+            /**
+             * 关键词
+             */
             keyword?: string;
-            page?: number;
-            pageSize?: number;
+            /**
+             * 页码
+             */
+            page?: number | string;
+            /**
+             * 页面大小
+             */
+            pageSize?: number | string;
           };
         }
       >(
@@ -396,7 +413,7 @@ declare global {
        *   id?: string
        *   appId: string
        *   version: string
-       *   versionValue: number
+       *   versionValue: number | string
        *   androidFileUrl?: string
        *   iosFileUrl?: string
        *   description?: string
@@ -411,21 +428,23 @@ declare global {
        * ```ts
        * type Response = {
        *   // 响应编号
-       *   code?: number
+       *   code?: number | string
        *   // 响应消息
        *   message?: string
+       *   // [params2] start
        *   // 响应数据 T
-       *   data?: {
+       *   // [params2] end
+       *   data?: null | {
        *     id?: string
        *     appId: string
        *     version: string
-       *     versionValue: number
+       *     versionValue: number | string
        *     androidFileUrl?: string
        *     iosFileUrl?: string
        *     description?: string
        *     enabled?: boolean
        *     date?: string
-       *   } | null
+       *   }
        *   // 扩展数据
        *   extend?: null
        *   // 请求是否返回正确
@@ -435,7 +454,7 @@ declare global {
        */
       createAppVersion<
         Config extends Alova2MethodConfig<ApiResultOfAppVersion> & {
-          data: AppVersion2;
+          data: AppVersion;
         }
       >(
         config: Config
@@ -455,7 +474,7 @@ declare global {
        *   id?: string
        *   appId: string
        *   version: string
-       *   versionValue: number
+       *   versionValue: number | string
        *   androidFileUrl?: string
        *   iosFileUrl?: string
        *   description?: string
@@ -470,21 +489,23 @@ declare global {
        * ```ts
        * type Response = {
        *   // 响应编号
-       *   code?: number
+       *   code?: number | string
        *   // 响应消息
        *   message?: string
+       *   // [params2] start
        *   // 响应数据 T
-       *   data?: {
+       *   // [params2] end
+       *   data?: null | {
        *     id?: string
        *     appId: string
        *     version: string
-       *     versionValue: number
+       *     versionValue: number | string
        *     androidFileUrl?: string
        *     iosFileUrl?: string
        *     description?: string
        *     enabled?: boolean
        *     date?: string
-       *   } | null
+       *   }
        *   // 扩展数据
        *   extend?: null
        *   // 请求是否返回正确
@@ -494,7 +515,7 @@ declare global {
        */
       updateAppVersion<
         Config extends Alova2MethodConfig<ApiResultOfAppVersion> & {
-          data: AppVersion2;
+          data: AppVersion;
         }
       >(
         config: Config
@@ -511,6 +532,7 @@ declare global {
        * **Query Parameters**
        * ```ts
        * type QueryParameters = {
+       *   // id
        *   id?: string
        * }
        * ```
@@ -521,21 +543,23 @@ declare global {
        * ```ts
        * type Response = {
        *   // 响应编号
-       *   code?: number
+       *   code?: number | string
        *   // 响应消息
        *   message?: string
+       *   // [params2] start
        *   // 响应数据 T
-       *   data?: {
+       *   // [params2] end
+       *   data?: null | {
        *     id?: string
        *     appId: string
        *     version: string
-       *     versionValue: number
+       *     versionValue: number | string
        *     androidFileUrl?: string
        *     iosFileUrl?: string
        *     description?: string
        *     enabled?: boolean
        *     date?: string
-       *   } | null
+       *   }
        *   // 扩展数据
        *   extend?: null
        *   // 请求是否返回正确
@@ -546,6 +570,9 @@ declare global {
       deleteAppVersion<
         Config extends Alova2MethodConfig<ApiResultOfAppVersion> & {
           params: {
+            /**
+             * id
+             */
             id?: string;
           };
         }
@@ -572,11 +599,11 @@ declare global {
        * ```ts
        * type Response = {
        *   // 响应编号
-       *   code?: number
+       *   code?: number | string
        *   // 响应消息
        *   message?: string
        *   // 响应数据 T
-       *   data?: number
+       *   data?: number | string
        *   // 扩展数据
        *   extend?: null
        *   // 请求是否返回正确

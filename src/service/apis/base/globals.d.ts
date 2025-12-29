@@ -1,11 +1,11 @@
 /* tslint:disable */
 /* eslint-disable */
 /**
- * TNT.WebApi 接口文档 | 基础模块 - version v9.0.11.0
+ * TNT.WebApi 接口文档 | 基础模块 - version v10.0.1.0
  *
- * TNT.WebApi 项目接口文档, Powered By .NET 9.0.11
+ * TNT.WebApi 项目接口文档, Powered By .NET 10.0.1
  *
- * OpenAPI version: 3.0.1
+ * OpenAPI version: 3.1.1
  *
  * Contact:
  *
@@ -98,40 +98,22 @@ export interface ArticleCategory {
   remark?: string;
   visible?: boolean;
   parentNum?: string;
-  children?: null[];
-}
-export interface ArticleCategory3 {
-  num: string;
-  type?: ArticleCategoryType;
-  name: string;
-  remark?: string;
-  visible?: boolean;
-  parentNum?: string;
   children?: ArticleCategory[];
 }
-export type ArticleTag = {
+export interface ArticleTag {
   id?: string;
   name: string;
-  count?: number;
-} | null;
+  count?: number | string;
+}
 export interface ArticleTagMap {
   articleId?: string;
   tagId?: string;
-  tag?: ArticleTag;
+  tag?: null | ArticleTag;
 }
-export type ArticleCategory4 = {
-  num: string;
-  type?: ArticleCategoryType;
-  name: string;
-  remark?: string;
-  visible?: boolean;
-  parentNum?: string;
-  children?: ArticleCategory[];
-} | null;
 export interface ArticleCategoryMap {
   articleId: string;
   categoryNum: string;
-  category?: ArticleCategory4;
+  category?: null | ArticleCategory;
 }
 export interface Article {
   id?: string;
@@ -139,9 +121,9 @@ export interface Article {
   content: string;
   img?: string;
   editor: string;
-  hits?: number;
-  agree?: number;
-  disAgree?: number;
+  hits?: number | string;
+  agree?: number | string;
+  disAgree?: number | string;
   creationDate?: string;
   tagMaps?: ArticleTagMap[];
   categoryMaps?: ArticleCategoryMap[];
@@ -153,23 +135,23 @@ export interface Carousel {
   description?: string;
   creationDate?: string;
 }
-export type ClientRouteMeta = {
+export interface ClientRouteMeta {
   title?: string;
   icon?: string;
   expanded?: boolean;
-  orderNo?: number;
+  orderNo?: number | string;
   hidden?: boolean;
   hiddenBreadcrumb?: boolean;
   single?: boolean;
   frameSrc?: string;
-} | null;
+}
 export interface ClientRoute {
   path?: string;
   name?: string;
   component?: string;
   redirect?: string;
-  meta?: ClientRouteMeta;
-  children?: null[];
+  meta?: null | ClientRouteMeta;
+  children?: ClientRoute[];
 }
 export interface DynamicMenu {
   id?: string;
@@ -198,7 +180,7 @@ export interface UserOperateLog {
   requestUrl: string;
   requestMethod?: string;
   requestBody?: string;
-  requestMilliseconds?: number;
+  requestMilliseconds?: number | string;
   type?: UserOperateLogType;
   content?: string;
   userId?: string;
@@ -253,7 +235,7 @@ export interface ResetPasswordModel {
   userName: string;
   password: string;
 }
-export type UserProfileInfo = {
+export interface UserProfileInfo {
   id?: string;
   email?: string | null;
   userName: string;
@@ -265,20 +247,17 @@ export type UserProfileInfo = {
   rightsList?: string[];
   signature?: string;
   date?: string;
-} | null;
+}
 export interface ApiResultOfUserProfileInfo {
   /**
    * 响应编号
    */
-  code?: number;
+  code?: number | string;
   /**
    * 响应消息
    */
   message?: string;
-  /**
-   * 响应数据 T
-   */
-  data?: UserProfileInfo;
+  data?: null | UserProfileInfo;
   /**
    * 扩展数据
    */
@@ -292,7 +271,7 @@ export interface ApiResult {
   /**
    * 响应编号
    */
-  code?: number;
+  code?: number | string;
   /**
    * 响应消息
    */
@@ -326,37 +305,34 @@ export interface Menu {
   i18nKey?: string | null;
   icon?: string;
   iconType?: string;
-  order?: number;
+  order?: number | string;
   keepAlive?: boolean | null;
   href?: string | null;
   hideInMenu?: boolean | null;
   activeMenu?: string | null;
   multiTab?: boolean | null;
-  fixedIndexInTab?: number | null;
+  fixedIndexInTab?: number | string | null;
   buttons?: MenuButton[] | null;
-  children?: null[] | null;
+  children?: Menu[] | null;
 }
-export type PageListOfMenu = {
+export interface PageListOfMenu {
   list?: Menu[];
-  page?: number;
-  pageSize?: number;
-  totalPageCount?: number;
-  totalItemCount?: number;
+  page?: number | string;
+  pageSize?: number | string;
+  totalPageCount?: number | string;
+  totalItemCount?: number | string;
   extendData?: null;
-} | null;
+}
 export interface ApiResultOfPageListOfMenu {
   /**
    * 响应编号
    */
-  code?: number;
+  code?: number | string;
   /**
    * 响应消息
    */
   message?: string;
-  /**
-   * 响应数据 T
-   */
-  data?: PageListOfMenu;
+  data?: null | PageListOfMenu;
   /**
    * 扩展数据
    */
@@ -370,13 +346,13 @@ export interface MenuTree {
   id?: string;
   label?: string;
   pId?: string;
-  children?: null[] | null;
+  children?: MenuTree[] | null;
 }
 export interface Api_result_of_menu_tree {
   /**
    * 响应编号
    */
-  code?: number;
+  code?: number | string;
   /**
    * 响应消息
    */
@@ -398,7 +374,7 @@ export interface Api_result_of_string {
   /**
    * 响应编号
    */
-  code?: number;
+  code?: number | string;
   /**
    * 响应消息
    */
@@ -426,7 +402,7 @@ export interface ApiResultOfValueTupleOfintAndint {
   /**
    * 响应编号
    */
-  code?: number;
+  code?: number | string;
   /**
    * 响应消息
    */
@@ -444,27 +420,24 @@ export interface ApiResultOfValueTupleOfintAndint {
    */
   isSuccess?: boolean;
 }
-export type PageListOfArticleCategory = {
+export interface PageListOfArticleCategory {
   list?: ArticleCategory[];
-  page?: number;
-  pageSize?: number;
-  totalPageCount?: number;
-  totalItemCount?: number;
+  page?: number | string;
+  pageSize?: number | string;
+  totalPageCount?: number | string;
+  totalItemCount?: number | string;
   extendData?: null;
-} | null;
+}
 export interface ApiResultOfPageListOfArticleCategory {
   /**
    * 响应编号
    */
-  code?: number;
+  code?: number | string;
   /**
    * 响应消息
    */
   message?: string;
-  /**
-   * 响应数据 T
-   */
-  data?: PageListOfArticleCategory;
+  data?: null | PageListOfArticleCategory;
   /**
    * 扩展数据
    */
@@ -478,7 +451,7 @@ export interface ApiResultOfIEnumerableOfArticleCategory {
   /**
    * 响应编号
    */
-  code?: number;
+  code?: number | string;
   /**
    * 响应消息
    */
@@ -496,28 +469,16 @@ export interface ApiResultOfIEnumerableOfArticleCategory {
    */
   isSuccess?: boolean;
 }
-export type ArticleCategory2 = {
-  num: string;
-  type?: ArticleCategoryType;
-  name: string;
-  remark?: string;
-  visible?: boolean;
-  parentNum?: string;
-  children?: ArticleCategory[];
-} | null;
 export interface ApiResultOfArticleCategory {
   /**
    * 响应编号
    */
-  code?: number;
+  code?: number | string;
   /**
    * 响应消息
    */
   message?: string;
-  /**
-   * 响应数据 T
-   */
-  data?: ArticleCategory2;
+  data?: null | ArticleCategory;
   /**
    * 扩展数据
    */
@@ -527,27 +488,24 @@ export interface ApiResultOfArticleCategory {
    */
   isSuccess?: boolean;
 }
-export type PageListOfArticle = {
+export interface PageListOfArticle {
   list?: Article[];
-  page?: number;
-  pageSize?: number;
-  totalPageCount?: number;
-  totalItemCount?: number;
+  page?: number | string;
+  pageSize?: number | string;
+  totalPageCount?: number | string;
+  totalItemCount?: number | string;
   extendData?: null;
-} | null;
+}
 export interface ApiResultOfPageListOfArticle {
   /**
    * 响应编号
    */
-  code?: number;
+  code?: number | string;
   /**
    * 响应消息
    */
   message?: string;
-  /**
-   * 响应数据 T
-   */
-  data?: PageListOfArticle;
+  data?: null | PageListOfArticle;
   /**
    * 扩展数据
    */
@@ -557,32 +515,16 @@ export interface ApiResultOfPageListOfArticle {
    */
   isSuccess?: boolean;
 }
-export type Article2 = {
-  id?: string;
-  title: string;
-  content: string;
-  img?: string;
-  editor: string;
-  hits?: number;
-  agree?: number;
-  disAgree?: number;
-  creationDate?: string;
-  tagMaps?: ArticleTagMap[];
-  categoryMaps?: ArticleCategoryMap[];
-} | null;
 export interface ApiResultOfArticle {
   /**
    * 响应编号
    */
-  code?: number;
+  code?: number | string;
   /**
    * 响应消息
    */
   message?: string;
-  /**
-   * 响应数据 T
-   */
-  data?: Article2;
+  data?: null | Article;
   /**
    * 扩展数据
    */
@@ -596,7 +538,7 @@ export interface ApiResultOfint {
   /**
    * 响应编号
    */
-  code?: number;
+  code?: number | string;
   /**
    * 响应消息
    */
@@ -604,7 +546,7 @@ export interface ApiResultOfint {
   /**
    * 响应数据 T
    */
-  data?: number;
+  data?: number | string;
   /**
    * 扩展数据
    */
@@ -614,27 +556,24 @@ export interface ApiResultOfint {
    */
   isSuccess?: boolean;
 }
-export type AccessTokenModel = {
+export interface AccessTokenModel {
   token?: string;
   type?: string;
   expiration?: string;
-  expiresIn?: number;
+  expiresIn?: number | string;
   refreshToken?: string;
-  refreshTokenExpiresIn?: number;
-} | null;
+  refreshTokenExpiresIn?: number | string;
+}
 export interface ApiResultOfAccessTokenModel {
   /**
    * 响应编号
    */
-  code?: number;
+  code?: number | string;
   /**
    * 响应消息
    */
   message?: string;
-  /**
-   * 响应数据 T
-   */
-  data?: AccessTokenModel;
+  data?: null | AccessTokenModel;
   /**
    * 扩展数据
    */
@@ -644,27 +583,24 @@ export interface ApiResultOfAccessTokenModel {
    */
   isSuccess?: boolean;
 }
-export type PageListOfCarousel = {
+export interface PageListOfCarousel {
   list?: Carousel[];
-  page?: number;
-  pageSize?: number;
-  totalPageCount?: number;
-  totalItemCount?: number;
+  page?: number | string;
+  pageSize?: number | string;
+  totalPageCount?: number | string;
+  totalItemCount?: number | string;
   extendData?: null;
-} | null;
+}
 export interface ApiResultOfPageListOfCarousel {
   /**
    * 响应编号
    */
-  code?: number;
+  code?: number | string;
   /**
    * 响应消息
    */
   message?: string;
-  /**
-   * 响应数据 T
-   */
-  data?: PageListOfCarousel;
+  data?: null | PageListOfCarousel;
   /**
    * 扩展数据
    */
@@ -674,26 +610,16 @@ export interface ApiResultOfPageListOfCarousel {
    */
   isSuccess?: boolean;
 }
-export type Carousel2 = {
-  id?: string;
-  key: string;
-  items?: string[];
-  description?: string;
-  creationDate?: string;
-} | null;
 export interface ApiResultOfCarousel {
   /**
    * 响应编号
    */
-  code?: number;
+  code?: number | string;
   /**
    * 响应消息
    */
   message?: string;
-  /**
-   * 响应数据 T
-   */
-  data?: Carousel2;
+  data?: null | Carousel;
   /**
    * 扩展数据
    */
@@ -707,7 +633,7 @@ export interface ApiResultOfIEnumerableOfDynamicMenu {
   /**
    * 响应编号
    */
-  code?: number;
+  code?: number | string;
   /**
    * 响应消息
    */
@@ -725,30 +651,16 @@ export interface ApiResultOfIEnumerableOfDynamicMenu {
    */
   isSuccess?: boolean;
 }
-export type DynamicMenu2 = {
-  id?: string;
-  path: string;
-  name: string;
-  metaString?: string;
-  meta?: ClientRouteMeta;
-  childrenString?: string;
-  children?: ClientRoute[] | null;
-  component?: string;
-  redirect?: string;
-} | null;
 export interface ApiResultOfDynamicMenu {
   /**
    * 响应编号
    */
-  code?: number;
+  code?: number | string;
   /**
    * 响应消息
    */
   message?: string;
-  /**
-   * 响应数据 T
-   */
-  data?: DynamicMenu2;
+  data?: null | DynamicMenu;
   /**
    * 扩展数据
    */
@@ -759,18 +671,18 @@ export interface ApiResultOfDynamicMenu {
   isSuccess?: boolean;
 }
 export interface Location {
-  lon?: number;
-  lat?: number;
+  lon?: number | string;
+  lat?: number | string;
 }
 export interface AddressComponent {
   address?: string;
-  address_distance?: number;
+  address_distance?: number | string;
   address_position?: string;
   poi?: string;
-  poi_distance?: number;
+  poi_distance?: number | string;
   poi_position?: string;
   road?: string;
-  road_distance?: number;
+  road_distance?: number | string;
   nation?: string;
   province?: string;
   province_code?: string;
@@ -779,24 +691,21 @@ export interface AddressComponent {
   county?: string;
   county_code?: string;
 }
-export type AddressInfo = {
+export interface AddressInfo {
   formatted_address?: string;
   location?: Location;
   addressComponent?: AddressComponent;
-} | null;
+}
 export interface ApiResultOfAddressInfo {
   /**
    * 响应编号
    */
-  code?: number;
+  code?: number | string;
   /**
    * 响应消息
    */
   message?: string;
-  /**
-   * 响应数据 T
-   */
-  data?: AddressInfo;
+  data?: null | AddressInfo;
   /**
    * 扩展数据
    */
@@ -806,26 +715,23 @@ export interface ApiResultOfAddressInfo {
    */
   isSuccess?: boolean;
 }
-export type LocationInfo = {
-  score?: number;
+export interface LocationInfo {
+  score?: number | string;
   level?: string;
   keyWord?: string;
-  lon?: number;
-  lat?: number;
-} | null;
+  lon?: number | string;
+  lat?: number | string;
+}
 export interface ApiResultOfLocationInfo {
   /**
    * 响应编号
    */
-  code?: number;
+  code?: number | string;
   /**
    * 响应消息
    */
   message?: string;
-  /**
-   * 响应数据 T
-   */
-  data?: LocationInfo;
+  data?: null | LocationInfo;
   /**
    * 扩展数据
    */
@@ -835,27 +741,24 @@ export interface ApiResultOfLocationInfo {
    */
   isSuccess?: boolean;
 }
-export type PageListOfApplicationRole = {
+export interface PageListOfApplicationRole {
   list?: ApplicationRole[];
-  page?: number;
-  pageSize?: number;
-  totalPageCount?: number;
-  totalItemCount?: number;
+  page?: number | string;
+  pageSize?: number | string;
+  totalPageCount?: number | string;
+  totalItemCount?: number | string;
   extendData?: null;
-} | null;
+}
 export interface ApiResultOfPageListOfApplicationRole {
   /**
    * 响应编号
    */
-  code?: number;
+  code?: number | string;
   /**
    * 响应消息
    */
   message?: string;
-  /**
-   * 响应数据 T
-   */
-  data?: PageListOfApplicationRole;
+  data?: null | PageListOfApplicationRole;
   /**
    * 扩展数据
    */
@@ -865,29 +768,16 @@ export interface ApiResultOfPageListOfApplicationRole {
    */
   isSuccess?: boolean;
 }
-export type ApplicationRole2 = {
-  name?: string | null;
-  description?: string;
-  rights?: string;
-  rightsList?: string[] | null;
-  enabled?: boolean;
-  id?: string | null;
-  normalizedName?: string | null;
-  concurrencyStamp?: string | null;
-} | null;
 export interface ApiResultOfApplicationRole {
   /**
    * 响应编号
    */
-  code?: number;
+  code?: number | string;
   /**
    * 响应消息
    */
   message?: string;
-  /**
-   * 响应数据 T
-   */
-  data?: ApplicationRole2;
+  data?: null | ApplicationRole;
   /**
    * 扩展数据
    */
@@ -897,27 +787,24 @@ export interface ApiResultOfApplicationRole {
    */
   isSuccess?: boolean;
 }
-export type PageListOfUserOperateLog = {
+export interface PageListOfUserOperateLog {
   list?: UserOperateLog[];
-  page?: number;
-  pageSize?: number;
-  totalPageCount?: number;
-  totalItemCount?: number;
+  page?: number | string;
+  pageSize?: number | string;
+  totalPageCount?: number | string;
+  totalItemCount?: number | string;
   extendData?: null;
-} | null;
+}
 export interface ApiResultOfPageListOfUserOperateLog {
   /**
    * 响应编号
    */
-  code?: number;
+  code?: number | string;
   /**
    * 响应消息
    */
   message?: string;
-  /**
-   * 响应数据 T
-   */
-  data?: PageListOfUserOperateLog;
+  data?: null | PageListOfUserOperateLog;
   /**
    * 扩展数据
    */
@@ -927,37 +814,16 @@ export interface ApiResultOfPageListOfUserOperateLog {
    */
   isSuccess?: boolean;
 }
-export type UserOperateLog2 = {
-  id?: string;
-  requestUrl: string;
-  requestMethod?: string;
-  requestBody?: string;
-  requestMilliseconds?: number;
-  type?: UserOperateLogType;
-  content?: string;
-  userId?: string;
-  userName?: string;
-  ipAddress: string;
-  ipInfo?: string;
-  adCode?: string;
-  ipLocation?: string;
-  os?: string;
-  ua?: string;
-  creationDate?: string;
-} | null;
 export interface ApiResultOfUserOperateLog {
   /**
    * 响应编号
    */
-  code?: number;
+  code?: number | string;
   /**
    * 响应消息
    */
   message?: string;
-  /**
-   * 响应数据 T
-   */
-  data?: UserOperateLog2;
+  data?: null | UserOperateLog;
   /**
    * 扩展数据
    */
@@ -992,29 +858,26 @@ export interface ApplicationUser {
   twoFactorEnabled?: boolean;
   lockoutEnd?: string | null;
   lockoutEnabled?: boolean;
-  accessFailedCount?: number;
+  accessFailedCount?: number | string;
 }
-export type PageListOfApplicationUser = {
+export interface PageListOfApplicationUser {
   list?: ApplicationUser[];
-  page?: number;
-  pageSize?: number;
-  totalPageCount?: number;
-  totalItemCount?: number;
+  page?: number | string;
+  pageSize?: number | string;
+  totalPageCount?: number | string;
+  totalItemCount?: number | string;
   extendData?: null;
-} | null;
+}
 export interface ApiResultOfPageListOfApplicationUser {
   /**
    * 响应编号
    */
-  code?: number;
+  code?: number | string;
   /**
    * 响应消息
    */
   message?: string;
-  /**
-   * 响应数据 T
-   */
-  data?: PageListOfApplicationUser;
+  data?: null | PageListOfApplicationUser;
   /**
    * 扩展数据
    */
@@ -1024,7 +887,7 @@ export interface ApiResultOfPageListOfApplicationUser {
    */
   isSuccess?: boolean;
 }
-export type IUserProfile = {
+export interface IUserProfile {
   email?: string | null;
   userName?: string;
   name?: string;
@@ -1034,20 +897,17 @@ export type IUserProfile = {
   rights?: string;
   signature?: string;
   date?: string;
-} | null;
+}
 export interface ApiResultOfIUserProfile {
   /**
    * 响应编号
    */
-  code?: number;
+  code?: number | string;
   /**
    * 响应消息
    */
   message?: string;
-  /**
-   * 响应数据 T
-   */
-  data?: IUserProfile;
+  data?: null | IUserProfile;
   /**
    * 扩展数据
    */
@@ -1061,7 +921,7 @@ export interface Api_result_of_client_route {
   /**
    * 响应编号
    */
-  code?: number;
+  code?: number | string;
   /**
    * 响应消息
    */
@@ -1079,46 +939,16 @@ export interface Api_result_of_client_route {
    */
   isSuccess?: boolean;
 }
-export type ApplicationUser2 = {
-  userName: string;
-  email?: string | null;
-  name?: string;
-  avatarUrl?: string;
-  phoneNumber?: string | null;
-  description?: string;
-  rights?: string;
-  rightsList?: string[];
-  openId?: string;
-  unionId?: string;
-  signature?: string;
-  enabled?: boolean;
-  date?: string;
-  id?: string | null;
-  normalizedUserName?: string | null;
-  normalizedEmail?: string | null;
-  emailConfirmed?: boolean;
-  passwordHash?: string | null;
-  securityStamp?: string | null;
-  concurrencyStamp?: string | null;
-  phoneNumberConfirmed?: boolean;
-  twoFactorEnabled?: boolean;
-  lockoutEnd?: string | null;
-  lockoutEnabled?: boolean;
-  accessFailedCount?: number;
-} | null;
 export interface ApiResultOfApplicationUser {
   /**
    * 响应编号
    */
-  code?: number;
+  code?: number | string;
   /**
    * 响应消息
    */
   message?: string;
-  /**
-   * 响应数据 T
-   */
-  data?: ApplicationUser2;
+  data?: null | ApplicationUser;
   /**
    * 扩展数据
    */
@@ -1132,7 +962,7 @@ export interface ApiResultOfIListOfstring {
   /**
    * 响应编号
    */
-  code?: number;
+  code?: number | string;
   /**
    * 响应消息
    */
@@ -1151,27 +981,24 @@ export interface ApiResultOfIListOfstring {
   isSuccess?: boolean;
 }
 export type ReturnCode = number;
-export type AddDraftResultJson = {
+export interface AddDraftResultJson {
   media_id?: string | null;
   errcode?: ReturnCode;
-  errorCodeValue?: number;
+  errorCodeValue?: number | string;
   errmsg?: string | null;
   p2PData?: null;
   hints?: null;
-} | null;
+}
 export interface ApiResultOfAddDraftResultJson {
   /**
    * 响应编号
    */
-  code?: number;
+  code?: number | string;
   /**
    * 响应消息
    */
   message?: string;
-  /**
-   * 响应数据 T
-   */
-  data?: AddDraftResultJson;
+  data?: null | AddDraftResultJson;
   /**
    * 扩展数据
    */
@@ -1181,24 +1008,30 @@ export interface ApiResultOfAddDraftResultJson {
    */
   isSuccess?: boolean;
 }
-export type UpFileUploadResult = {
+export interface UpFileUploadResult {
+  /**
+   * 相对路径
+   */
   url?: string;
+  /**
+   * 绝对路径
+   */
   absUrl?: string;
+  /**
+   * 其他附加数据
+   */
   data?: null;
-} | null;
+}
 export interface ApiResultOfUpFileUploadResult {
   /**
    * 响应编号
    */
-  code?: number;
+  code?: number | string;
   /**
    * 响应消息
    */
   message?: string;
-  /**
-   * 响应数据 T
-   */
-  data?: UpFileUploadResult;
+  data?: null | UpFileUploadResult;
   /**
    * 扩展数据
    */
@@ -1223,7 +1056,9 @@ declare global {
        * **Query Parameters**
        * ```ts
        * type QueryParameters = {
+       *   // 文章id
        *   articleid?: string
+       *   // 客户id
        *   clientid?: string
        * }
        * ```
@@ -1234,7 +1069,7 @@ declare global {
        * ```ts
        * type Response = {
        *   // 响应编号
-       *   code?: number
+       *   code?: number | string
        *   // 响应消息
        *   message?: string
        *   // 响应数据 T
@@ -1249,7 +1084,13 @@ declare global {
       countArticleAgreeLog<
         Config extends Alova2MethodConfig<ApiResultOfValueTupleOfintAndint> & {
           params: {
+            /**
+             * 文章id
+             */
             articleid?: string;
+            /**
+             * 客户id
+             */
             clientid?: string;
           };
         }
@@ -1268,8 +1109,11 @@ declare global {
        * **Query Parameters**
        * ```ts
        * type QueryParameters = {
+       *   // 文章id
        *   articleid?: string
+       *   // 客户id
        *   clientid?: string
+       *   // 同意状态
        *   state?: boolean
        * }
        * ```
@@ -1280,7 +1124,7 @@ declare global {
        * ```ts
        * type Response = {
        *   // 响应编号
-       *   code?: number
+       *   code?: number | string
        *   // 响应消息
        *   message?: string
        *   // 响应数据 T
@@ -1295,8 +1139,17 @@ declare global {
       setArticleAgreeLog<
         Config extends Alova2MethodConfig<ApiResultOfValueTupleOfintAndint> & {
           params: {
+            /**
+             * 文章id
+             */
             articleid?: string;
+            /**
+             * 客户id
+             */
             clientid?: string;
+            /**
+             * 同意状态
+             */
             state?: boolean;
           };
         }
@@ -1317,11 +1170,16 @@ declare global {
        * **Query Parameters**
        * ```ts
        * type QueryParameters = {
+       *   // 上级id
        *   pid?: string
+       *   // 可见
        *   visible?: string
+       *   // 关键词
        *   keyword?: string
-       *   page?: number
-       *   pageSize?: number
+       *   // 页码
+       *   page?: number | string
+       *   // 分页大小
+       *   pageSize?: number | string
        * }
        * ```
        *
@@ -1331,11 +1189,13 @@ declare global {
        * ```ts
        * type Response = {
        *   // 响应编号
-       *   code?: number
+       *   code?: number | string
        *   // 响应消息
        *   message?: string
+       *   // [params2] start
        *   // 响应数据 T
-       *   data?: {
+       *   // [params2] end
+       *   data?: null | {
        *     // [items] start
        *     // [items] end
        *     list?: Array<{
@@ -1346,15 +1206,16 @@ declare global {
        *       visible?: boolean
        *       parentNum?: string
        *       // [items] start
+       *       // [cycle] $.data.list.[]
        *       // [items] end
-       *       children?: null[]
+       *       children?: ArticleCategory[]
        *     }>
-       *     page?: number
-       *     pageSize?: number
-       *     totalPageCount?: number
-       *     totalItemCount?: number
+       *     page?: number | string
+       *     pageSize?: number | string
+       *     totalPageCount?: number | string
+       *     totalItemCount?: number | string
        *     extendData?: null
-       *   } | null
+       *   }
        *   // 扩展数据
        *   extend?: null
        *   // 请求是否返回正确
@@ -1365,11 +1226,26 @@ declare global {
       getArticleCategoryList<
         Config extends Alova2MethodConfig<ApiResultOfPageListOfArticleCategory> & {
           params: {
+            /**
+             * 上级id
+             */
             pid?: string;
+            /**
+             * 可见
+             */
             visible?: string;
+            /**
+             * 关键词
+             */
             keyword?: string;
-            page?: number;
-            pageSize?: number;
+            /**
+             * 页码
+             */
+            page?: number | string;
+            /**
+             * 分页大小
+             */
+            pageSize?: number | string;
           };
         }
       >(
@@ -1389,6 +1265,7 @@ declare global {
        * type QueryParameters = {
        *   pid?: string
        *   visible?: string
+       *   // 关键词
        *   keyword?: string
        * }
        * ```
@@ -1399,7 +1276,7 @@ declare global {
        * ```ts
        * type Response = {
        *   // 响应编号
-       *   code?: number
+       *   code?: number | string
        *   // 响应消息
        *   message?: string
        *   // 响应数据 T
@@ -1415,8 +1292,9 @@ declare global {
        *     visible?: boolean
        *     parentNum?: string
        *     // [items] start
+       *     // [cycle] $.data.[]
        *     // [items] end
-       *     children?: null[]
+       *     children?: ArticleCategory[]
        *   }> | null
        *   // 扩展数据
        *   extend?: null
@@ -1430,6 +1308,9 @@ declare global {
           params: {
             pid?: string;
             visible?: string;
+            /**
+             * 关键词
+             */
             keyword?: string;
           };
         }
@@ -1458,11 +1339,13 @@ declare global {
        * ```ts
        * type Response = {
        *   // 响应编号
-       *   code?: number
+       *   code?: number | string
        *   // 响应消息
        *   message?: string
+       *   // [params2] start
        *   // 响应数据 T
-       *   data?: {
+       *   // [params2] end
+       *   data?: null | {
        *     num: string
        *     type?: number
        *     name: string
@@ -1470,19 +1353,10 @@ declare global {
        *     visible?: boolean
        *     parentNum?: string
        *     // [items] start
+       *     // [cycle] $.data
        *     // [items] end
-       *     children?: Array<{
-       *       num: string
-       *       type?: number
-       *       name: string
-       *       remark?: string
-       *       visible?: boolean
-       *       parentNum?: string
-       *       // [items] start
-       *       // [items] end
-       *       children?: null[]
-       *     }>
-       *   } | null
+       *     children?: ArticleCategory[]
+       *   }
        *   // 扩展数据
        *   extend?: null
        *   // 请求是否返回正确
@@ -1518,18 +1392,9 @@ declare global {
        *   visible?: boolean
        *   parentNum?: string
        *   // [items] start
+       *   // [cycle] $
        *   // [items] end
-       *   children?: Array<{
-       *     num: string
-       *     type?: number
-       *     name: string
-       *     remark?: string
-       *     visible?: boolean
-       *     parentNum?: string
-       *     // [items] start
-       *     // [items] end
-       *     children?: null[]
-       *   }>
+       *   children?: ArticleCategory[]
        * }
        * ```
        *
@@ -1539,11 +1404,13 @@ declare global {
        * ```ts
        * type Response = {
        *   // 响应编号
-       *   code?: number
+       *   code?: number | string
        *   // 响应消息
        *   message?: string
+       *   // [params2] start
        *   // 响应数据 T
-       *   data?: {
+       *   // [params2] end
+       *   data?: null | {
        *     num: string
        *     type?: number
        *     name: string
@@ -1551,19 +1418,10 @@ declare global {
        *     visible?: boolean
        *     parentNum?: string
        *     // [items] start
+       *     // [cycle] $.data
        *     // [items] end
-       *     children?: Array<{
-       *       num: string
-       *       type?: number
-       *       name: string
-       *       remark?: string
-       *       visible?: boolean
-       *       parentNum?: string
-       *       // [items] start
-       *       // [items] end
-       *       children?: null[]
-       *     }>
-       *   } | null
+       *     children?: ArticleCategory[]
+       *   }
        *   // 扩展数据
        *   extend?: null
        *   // 请求是否返回正确
@@ -1573,7 +1431,7 @@ declare global {
        */
       createArticleCategory<
         Config extends Alova2MethodConfig<ApiResultOfArticleCategory> & {
-          data: ArticleCategory3;
+          data: ArticleCategory;
         }
       >(
         config: Config
@@ -1597,18 +1455,9 @@ declare global {
        *   visible?: boolean
        *   parentNum?: string
        *   // [items] start
+       *   // [cycle] $
        *   // [items] end
-       *   children?: Array<{
-       *     num: string
-       *     type?: number
-       *     name: string
-       *     remark?: string
-       *     visible?: boolean
-       *     parentNum?: string
-       *     // [items] start
-       *     // [items] end
-       *     children?: null[]
-       *   }>
+       *   children?: ArticleCategory[]
        * }
        * ```
        *
@@ -1618,11 +1467,13 @@ declare global {
        * ```ts
        * type Response = {
        *   // 响应编号
-       *   code?: number
+       *   code?: number | string
        *   // 响应消息
        *   message?: string
+       *   // [params2] start
        *   // 响应数据 T
-       *   data?: {
+       *   // [params2] end
+       *   data?: null | {
        *     num: string
        *     type?: number
        *     name: string
@@ -1630,19 +1481,10 @@ declare global {
        *     visible?: boolean
        *     parentNum?: string
        *     // [items] start
+       *     // [cycle] $.data
        *     // [items] end
-       *     children?: Array<{
-       *       num: string
-       *       type?: number
-       *       name: string
-       *       remark?: string
-       *       visible?: boolean
-       *       parentNum?: string
-       *       // [items] start
-       *       // [items] end
-       *       children?: null[]
-       *     }>
-       *   } | null
+       *     children?: ArticleCategory[]
+       *   }
        *   // 扩展数据
        *   extend?: null
        *   // 请求是否返回正确
@@ -1652,7 +1494,7 @@ declare global {
        */
       updateArticleCategory<
         Config extends Alova2MethodConfig<ApiResultOfArticleCategory> & {
-          data: ArticleCategory3;
+          data: ArticleCategory;
         }
       >(
         config: Config
@@ -1679,11 +1521,13 @@ declare global {
        * ```ts
        * type Response = {
        *   // 响应编号
-       *   code?: number
+       *   code?: number | string
        *   // 响应消息
        *   message?: string
+       *   // [params2] start
        *   // 响应数据 T
-       *   data?: {
+       *   // [params2] end
+       *   data?: null | {
        *     num: string
        *     type?: number
        *     name: string
@@ -1691,19 +1535,10 @@ declare global {
        *     visible?: boolean
        *     parentNum?: string
        *     // [items] start
+       *     // [cycle] $.data
        *     // [items] end
-       *     children?: Array<{
-       *       num: string
-       *       type?: number
-       *       name: string
-       *       remark?: string
-       *       visible?: boolean
-       *       parentNum?: string
-       *       // [items] start
-       *       // [items] end
-       *       children?: null[]
-       *     }>
-       *   } | null
+       *     children?: ArticleCategory[]
+       *   }
        *   // 扩展数据
        *   extend?: null
        *   // 请求是否返回正确
@@ -1740,7 +1575,7 @@ declare global {
        * ```ts
        * type Response = {
        *   // 响应编号
-       *   code?: number
+       *   code?: number | string
        *   // 响应消息
        *   message?: string
        *   // 响应数据 T
@@ -1773,13 +1608,20 @@ declare global {
        * **Query Parameters**
        * ```ts
        * type QueryParameters = {
+       *   // 文章分类
        *   categorynum?: string
+       *   // 开始日期
        *   startdate?: string
+       *   // 结束日期
        *   enddate?: string
+       *   // 关键词
        *   keyword?: string
-       *   top?: number
-       *   page?: number
-       *   pageSize?: number
+       *   // 指定前几条, 大于0时有效
+       *   top?: number | string
+       *   // 页码
+       *   page?: number | string
+       *   // 页面大小
+       *   pageSize?: number | string
        * }
        * ```
        *
@@ -1789,11 +1631,13 @@ declare global {
        * ```ts
        * type Response = {
        *   // 响应编号
-       *   code?: number
+       *   code?: number | string
        *   // 响应消息
        *   message?: string
+       *   // [params2] start
        *   // 响应数据 T
-       *   data?: {
+       *   // [params2] end
+       *   data?: null | {
        *     // [items] start
        *     // [items] end
        *     list?: Array<{
@@ -1802,27 +1646,27 @@ declare global {
        *       content: string
        *       img?: string
        *       editor: string
-       *       hits?: number
-       *       agree?: number
-       *       disAgree?: number
+       *       hits?: number | string
+       *       agree?: number | string
+       *       disAgree?: number | string
        *       creationDate?: string
        *       // [items] start
        *       // [items] end
        *       tagMaps?: Array<{
        *         articleId?: string
        *         tagId?: string
-       *         tag?: {
+       *         tag?: null | {
        *           id?: string
        *           name: string
-       *           count?: number
-       *         } | null
+       *           count?: number | string
+       *         }
        *       }>
        *       // [items] start
        *       // [items] end
        *       categoryMaps?: Array<{
        *         articleId: string
        *         categoryNum: string
-       *         category?: {
+       *         category?: null | {
        *           num: string
        *           type?: number
        *           name: string
@@ -1830,27 +1674,18 @@ declare global {
        *           visible?: boolean
        *           parentNum?: string
        *           // [items] start
+       *           // [cycle] $.data.list.[].categoryMaps.[].category
        *           // [items] end
-       *           children?: Array<{
-       *             num: string
-       *             type?: number
-       *             name: string
-       *             remark?: string
-       *             visible?: boolean
-       *             parentNum?: string
-       *             // [items] start
-       *             // [items] end
-       *             children?: null[]
-       *           }>
-       *         } | null
+       *           children?: ArticleCategory[]
+       *         }
        *       }>
        *     }>
-       *     page?: number
-       *     pageSize?: number
-       *     totalPageCount?: number
-       *     totalItemCount?: number
+       *     page?: number | string
+       *     pageSize?: number | string
+       *     totalPageCount?: number | string
+       *     totalItemCount?: number | string
        *     extendData?: null
-       *   } | null
+       *   }
        *   // 扩展数据
        *   extend?: null
        *   // 请求是否返回正确
@@ -1861,13 +1696,34 @@ declare global {
       getArticleList<
         Config extends Alova2MethodConfig<ApiResultOfPageListOfArticle> & {
           params: {
+            /**
+             * 文章分类
+             */
             categorynum?: string;
+            /**
+             * 开始日期
+             */
             startdate?: string;
+            /**
+             * 结束日期
+             */
             enddate?: string;
+            /**
+             * 关键词
+             */
             keyword?: string;
-            top?: number;
-            page?: number;
-            pageSize?: number;
+            /**
+             * 指定前几条, 大于0时有效
+             */
+            top?: number | string;
+            /**
+             * 页码
+             */
+            page?: number | string;
+            /**
+             * 页面大小
+             */
+            pageSize?: number | string;
           };
         }
       >(
@@ -1885,6 +1741,7 @@ declare global {
        * **Query Parameters**
        * ```ts
        * type QueryParameters = {
+       *   // 文章id
        *   id?: string
        * }
        * ```
@@ -1895,37 +1752,39 @@ declare global {
        * ```ts
        * type Response = {
        *   // 响应编号
-       *   code?: number
+       *   code?: number | string
        *   // 响应消息
        *   message?: string
+       *   // [params2] start
        *   // 响应数据 T
-       *   data?: {
+       *   // [params2] end
+       *   data?: null | {
        *     id?: string
        *     title: string
        *     content: string
        *     img?: string
        *     editor: string
-       *     hits?: number
-       *     agree?: number
-       *     disAgree?: number
+       *     hits?: number | string
+       *     agree?: number | string
+       *     disAgree?: number | string
        *     creationDate?: string
        *     // [items] start
        *     // [items] end
        *     tagMaps?: Array<{
        *       articleId?: string
        *       tagId?: string
-       *       tag?: {
+       *       tag?: null | {
        *         id?: string
        *         name: string
-       *         count?: number
-       *       } | null
+       *         count?: number | string
+       *       }
        *     }>
        *     // [items] start
        *     // [items] end
        *     categoryMaps?: Array<{
        *       articleId: string
        *       categoryNum: string
-       *       category?: {
+       *       category?: null | {
        *         num: string
        *         type?: number
        *         name: string
@@ -1933,21 +1792,12 @@ declare global {
        *         visible?: boolean
        *         parentNum?: string
        *         // [items] start
+       *         // [cycle] $.data.categoryMaps.[].category
        *         // [items] end
-       *         children?: Array<{
-       *           num: string
-       *           type?: number
-       *           name: string
-       *           remark?: string
-       *           visible?: boolean
-       *           parentNum?: string
-       *           // [items] start
-       *           // [items] end
-       *           children?: null[]
-       *         }>
-       *       } | null
+       *         children?: ArticleCategory[]
+       *       }
        *     }>
-       *   } | null
+       *   }
        *   // 扩展数据
        *   extend?: null
        *   // 请求是否返回正确
@@ -1958,6 +1808,9 @@ declare global {
       getArticle<
         Config extends Alova2MethodConfig<ApiResultOfArticle> & {
           params: {
+            /**
+             * 文章id
+             */
             id?: string;
           };
         }
@@ -1981,27 +1834,27 @@ declare global {
        *   content: string
        *   img?: string
        *   editor: string
-       *   hits?: number
-       *   agree?: number
-       *   disAgree?: number
+       *   hits?: number | string
+       *   agree?: number | string
+       *   disAgree?: number | string
        *   creationDate?: string
        *   // [items] start
        *   // [items] end
        *   tagMaps?: Array<{
        *     articleId?: string
        *     tagId?: string
-       *     tag?: {
+       *     tag?: null | {
        *       id?: string
        *       name: string
-       *       count?: number
-       *     } | null
+       *       count?: number | string
+       *     }
        *   }>
        *   // [items] start
        *   // [items] end
        *   categoryMaps?: Array<{
        *     articleId: string
        *     categoryNum: string
-       *     category?: {
+       *     category?: null | {
        *       num: string
        *       type?: number
        *       name: string
@@ -2009,19 +1862,10 @@ declare global {
        *       visible?: boolean
        *       parentNum?: string
        *       // [items] start
+       *       // [cycle] $.categoryMaps.[].category
        *       // [items] end
-       *       children?: Array<{
-       *         num: string
-       *         type?: number
-       *         name: string
-       *         remark?: string
-       *         visible?: boolean
-       *         parentNum?: string
-       *         // [items] start
-       *         // [items] end
-       *         children?: null[]
-       *       }>
-       *     } | null
+       *       children?: ArticleCategory[]
+       *     }
        *   }>
        * }
        * ```
@@ -2032,37 +1876,39 @@ declare global {
        * ```ts
        * type Response = {
        *   // 响应编号
-       *   code?: number
+       *   code?: number | string
        *   // 响应消息
        *   message?: string
+       *   // [params2] start
        *   // 响应数据 T
-       *   data?: {
+       *   // [params2] end
+       *   data?: null | {
        *     id?: string
        *     title: string
        *     content: string
        *     img?: string
        *     editor: string
-       *     hits?: number
-       *     agree?: number
-       *     disAgree?: number
+       *     hits?: number | string
+       *     agree?: number | string
+       *     disAgree?: number | string
        *     creationDate?: string
        *     // [items] start
        *     // [items] end
        *     tagMaps?: Array<{
        *       articleId?: string
        *       tagId?: string
-       *       tag?: {
+       *       tag?: null | {
        *         id?: string
        *         name: string
-       *         count?: number
-       *       } | null
+       *         count?: number | string
+       *       }
        *     }>
        *     // [items] start
        *     // [items] end
        *     categoryMaps?: Array<{
        *       articleId: string
        *       categoryNum: string
-       *       category?: {
+       *       category?: null | {
        *         num: string
        *         type?: number
        *         name: string
@@ -2070,21 +1916,12 @@ declare global {
        *         visible?: boolean
        *         parentNum?: string
        *         // [items] start
+       *         // [cycle] $.data.categoryMaps.[].category
        *         // [items] end
-       *         children?: Array<{
-       *           num: string
-       *           type?: number
-       *           name: string
-       *           remark?: string
-       *           visible?: boolean
-       *           parentNum?: string
-       *           // [items] start
-       *           // [items] end
-       *           children?: null[]
-       *         }>
-       *       } | null
+       *         children?: ArticleCategory[]
+       *       }
        *     }>
-       *   } | null
+       *   }
        *   // 扩展数据
        *   extend?: null
        *   // 请求是否返回正确
@@ -2116,27 +1953,27 @@ declare global {
        *   content: string
        *   img?: string
        *   editor: string
-       *   hits?: number
-       *   agree?: number
-       *   disAgree?: number
+       *   hits?: number | string
+       *   agree?: number | string
+       *   disAgree?: number | string
        *   creationDate?: string
        *   // [items] start
        *   // [items] end
        *   tagMaps?: Array<{
        *     articleId?: string
        *     tagId?: string
-       *     tag?: {
+       *     tag?: null | {
        *       id?: string
        *       name: string
-       *       count?: number
-       *     } | null
+       *       count?: number | string
+       *     }
        *   }>
        *   // [items] start
        *   // [items] end
        *   categoryMaps?: Array<{
        *     articleId: string
        *     categoryNum: string
-       *     category?: {
+       *     category?: null | {
        *       num: string
        *       type?: number
        *       name: string
@@ -2144,19 +1981,10 @@ declare global {
        *       visible?: boolean
        *       parentNum?: string
        *       // [items] start
+       *       // [cycle] $.categoryMaps.[].category
        *       // [items] end
-       *       children?: Array<{
-       *         num: string
-       *         type?: number
-       *         name: string
-       *         remark?: string
-       *         visible?: boolean
-       *         parentNum?: string
-       *         // [items] start
-       *         // [items] end
-       *         children?: null[]
-       *       }>
-       *     } | null
+       *       children?: ArticleCategory[]
+       *     }
        *   }>
        * }
        * ```
@@ -2167,37 +1995,39 @@ declare global {
        * ```ts
        * type Response = {
        *   // 响应编号
-       *   code?: number
+       *   code?: number | string
        *   // 响应消息
        *   message?: string
+       *   // [params2] start
        *   // 响应数据 T
-       *   data?: {
+       *   // [params2] end
+       *   data?: null | {
        *     id?: string
        *     title: string
        *     content: string
        *     img?: string
        *     editor: string
-       *     hits?: number
-       *     agree?: number
-       *     disAgree?: number
+       *     hits?: number | string
+       *     agree?: number | string
+       *     disAgree?: number | string
        *     creationDate?: string
        *     // [items] start
        *     // [items] end
        *     tagMaps?: Array<{
        *       articleId?: string
        *       tagId?: string
-       *       tag?: {
+       *       tag?: null | {
        *         id?: string
        *         name: string
-       *         count?: number
-       *       } | null
+       *         count?: number | string
+       *       }
        *     }>
        *     // [items] start
        *     // [items] end
        *     categoryMaps?: Array<{
        *       articleId: string
        *       categoryNum: string
-       *       category?: {
+       *       category?: null | {
        *         num: string
        *         type?: number
        *         name: string
@@ -2205,21 +2035,12 @@ declare global {
        *         visible?: boolean
        *         parentNum?: string
        *         // [items] start
+       *         // [cycle] $.data.categoryMaps.[].category
        *         // [items] end
-       *         children?: Array<{
-       *           num: string
-       *           type?: number
-       *           name: string
-       *           remark?: string
-       *           visible?: boolean
-       *           parentNum?: string
-       *           // [items] start
-       *           // [items] end
-       *           children?: null[]
-       *         }>
-       *       } | null
+       *         children?: ArticleCategory[]
+       *       }
        *     }>
-       *   } | null
+       *   }
        *   // 扩展数据
        *   extend?: null
        *   // 请求是否返回正确
@@ -2246,6 +2067,7 @@ declare global {
        * **Query Parameters**
        * ```ts
        * type QueryParameters = {
+       *   // 文章id
        *   id?: string
        * }
        * ```
@@ -2256,37 +2078,39 @@ declare global {
        * ```ts
        * type Response = {
        *   // 响应编号
-       *   code?: number
+       *   code?: number | string
        *   // 响应消息
        *   message?: string
+       *   // [params2] start
        *   // 响应数据 T
-       *   data?: {
+       *   // [params2] end
+       *   data?: null | {
        *     id?: string
        *     title: string
        *     content: string
        *     img?: string
        *     editor: string
-       *     hits?: number
-       *     agree?: number
-       *     disAgree?: number
+       *     hits?: number | string
+       *     agree?: number | string
+       *     disAgree?: number | string
        *     creationDate?: string
        *     // [items] start
        *     // [items] end
        *     tagMaps?: Array<{
        *       articleId?: string
        *       tagId?: string
-       *       tag?: {
+       *       tag?: null | {
        *         id?: string
        *         name: string
-       *         count?: number
-       *       } | null
+       *         count?: number | string
+       *       }
        *     }>
        *     // [items] start
        *     // [items] end
        *     categoryMaps?: Array<{
        *       articleId: string
        *       categoryNum: string
-       *       category?: {
+       *       category?: null | {
        *         num: string
        *         type?: number
        *         name: string
@@ -2294,21 +2118,12 @@ declare global {
        *         visible?: boolean
        *         parentNum?: string
        *         // [items] start
+       *         // [cycle] $.data.categoryMaps.[].category
        *         // [items] end
-       *         children?: Array<{
-       *           num: string
-       *           type?: number
-       *           name: string
-       *           remark?: string
-       *           visible?: boolean
-       *           parentNum?: string
-       *           // [items] start
-       *           // [items] end
-       *           children?: null[]
-       *         }>
-       *       } | null
+       *         children?: ArticleCategory[]
+       *       }
        *     }>
-       *   } | null
+       *   }
        *   // 扩展数据
        *   extend?: null
        *   // 请求是否返回正确
@@ -2319,6 +2134,9 @@ declare global {
       deleteArticle<
         Config extends Alova2MethodConfig<ApiResultOfArticle> & {
           params: {
+            /**
+             * 文章id
+             */
             id?: string;
           };
         }
@@ -2328,7 +2146,7 @@ declare global {
       /**
        * ---
        *
-       * [DELETE] 批量删除文章
+       * [DELETE] 删除文章（批量）
        *
        * **path:** /api/Base/Articles/deletes
        *
@@ -2345,11 +2163,11 @@ declare global {
        * ```ts
        * type Response = {
        *   // 响应编号
-       *   code?: number
+       *   code?: number | string
        *   // 响应消息
        *   message?: string
        *   // 响应数据 T
-       *   data?: number
+       *   data?: number | string
        *   // 扩展数据
        *   extend?: null
        *   // 请求是否返回正确
@@ -2367,7 +2185,7 @@ declare global {
       /**
        * ---
        *
-       * [POST] 发布文章到微信草稿/发表
+       * [POST] 发布到公众号草稿(可直接发布)
        *
        * **path:** /api/Base/Articles/publishToDraft
        *
@@ -2376,6 +2194,7 @@ declare global {
        * **Query Parameters**
        * ```ts
        * type QueryParameters = {
+       *   // 是否发布，默认 true
        *   publish?: boolean
        * }
        * ```
@@ -2393,18 +2212,20 @@ declare global {
        * ```ts
        * type Response = {
        *   // 响应编号
-       *   code?: number
+       *   code?: number | string
        *   // 响应消息
        *   message?: string
+       *   // [params2] start
        *   // 响应数据 T
-       *   data?: {
+       *   // [params2] end
+       *   data?: null | {
        *     media_id?: string | null
        *     errcode?: number
-       *     errorCodeValue?: number
+       *     errorCodeValue?: number | string
        *     errmsg?: string | null
        *     p2PData?: null
        *     hints?: null
-       *   } | null
+       *   }
        *   // 扩展数据
        *   extend?: null
        *   // 请求是否返回正确
@@ -2415,6 +2236,9 @@ declare global {
       publishArticleToDraft<
         Config extends Alova2MethodConfig<ApiResultOfAddDraftResultJson> & {
           params: {
+            /**
+             * 是否发布，默认 true
+             */
             publish?: boolean;
           };
           data: string[];
@@ -2436,6 +2260,7 @@ declare global {
        * **Query Parameters**
        * ```ts
        * type QueryParameters = {
+       *   // 通过账号密码获取认证token
        *   roles?: string
        * }
        * ```
@@ -2456,18 +2281,20 @@ declare global {
        * ```ts
        * type Response = {
        *   // 响应编号
-       *   code?: number
+       *   code?: number | string
        *   // 响应消息
        *   message?: string
+       *   // [params2] start
        *   // 响应数据 T
-       *   data?: {
+       *   // [params2] end
+       *   data?: null | {
        *     token?: string
        *     type?: string
        *     expiration?: string
-       *     expiresIn?: number
+       *     expiresIn?: number | string
        *     refreshToken?: string
-       *     refreshTokenExpiresIn?: number
-       *   } | null
+       *     refreshTokenExpiresIn?: number | string
+       *   }
        *   // 扩展数据
        *   extend?: null
        *   // 请求是否返回正确
@@ -2478,6 +2305,9 @@ declare global {
       login<
         Config extends Alova2MethodConfig<ApiResultOfAccessTokenModel> & {
           params: {
+            /**
+             * 通过账号密码获取认证token
+             */
             roles?: string;
           };
           data: LoginModel;
@@ -2497,9 +2327,13 @@ declare global {
        * **Query Parameters**
        * ```ts
        * type QueryParameters = {
+       *   // 手机号码
        *   phoneNumber?: string
+       *   // 自定义用户id
        *   userId?: string
+       *   // 微信用户id
        *   openId?: string
+       *   // 微信用户同意id
        *   unionId?: string
        * }
        * ```
@@ -2510,18 +2344,20 @@ declare global {
        * ```ts
        * type Response = {
        *   // 响应编号
-       *   code?: number
+       *   code?: number | string
        *   // 响应消息
        *   message?: string
+       *   // [params2] start
        *   // 响应数据 T
-       *   data?: {
+       *   // [params2] end
+       *   data?: null | {
        *     token?: string
        *     type?: string
        *     expiration?: string
-       *     expiresIn?: number
+       *     expiresIn?: number | string
        *     refreshToken?: string
-       *     refreshTokenExpiresIn?: number
-       *   } | null
+       *     refreshTokenExpiresIn?: number | string
+       *   }
        *   // 扩展数据
        *   extend?: null
        *   // 请求是否返回正确
@@ -2532,9 +2368,21 @@ declare global {
       easyLogin<
         Config extends Alova2MethodConfig<ApiResultOfAccessTokenModel> & {
           params: {
+            /**
+             * 手机号码
+             */
             phoneNumber?: string;
+            /**
+             * 自定义用户id
+             */
             userId?: string;
+            /**
+             * 微信用户id
+             */
             openId?: string;
+            /**
+             * 微信用户同意id
+             */
             unionId?: string;
           };
         }
@@ -2544,7 +2392,7 @@ declare global {
       /**
        * ---
        *
-       * [GET] 通过token获取用户信息
+       * [GET] 获取用户信息, 通过解析 Token
        *
        * **path:** /api/Base/Auth/getProfileInfoByToken
        *
@@ -2563,11 +2411,13 @@ declare global {
        * ```ts
        * type Response = {
        *   // 响应编号
-       *   code?: number
+       *   code?: number | string
        *   // 响应消息
        *   message?: string
+       *   // [params2] start
        *   // 响应数据 T
-       *   data?: {
+       *   // [params2] end
+       *   data?: null | {
        *     id?: string
        *     email?: string | null
        *     userName: string
@@ -2581,7 +2431,7 @@ declare global {
        *     rightsList?: string[]
        *     signature?: string
        *     date?: string
-       *   } | null
+       *   }
        *   // 扩展数据
        *   extend?: null
        *   // 请求是否返回正确
@@ -2601,7 +2451,7 @@ declare global {
       /**
        * ---
        *
-       * [GET] 获取当前用户信息
+       * [GET] 获取用户信息, 结合 Identity
        *
        * **path:** /api/Base/Auth/getProfileInfo
        *
@@ -2611,11 +2461,13 @@ declare global {
        * ```ts
        * type Response = {
        *   // 响应编号
-       *   code?: number
+       *   code?: number | string
        *   // 响应消息
        *   message?: string
+       *   // [params2] start
        *   // 响应数据 T
-       *   data?: {
+       *   // [params2] end
+       *   data?: null | {
        *     id?: string
        *     email?: string | null
        *     userName: string
@@ -2629,7 +2481,7 @@ declare global {
        *     rightsList?: string[]
        *     signature?: string
        *     date?: string
-       *   } | null
+       *   }
        *   // 扩展数据
        *   extend?: null
        *   // 请求是否返回正确
@@ -2643,7 +2495,7 @@ declare global {
       /**
        * ---
        *
-       * [POST] 注销登录
+       * [POST] 注销登录, 销毁token可用性
        *
        * **path:** /api/Base/Auth/logout
        *
@@ -2653,7 +2505,7 @@ declare global {
        * ```ts
        * type Response = {
        *   // 响应编号
-       *   code?: number
+       *   code?: number | string
        *   // 响应消息
        *   message?: string
        *   // 响应数据 T
@@ -2690,7 +2542,7 @@ declare global {
        * ```ts
        * type Response = {
        *   // 响应编号
-       *   code?: number
+       *   code?: number | string
        *   // 响应消息
        *   message?: string
        *   // 响应数据 T
@@ -2725,9 +2577,12 @@ declare global {
        * **Query Parameters**
        * ```ts
        * type QueryParameters = {
+       *   // key 值
        *   key?: string
-       *   page?: number
-       *   pageSize?: number
+       *   // 页码
+       *   page?: number | string
+       *   // 页面大小
+       *   pageSize?: number | string
        * }
        * ```
        *
@@ -2737,11 +2592,13 @@ declare global {
        * ```ts
        * type Response = {
        *   // 响应编号
-       *   code?: number
+       *   code?: number | string
        *   // 响应消息
        *   message?: string
+       *   // [params2] start
        *   // 响应数据 T
-       *   data?: {
+       *   // [params2] end
+       *   data?: null | {
        *     // [items] start
        *     // [items] end
        *     list?: Array<{
@@ -2753,12 +2610,12 @@ declare global {
        *       description?: string
        *       creationDate?: string
        *     }>
-       *     page?: number
-       *     pageSize?: number
-       *     totalPageCount?: number
-       *     totalItemCount?: number
+       *     page?: number | string
+       *     pageSize?: number | string
+       *     totalPageCount?: number | string
+       *     totalItemCount?: number | string
        *     extendData?: null
-       *   } | null
+       *   }
        *   // 扩展数据
        *   extend?: null
        *   // 请求是否返回正确
@@ -2769,9 +2626,18 @@ declare global {
       getCarouselList<
         Config extends Alova2MethodConfig<ApiResultOfPageListOfCarousel> & {
           params: {
+            /**
+             * key 值
+             */
             key?: string;
-            page?: number;
-            pageSize?: number;
+            /**
+             * 页码
+             */
+            page?: number | string;
+            /**
+             * 页面大小
+             */
+            pageSize?: number | string;
           };
         }
       >(
@@ -2789,6 +2655,7 @@ declare global {
        * **Query Parameters**
        * ```ts
        * type QueryParameters = {
+       *   // 轮播图id
        *   id?: string
        * }
        * ```
@@ -2799,11 +2666,13 @@ declare global {
        * ```ts
        * type Response = {
        *   // 响应编号
-       *   code?: number
+       *   code?: number | string
        *   // 响应消息
        *   message?: string
+       *   // [params2] start
        *   // 响应数据 T
-       *   data?: {
+       *   // [params2] end
+       *   data?: null | {
        *     id?: string
        *     key: string
        *     // [items] start
@@ -2811,7 +2680,7 @@ declare global {
        *     items?: string[]
        *     description?: string
        *     creationDate?: string
-       *   } | null
+       *   }
        *   // 扩展数据
        *   extend?: null
        *   // 请求是否返回正确
@@ -2822,6 +2691,9 @@ declare global {
       getCarousel<
         Config extends Alova2MethodConfig<ApiResultOfCarousel> & {
           params: {
+            /**
+             * 轮播图id
+             */
             id?: string;
           };
         }
@@ -2831,7 +2703,7 @@ declare global {
       /**
        * ---
        *
-       * [GET] 通过key获取轮播图详情
+       * [GET] 获取轮播图详情
        *
        * **path:** /api/Base/Carousels/getByKey
        *
@@ -2840,6 +2712,7 @@ declare global {
        * **Query Parameters**
        * ```ts
        * type QueryParameters = {
+       *   // 轮播图key
        *   key?: string
        * }
        * ```
@@ -2850,11 +2723,13 @@ declare global {
        * ```ts
        * type Response = {
        *   // 响应编号
-       *   code?: number
+       *   code?: number | string
        *   // 响应消息
        *   message?: string
+       *   // [params2] start
        *   // 响应数据 T
-       *   data?: {
+       *   // [params2] end
+       *   data?: null | {
        *     id?: string
        *     key: string
        *     // [items] start
@@ -2862,7 +2737,7 @@ declare global {
        *     items?: string[]
        *     description?: string
        *     creationDate?: string
-       *   } | null
+       *   }
        *   // 扩展数据
        *   extend?: null
        *   // 请求是否返回正确
@@ -2873,6 +2748,9 @@ declare global {
       getCarouselByKey<
         Config extends Alova2MethodConfig<ApiResultOfCarousel> & {
           params: {
+            /**
+             * 轮播图key
+             */
             key?: string;
           };
         }
@@ -2907,11 +2785,13 @@ declare global {
        * ```ts
        * type Response = {
        *   // 响应编号
-       *   code?: number
+       *   code?: number | string
        *   // 响应消息
        *   message?: string
+       *   // [params2] start
        *   // 响应数据 T
-       *   data?: {
+       *   // [params2] end
+       *   data?: null | {
        *     id?: string
        *     key: string
        *     // [items] start
@@ -2919,7 +2799,7 @@ declare global {
        *     items?: string[]
        *     description?: string
        *     creationDate?: string
-       *   } | null
+       *   }
        *   // 扩展数据
        *   extend?: null
        *   // 请求是否返回正确
@@ -2962,11 +2842,13 @@ declare global {
        * ```ts
        * type Response = {
        *   // 响应编号
-       *   code?: number
+       *   code?: number | string
        *   // 响应消息
        *   message?: string
+       *   // [params2] start
        *   // 响应数据 T
-       *   data?: {
+       *   // [params2] end
+       *   data?: null | {
        *     id?: string
        *     key: string
        *     // [items] start
@@ -2974,7 +2856,7 @@ declare global {
        *     items?: string[]
        *     description?: string
        *     creationDate?: string
-       *   } | null
+       *   }
        *   // 扩展数据
        *   extend?: null
        *   // 请求是否返回正确
@@ -3001,6 +2883,7 @@ declare global {
        * **Query Parameters**
        * ```ts
        * type QueryParameters = {
+       *   // 轮播图id
        *   id?: string
        * }
        * ```
@@ -3011,11 +2894,13 @@ declare global {
        * ```ts
        * type Response = {
        *   // 响应编号
-       *   code?: number
+       *   code?: number | string
        *   // 响应消息
        *   message?: string
+       *   // [params2] start
        *   // 响应数据 T
-       *   data?: {
+       *   // [params2] end
+       *   data?: null | {
        *     id?: string
        *     key: string
        *     // [items] start
@@ -3023,7 +2908,7 @@ declare global {
        *     items?: string[]
        *     description?: string
        *     creationDate?: string
-       *   } | null
+       *   }
        *   // 扩展数据
        *   extend?: null
        *   // 请求是否返回正确
@@ -3034,6 +2919,9 @@ declare global {
       deleteCarousel<
         Config extends Alova2MethodConfig<ApiResultOfCarousel> & {
           params: {
+            /**
+             * 轮播图id
+             */
             id?: string;
           };
         }
@@ -3054,6 +2942,7 @@ declare global {
        * **Query Parameters**
        * ```ts
        * type QueryParameters = {
+       *   // 关键词
        *   keyword?: string
        * }
        * ```
@@ -3064,7 +2953,7 @@ declare global {
        * ```ts
        * type Response = {
        *   // 响应编号
-       *   code?: number
+       *   code?: number | string
        *   // 响应消息
        *   message?: string
        *   // 响应数据 T
@@ -3081,12 +2970,12 @@ declare global {
        *       title?: string
        *       icon?: string
        *       expanded?: boolean
-       *       orderNo?: number
+       *       orderNo?: number | string
        *       hidden?: boolean
        *       hiddenBreadcrumb?: boolean
        *       single?: boolean
        *       frameSrc?: string
-       *     } | null
+       *     }
        *     childrenString?: string
        *     // [params1] start
        *     // [items] start
@@ -3097,19 +2986,20 @@ declare global {
        *       name?: string
        *       component?: string
        *       redirect?: string
-       *       meta?: {
+       *       meta?: null | {
        *         title?: string
        *         icon?: string
        *         expanded?: boolean
-       *         orderNo?: number
+       *         orderNo?: number | string
        *         hidden?: boolean
        *         hiddenBreadcrumb?: boolean
        *         single?: boolean
        *         frameSrc?: string
-       *       } | null
+       *       }
        *       // [items] start
+       *       // [cycle] $.data.[].children.[]
        *       // [items] end
-       *       children?: null[]
+       *       children?: ClientRoute[]
        *     }> | null
        *     component?: string
        *     redirect?: string
@@ -3124,6 +3014,9 @@ declare global {
       getDynamicMenuList<
         Config extends Alova2MethodConfig<ApiResultOfIEnumerableOfDynamicMenu> & {
           params: {
+            /**
+             * 关键词
+             */
             keyword?: string;
           };
         }
@@ -3142,6 +3035,7 @@ declare global {
        * **Query Parameters**
        * ```ts
        * type QueryParameters = {
+       *   // 动态菜单id
        *   id?: string
        * }
        * ```
@@ -3152,11 +3046,13 @@ declare global {
        * ```ts
        * type Response = {
        *   // 响应编号
-       *   code?: number
+       *   code?: number | string
        *   // 响应消息
        *   message?: string
+       *   // [params2] start
        *   // 响应数据 T
-       *   data?: {
+       *   // [params2] end
+       *   data?: null | {
        *     id?: string
        *     path: string
        *     name: string
@@ -3165,12 +3061,12 @@ declare global {
        *       title?: string
        *       icon?: string
        *       expanded?: boolean
-       *       orderNo?: number
+       *       orderNo?: number | string
        *       hidden?: boolean
        *       hiddenBreadcrumb?: boolean
        *       single?: boolean
        *       frameSrc?: string
-       *     } | null
+       *     }
        *     childrenString?: string
        *     // [params1] start
        *     // [items] start
@@ -3181,23 +3077,24 @@ declare global {
        *       name?: string
        *       component?: string
        *       redirect?: string
-       *       meta?: {
+       *       meta?: null | {
        *         title?: string
        *         icon?: string
        *         expanded?: boolean
-       *         orderNo?: number
+       *         orderNo?: number | string
        *         hidden?: boolean
        *         hiddenBreadcrumb?: boolean
        *         single?: boolean
        *         frameSrc?: string
-       *       } | null
+       *       }
        *       // [items] start
+       *       // [cycle] $.data.children.[]
        *       // [items] end
-       *       children?: null[]
+       *       children?: ClientRoute[]
        *     }> | null
        *     component?: string
        *     redirect?: string
-       *   } | null
+       *   }
        *   // 扩展数据
        *   extend?: null
        *   // 请求是否返回正确
@@ -3208,6 +3105,9 @@ declare global {
       getDynamicMenu<
         Config extends Alova2MethodConfig<ApiResultOfDynamicMenu> & {
           params: {
+            /**
+             * 动态菜单id
+             */
             id?: string;
           };
         }
@@ -3234,12 +3134,12 @@ declare global {
        *     title?: string
        *     icon?: string
        *     expanded?: boolean
-       *     orderNo?: number
+       *     orderNo?: number | string
        *     hidden?: boolean
        *     hiddenBreadcrumb?: boolean
        *     single?: boolean
        *     frameSrc?: string
-       *   } | null
+       *   }
        *   childrenString?: string
        *   // [params1] start
        *   // [items] start
@@ -3250,19 +3150,20 @@ declare global {
        *     name?: string
        *     component?: string
        *     redirect?: string
-       *     meta?: {
+       *     meta?: null | {
        *       title?: string
        *       icon?: string
        *       expanded?: boolean
-       *       orderNo?: number
+       *       orderNo?: number | string
        *       hidden?: boolean
        *       hiddenBreadcrumb?: boolean
        *       single?: boolean
        *       frameSrc?: string
-       *     } | null
+       *     }
        *     // [items] start
+       *     // [cycle] $.children.[]
        *     // [items] end
-       *     children?: null[]
+       *     children?: ClientRoute[]
        *   }> | null
        *   component?: string
        *   redirect?: string
@@ -3275,11 +3176,13 @@ declare global {
        * ```ts
        * type Response = {
        *   // 响应编号
-       *   code?: number
+       *   code?: number | string
        *   // 响应消息
        *   message?: string
+       *   // [params2] start
        *   // 响应数据 T
-       *   data?: {
+       *   // [params2] end
+       *   data?: null | {
        *     id?: string
        *     path: string
        *     name: string
@@ -3288,12 +3191,12 @@ declare global {
        *       title?: string
        *       icon?: string
        *       expanded?: boolean
-       *       orderNo?: number
+       *       orderNo?: number | string
        *       hidden?: boolean
        *       hiddenBreadcrumb?: boolean
        *       single?: boolean
        *       frameSrc?: string
-       *     } | null
+       *     }
        *     childrenString?: string
        *     // [params1] start
        *     // [items] start
@@ -3304,23 +3207,24 @@ declare global {
        *       name?: string
        *       component?: string
        *       redirect?: string
-       *       meta?: {
+       *       meta?: null | {
        *         title?: string
        *         icon?: string
        *         expanded?: boolean
-       *         orderNo?: number
+       *         orderNo?: number | string
        *         hidden?: boolean
        *         hiddenBreadcrumb?: boolean
        *         single?: boolean
        *         frameSrc?: string
-       *       } | null
+       *       }
        *       // [items] start
+       *       // [cycle] $.data.children.[]
        *       // [items] end
-       *       children?: null[]
+       *       children?: ClientRoute[]
        *     }> | null
        *     component?: string
        *     redirect?: string
-       *   } | null
+       *   }
        *   // 扩展数据
        *   extend?: null
        *   // 请求是否返回正确
@@ -3355,12 +3259,12 @@ declare global {
        *     title?: string
        *     icon?: string
        *     expanded?: boolean
-       *     orderNo?: number
+       *     orderNo?: number | string
        *     hidden?: boolean
        *     hiddenBreadcrumb?: boolean
        *     single?: boolean
        *     frameSrc?: string
-       *   } | null
+       *   }
        *   childrenString?: string
        *   // [params1] start
        *   // [items] start
@@ -3371,19 +3275,20 @@ declare global {
        *     name?: string
        *     component?: string
        *     redirect?: string
-       *     meta?: {
+       *     meta?: null | {
        *       title?: string
        *       icon?: string
        *       expanded?: boolean
-       *       orderNo?: number
+       *       orderNo?: number | string
        *       hidden?: boolean
        *       hiddenBreadcrumb?: boolean
        *       single?: boolean
        *       frameSrc?: string
-       *     } | null
+       *     }
        *     // [items] start
+       *     // [cycle] $.children.[]
        *     // [items] end
-       *     children?: null[]
+       *     children?: ClientRoute[]
        *   }> | null
        *   component?: string
        *   redirect?: string
@@ -3396,11 +3301,13 @@ declare global {
        * ```ts
        * type Response = {
        *   // 响应编号
-       *   code?: number
+       *   code?: number | string
        *   // 响应消息
        *   message?: string
+       *   // [params2] start
        *   // 响应数据 T
-       *   data?: {
+       *   // [params2] end
+       *   data?: null | {
        *     id?: string
        *     path: string
        *     name: string
@@ -3409,12 +3316,12 @@ declare global {
        *       title?: string
        *       icon?: string
        *       expanded?: boolean
-       *       orderNo?: number
+       *       orderNo?: number | string
        *       hidden?: boolean
        *       hiddenBreadcrumb?: boolean
        *       single?: boolean
        *       frameSrc?: string
-       *     } | null
+       *     }
        *     childrenString?: string
        *     // [params1] start
        *     // [items] start
@@ -3425,23 +3332,24 @@ declare global {
        *       name?: string
        *       component?: string
        *       redirect?: string
-       *       meta?: {
+       *       meta?: null | {
        *         title?: string
        *         icon?: string
        *         expanded?: boolean
-       *         orderNo?: number
+       *         orderNo?: number | string
        *         hidden?: boolean
        *         hiddenBreadcrumb?: boolean
        *         single?: boolean
        *         frameSrc?: string
-       *       } | null
+       *       }
        *       // [items] start
+       *       // [cycle] $.data.children.[]
        *       // [items] end
-       *       children?: null[]
+       *       children?: ClientRoute[]
        *     }> | null
        *     component?: string
        *     redirect?: string
-       *   } | null
+       *   }
        *   // 扩展数据
        *   extend?: null
        *   // 请求是否返回正确
@@ -3468,6 +3376,7 @@ declare global {
        * **Query Parameters**
        * ```ts
        * type QueryParameters = {
+       *   // 动态菜单id
        *   id?: string
        * }
        * ```
@@ -3478,11 +3387,13 @@ declare global {
        * ```ts
        * type Response = {
        *   // 响应编号
-       *   code?: number
+       *   code?: number | string
        *   // 响应消息
        *   message?: string
+       *   // [params2] start
        *   // 响应数据 T
-       *   data?: {
+       *   // [params2] end
+       *   data?: null | {
        *     id?: string
        *     path: string
        *     name: string
@@ -3491,12 +3402,12 @@ declare global {
        *       title?: string
        *       icon?: string
        *       expanded?: boolean
-       *       orderNo?: number
+       *       orderNo?: number | string
        *       hidden?: boolean
        *       hiddenBreadcrumb?: boolean
        *       single?: boolean
        *       frameSrc?: string
-       *     } | null
+       *     }
        *     childrenString?: string
        *     // [params1] start
        *     // [items] start
@@ -3507,23 +3418,24 @@ declare global {
        *       name?: string
        *       component?: string
        *       redirect?: string
-       *       meta?: {
+       *       meta?: null | {
        *         title?: string
        *         icon?: string
        *         expanded?: boolean
-       *         orderNo?: number
+       *         orderNo?: number | string
        *         hidden?: boolean
        *         hiddenBreadcrumb?: boolean
        *         single?: boolean
        *         frameSrc?: string
-       *       } | null
+       *       }
        *       // [items] start
+       *       // [cycle] $.data.children.[]
        *       // [items] end
-       *       children?: null[]
+       *       children?: ClientRoute[]
        *     }> | null
        *     component?: string
        *     redirect?: string
-       *   } | null
+       *   }
        *   // 扩展数据
        *   extend?: null
        *   // 请求是否返回正确
@@ -3534,6 +3446,9 @@ declare global {
       deleteDynamicMenu<
         Config extends Alova2MethodConfig<ApiResultOfDynamicMenu> & {
           params: {
+            /**
+             * 动态菜单id
+             */
             id?: string;
           };
         }
@@ -3554,7 +3469,9 @@ declare global {
        * **Query Parameters**
        * ```ts
        * type QueryParameters = {
+       *   // 远程图像url
        *   remoteUrl?: string
+       *   // 是否直接下载, 不管浏览器是否支持
        *   down?: boolean
        * }
        * ```
@@ -3569,7 +3486,13 @@ declare global {
       getRemoteImage<
         Config extends Alova2MethodConfig<null> & {
           params: {
+            /**
+             * 远程图像url
+             */
             remoteUrl?: string;
+            /**
+             * 是否直接下载, 不管浏览器是否支持
+             */
             down?: boolean;
           };
         }
@@ -3590,8 +3513,10 @@ declare global {
        * **Query Parameters**
        * ```ts
        * type QueryParameters = {
-       *   longitude?: number
-       *   latitude?: number
+       *   // 经度坐标
+       *   longitude?: number | string
+       *   // 维度坐标
+       *   latitude?: number | string
        * }
        * ```
        *
@@ -3601,25 +3526,27 @@ declare global {
        * ```ts
        * type Response = {
        *   // 响应编号
-       *   code?: number
+       *   code?: number | string
        *   // 响应消息
        *   message?: string
+       *   // [params2] start
        *   // 响应数据 T
-       *   data?: {
+       *   // [params2] end
+       *   data?: null | {
        *     formatted_address?: string
        *     location?: {
-       *       lon?: number
-       *       lat?: number
+       *       lon?: number | string
+       *       lat?: number | string
        *     }
        *     addressComponent?: {
        *       address?: string
-       *       address_distance?: number
+       *       address_distance?: number | string
        *       address_position?: string
        *       poi?: string
-       *       poi_distance?: number
+       *       poi_distance?: number | string
        *       poi_position?: string
        *       road?: string
-       *       road_distance?: number
+       *       road_distance?: number | string
        *       nation?: string
        *       province?: string
        *       province_code?: string
@@ -3628,7 +3555,7 @@ declare global {
        *       county?: string
        *       county_code?: string
        *     }
-       *   } | null
+       *   }
        *   // 扩展数据
        *   extend?: null
        *   // 请求是否返回正确
@@ -3639,8 +3566,14 @@ declare global {
       geocoderByLocation<
         Config extends Alova2MethodConfig<ApiResultOfAddressInfo> & {
           params: {
-            longitude?: number;
-            latitude?: number;
+            /**
+             * 经度坐标
+             */
+            longitude?: number | string;
+            /**
+             * 维度坐标
+             */
+            latitude?: number | string;
           };
         }
       >(
@@ -3658,6 +3591,7 @@ declare global {
        * **Query Parameters**
        * ```ts
        * type QueryParameters = {
+       *   // 位置描述（注：地址中请包含城市名称，否则会影响解析效果）
        *   address?: string
        * }
        * ```
@@ -3668,17 +3602,19 @@ declare global {
        * ```ts
        * type Response = {
        *   // 响应编号
-       *   code?: number
+       *   code?: number | string
        *   // 响应消息
        *   message?: string
+       *   // [params2] start
        *   // 响应数据 T
-       *   data?: {
-       *     score?: number
+       *   // [params2] end
+       *   data?: null | {
+       *     score?: number | string
        *     level?: string
        *     keyWord?: string
-       *     lon?: number
-       *     lat?: number
-       *   } | null
+       *     lon?: number | string
+       *     lat?: number | string
+       *   }
        *   // 扩展数据
        *   extend?: null
        *   // 请求是否返回正确
@@ -3689,6 +3625,9 @@ declare global {
       geocoderGetLocation<
         Config extends Alova2MethodConfig<ApiResultOfLocationInfo> & {
           params: {
+            /**
+             * 位置描述（注：地址中请包含城市名称，否则会影响解析效果）
+             */
             address?: string;
           };
         }
@@ -3709,6 +3648,7 @@ declare global {
        * **Query Parameters**
        * ```ts
        * type QueryParameters = {
+       *   // 二维码内容
        *   content?: string
        * }
        * ```
@@ -3723,6 +3663,9 @@ declare global {
       getQrcode<
         Config extends Alova2MethodConfig<null> & {
           params: {
+            /**
+             * 二维码内容
+             */
             content?: string;
           };
         }
@@ -3743,10 +3686,14 @@ declare global {
        * **Query Parameters**
        * ```ts
        * type QueryParameters = {
+       *   // 关键词
        *   keyword?: string
+       *   // 启用状态
        *   enabled?: string
-       *   page?: number
-       *   pageSize?: number
+       *   // 页码, 默认: 1
+       *   page?: number | string
+       *   // 页面大小
+       *   pageSize?: number | string
        * }
        * ```
        *
@@ -3756,11 +3703,13 @@ declare global {
        * ```ts
        * type Response = {
        *   // 响应编号
-       *   code?: number
+       *   code?: number | string
        *   // 响应消息
        *   message?: string
+       *   // [params2] start
        *   // 响应数据 T
-       *   data?: {
+       *   // [params2] end
+       *   data?: null | {
        *     // [items] start
        *     // [items] end
        *     list?: Array<{
@@ -3777,12 +3726,12 @@ declare global {
        *       normalizedName?: string | null
        *       concurrencyStamp?: string | null
        *     }>
-       *     page?: number
-       *     pageSize?: number
-       *     totalPageCount?: number
-       *     totalItemCount?: number
+       *     page?: number | string
+       *     pageSize?: number | string
+       *     totalPageCount?: number | string
+       *     totalItemCount?: number | string
        *     extendData?: null
-       *   } | null
+       *   }
        *   // 扩展数据
        *   extend?: null
        *   // 请求是否返回正确
@@ -3793,10 +3742,22 @@ declare global {
       getRoleList<
         Config extends Alova2MethodConfig<ApiResultOfPageListOfApplicationRole> & {
           params: {
+            /**
+             * 关键词
+             */
             keyword?: string;
+            /**
+             * 启用状态
+             */
             enabled?: string;
-            page?: number;
-            pageSize?: number;
+            /**
+             * 页码, 默认: 1
+             */
+            page?: number | string;
+            /**
+             * 页面大小
+             */
+            pageSize?: number | string;
           };
         }
       >(
@@ -3814,6 +3775,7 @@ declare global {
        * **Query Parameters**
        * ```ts
        * type QueryParameters = {
+       *   // 角色id
        *   id?: string
        * }
        * ```
@@ -3824,11 +3786,13 @@ declare global {
        * ```ts
        * type Response = {
        *   // 响应编号
-       *   code?: number
+       *   code?: number | string
        *   // 响应消息
        *   message?: string
+       *   // [params2] start
        *   // 响应数据 T
-       *   data?: {
+       *   // [params2] end
+       *   data?: null | {
        *     name?: string | null
        *     description?: string
        *     rights?: string
@@ -3841,7 +3805,7 @@ declare global {
        *     id?: string | null
        *     normalizedName?: string | null
        *     concurrencyStamp?: string | null
-       *   } | null
+       *   }
        *   // 扩展数据
        *   extend?: null
        *   // 请求是否返回正确
@@ -3852,6 +3816,9 @@ declare global {
       getRole<
         Config extends Alova2MethodConfig<ApiResultOfApplicationRole> & {
           params: {
+            /**
+             * 角色id
+             */
             id?: string;
           };
         }
@@ -3870,6 +3837,7 @@ declare global {
        * **Query Parameters**
        * ```ts
        * type QueryParameters = {
+       *   // 角色名称
        *   name?: string
        * }
        * ```
@@ -3880,11 +3848,13 @@ declare global {
        * ```ts
        * type Response = {
        *   // 响应编号
-       *   code?: number
+       *   code?: number | string
        *   // 响应消息
        *   message?: string
+       *   // [params2] start
        *   // 响应数据 T
-       *   data?: {
+       *   // [params2] end
+       *   data?: null | {
        *     name?: string | null
        *     description?: string
        *     rights?: string
@@ -3897,7 +3867,7 @@ declare global {
        *     id?: string | null
        *     normalizedName?: string | null
        *     concurrencyStamp?: string | null
-       *   } | null
+       *   }
        *   // 扩展数据
        *   extend?: null
        *   // 请求是否返回正确
@@ -3908,6 +3878,9 @@ declare global {
       getRoleByName<
         Config extends Alova2MethodConfig<ApiResultOfApplicationRole> & {
           params: {
+            /**
+             * 角色名称
+             */
             name?: string;
           };
         }
@@ -3947,11 +3920,13 @@ declare global {
        * ```ts
        * type Response = {
        *   // 响应编号
-       *   code?: number
+       *   code?: number | string
        *   // 响应消息
        *   message?: string
+       *   // [params2] start
        *   // 响应数据 T
-       *   data?: {
+       *   // [params2] end
+       *   data?: null | {
        *     name?: string | null
        *     description?: string
        *     rights?: string
@@ -3964,7 +3939,7 @@ declare global {
        *     id?: string | null
        *     normalizedName?: string | null
        *     concurrencyStamp?: string | null
-       *   } | null
+       *   }
        *   // 扩展数据
        *   extend?: null
        *   // 请求是否返回正确
@@ -3982,7 +3957,7 @@ declare global {
       /**
        * ---
        *
-       * [PUT] 更新角色配置
+       * [PUT] 更新角色
        *
        * **path:** /api/Base/Roles/update
        *
@@ -4012,11 +3987,13 @@ declare global {
        * ```ts
        * type Response = {
        *   // 响应编号
-       *   code?: number
+       *   code?: number | string
        *   // 响应消息
        *   message?: string
+       *   // [params2] start
        *   // 响应数据 T
-       *   data?: {
+       *   // [params2] end
+       *   data?: null | {
        *     name?: string | null
        *     description?: string
        *     rights?: string
@@ -4029,7 +4006,7 @@ declare global {
        *     id?: string | null
        *     normalizedName?: string | null
        *     concurrencyStamp?: string | null
-       *   } | null
+       *   }
        *   // 扩展数据
        *   extend?: null
        *   // 请求是否返回正确
@@ -4056,6 +4033,7 @@ declare global {
        * **Query Parameters**
        * ```ts
        * type QueryParameters = {
+       *   // 角色id
        *   id?: string
        * }
        * ```
@@ -4066,11 +4044,13 @@ declare global {
        * ```ts
        * type Response = {
        *   // 响应编号
-       *   code?: number
+       *   code?: number | string
        *   // 响应消息
        *   message?: string
+       *   // [params2] start
        *   // 响应数据 T
-       *   data?: {
+       *   // [params2] end
+       *   data?: null | {
        *     name?: string | null
        *     description?: string
        *     rights?: string
@@ -4083,7 +4063,7 @@ declare global {
        *     id?: string | null
        *     normalizedName?: string | null
        *     concurrencyStamp?: string | null
-       *   } | null
+       *   }
        *   // 扩展数据
        *   extend?: null
        *   // 请求是否返回正确
@@ -4094,6 +4074,9 @@ declare global {
       deleteRole<
         Config extends Alova2MethodConfig<ApiResultOfApplicationRole> & {
           params: {
+            /**
+             * 角色id
+             */
             id?: string;
           };
         }
@@ -4103,7 +4086,7 @@ declare global {
       /**
        * ---
        *
-       * [DELETE] 删除指定角色
+       * [DELETE] 删除指定角色，by name
        *
        * **path:** /api/Base/Roles/deleteByName
        *
@@ -4112,6 +4095,7 @@ declare global {
        * **Query Parameters**
        * ```ts
        * type QueryParameters = {
+       *   // 角色名称
        *   name?: string
        * }
        * ```
@@ -4122,11 +4106,13 @@ declare global {
        * ```ts
        * type Response = {
        *   // 响应编号
-       *   code?: number
+       *   code?: number | string
        *   // 响应消息
        *   message?: string
+       *   // [params2] start
        *   // 响应数据 T
-       *   data?: {
+       *   // [params2] end
+       *   data?: null | {
        *     name?: string | null
        *     description?: string
        *     rights?: string
@@ -4139,7 +4125,7 @@ declare global {
        *     id?: string | null
        *     normalizedName?: string | null
        *     concurrencyStamp?: string | null
-       *   } | null
+       *   }
        *   // 扩展数据
        *   extend?: null
        *   // 请求是否返回正确
@@ -4150,6 +4136,9 @@ declare global {
       deleteRoleByName<
         Config extends Alova2MethodConfig<ApiResultOfApplicationRole> & {
           params: {
+            /**
+             * 角色名称
+             */
             name?: string;
           };
         }
@@ -4168,6 +4157,7 @@ declare global {
        * **Query Parameters**
        * ```ts
        * type QueryParameters = {
+       *   // 角色名称
        *   name?: string
        * }
        * ```
@@ -4178,11 +4168,11 @@ declare global {
        * ```ts
        * type Response = {
        *   // 响应编号
-       *   code?: number
+       *   code?: number | string
        *   // 响应消息
        *   message?: string
        *   // 响应数据 T
-       *   data?: number
+       *   data?: number | string
        *   // 扩展数据
        *   extend?: null
        *   // 请求是否返回正确
@@ -4193,6 +4183,9 @@ declare global {
       syncRoleRightsToUsers<
         Config extends Alova2MethodConfig<ApiResultOfint> & {
           params: {
+            /**
+             * 角色名称
+             */
             name?: string;
           };
         }
@@ -4213,13 +4206,21 @@ declare global {
        * **Query Parameters**
        * ```ts
        * type QueryParameters = {
+       *   // 路径, 为空时为默认路径
        *   path?: string
-       *   maxWidth?: number
-       *   maxHeight?: number
+       *   // 最大宽度
+       *   maxWidth?: number | string
+       *   // 最大高度
+       *   maxHeight?: number | string
+       *   // 水印内容
        *   waterMark?: string
-       *   waterMarkFontsize?: number
-       *   waterMarkMargin?: number
+       *   // 水印字体大小, 默认20px
+       *   waterMarkFontsize?: number | string
+       *   // 水印的边距, 默认20px
+       *   waterMarkMargin?: number | string
+       *   // 水印位置(scaling: 铺满自动缩放, topleft: 左上角, topright: 右上角, bottomleft: 左下角, bottomright: 右下角)
        *   waterMarkPosition?: number
+       *   // 保留原始名称
        *   keepOriginalName?: boolean
        * }
        * ```
@@ -4239,15 +4240,20 @@ declare global {
        * ```ts
        * type Response = {
        *   // 响应编号
-       *   code?: number
+       *   code?: number | string
        *   // 响应消息
        *   message?: string
+       *   // [params2] start
        *   // 响应数据 T
-       *   data?: {
+       *   // [params2] end
+       *   data?: null | {
+       *     // 相对路径
        *     url?: string
+       *     // 绝对路径
        *     absUrl?: string
+       *     // 其他附加数据
        *     data?: null
-       *   } | null
+       *   }
        *   // 扩展数据
        *   extend?: null
        *   // 请求是否返回正确
@@ -4258,13 +4264,37 @@ declare global {
       upload<
         Config extends Alova2MethodConfig<ApiResultOfUpFileUploadResult> & {
           params: {
+            /**
+             * 路径, 为空时为默认路径
+             */
             path?: string;
-            maxWidth?: number;
-            maxHeight?: number;
+            /**
+             * 最大宽度
+             */
+            maxWidth?: number | string;
+            /**
+             * 最大高度
+             */
+            maxHeight?: number | string;
+            /**
+             * 水印内容
+             */
             waterMark?: string;
-            waterMarkFontsize?: number;
-            waterMarkMargin?: number;
+            /**
+             * 水印字体大小, 默认20px
+             */
+            waterMarkFontsize?: number | string;
+            /**
+             * 水印的边距, 默认20px
+             */
+            waterMarkMargin?: number | string;
+            /**
+             * 水印位置(scaling: 铺满自动缩放, topleft: 左上角, topright: 右上角, bottomleft: 左下角, bottomright: 右下角)
+             */
             waterMarkPosition?: WaterMarkPositionEnum;
+            /**
+             * 保留原始名称
+             */
             keepOriginalName?: boolean;
           };
           data: {
@@ -4288,12 +4318,18 @@ declare global {
        * **Query Parameters**
        * ```ts
        * type QueryParameters = {
+       *   // 类型
        *   type?: string
+       *   // 开始日期
        *   startdate?: string
+       *   // 结束日期
        *   enddate?: string
+       *   // 关键词
        *   keyword?: string
-       *   page?: number
-       *   pageSize?: number
+       *   // 页码
+       *   page?: number | string
+       *   // 页面大小
+       *   pageSize?: number | string
        * }
        * ```
        *
@@ -4303,11 +4339,13 @@ declare global {
        * ```ts
        * type Response = {
        *   // 响应编号
-       *   code?: number
+       *   code?: number | string
        *   // 响应消息
        *   message?: string
+       *   // [params2] start
        *   // 响应数据 T
-       *   data?: {
+       *   // [params2] end
+       *   data?: null | {
        *     // [items] start
        *     // [items] end
        *     list?: Array<{
@@ -4315,7 +4353,7 @@ declare global {
        *       requestUrl: string
        *       requestMethod?: string
        *       requestBody?: string
-       *       requestMilliseconds?: number
+       *       requestMilliseconds?: number | string
        *       type?: number
        *       content?: string
        *       userId?: string
@@ -4328,12 +4366,12 @@ declare global {
        *       ua?: string
        *       creationDate?: string
        *     }>
-       *     page?: number
-       *     pageSize?: number
-       *     totalPageCount?: number
-       *     totalItemCount?: number
+       *     page?: number | string
+       *     pageSize?: number | string
+       *     totalPageCount?: number | string
+       *     totalItemCount?: number | string
        *     extendData?: null
-       *   } | null
+       *   }
        *   // 扩展数据
        *   extend?: null
        *   // 请求是否返回正确
@@ -4344,12 +4382,30 @@ declare global {
       getUserOperateLogList<
         Config extends Alova2MethodConfig<ApiResultOfPageListOfUserOperateLog> & {
           params: {
+            /**
+             * 类型
+             */
             type?: string;
+            /**
+             * 开始日期
+             */
             startdate?: string;
+            /**
+             * 结束日期
+             */
             enddate?: string;
+            /**
+             * 关键词
+             */
             keyword?: string;
-            page?: number;
-            pageSize?: number;
+            /**
+             * 页码
+             */
+            page?: number | string;
+            /**
+             * 页面大小
+             */
+            pageSize?: number | string;
           };
         }
       >(
@@ -4367,6 +4423,7 @@ declare global {
        * **Query Parameters**
        * ```ts
        * type QueryParameters = {
+       *   // 用户操作日志id
        *   id?: string
        * }
        * ```
@@ -4377,16 +4434,18 @@ declare global {
        * ```ts
        * type Response = {
        *   // 响应编号
-       *   code?: number
+       *   code?: number | string
        *   // 响应消息
        *   message?: string
+       *   // [params2] start
        *   // 响应数据 T
-       *   data?: {
+       *   // [params2] end
+       *   data?: null | {
        *     id?: string
        *     requestUrl: string
        *     requestMethod?: string
        *     requestBody?: string
-       *     requestMilliseconds?: number
+       *     requestMilliseconds?: number | string
        *     type?: number
        *     content?: string
        *     userId?: string
@@ -4398,7 +4457,7 @@ declare global {
        *     os?: string
        *     ua?: string
        *     creationDate?: string
-       *   } | null
+       *   }
        *   // 扩展数据
        *   extend?: null
        *   // 请求是否返回正确
@@ -4409,6 +4468,9 @@ declare global {
       getUserOperateLog<
         Config extends Alova2MethodConfig<ApiResultOfUserOperateLog> & {
           params: {
+            /**
+             * 用户操作日志id
+             */
             id?: string;
           };
         }
@@ -4431,7 +4493,7 @@ declare global {
        *   requestUrl: string
        *   requestMethod?: string
        *   requestBody?: string
-       *   requestMilliseconds?: number
+       *   requestMilliseconds?: number | string
        *   type?: number
        *   content?: string
        *   userId?: string
@@ -4452,16 +4514,18 @@ declare global {
        * ```ts
        * type Response = {
        *   // 响应编号
-       *   code?: number
+       *   code?: number | string
        *   // 响应消息
        *   message?: string
+       *   // [params2] start
        *   // 响应数据 T
-       *   data?: {
+       *   // [params2] end
+       *   data?: null | {
        *     id?: string
        *     requestUrl: string
        *     requestMethod?: string
        *     requestBody?: string
-       *     requestMilliseconds?: number
+       *     requestMilliseconds?: number | string
        *     type?: number
        *     content?: string
        *     userId?: string
@@ -4473,7 +4537,7 @@ declare global {
        *     os?: string
        *     ua?: string
        *     creationDate?: string
-       *   } | null
+       *   }
        *   // 扩展数据
        *   extend?: null
        *   // 请求是否返回正确
@@ -4504,7 +4568,7 @@ declare global {
        *   requestUrl: string
        *   requestMethod?: string
        *   requestBody?: string
-       *   requestMilliseconds?: number
+       *   requestMilliseconds?: number | string
        *   type?: number
        *   content?: string
        *   userId?: string
@@ -4525,16 +4589,18 @@ declare global {
        * ```ts
        * type Response = {
        *   // 响应编号
-       *   code?: number
+       *   code?: number | string
        *   // 响应消息
        *   message?: string
+       *   // [params2] start
        *   // 响应数据 T
-       *   data?: {
+       *   // [params2] end
+       *   data?: null | {
        *     id?: string
        *     requestUrl: string
        *     requestMethod?: string
        *     requestBody?: string
-       *     requestMilliseconds?: number
+       *     requestMilliseconds?: number | string
        *     type?: number
        *     content?: string
        *     userId?: string
@@ -4546,7 +4612,7 @@ declare global {
        *     os?: string
        *     ua?: string
        *     creationDate?: string
-       *   } | null
+       *   }
        *   // 扩展数据
        *   extend?: null
        *   // 请求是否返回正确
@@ -4573,6 +4639,7 @@ declare global {
        * **Query Parameters**
        * ```ts
        * type QueryParameters = {
+       *   // 用户操作日志id
        *   id?: string
        * }
        * ```
@@ -4583,16 +4650,18 @@ declare global {
        * ```ts
        * type Response = {
        *   // 响应编号
-       *   code?: number
+       *   code?: number | string
        *   // 响应消息
        *   message?: string
+       *   // [params2] start
        *   // 响应数据 T
-       *   data?: {
+       *   // [params2] end
+       *   data?: null | {
        *     id?: string
        *     requestUrl: string
        *     requestMethod?: string
        *     requestBody?: string
-       *     requestMilliseconds?: number
+       *     requestMilliseconds?: number | string
        *     type?: number
        *     content?: string
        *     userId?: string
@@ -4604,7 +4673,7 @@ declare global {
        *     os?: string
        *     ua?: string
        *     creationDate?: string
-       *   } | null
+       *   }
        *   // 扩展数据
        *   extend?: null
        *   // 请求是否返回正确
@@ -4615,6 +4684,9 @@ declare global {
       deleteUserOperateLog<
         Config extends Alova2MethodConfig<ApiResultOfUserOperateLog> & {
           params: {
+            /**
+             * 用户操作日志id
+             */
             id?: string;
           };
         }
@@ -4633,9 +4705,13 @@ declare global {
        * **Query Parameters**
        * ```ts
        * type QueryParameters = {
+       *   // 类型
        *   type?: string
+       *   // 开始日期
        *   startdate?: string
+       *   // 结束日期
        *   enddate?: string
+       *   // 关键词
        *   keyword?: string
        * }
        * ```
@@ -4646,11 +4722,11 @@ declare global {
        * ```ts
        * type Response = {
        *   // 响应编号
-       *   code?: number
+       *   code?: number | string
        *   // 响应消息
        *   message?: string
        *   // 响应数据 T
-       *   data?: number
+       *   data?: number | string
        *   // 扩展数据
        *   extend?: null
        *   // 请求是否返回正确
@@ -4661,9 +4737,21 @@ declare global {
       clearUserOperateLog<
         Config extends Alova2MethodConfig<ApiResultOfint> & {
           params: {
+            /**
+             * 类型
+             */
             type?: string;
+            /**
+             * 开始日期
+             */
             startdate?: string;
+            /**
+             * 结束日期
+             */
             enddate?: string;
+            /**
+             * 关键词
+             */
             keyword?: string;
           };
         }
@@ -4684,13 +4772,20 @@ declare global {
        * **Query Parameters**
        * ```ts
        * type QueryParameters = {
+       *   // 角色名称
        *   role?: string
+       *   // 开始日期
        *   startdate?: string
+       *   // 结束日期
        *   enddate?: string
+       *   // 启用状态
        *   enabled?: string
+       *   // 关键词
        *   keyword?: string
-       *   page?: number
-       *   pageSize?: number
+       *   // 页码, 默认: 1
+       *   page?: number | string
+       *   // 页面大小
+       *   pageSize?: number | string
        * }
        * ```
        *
@@ -4700,11 +4795,13 @@ declare global {
        * ```ts
        * type Response = {
        *   // 响应编号
-       *   code?: number
+       *   code?: number | string
        *   // 响应消息
        *   message?: string
+       *   // [params2] start
        *   // 响应数据 T
-       *   data?: {
+       *   // [params2] end
+       *   data?: null | {
        *     // [items] start
        *     // [items] end
        *     list?: Array<{
@@ -4734,14 +4831,14 @@ declare global {
        *       twoFactorEnabled?: boolean
        *       lockoutEnd?: string | null
        *       lockoutEnabled?: boolean
-       *       accessFailedCount?: number
+       *       accessFailedCount?: number | string
        *     }>
-       *     page?: number
-       *     pageSize?: number
-       *     totalPageCount?: number
-       *     totalItemCount?: number
+       *     page?: number | string
+       *     pageSize?: number | string
+       *     totalPageCount?: number | string
+       *     totalItemCount?: number | string
        *     extendData?: null
-       *   } | null
+       *   }
        *   // 扩展数据
        *   extend?: null
        *   // 请求是否返回正确
@@ -4752,13 +4849,34 @@ declare global {
       getUserList<
         Config extends Alova2MethodConfig<ApiResultOfPageListOfApplicationUser> & {
           params: {
+            /**
+             * 角色名称
+             */
             role?: string;
+            /**
+             * 开始日期
+             */
             startdate?: string;
+            /**
+             * 结束日期
+             */
             enddate?: string;
+            /**
+             * 启用状态
+             */
             enabled?: string;
+            /**
+             * 关键词
+             */
             keyword?: string;
-            page?: number;
-            pageSize?: number;
+            /**
+             * 页码, 默认: 1
+             */
+            page?: number | string;
+            /**
+             * 页面大小
+             */
+            pageSize?: number | string;
           };
         }
       >(
@@ -4776,6 +4894,7 @@ declare global {
        * **Query Parameters**
        * ```ts
        * type QueryParameters = {
+       *   // 用户id
        *   id?: string
        * }
        * ```
@@ -4786,11 +4905,13 @@ declare global {
        * ```ts
        * type Response = {
        *   // 响应编号
-       *   code?: number
+       *   code?: number | string
        *   // 响应消息
        *   message?: string
+       *   // [params2] start
        *   // 响应数据 T
-       *   data?: {
+       *   // [params2] end
+       *   data?: null | {
        *     email?: string | null
        *     userName?: string
        *     name?: string
@@ -4800,7 +4921,7 @@ declare global {
        *     rights?: string
        *     signature?: string
        *     date?: string
-       *   } | null
+       *   }
        *   // 扩展数据
        *   extend?: null
        *   // 请求是否返回正确
@@ -4811,6 +4932,9 @@ declare global {
       getUser<
         Config extends Alova2MethodConfig<ApiResultOfIUserProfile> & {
           params: {
+            /**
+             * 用户id
+             */
             id?: string;
           };
         }
@@ -4820,7 +4944,7 @@ declare global {
       /**
        * ---
        *
-       * [GET] 根据用户名获取用户详细资料
+       * [GET] 获取用户详细资料
        *
        * **path:** /api/Base/Users/getByName
        *
@@ -4829,6 +4953,7 @@ declare global {
        * **Query Parameters**
        * ```ts
        * type QueryParameters = {
+       *   // 用户名称
        *   username?: string
        * }
        * ```
@@ -4839,11 +4964,13 @@ declare global {
        * ```ts
        * type Response = {
        *   // 响应编号
-       *   code?: number
+       *   code?: number | string
        *   // 响应消息
        *   message?: string
+       *   // [params2] start
        *   // 响应数据 T
-       *   data?: {
+       *   // [params2] end
+       *   data?: null | {
        *     email?: string | null
        *     userName?: string
        *     name?: string
@@ -4853,7 +4980,7 @@ declare global {
        *     rights?: string
        *     signature?: string
        *     date?: string
-       *   } | null
+       *   }
        *   // 扩展数据
        *   extend?: null
        *   // 请求是否返回正确
@@ -4864,6 +4991,9 @@ declare global {
       getUserByName<
         Config extends Alova2MethodConfig<ApiResultOfIUserProfile> & {
           params: {
+            /**
+             * 用户名称
+             */
             username?: string;
           };
         }
@@ -4882,6 +5012,7 @@ declare global {
        * **Query Parameters**
        * ```ts
        * type QueryParameters = {
+       *   // 用户名称
        *   userName?: string
        * }
        * ```
@@ -4892,7 +5023,7 @@ declare global {
        * ```ts
        * type Response = {
        *   // 响应编号
-       *   code?: number
+       *   code?: number | string
        *   // 响应消息
        *   message?: string
        *   // 响应数据 T
@@ -4905,19 +5036,20 @@ declare global {
        *     name?: string
        *     component?: string
        *     redirect?: string
-       *     meta?: {
+       *     meta?: null | {
        *       title?: string
        *       icon?: string
        *       expanded?: boolean
-       *       orderNo?: number
+       *       orderNo?: number | string
        *       hidden?: boolean
        *       hiddenBreadcrumb?: boolean
        *       single?: boolean
        *       frameSrc?: string
-       *     } | null
+       *     }
        *     // [items] start
+       *     // [cycle] $.data.[]
        *     // [items] end
-       *     children?: null[]
+       *     children?: ClientRoute[]
        *   }> | null
        *   // 扩展数据
        *   extend?: null
@@ -4929,6 +5061,9 @@ declare global {
       getUserPermission<
         Config extends Alova2MethodConfig<Api_result_of_client_route> & {
           params: {
+            /**
+             * 用户名称
+             */
             userName?: string;
           };
         }
@@ -4948,11 +5083,13 @@ declare global {
        * ```ts
        * type Response = {
        *   // 响应编号
-       *   code?: number
+       *   code?: number | string
        *   // 响应消息
        *   message?: string
+       *   // [params2] start
        *   // 响应数据 T
-       *   data?: {
+       *   // [params2] end
+       *   data?: null | {
        *     // [items] start
        *     // [items] end
        *     list?: Array<{
@@ -4967,13 +5104,13 @@ declare global {
        *       i18nKey?: string | null
        *       icon?: string
        *       iconType?: string
-       *       order?: number
+       *       order?: number | string
        *       keepAlive?: boolean | null
        *       href?: string | null
        *       hideInMenu?: boolean | null
        *       activeMenu?: string | null
        *       multiTab?: boolean | null
-       *       fixedIndexInTab?: number | null
+       *       fixedIndexInTab?: number | string | null
        *       // [params1] start
        *       // [items] start
        *       // [items] end
@@ -4984,16 +5121,17 @@ declare global {
        *       }> | null
        *       // [params1] start
        *       // [items] start
+       *       // [cycle] $.data.list.[]
        *       // [items] end
        *       // [params1] end
-       *       children?: null[] | null
+       *       children?: Menu[] | null
        *     }>
-       *     page?: number
-       *     pageSize?: number
-       *     totalPageCount?: number
-       *     totalItemCount?: number
+       *     page?: number | string
+       *     pageSize?: number | string
+       *     totalPageCount?: number | string
+       *     totalItemCount?: number | string
        *     extendData?: null
-       *   } | null
+       *   }
        *   // 扩展数据
        *   extend?: null
        *   // 请求是否返回正确
@@ -5007,7 +5145,7 @@ declare global {
       /**
        * ---
        *
-       * [GET] 获取用户管理菜单(树结构)
+       * [GET] 获取用户管理菜单
        *
        * **path:** /api/Base/Users/getUserMenuTree
        *
@@ -5017,7 +5155,7 @@ declare global {
        * ```ts
        * type Response = {
        *   // 响应编号
-       *   code?: number
+       *   code?: number | string
        *   // 响应消息
        *   message?: string
        *   // 响应数据 T
@@ -5031,9 +5169,10 @@ declare global {
        *     pId?: string
        *     // [params1] start
        *     // [items] start
+       *     // [cycle] $.data.[]
        *     // [items] end
        *     // [params1] end
-       *     children?: null[] | null
+       *     children?: MenuTree[] | null
        *   }> | null
        *   // 扩展数据
        *   extend?: null
@@ -5058,7 +5197,7 @@ declare global {
        * ```ts
        * type Response = {
        *   // 响应编号
-       *   code?: number
+       *   code?: number | string
        *   // 响应消息
        *   message?: string
        *   // 响应数据 T
@@ -5112,11 +5251,13 @@ declare global {
        * ```ts
        * type Response = {
        *   // 响应编号
-       *   code?: number
+       *   code?: number | string
        *   // 响应消息
        *   message?: string
+       *   // [params2] start
        *   // 响应数据 T
-       *   data?: {
+       *   // [params2] end
+       *   data?: null | {
        *     userName: string
        *     email?: string | null
        *     name?: string
@@ -5143,8 +5284,8 @@ declare global {
        *     twoFactorEnabled?: boolean
        *     lockoutEnd?: string | null
        *     lockoutEnabled?: boolean
-       *     accessFailedCount?: number
-       *   } | null
+       *     accessFailedCount?: number | string
+       *   }
        *   // 扩展数据
        *   extend?: null
        *   // 请求是否返回正确
@@ -5162,7 +5303,7 @@ declare global {
       /**
        * ---
        *
-       * [PUT] 更新用户档案
+       * [PUT] 更新用户资料
        *
        * **path:** /api/Base/Users/update
        *
@@ -5192,11 +5333,13 @@ declare global {
        * ```ts
        * type Response = {
        *   // 响应编号
-       *   code?: number
+       *   code?: number | string
        *   // 响应消息
        *   message?: string
+       *   // [params2] start
        *   // 响应数据 T
-       *   data?: {
+       *   // [params2] end
+       *   data?: null | {
        *     userName: string
        *     email?: string | null
        *     name?: string
@@ -5223,8 +5366,8 @@ declare global {
        *     twoFactorEnabled?: boolean
        *     lockoutEnd?: string | null
        *     lockoutEnabled?: boolean
-       *     accessFailedCount?: number
-       *   } | null
+       *     accessFailedCount?: number | string
+       *   }
        *   // 扩展数据
        *   extend?: null
        *   // 请求是否返回正确
@@ -5242,7 +5385,7 @@ declare global {
       /**
        * ---
        *
-       * [GET] 获取用户角色
+       * [GET] 获取指定用户角色
        *
        * **path:** /api/Base/Users/getRoles
        *
@@ -5251,6 +5394,7 @@ declare global {
        * **Query Parameters**
        * ```ts
        * type QueryParameters = {
+       *   // 用户id
        *   userId?: string
        * }
        * ```
@@ -5261,7 +5405,7 @@ declare global {
        * ```ts
        * type Response = {
        *   // 响应编号
-       *   code?: number
+       *   code?: number | string
        *   // 响应消息
        *   message?: string
        *   // 响应数据 T
@@ -5280,6 +5424,9 @@ declare global {
       getUserRoles<
         Config extends Alova2MethodConfig<ApiResultOfIListOfstring> & {
           params: {
+            /**
+             * 用户id
+             */
             userId?: string;
           };
         }
@@ -5289,7 +5436,7 @@ declare global {
       /**
        * ---
        *
-       * [POST] 设置用户角色
+       * [POST] 设置指定用户角色
        *
        * **path:** /api/Base/Users/setRoles
        *
@@ -5311,11 +5458,13 @@ declare global {
        * ```ts
        * type Response = {
        *   // 响应编号
-       *   code?: number
+       *   code?: number | string
        *   // 响应消息
        *   message?: string
+       *   // [params2] start
        *   // 响应数据 T
-       *   data?: {
+       *   // [params2] end
+       *   data?: null | {
        *     userName: string
        *     email?: string | null
        *     name?: string
@@ -5342,8 +5491,8 @@ declare global {
        *     twoFactorEnabled?: boolean
        *     lockoutEnd?: string | null
        *     lockoutEnabled?: boolean
-       *     accessFailedCount?: number
-       *   } | null
+       *     accessFailedCount?: number | string
+       *   }
        *   // 扩展数据
        *   extend?: null
        *   // 请求是否返回正确
@@ -5383,7 +5532,7 @@ declare global {
        * ```ts
        * type Response = {
        *   // 响应编号
-       *   code?: number
+       *   code?: number | string
        *   // 响应消息
        *   message?: string
        *   // 响应数据 T
@@ -5427,7 +5576,7 @@ declare global {
        * ```ts
        * type Response = {
        *   // 响应编号
-       *   code?: number
+       *   code?: number | string
        *   // 响应消息
        *   message?: string
        *   // 响应数据 T
@@ -5458,6 +5607,7 @@ declare global {
        * **Query Parameters**
        * ```ts
        * type QueryParameters = {
+       *   // 用户id
        *   id?: string
        * }
        * ```
@@ -5468,11 +5618,13 @@ declare global {
        * ```ts
        * type Response = {
        *   // 响应编号
-       *   code?: number
+       *   code?: number | string
        *   // 响应消息
        *   message?: string
+       *   // [params2] start
        *   // 响应数据 T
-       *   data?: {
+       *   // [params2] end
+       *   data?: null | {
        *     userName: string
        *     email?: string | null
        *     name?: string
@@ -5499,8 +5651,8 @@ declare global {
        *     twoFactorEnabled?: boolean
        *     lockoutEnd?: string | null
        *     lockoutEnabled?: boolean
-       *     accessFailedCount?: number
-       *   } | null
+       *     accessFailedCount?: number | string
+       *   }
        *   // 扩展数据
        *   extend?: null
        *   // 请求是否返回正确
@@ -5511,6 +5663,9 @@ declare global {
       deleteUser<
         Config extends Alova2MethodConfig<ApiResultOfApplicationUser> & {
           params: {
+            /**
+             * 用户id
+             */
             id?: string;
           };
         }
@@ -5520,7 +5675,7 @@ declare global {
       /**
        * ---
        *
-       * [DELETE] 根据用户名删除指定用户
+       * [DELETE] 删除指定用户, by username
        *
        * **path:** /api/Base/Users/deleteByName
        *
@@ -5529,6 +5684,7 @@ declare global {
        * **Query Parameters**
        * ```ts
        * type QueryParameters = {
+       *   // 用户名称
        *   username?: string
        * }
        * ```
@@ -5539,11 +5695,13 @@ declare global {
        * ```ts
        * type Response = {
        *   // 响应编号
-       *   code?: number
+       *   code?: number | string
        *   // 响应消息
        *   message?: string
+       *   // [params2] start
        *   // 响应数据 T
-       *   data?: {
+       *   // [params2] end
+       *   data?: null | {
        *     userName: string
        *     email?: string | null
        *     name?: string
@@ -5570,8 +5728,8 @@ declare global {
        *     twoFactorEnabled?: boolean
        *     lockoutEnd?: string | null
        *     lockoutEnabled?: boolean
-       *     accessFailedCount?: number
-       *   } | null
+       *     accessFailedCount?: number | string
+       *   }
        *   // 扩展数据
        *   extend?: null
        *   // 请求是否返回正确
@@ -5582,6 +5740,9 @@ declare global {
       deleteUserByName<
         Config extends Alova2MethodConfig<ApiResultOfApplicationUser> & {
           params: {
+            /**
+             * 用户名称
+             */
             username?: string;
           };
         }
@@ -5608,7 +5769,7 @@ declare global {
        * ```ts
        * type Response = {
        *   // 响应编号
-       *   code?: number
+       *   code?: number | string
        *   // 响应消息
        *   message?: string
        *   // 响应数据 T

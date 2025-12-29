@@ -20,7 +20,7 @@ onLoad((option) => {
   // 如果有user参数，尝试解码对象
   if (option && option.user) {
     try {
-      decodedUser.value = JSON.parse(decodeURIComponent(option.user))
+      decodedUser.value = JSON.parse(decodeURIComponent(decodeURIComponent(option.user)))
     }
     catch (e) {
       console.error('解码user参数失败:', e)
@@ -113,7 +113,7 @@ function pushToGuard() {
             </text>
           </view>
           <view class="mt-3 text-3.5 text-gray-600 dark:text-[var(--wot-dark-color2)]">
-            使用 JSON.parse(decodeURIComponent(option.user)) 解码
+            使用 JSON.parse(decodeURIComponent(decodeURIComponent(option.user))) 解码
           </view>
         </view>
       </view>
@@ -130,7 +130,7 @@ function pushToGuard() {
             ⚠️ 重要说明
           </view>
           <view class="text-3 text-orange-600 leading-relaxed dark:text-orange-200">
-            在 uni-mini-router 中，query 和 params 参数都会放在 URL 中，两者在实际效果上并无区别。这种 API 设计主要是为了与 vue-router 保持一致。
+            在 @wot-ui/router 中，query 和 params 参数都会放在 URL 中，两者在实际效果上并无区别。这种 API 设计主要是为了与 vue-router 保持一致。
           </view>
         </view>
         <view class="space-y-3">

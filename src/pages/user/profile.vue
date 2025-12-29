@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { FormExpose } from 'wot-design-uni/components/wd-form/types'
-import type { UpFileUploadResult, UserProfileModel } from '@/service/apis/base/globals'
+import type { ApiResultOfUpFileUploadResult, UserProfileModel } from '@/service/apis/base/globals'
 
 definePage({
   name: 'user-profile',
@@ -23,14 +23,18 @@ function handleChooseAvatar(e: { avatarUrl: string }) {
     url: uploadUrl,
     name: 'file',
     filePath: e.avatarUrl,
-    success(e) {
-      const { statusCode, errMsg, data } = e
+    success({ statusCode, errMsg, data }) {
+      console.log('success', { statusCode, errMsg, data })
       if (statusCode !== 200) {
         warning(errMsg!)
         return
       }
-      const json = JSON.parse(data) as UpFileUploadResult
-      model.avatarUrl = json?.absUrl
+      const json = JSON.parse(data) as ApiResultOfUpFileUploadResult
+      model.avatarUrl = json.data?.absUrl
+      console.log('model', model)
+    },
+    fail(err) {
+      warning(err.errMsg!)
     },
   })
 }

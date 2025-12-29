@@ -23,7 +23,7 @@ const { userInfo } = useUserStore()
         </wd-cell>
       </button>
       <!-- #endif -->
-      <wd-cell title="个人档案" icon="user" is-link :value="userInfo?.userName" to="/pages/user/profile">
+      <wd-cell title="个人档案" icon="user" is-link :value="userInfo?.name || userInfo?.userName" to="/pages/user/profile">
         <template #icon>
           <wd-icon name="user" :size="16" custom-class="text-primary content-center mr-2" />
         </template>

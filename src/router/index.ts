@@ -1,5 +1,4 @@
 /// <reference types="@uni-helper/vite-plugin-uni-pages/client" />
-import type { PageMetaDatum } from '@uni-helper/vite-plugin-uni-pages'
 import type { RouterExt } from '@/shims'
 import { pages, subPackages } from 'virtual:uni-pages'
 
@@ -7,10 +6,10 @@ import { pages, subPackages } from 'virtual:uni-pages'
 export const HOME_PAGE: _LocationUrl = '/pages/index/index'
 export const LOGIN_PAGE: _LocationUrl = '/pages/login/index'
 
-function generateRoutes(): PageMetaDatum[] {
+function generateRoutes() {
   const routes = pages.map((page) => {
     const newPath = `/${page.path}`
-    return { ...page, path: newPath } as PageMetaDatum
+    return { ...page, path: newPath }
   })
   if (subPackages && subPackages.length > 0) {
     subPackages.forEach((subPackage) => {

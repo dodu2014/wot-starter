@@ -235,14 +235,6 @@ onShow(async () => {
     <!-- 更多功能列表 -->
     <demo-block custom-card-class="!mx-8 !mt-4" custom-card-content-class="!p-0">
       <wd-cell-group border>
-        <!-- #ifdef MP-WEIXIN -->
-        <button class="button-reset" open-type="openSetting">
-          <wd-cell title="授权设置" value="小程序" icon="setting1" is-link center />
-        </button>
-        <button class="button-reset" open-type="feedback">
-          <wd-cell title="用户反馈" icon="chat1" is-link center />
-        </button>
-        <!-- #endif -->
         <wd-cell
           v-for="item in moreItems"
           :key="item.title"

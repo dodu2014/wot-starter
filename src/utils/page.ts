@@ -7,8 +7,8 @@ import { tabBar } from '../pages.json'
  */
 export function getCurrentPath() {
   const pages = getCurrentPages<{ needLogin?: boolean }>()
-  const currentPage = pages[pages.length - 1]
-  return currentPage.route || ''
+  const currentPage = pages.at(-1)
+  return currentPage?.route || ''
 }
 
 /** 得到所有 pages，包括主包和分包的 */
@@ -52,9 +52,9 @@ export function getAllExcludePages(key = 'needLogin') {
 
 /** 判断是否是 tabbar 页面 */
 export function isPageTabbar(path: _LocationUrl) {
-  let _path = path.split('?')[0]
-  if (_path.startsWith('/')) {
-    _path = _path.slice(1)
+  let lastPath = path.split('?').at(0)
+  if (lastPath?.startsWith('/')) {
+    lastPath = lastPath.slice(1)
   }
-  return tabBar.list.some(item => item.pagePath === _path)
+  return tabBar.list.some(item => item.pagePath === lastPath)
 }

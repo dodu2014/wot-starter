@@ -55,6 +55,15 @@ function handleThemeColorSelect(option: any) {
 function openUrl(url: string) {
   window.open(url, '_blank')
 }
+
+const { getMessageList } = useUserBadge()
+const { userInfo, logined } = useUserStore()
+onLoad(async () => {
+  if (logined && userInfo?.id) {
+    console.log('检测到用户已经登录，立即统计用户消息数量，并设置 tabbar 的角标')
+    await getMessageList(userInfo.id)
+  }
+})
 </script>
 
 <template>

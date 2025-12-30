@@ -102,10 +102,10 @@ async function handleToPage(pagePath: string) {
     </view>
 
     <!-- 列表 -->
-    <wd-cell-group v-if="modelList.length" border>
+    <wd-cell-group v-if="modelList.length" border custom-class="cell-justify-end">
       <wd-cell
         v-for="(item, index) in modelList" :key="index"
-        :title="`${dayjs(item.createdAt).format('YYYY-MM-DD HH:mm')}`"
+        :label="`${dayjs(item.createdAt).format('YYYY-MM-DD HH:mm')}`"
         center
         is-link
         @click="() => sendGetMessageRequest(item.id!)"
@@ -115,7 +115,7 @@ async function handleToPage(pagePath: string) {
             <wd-icon name="mail" :size="24" :custom-class="item.isReaded ? 'text-gray' : 'text-primary'" />
           </view>
         </template>
-        <template #label>
+        <template #title>
           <view>
             <wd-text :text="item.content" :lines="1" :bold="!item.isReaded" custom-class="!text-default" />
           </view>

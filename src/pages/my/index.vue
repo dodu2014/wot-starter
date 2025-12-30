@@ -118,37 +118,24 @@ function logout() {
   })
 }
 
+const { messageCount, getMessageList } = useUserBadge()
+
 onLoad(async () => {
   if (logined.value && !userInfo.value) {
     await userStore.loadUserInfo()
   }
 })
 
-const { setTabbarItem } = useTabbar()
-const { send: sendGetMessageListRequest } = useRequest(
-  () => Webapi_Base.userMessage.getUserMessageList({ params: {
-    toId: userInfo.value?.id,
-    isDelete: false,
-    isRead: false,
-    pageSize: 1,
-  } }),
-  { immediate: false },
-).onSuccess((res) => {
-  if (res.data.isSuccess) {
-    const msgBadge = +(res.data.data?.totalPageCount || 0)
-    setTabbarItem('my', msgBadge)
-    const gridItem = moreItems.value.find(item => item.title === '消息中心')
-    if (gridItem)
-      gridItem.badge = msgBadge
-  }
-})
-
 onShow(async () => {
   if (!userStore.isExpired()) {
     // 重新加载用户信息
-    userStore.loadUserInfo()
-    // 加载消息列表
-    await sendGetMessageListRequest()
+    await userStore.loadUserInfo()
+
+    // 统计消息列表, 并更新对应消息中心项的角标
+    await getMessageList(userInfo.value!.id!)
+    const messageItem = moreItems.value.find(item => item.title === '消息中心')
+    if (messageItem)
+      messageItem.badge = messageCount.value
   }
 })
 </script>

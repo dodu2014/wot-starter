@@ -174,6 +174,44 @@ export interface ApplicationRole {
   normalizedName?: string | null;
   concurrencyStamp?: string | null;
 }
+export interface ApplicationUser {
+  userName: string;
+  email?: string | null;
+  name?: string;
+  avatarUrl?: string;
+  phoneNumber?: string | null;
+  description?: string;
+  rights?: string;
+  rightsList?: string[];
+  openId?: string;
+  unionId?: string;
+  signature?: string;
+  enabled?: boolean;
+  date?: string;
+  id?: string | null;
+  normalizedUserName?: string | null;
+  normalizedEmail?: string | null;
+  emailConfirmed?: boolean;
+  passwordHash?: string | null;
+  securityStamp?: string | null;
+  concurrencyStamp?: string | null;
+  phoneNumberConfirmed?: boolean;
+  twoFactorEnabled?: boolean;
+  lockoutEnd?: string | null;
+  lockoutEnabled?: boolean;
+  accessFailedCount?: number | string;
+}
+export interface UserMessage {
+  id?: string;
+  content?: string;
+  pagePath?: string;
+  senderId?: string;
+  receiverId?: string;
+  receiverUser?: null | ApplicationUser;
+  isDeleted?: boolean;
+  isReaded?: boolean;
+  createdAt?: string;
+}
 export type UserOperateLogType = number;
 export interface UserOperateLog {
   id?: string;
@@ -787,6 +825,52 @@ export interface ApiResultOfApplicationRole {
    */
   isSuccess?: boolean;
 }
+export interface PageListOfUserMessage {
+  list?: UserMessage[];
+  page?: number | string;
+  pageSize?: number | string;
+  totalPageCount?: number | string;
+  totalItemCount?: number | string;
+  extendData?: null;
+}
+export interface ApiResultOfPageListOfUserMessage {
+  /**
+   * 响应编号
+   */
+  code?: number | string;
+  /**
+   * 响应消息
+   */
+  message?: string;
+  data?: null | PageListOfUserMessage;
+  /**
+   * 扩展数据
+   */
+  extend?: null;
+  /**
+   * 请求是否返回正确
+   */
+  isSuccess?: boolean;
+}
+export interface ApiResultOfUserMessage {
+  /**
+   * 响应编号
+   */
+  code?: number | string;
+  /**
+   * 响应消息
+   */
+  message?: string;
+  data?: null | UserMessage;
+  /**
+   * 扩展数据
+   */
+  extend?: null;
+  /**
+   * 请求是否返回正确
+   */
+  isSuccess?: boolean;
+}
 export interface PageListOfUserOperateLog {
   list?: UserOperateLog[];
   page?: number | string;
@@ -832,33 +916,6 @@ export interface ApiResultOfUserOperateLog {
    * 请求是否返回正确
    */
   isSuccess?: boolean;
-}
-export interface ApplicationUser {
-  userName: string;
-  email?: string | null;
-  name?: string;
-  avatarUrl?: string;
-  phoneNumber?: string | null;
-  description?: string;
-  rights?: string;
-  rightsList?: string[];
-  openId?: string;
-  unionId?: string;
-  signature?: string;
-  enabled?: boolean;
-  date?: string;
-  id?: string | null;
-  normalizedUserName?: string | null;
-  normalizedEmail?: string | null;
-  emailConfirmed?: boolean;
-  passwordHash?: string | null;
-  securityStamp?: string | null;
-  concurrencyStamp?: string | null;
-  phoneNumberConfirmed?: boolean;
-  twoFactorEnabled?: boolean;
-  lockoutEnd?: string | null;
-  lockoutEnabled?: boolean;
-  accessFailedCount?: number | string;
 }
 export interface PageListOfApplicationUser {
   list?: ApplicationUser[];
@@ -4304,6 +4361,575 @@ declare global {
       >(
         config: Config
       ): Alova2Method<ApiResultOfUpFileUploadResult, 'upFile.upload', Config>;
+    };
+    userMessage: {
+      /**
+       * ---
+       *
+       * [GET] 获取用户消息列表
+       *
+       * **path:** /api/Base/UserMessages/list
+       *
+       * ---
+       *
+       * **Query Parameters**
+       * ```ts
+       * type QueryParameters = {
+       *   startTime?: string
+       *   endTime?: string
+       *   fromId?: string
+       *   toId?: string
+       *   isRead?: boolean
+       *   isDelete?: boolean
+       *   // 关键词
+       *   keyword?: string
+       *   // 页码
+       *   page?: number | string
+       *   // 页面大小
+       *   pageSize?: number | string
+       * }
+       * ```
+       *
+       * ---
+       *
+       * **Response**
+       * ```ts
+       * type Response = {
+       *   // 响应编号
+       *   code?: number | string
+       *   // 响应消息
+       *   message?: string
+       *   // [params2] start
+       *   // 响应数据 T
+       *   // [params2] end
+       *   data?: null | {
+       *     // [items] start
+       *     // [items] end
+       *     list?: Array<{
+       *       id?: string
+       *       content?: string
+       *       pagePath?: string
+       *       senderId?: string
+       *       receiverId?: string
+       *       receiverUser?: null | {
+       *         userName: string
+       *         email?: string | null
+       *         name?: string
+       *         avatarUrl?: string
+       *         phoneNumber?: string | null
+       *         description?: string
+       *         rights?: string
+       *         // [items] start
+       *         // [items] end
+       *         rightsList?: string[]
+       *         openId?: string
+       *         unionId?: string
+       *         signature?: string
+       *         enabled?: boolean
+       *         date?: string
+       *         id?: string | null
+       *         normalizedUserName?: string | null
+       *         normalizedEmail?: string | null
+       *         emailConfirmed?: boolean
+       *         passwordHash?: string | null
+       *         securityStamp?: string | null
+       *         concurrencyStamp?: string | null
+       *         phoneNumberConfirmed?: boolean
+       *         twoFactorEnabled?: boolean
+       *         lockoutEnd?: string | null
+       *         lockoutEnabled?: boolean
+       *         accessFailedCount?: number | string
+       *       }
+       *       isDeleted?: boolean
+       *       isReaded?: boolean
+       *       createdAt?: string
+       *     }>
+       *     page?: number | string
+       *     pageSize?: number | string
+       *     totalPageCount?: number | string
+       *     totalItemCount?: number | string
+       *     extendData?: null
+       *   }
+       *   // 扩展数据
+       *   extend?: null
+       *   // 请求是否返回正确
+       *   isSuccess?: boolean
+       * }
+       * ```
+       */
+      getUserMessageList<
+        Config extends Alova2MethodConfig<ApiResultOfPageListOfUserMessage> & {
+          params: {
+            startTime?: string;
+            endTime?: string;
+            fromId?: string;
+            toId?: string;
+            isRead?: boolean;
+            isDelete?: boolean;
+            /**
+             * 关键词
+             */
+            keyword?: string;
+            /**
+             * 页码
+             */
+            page?: number | string;
+            /**
+             * 页面大小
+             */
+            pageSize?: number | string;
+          };
+        }
+      >(
+        config: Config
+      ): Alova2Method<ApiResultOfPageListOfUserMessage, 'userMessage.getUserMessageList', Config>;
+      /**
+       * ---
+       *
+       * [GET] 获取用户消息详情
+       *
+       * **path:** /api/Base/UserMessages/get
+       *
+       * ---
+       *
+       * **Query Parameters**
+       * ```ts
+       * type QueryParameters = {
+       *   // 用户消息id
+       *   id?: string
+       * }
+       * ```
+       *
+       * ---
+       *
+       * **Response**
+       * ```ts
+       * type Response = {
+       *   // 响应编号
+       *   code?: number | string
+       *   // 响应消息
+       *   message?: string
+       *   // [params2] start
+       *   // 响应数据 T
+       *   // [params2] end
+       *   data?: null | {
+       *     id?: string
+       *     content?: string
+       *     pagePath?: string
+       *     senderId?: string
+       *     receiverId?: string
+       *     receiverUser?: null | {
+       *       userName: string
+       *       email?: string | null
+       *       name?: string
+       *       avatarUrl?: string
+       *       phoneNumber?: string | null
+       *       description?: string
+       *       rights?: string
+       *       // [items] start
+       *       // [items] end
+       *       rightsList?: string[]
+       *       openId?: string
+       *       unionId?: string
+       *       signature?: string
+       *       enabled?: boolean
+       *       date?: string
+       *       id?: string | null
+       *       normalizedUserName?: string | null
+       *       normalizedEmail?: string | null
+       *       emailConfirmed?: boolean
+       *       passwordHash?: string | null
+       *       securityStamp?: string | null
+       *       concurrencyStamp?: string | null
+       *       phoneNumberConfirmed?: boolean
+       *       twoFactorEnabled?: boolean
+       *       lockoutEnd?: string | null
+       *       lockoutEnabled?: boolean
+       *       accessFailedCount?: number | string
+       *     }
+       *     isDeleted?: boolean
+       *     isReaded?: boolean
+       *     createdAt?: string
+       *   }
+       *   // 扩展数据
+       *   extend?: null
+       *   // 请求是否返回正确
+       *   isSuccess?: boolean
+       * }
+       * ```
+       */
+      getUserMessage<
+        Config extends Alova2MethodConfig<ApiResultOfUserMessage> & {
+          params: {
+            /**
+             * 用户消息id
+             */
+            id?: string;
+          };
+        }
+      >(
+        config: Config
+      ): Alova2Method<ApiResultOfUserMessage, 'userMessage.getUserMessage', Config>;
+      /**
+       * ---
+       *
+       * [POST] 创建用户消息
+       *
+       * **path:** /api/Base/UserMessages/create
+       *
+       * ---
+       *
+       * **RequestBody**
+       * ```ts
+       * type RequestBody = {
+       *   id?: string
+       *   content?: string
+       *   pagePath?: string
+       *   senderId?: string
+       *   receiverId?: string
+       *   receiverUser?: null | {
+       *     userName: string
+       *     email?: string | null
+       *     name?: string
+       *     avatarUrl?: string
+       *     phoneNumber?: string | null
+       *     description?: string
+       *     rights?: string
+       *     // [items] start
+       *     // [items] end
+       *     rightsList?: string[]
+       *     openId?: string
+       *     unionId?: string
+       *     signature?: string
+       *     enabled?: boolean
+       *     date?: string
+       *     id?: string | null
+       *     normalizedUserName?: string | null
+       *     normalizedEmail?: string | null
+       *     emailConfirmed?: boolean
+       *     passwordHash?: string | null
+       *     securityStamp?: string | null
+       *     concurrencyStamp?: string | null
+       *     phoneNumberConfirmed?: boolean
+       *     twoFactorEnabled?: boolean
+       *     lockoutEnd?: string | null
+       *     lockoutEnabled?: boolean
+       *     accessFailedCount?: number | string
+       *   }
+       *   isDeleted?: boolean
+       *   isReaded?: boolean
+       *   createdAt?: string
+       * }
+       * ```
+       *
+       * ---
+       *
+       * **Response**
+       * ```ts
+       * type Response = {
+       *   // 响应编号
+       *   code?: number | string
+       *   // 响应消息
+       *   message?: string
+       *   // [params2] start
+       *   // 响应数据 T
+       *   // [params2] end
+       *   data?: null | {
+       *     id?: string
+       *     content?: string
+       *     pagePath?: string
+       *     senderId?: string
+       *     receiverId?: string
+       *     receiverUser?: null | {
+       *       userName: string
+       *       email?: string | null
+       *       name?: string
+       *       avatarUrl?: string
+       *       phoneNumber?: string | null
+       *       description?: string
+       *       rights?: string
+       *       // [items] start
+       *       // [items] end
+       *       rightsList?: string[]
+       *       openId?: string
+       *       unionId?: string
+       *       signature?: string
+       *       enabled?: boolean
+       *       date?: string
+       *       id?: string | null
+       *       normalizedUserName?: string | null
+       *       normalizedEmail?: string | null
+       *       emailConfirmed?: boolean
+       *       passwordHash?: string | null
+       *       securityStamp?: string | null
+       *       concurrencyStamp?: string | null
+       *       phoneNumberConfirmed?: boolean
+       *       twoFactorEnabled?: boolean
+       *       lockoutEnd?: string | null
+       *       lockoutEnabled?: boolean
+       *       accessFailedCount?: number | string
+       *     }
+       *     isDeleted?: boolean
+       *     isReaded?: boolean
+       *     createdAt?: string
+       *   }
+       *   // 扩展数据
+       *   extend?: null
+       *   // 请求是否返回正确
+       *   isSuccess?: boolean
+       * }
+       * ```
+       */
+      createUserMessage<
+        Config extends Alova2MethodConfig<ApiResultOfUserMessage> & {
+          data: UserMessage;
+        }
+      >(
+        config: Config
+      ): Alova2Method<ApiResultOfUserMessage, 'userMessage.createUserMessage', Config>;
+      /**
+       * ---
+       *
+       * [PUT] 更新用户消息
+       *
+       * **path:** /api/Base/UserMessages/update
+       *
+       * ---
+       *
+       * **RequestBody**
+       * ```ts
+       * type RequestBody = {
+       *   id?: string
+       *   content?: string
+       *   pagePath?: string
+       *   senderId?: string
+       *   receiverId?: string
+       *   receiverUser?: null | {
+       *     userName: string
+       *     email?: string | null
+       *     name?: string
+       *     avatarUrl?: string
+       *     phoneNumber?: string | null
+       *     description?: string
+       *     rights?: string
+       *     // [items] start
+       *     // [items] end
+       *     rightsList?: string[]
+       *     openId?: string
+       *     unionId?: string
+       *     signature?: string
+       *     enabled?: boolean
+       *     date?: string
+       *     id?: string | null
+       *     normalizedUserName?: string | null
+       *     normalizedEmail?: string | null
+       *     emailConfirmed?: boolean
+       *     passwordHash?: string | null
+       *     securityStamp?: string | null
+       *     concurrencyStamp?: string | null
+       *     phoneNumberConfirmed?: boolean
+       *     twoFactorEnabled?: boolean
+       *     lockoutEnd?: string | null
+       *     lockoutEnabled?: boolean
+       *     accessFailedCount?: number | string
+       *   }
+       *   isDeleted?: boolean
+       *   isReaded?: boolean
+       *   createdAt?: string
+       * }
+       * ```
+       *
+       * ---
+       *
+       * **Response**
+       * ```ts
+       * type Response = {
+       *   // 响应编号
+       *   code?: number | string
+       *   // 响应消息
+       *   message?: string
+       *   // [params2] start
+       *   // 响应数据 T
+       *   // [params2] end
+       *   data?: null | {
+       *     id?: string
+       *     content?: string
+       *     pagePath?: string
+       *     senderId?: string
+       *     receiverId?: string
+       *     receiverUser?: null | {
+       *       userName: string
+       *       email?: string | null
+       *       name?: string
+       *       avatarUrl?: string
+       *       phoneNumber?: string | null
+       *       description?: string
+       *       rights?: string
+       *       // [items] start
+       *       // [items] end
+       *       rightsList?: string[]
+       *       openId?: string
+       *       unionId?: string
+       *       signature?: string
+       *       enabled?: boolean
+       *       date?: string
+       *       id?: string | null
+       *       normalizedUserName?: string | null
+       *       normalizedEmail?: string | null
+       *       emailConfirmed?: boolean
+       *       passwordHash?: string | null
+       *       securityStamp?: string | null
+       *       concurrencyStamp?: string | null
+       *       phoneNumberConfirmed?: boolean
+       *       twoFactorEnabled?: boolean
+       *       lockoutEnd?: string | null
+       *       lockoutEnabled?: boolean
+       *       accessFailedCount?: number | string
+       *     }
+       *     isDeleted?: boolean
+       *     isReaded?: boolean
+       *     createdAt?: string
+       *   }
+       *   // 扩展数据
+       *   extend?: null
+       *   // 请求是否返回正确
+       *   isSuccess?: boolean
+       * }
+       * ```
+       */
+      updateUserMessage<
+        Config extends Alova2MethodConfig<ApiResultOfUserMessage> & {
+          data: UserMessage;
+        }
+      >(
+        config: Config
+      ): Alova2Method<ApiResultOfUserMessage, 'userMessage.updateUserMessage', Config>;
+      /**
+       * ---
+       *
+       * [DELETE] 删除用户消息
+       *
+       * **path:** /api/Base/UserMessages/delete
+       *
+       * ---
+       *
+       * **Query Parameters**
+       * ```ts
+       * type QueryParameters = {
+       *   // 用户消息id
+       *   id?: string
+       * }
+       * ```
+       *
+       * ---
+       *
+       * **Response**
+       * ```ts
+       * type Response = {
+       *   // 响应编号
+       *   code?: number | string
+       *   // 响应消息
+       *   message?: string
+       *   // [params2] start
+       *   // 响应数据 T
+       *   // [params2] end
+       *   data?: null | {
+       *     id?: string
+       *     content?: string
+       *     pagePath?: string
+       *     senderId?: string
+       *     receiverId?: string
+       *     receiverUser?: null | {
+       *       userName: string
+       *       email?: string | null
+       *       name?: string
+       *       avatarUrl?: string
+       *       phoneNumber?: string | null
+       *       description?: string
+       *       rights?: string
+       *       // [items] start
+       *       // [items] end
+       *       rightsList?: string[]
+       *       openId?: string
+       *       unionId?: string
+       *       signature?: string
+       *       enabled?: boolean
+       *       date?: string
+       *       id?: string | null
+       *       normalizedUserName?: string | null
+       *       normalizedEmail?: string | null
+       *       emailConfirmed?: boolean
+       *       passwordHash?: string | null
+       *       securityStamp?: string | null
+       *       concurrencyStamp?: string | null
+       *       phoneNumberConfirmed?: boolean
+       *       twoFactorEnabled?: boolean
+       *       lockoutEnd?: string | null
+       *       lockoutEnabled?: boolean
+       *       accessFailedCount?: number | string
+       *     }
+       *     isDeleted?: boolean
+       *     isReaded?: boolean
+       *     createdAt?: string
+       *   }
+       *   // 扩展数据
+       *   extend?: null
+       *   // 请求是否返回正确
+       *   isSuccess?: boolean
+       * }
+       * ```
+       */
+      deleteUserMessage<
+        Config extends Alova2MethodConfig<ApiResultOfUserMessage> & {
+          params: {
+            /**
+             * 用户消息id
+             */
+            id?: string;
+          };
+        }
+      >(
+        config: Config
+      ): Alova2Method<ApiResultOfUserMessage, 'userMessage.deleteUserMessage', Config>;
+      /**
+       * ---
+       *
+       * [POST] 批量删除用户消息
+       *
+       * **path:** /api/Base/UserMessages/deletes
+       *
+       * ---
+       *
+       * **RequestBody**
+       * ```ts
+       * type RequestBody = string[]
+       * ```
+       *
+       * ---
+       *
+       * **Response**
+       * ```ts
+       * type Response = {
+       *   // 响应编号
+       *   code?: number | string
+       *   // 响应消息
+       *   message?: string
+       *   // 响应数据 T
+       *   data?: null
+       *   // 扩展数据
+       *   extend?: null
+       *   // 请求是否返回正确
+       *   isSuccess?: boolean
+       * }
+       * ```
+       */
+      deleteUserMessages<
+        Config extends Alova2MethodConfig<ApiResult> & {
+          data: string[];
+        }
+      >(
+        config: Config
+      ): Alova2Method<ApiResult, 'userMessage.deleteUserMessages', Config>;
     };
     userOperateLog: {
       /**

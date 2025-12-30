@@ -54,13 +54,8 @@ const moreItems = ref<MenuItem[]>([
   {
     title: '消息中心',
     icon: 'chat1',
-    path: '/pages/about/index',
+    path: '/pages/user/message',
   },
-  // {
-  //   title: '账户设置',
-  //   icon: 'setting1',
-  //   path: '/pages/user/settings',
-  // },
   {
     title: '帮助中心',
     icon: 'help-circle',

@@ -14,6 +14,7 @@ type _LocationUrl =
   "/pages/login/userAgreement" |
   "/pages/my/index" |
   "/pages/user/changePassword" |
+  "/pages/user/message" |
   "/pages/user/profile" |
   "/pages/user/settings" |
   "/pages/business/order/index" |

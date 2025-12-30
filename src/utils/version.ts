@@ -1,5 +1,7 @@
 import pack from '../../package.json'
 
+export const packVersion = `v${pack.version}`
+
 /** 获取小程序版本信息 */
 export function getMiniProgramVersion() {
   // #ifdef MP
@@ -20,7 +22,7 @@ export function getMiniProgramVersion() {
   return `v${plus.runtime.version}（APP）`
   // #endif
   // #ifdef WEB
-  return `v${pack.version}`
+  return packVersion
   // #endif
 }
 
@@ -46,7 +48,7 @@ export function checkMiniProgramUpdate(notUpdatePrompt = '') {
     if (res.hasUpdate)
       loading('版本更新中..')
     else if (notUpdatePrompt)
-      alert(notUpdatePrompt)
+      alert({ msg: notUpdatePrompt, closeOnClickModal: false })
   })
 
   // 当新版本下载完成，会进行回调

@@ -109,6 +109,7 @@ declare global {
   const onUnload: typeof import('@dcloudio/uni-app')['onUnload']
   const onUnmounted: typeof import('vue')['onUnmounted']
   const onUpdated: typeof import('vue')['onUpdated']
+  const packVersion: typeof import('./utils/version')['packVersion']
   const pausableWatch: typeof import('@vueuse/core')['pausableWatch']
   const provide: typeof import('vue')['provide']
   const provideLocal: typeof import('@vueuse/core')['provideLocal']
@@ -466,6 +467,7 @@ declare module 'vue' {
     readonly onUnload: UnwrapRef<typeof import('@dcloudio/uni-app')['onUnload']>
     readonly onUnmounted: UnwrapRef<typeof import('vue')['onUnmounted']>
     readonly onUpdated: UnwrapRef<typeof import('vue')['onUpdated']>
+    readonly packVersion: UnwrapRef<typeof import('./utils/version')['packVersion']>
     readonly pausableWatch: UnwrapRef<typeof import('@vueuse/core')['pausableWatch']>
     readonly provide: UnwrapRef<typeof import('vue')['provide']>
     readonly provideLocal: UnwrapRef<typeof import('@vueuse/core')['provideLocal']>

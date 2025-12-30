@@ -137,7 +137,7 @@ declare global {
   const shallowRef: typeof import('vue')['shallowRef']
   const store: typeof import('./store/index')['default']
   const storeToRefs: typeof import('pinia')['storeToRefs']
-  const subscribeMessages: typeof import('./composables/subscribeMessage')['subscribeMessages']
+  const subscribeMessages: typeof import('./composables/useSubscribeMessage')['subscribeMessages']
   const syncRef: typeof import('@vueuse/core')['syncRef']
   const syncRefs: typeof import('@vueuse/core')['syncRefs']
   const templateRef: typeof import('@vueuse/core')['templateRef']
@@ -296,7 +296,7 @@ declare global {
   const useStorage: typeof import('@vueuse/core')['useStorage']
   const useStorageAsync: typeof import('@vueuse/core')['useStorageAsync']
   const useStyleTag: typeof import('@vueuse/core')['useStyleTag']
-  const useSubscribeMessage: typeof import('./composables/subscribeMessage')['useSubscribeMessage']
+  const useSubscribeMessage: typeof import('./composables/useSubscribeMessage')['useSubscribeMessage']
   const useSupported: typeof import('@vueuse/core')['useSupported']
   const useSwipe: typeof import('@vueuse/core')['useSwipe']
   const useTabbar: typeof import('./composables/useTabbar')['useTabbar']
@@ -495,7 +495,7 @@ declare module 'vue' {
     readonly shallowReadonly: UnwrapRef<typeof import('vue')['shallowReadonly']>
     readonly shallowRef: UnwrapRef<typeof import('vue')['shallowRef']>
     readonly storeToRefs: UnwrapRef<typeof import('pinia')['storeToRefs']>
-    readonly subscribeMessages: UnwrapRef<typeof import('./composables/subscribeMessage')['subscribeMessages']>
+    readonly subscribeMessages: UnwrapRef<typeof import('./composables/useSubscribeMessage')['subscribeMessages']>
     readonly syncRef: UnwrapRef<typeof import('@vueuse/core')['syncRef']>
     readonly syncRefs: UnwrapRef<typeof import('@vueuse/core')['syncRefs']>
     readonly templateRef: UnwrapRef<typeof import('@vueuse/core')['templateRef']>
@@ -654,7 +654,7 @@ declare module 'vue' {
     readonly useStorage: UnwrapRef<typeof import('@vueuse/core')['useStorage']>
     readonly useStorageAsync: UnwrapRef<typeof import('@vueuse/core')['useStorageAsync']>
     readonly useStyleTag: UnwrapRef<typeof import('@vueuse/core')['useStyleTag']>
-    readonly useSubscribeMessage: UnwrapRef<typeof import('./composables/subscribeMessage')['useSubscribeMessage']>
+    readonly useSubscribeMessage: UnwrapRef<typeof import('./composables/useSubscribeMessage')['useSubscribeMessage']>
     readonly useSupported: UnwrapRef<typeof import('@vueuse/core')['useSupported']>
     readonly useSwipe: UnwrapRef<typeof import('@vueuse/core')['useSwipe']>
     readonly useTabbar: UnwrapRef<typeof import('./composables/useTabbar')['useTabbar']>

@@ -55,6 +55,7 @@ const moreItems = ref<MenuItem[]>([
     title: '消息中心',
     icon: 'chat1',
     path: '/pages/user/message',
+    badge: 0,
   },
   {
     title: '帮助中心',
@@ -123,9 +124,31 @@ onLoad(async () => {
   }
 })
 
+const { setTabbarItem } = useTabbar()
+const { send: sendGetMessageListRequest } = useRequest(
+  () => Webapi_Base.userMessage.getUserMessageList({ params: {
+    toId: userInfo.value?.id,
+    isDelete: false,
+    isRead: false,
+    pageSize: 1,
+  } }),
+  { immediate: false },
+).onSuccess((res) => {
+  if (res.data.isSuccess) {
+    const msgBadge = +(res.data.data?.totalPageCount || 0)
+    setTabbarItem('my', msgBadge)
+    const gridItem = moreItems.value.find(item => item.title === '消息中心')
+    if (gridItem)
+      gridItem.badge = msgBadge
+  }
+})
+
 onShow(async () => {
   if (!userStore.isExpired()) {
-    //
+    // 重新加载用户信息
+    userStore.loadUserInfo()
+    // 加载消息列表
+    await sendGetMessageListRequest()
   }
 })
 </script>
@@ -237,7 +260,9 @@ onShow(async () => {
           :icon="item.icon"
           is-link
           @click="() => router.push({ path: item.path, query: item.query })"
-        />
+        >
+          <wd-badge :model-value="item.badge" :max="99" />
+        </wd-cell>
       </wd-cell-group>
     </demo-block>
 

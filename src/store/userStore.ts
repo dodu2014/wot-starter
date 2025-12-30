@@ -17,7 +17,6 @@ export const useUserStore = defineStore(
 
     /** 设置用户信息 */
     const setUserInfo = (val?: UserProfileInfo) => {
-      console.log('设置用户信息', val)
       userInfo.value = val || undefined
     }
 
@@ -35,7 +34,7 @@ export const useUserStore = defineStore(
 
       const res = await send()
       console.log('加载用户信息', res.data)
-      setUserInfo(res.data)
+      setUserInfo(res?.data as UserProfileInfo | undefined)
     }
 
     /* 设置 token 信息 */
@@ -75,7 +74,7 @@ export const useUserStore = defineStore(
       const { isSuccess, data } = await sendLoginRequest(model)
       if (isSuccess) {
         console.log('成功登录', data)
-        setToken(data)
+        setToken(data!)
         await loadUserInfo()
       }
       return { isSuccess, data }
@@ -93,7 +92,7 @@ export const useUserStore = defineStore(
       })
       const { isSuccess, data } = await send(phoneNumber, userId, openId, unionId)
       if (isSuccess) {
-        setToken(data)
+        setToken(data!)
         await loadUserInfo()
       }
       return { isSuccess, data }

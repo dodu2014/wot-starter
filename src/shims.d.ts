@@ -1,5 +1,5 @@
-// 扩展uni-mini-router的RoutePathLocation接口
-import type { RouteLocationBase, Router } from 'uni-mini-router'
+// 扩展 @wot-ui/router 的 RoutePathLocation 接口
+import type { RouteLocationBase, Router } from '@wot-ui/router'
 
 export {}
 
@@ -8,18 +8,18 @@ declare module 'vue' {
   interface ComponentCustomOptions extends Hooks {}
 }
 
-// 'uni-mini-router' 模块的类型定义
+// '@wot-ui/router' 模块的类型定义
 
 // 扩展RoutePathLocation接口，使path支持自定义类型
 export interface RouteNameLocation extends RouteLocationBase {
   name: string
-  query?: Record<string, string | number>
+  params?: Record<string, string | number | undefined>
 }
 
 // 扩展RoutePathLocation接口，使path支持自定义类型
 export interface RoutePathLocation extends RouteLocationBase {
   path: _LocationUrl
-  query?: Record<string, string | number>
+  query?: Record<string, string | number | undefined>
 }
 
 /** 原始本地路由 */

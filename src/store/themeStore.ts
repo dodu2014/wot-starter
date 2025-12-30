@@ -21,7 +21,7 @@ export const useThemeStore = defineStore('theme', {
       darkColor: '#ffffff',
       darkColor2: '#e0e0e0',
       darkColor3: '#a0a0a0',
-      colorTheme: themeColorOptions[0].primary,
+      colorTheme: themeColorOptions.at(0)?.primary,
     },
   }),
 

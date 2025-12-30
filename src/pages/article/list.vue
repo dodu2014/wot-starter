@@ -37,7 +37,7 @@ const { loading, send: sendGetListRequest } = useRequest(
   })
 async function loadList(num?: string, _page = 1, mode: Mode = 'push') {
   const { data } = await sendGetListRequest(num, _page)
-  totalPage.value = data?.totalPageCount || 0
+  totalPage.value = +(data?.totalPageCount || 0)
   if (mode === 'push')
     modelList.value.push(...(data?.list || []))
   else modelList.value = data?.list || []

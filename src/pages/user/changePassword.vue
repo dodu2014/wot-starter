@@ -73,7 +73,7 @@ async function handleSubmit() {
           marker-side="after"
           :rules="[
             { required: true, message: '必填' },
-            { required: false, validator: (value: string, rule) => value.length >= 6, message: '格式不正确, 6-16位' },
+            { required: false, validator: (value: string) => value.length >= 6, message: '格式不正确, 6-16位' },
           ]"
         />
         <wd-input
@@ -87,7 +87,7 @@ async function handleSubmit() {
           marker-side="after"
           :rules="[
             { required: true, message: '必填' },
-            { required: false, validator: (value: string, rule) => value.length >= 6, message: '格式不正确, 6-16位' },
+            { required: false, validator: (value: string) => value.length >= 6, message: '格式不正确, 6-16位' },
           ]"
         />
         <wd-input
@@ -101,8 +101,8 @@ async function handleSubmit() {
           marker-side="after"
           :rules="[
             { required: true, message: '必填' },
-            { required: false, validator: (value: string, rule) => value.length >= 6, message: '格式不正确, 6-16位' },
-            { required: false, validator: (value: string, rule) => value === model.newPassword, message: '两次密码不一致' },
+            { required: false, validator: (value: string) => value.length >= 6, message: '格式不正确, 6-16位' },
+            { required: false, validator: (value: string) => value === model.newPassword, message: '两次密码不一致' },
           ]"
         />
       </wd-cell-group>

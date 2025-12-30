@@ -15,8 +15,8 @@ onMounted(() => {
   uni.hideTabBar()
   // #endif
   nextTick(() => {
-    if (route.name && route.name !== activeTabbar.value.name) {
-      setTabbarItemActive(route.name)
+    if (route.name && route.name !== activeTabbar.value?.name) {
+      setTabbarItemActive(String(route.name))
     }
   })
 })
@@ -36,7 +36,7 @@ export default {
   <slot />
   <wd-gap safe-area-bottom height="var(--wot-tabbar-height, 50px)" />
   <wd-tabbar
-    :model-value="activeTabbar.name" bordered safe-area-inset-bottom fixed
+    :model-value="activeTabbar!.name" bordered safe-area-inset-bottom fixed
     @change="handleTabbarChange"
   >
     <wd-tabbar-item

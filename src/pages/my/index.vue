@@ -191,33 +191,33 @@ onShow(async () => {
       </view>
     </view>
 
-    <!-- 功能菜单区域 -->
-    <wd-card custom-class="rounded-lg overflow-hidden shadow-sm !mx-8 !mt--10 !mb-0 !px-0" custom-content-class="!p-2">
-      <wd-grid clickable :column="3">
-        <wd-grid-item
-          v-for="item in gridItems"
-          :key="item.title"
-          :icon="item.icon"
-          :text="item.title"
-          :value="item.badge"
-          custom-icon="text-primary"
-          custom-class="rounded"
-          @itemclick="() => router.push({ path: item.path, query: item.query })"
-        />
-        <!-- #ifdef MP-WEIXIN -->
-        <wd-grid-item custom-icon="text-primary" custom-class="rounded">
-          <button open-type="contact" class="button-reset flex-col gap-8px">
-            <wd-icon name="service" size="26px" custom-class="text-primary line-height-37px" />
-            <wd-text text="联系客服" size="12px" custom-class="!line-height-12px" />
-          </button>
-        </wd-grid-item>
+    <view class="flex flex-col gap-4 mx-8 mt--10">
+      <!-- 功能菜单区域 -->
+      <wd-card custom-class="rounded-lg overflow-hidden shadow-sm !m-0 !px-0" custom-content-class="!p-2">
+        <wd-grid clickable :column="3">
+          <wd-grid-item
+            v-for="item in gridItems"
+            :key="item.title"
+            :icon="item.icon"
+            :text="item.title"
+            :value="item.badge"
+            custom-icon="text-primary"
+            custom-class="rounded"
+            @itemclick="() => router.push({ path: item.path, query: item.query })"
+          />
+          <!-- #ifdef MP-WEIXIN -->
+          <wd-grid-item custom-icon="text-primary" custom-class="rounded">
+            <button open-type="contact" class="button-reset flex-col gap-8px">
+              <wd-icon name="service" size="26px" custom-class="text-primary line-height-37px" />
+              <wd-text text="联系客服" size="12px" custom-class="!line-height-12px" />
+            </button>
+          </wd-grid-item>
         <!-- #endif -->
-      </wd-grid>
-    </wd-card>
+        </wd-grid>
+      </wd-card>
 
-    <!-- 主题设置 -->
-    <demo-block custom-card-class="!mx-8 !mt-4" custom-card-content-class="!p-0">
-      <wd-cell-group border custom-class="rounded-2! overflow-hidden">
+      <!-- 主题设置 -->
+      <wd-cell-group border insert custom-class="!mx-0">
         <wd-cell title="跟随系统" center>
           <view class="flex justify-end">
             <wd-switch v-model="isFollowSystem" size="14px" />
@@ -235,11 +235,9 @@ onShow(async () => {
           </view>
         </wd-cell>
       </wd-cell-group>
-    </demo-block>
 
-    <!-- 更多功能列表 -->
-    <demo-block custom-card-class="!mx-8 !mt-4" custom-card-content-class="!p-0">
-      <wd-cell-group border>
+      <!-- 更多功能列表 -->
+      <wd-cell-group border insert custom-class="!mx-0">
         <wd-cell
           v-for="item in moreItems"
           :key="item.title"
@@ -251,20 +249,14 @@ onShow(async () => {
           <wd-badge :model-value="item.badge" :max="99" />
         </wd-cell>
       </wd-cell-group>
-    </demo-block>
 
-    <!-- 退出登录/操作区域 -->
-    <view v-if="logined" class="mt-6 text-center">
-      <wd-button plain size="small" type="primary" @click="logout">
-        <wd-icon name="logout" class="mr-1" />
-        退出登录
-      </wd-button>
-    </view>
-
-    <!-- 底部安全提示 -->
-    <view class="mt-8 pb-4 text-center text-xs text-gray-400" hidden>
-      <view>账号安全已保护</view>
-      <view>最后登录时间：{{ userInfo?.date || '--' }}</view>
+      <!-- 退出登录/操作区域 -->
+      <view v-if="logined" class="text-center">
+        <wd-button plain size="small" type="primary" @click="logout">
+          <wd-icon name="logout" class="mr-1" />
+          退出登录
+        </wd-button>
+      </view>
     </view>
   </view>
 

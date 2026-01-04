@@ -11,6 +11,10 @@ const props = withDefaults(defineProps<Props>(), {
   markerSide: 'after',
 })
 
+const emit = defineEmits<{
+  confirm: [value: string[], labels: string[]]
+}>()
+
 const model = defineModel<string[]>('value', { default: () => [] })
 const modelLabels = defineModel<string[]>('labels', { default: () => [] })
 
@@ -46,6 +50,7 @@ function columnChange({ selectedItem, resolve, finish }: ColPickerColumnChangeOp
 function handleConfirm(e: { value: string[], selectedItems: { value: string, label: string }[] }): void {
   const { selectedItems } = e
   modelLabels.value = selectedItems.map(item => item.label)
+  emit('confirm', model.value, modelLabels.value)
 }
 </script>
 

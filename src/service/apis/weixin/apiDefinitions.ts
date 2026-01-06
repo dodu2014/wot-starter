@@ -42,6 +42,7 @@ export default {
   'mpService.postMpService': ['POST', '/api/Weixin/MpServices'],
   'oAuth.UserInfoCallback': ['GET', '/api/Weixin/OAuth/UserInfoCallback'],
   'wxOpen.onLogin': ['GET', '/api/Weixin/WxOpen/onLogin'],
+  'wxOpen.onCheckEmployeeRelation': ['GET', '/api/Weixin/WxOpen/onCheckEmployeeRelation'],
   'wxOpen.decryptUserInfo': ['POST', '/api/Weixin/WxOpen/DecryptUserInfo'],
   'wxOpen.decryptPhoneNumber': ['POST', '/api/Weixin/WxOpen/DecryptPhoneNumber'],
   'wxOpen.getUserPhoneNumberFromCode': ['POST', '/api/Weixin/WxOpen/GetUserPhoneNumberFromCode'],

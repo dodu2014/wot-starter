@@ -46,6 +46,8 @@ export default {
   'wxOpen.decryptPhoneNumber': ['POST', '/api/Weixin/WxOpen/DecryptPhoneNumber'],
   'wxOpen.getUserPhoneNumberFromCode': ['POST', '/api/Weixin/WxOpen/GetUserPhoneNumberFromCode'],
   'wxOpen.generateWxcode': ['GET', '/api/Weixin/WxOpen/GenerateWxcode'],
+  'wxOpen.generateScheme': ['GET', '/api/Weixin/WxOpen/generateScheme'],
+  'wxOpen.generateUrlLink': ['GET', '/api/Weixin/WxOpen/generateUrlLink'],
   'wxPay.createWxPayUnifiedorder': ['POST', '/api/Weixin/WxPay/CreateUnifiedorder'],
   'wxPay.wxPayPaymentNotify': ['POST', '/api/Weixin/WxPay/paymentNotify'],
   'wxPay.queryWxPay': ['GET', '/api/Weixin/WxPay/Query'],

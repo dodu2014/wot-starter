@@ -68,7 +68,7 @@ export default {
   'userMessage.createUserMessage': ['POST', '/api/Base/UserMessages/create'],
   'userMessage.updateUserMessage': ['PUT', '/api/Base/UserMessages/update'],
   'userMessage.deleteUserMessage': ['DELETE', '/api/Base/UserMessages/delete'],
-  'userMessage.deleteUserMessages': ['POST', '/api/Base/UserMessages/deletes'],
+  'userMessage.deleteUserMessages': ['DELETE', '/api/Base/UserMessages/deletes'],
   'userOperateLog.getUserOperateLogList': ['GET', '/api/Base/UserOperateLogs/list'],
   'userOperateLog.getUserOperateLog': ['GET', '/api/Base/UserOperateLogs/get'],
   'userOperateLog.createUserOperateLog': ['POST', '/api/Base/UserOperateLogs/create'],
@@ -90,5 +90,5 @@ export default {
   'user.resetUserPassword': ['POST', '/api/Base/Users/resetPassword'],
   'user.deleteUser': ['DELETE', '/api/Base/Users/delete'],
   'user.deleteUserByName': ['DELETE', '/api/Base/Users/deleteByName'],
-  'user.deleteUsers': ['POST', '/api/Base/Users/deletes']
+  'user.deleteUsers': ['DELETE', '/api/Base/Users/deletes']
 };

@@ -59,5 +59,6 @@ export default {
   'wxUser.createWxUser': ['POST', '/api/Weixin/WxUsers/Create'],
   'wxUser.updateWxUser': ['PUT', '/api/Weixin/WxUsers/Update'],
   'wxUser.deleteWxUser': ['DELETE', '/api/Weixin/WxUsers/Delete'],
+  'wxUser.deleteWxUsers': ['DELETE', '/api/Weixin/WxUsers/deletes'],
   'wxUser.syncWxUser': ['POST', '/api/Weixin/WxUsers/sync']
 };

@@ -4902,7 +4902,7 @@ declare global {
       /**
        * ---
        *
-       * [POST] 批量删除用户消息
+       * [DELETE] 批量删除用户消息
        *
        * **path:** /api/Base/UserMessages/deletes
        *
@@ -6386,7 +6386,7 @@ declare global {
       /**
        * ---
        *
-       * [POST] 批量删除用户
+       * [DELETE] 批量删除用户
        *
        * **path:** /api/Base/Users/deletes
        *

@@ -206,6 +206,7 @@ export interface UserMessage {
   content?: string;
   pagePath?: string;
   senderId?: string;
+  senderName?: string;
   receiverId?: string;
   receiverUser?: null | ApplicationUser;
   isDeleted?: boolean;
@@ -4410,6 +4411,7 @@ declare global {
        *       content?: string
        *       pagePath?: string
        *       senderId?: string
+       *       senderName?: string
        *       receiverId?: string
        *       receiverUser?: null | {
        *         userName: string
@@ -4517,6 +4519,7 @@ declare global {
        *     content?: string
        *     pagePath?: string
        *     senderId?: string
+       *     senderName?: string
        *     receiverId?: string
        *     receiverUser?: null | {
        *       userName: string
@@ -4586,6 +4589,7 @@ declare global {
        *   content?: string
        *   pagePath?: string
        *   senderId?: string
+       *   senderName?: string
        *   receiverId?: string
        *   receiverUser?: null | {
        *     userName: string
@@ -4639,6 +4643,7 @@ declare global {
        *     content?: string
        *     pagePath?: string
        *     senderId?: string
+       *     senderName?: string
        *     receiverId?: string
        *     receiverUser?: null | {
        *       userName: string
@@ -4703,6 +4708,7 @@ declare global {
        *   content?: string
        *   pagePath?: string
        *   senderId?: string
+       *   senderName?: string
        *   receiverId?: string
        *   receiverUser?: null | {
        *     userName: string
@@ -4756,6 +4762,7 @@ declare global {
        *     content?: string
        *     pagePath?: string
        *     senderId?: string
+       *     senderName?: string
        *     receiverId?: string
        *     receiverUser?: null | {
        *       userName: string
@@ -4838,6 +4845,7 @@ declare global {
        *     content?: string
        *     pagePath?: string
        *     senderId?: string
+       *     senderName?: string
        *     receiverId?: string
        *     receiverUser?: null | {
        *       userName: string

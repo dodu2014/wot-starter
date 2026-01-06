@@ -1,4 +1,4 @@
-import type { AccessTokenModel, LoginModel, UserProfileInfo } from '@/service/apis/base/globals.d.ts'
+import type { AccessTokenModel, ApplicationUser, LoginModel } from '@/service/apis/base/globals.d.ts'
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
 import dayjs from 'wot-design-uni/dayjs'
@@ -10,13 +10,13 @@ export const useUserStore = defineStore(
     const { close: hideLoading } = useGlobalLoading()
 
     /** 定义用户信息 */
-    const userInfo = ref<UserProfileInfo>()
+    const userInfo = ref<ApplicationUser>()
 
     /** 定义token */
     const tokenModel = ref<AccessTokenModel>()
 
     /** 设置用户信息 */
-    const setUserInfo = (val?: UserProfileInfo) => {
+    const setUserInfo = (val?: ApplicationUser) => {
       userInfo.value = val || undefined
     }
 
@@ -34,7 +34,7 @@ export const useUserStore = defineStore(
 
       const res = await send()
       console.log('加载用户信息', res.data)
-      setUserInfo(res?.data as UserProfileInfo | undefined)
+      setUserInfo(res?.data as ApplicationUser | undefined)
     }
 
     /* 设置 token 信息 */

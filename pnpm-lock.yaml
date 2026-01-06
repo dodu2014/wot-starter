@@ -211,8 +211,8 @@ importers:
         specifier: ^15.2.9
         version: 15.2.9
       miniprogram-api-typings:
-        specifier: ^3.12.3
-        version: 3.12.3
+        specifier: ^4.1.2
+        version: 4.1.2
       sass:
         specifier: 1.78.0
         version: 1.78.0
@@ -6705,8 +6705,8 @@ packages:
     resolution: {integrity: sha512-qOOzS1cBTWYF4BH8fVePDBOO9iptMnGUEZwNc/cMWnTV2nVLZ7VoNWEPHkYczZA0pdoA7dl6e7FL659nX9S2aw==}
     engines: {node: '>=16 || 14 >=14.17'}
 
-  miniprogram-api-typings@3.12.3:
-    resolution: {integrity: sha512-o7bOfrU28MEMCBWo83nXv0ROQSBFxJcfCl4f2wTYqah64ipC5RGqLJfvWJTWhlQt2ECVwspSzM8LgvnfMo7TEQ==}
+  miniprogram-api-typings@4.1.2:
+    resolution: {integrity: sha512-VmIgxal0GU3nHwsH2UNaRh8jNHG/kauG08Z4W/qiJ1Iubvme48aE+q3grpT9ZLBArMKmSuKlsTq+uPPHSGr0rA==}
 
   minisearch@7.2.0:
     resolution: {integrity: sha512-dqT2XBYUOZOiC5t2HRnwADjhNS2cecp9u+TJRiJ1Qp/f5qjkeT5APcGPjHw+bz89Ms8Jp+cG4AlE+QZ/QnDglg==}
@@ -17403,7 +17403,7 @@ snapshots:
 
   minipass@7.1.2: {}
 
-  miniprogram-api-typings@3.12.3: {}
+  miniprogram-api-typings@4.1.2: {}
 
   minisearch@7.2.0: {}
 

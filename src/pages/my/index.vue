@@ -49,6 +49,11 @@ const gridItems = ref<MenuItem[]>([
     icon: 'qrcode',
     path: '/pages/about/index',
   },
+  {
+    title: '功能页面',
+    icon: 'app',
+    path: '/pages/feature/index',
+  },
 ])
 const moreItems = ref<MenuItem[]>([
   {

@@ -81,8 +81,8 @@ importers:
         specifier: ^11.0.3
         version: 11.0.3(vue@3.4.38(typescript@5.9.3))
       '@wot-ui/router':
-        specifier: ^1.1.0
-        version: 1.1.0(vue@3.4.38(typescript@5.9.3))
+        specifier: ^1.1.2
+        version: 1.1.2(vue@3.4.38(typescript@5.9.3))
       alova:
         specifier: ^3.4.1
         version: 3.4.1
@@ -3578,8 +3578,8 @@ packages:
   '@vueuse/shared@9.13.0':
     resolution: {integrity: sha512-UrnhU+Cnufu4S6JLCPZnkWh0WwZGUp72ktOF2DFptMlOs3TOdVv8xJN53zhHGARmVOsz5KqOls09+J1NR6sBKw==}
 
-  '@wot-ui/router@1.1.0':
-    resolution: {integrity: sha512-x0noZD+rjBgJvSWxMzDmMyspj0l/IIDoIBMcEs4jpt186uYPNCTmzyeUruWG1nPjWneHtDbY2dg//x6bpzcQ0g==}
+  '@wot-ui/router@1.1.2':
+    resolution: {integrity: sha512-z0+XJgeMl4DRoKQBRwSsYeoDDkyuXSNQ+jpMyxZpisp5db73+ffsP9Ac5imjjlUKfb2t9XZzpMq2kuUIaq3V/w==}
     peerDependencies:
       vue: ~3.4.38
 
@@ -13565,7 +13565,7 @@ snapshots:
       - '@vue/composition-api'
       - vue
 
-  '@wot-ui/router@1.1.0(vue@3.4.38(typescript@5.9.3))':
+  '@wot-ui/router@1.1.2(vue@3.4.38(typescript@5.9.3))':
     dependencies:
       vue: 3.4.38(typescript@5.9.3)
 

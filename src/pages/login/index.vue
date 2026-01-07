@@ -48,7 +48,7 @@ function loginSuccess() {
 
 onLoad((e: any) => {
   const { redirect } = e
-  redirectUrl.value = redirect || undefined
+  redirectUrl.value = (redirect && decodeURIComponent(redirect) as _LocationUrl) || undefined
 })
 </script>
 

@@ -2320,6 +2320,8 @@ declare global {
        * type QueryParameters = {
        *   // 通过账号密码获取认证token
        *   roles?: string
+       *   // 移动端 openId
+       *   openId?: string
        * }
        * ```
        *
@@ -2367,6 +2369,10 @@ declare global {
              * 通过账号密码获取认证token
              */
             roles?: string;
+            /**
+             * 移动端 openId
+             */
+            openId?: string;
           };
           data: LoginModel;
         }

@@ -62,7 +62,7 @@ export const useUserStore = defineStore(
 
     /* 登录请求 */
     const { send: sendLoginRequest } = useRequest(
-      (model: LoginModel) => Webapi_Base.auth.login({ params: {}, data: model }),
+      (model: LoginModel, openId?: string) => Webapi_Base.auth.login({ params: { openId }, data: model }),
       { immediate: false },
     ).onError((error) => {
       toast.error(error.error?.message || '')
@@ -70,8 +70,8 @@ export const useUserStore = defineStore(
       hideLoading()
     })
     /** 登录 */
-    async function login(model: LoginModel) {
-      const { isSuccess, data } = await sendLoginRequest(model)
+    async function login(model: LoginModel, openId?: string) {
+      const { isSuccess, data } = await sendLoginRequest(model, openId)
       if (isSuccess) {
         console.log('成功登录', data)
         setToken(data!)

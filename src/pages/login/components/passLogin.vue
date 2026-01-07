@@ -16,6 +16,7 @@ const agreed = defineModel('agreed', {
 const toast = useGlobalToast()
 const { login } = useUserStore()
 const { loading } = useGlobalLoading()
+const { wxUserInfo, wxLogin } = useWxUserStore()
 
 const model = ref({
   userName: uni.getStorageSync('loginInfo')?.username || '',
@@ -33,7 +34,11 @@ async function handleLogin() {
   agreed.value = await checkAccept(agreed.value)
 
   loading('登录中..')
-  await login(model.value)
+  // #ifdef MP-WEIXIN
+  await wxLogin()
+  // #endif
+
+  await login(model.value, wxUserInfo?.openId)
 
   // 保存登录信息
   if (model.value.remember) {

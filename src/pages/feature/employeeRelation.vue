@@ -9,29 +9,11 @@ definePage({
 
 const { logined, userInfo } = useUserStore()
 const { warning } = useGlobalToast()
-
-const { send: sendCode2SessionRequest } = useRequest(
-  (code: string) => Webapi_Weixin.wxOpen.onLogin({ params: { code } }),
-  { immediate: false },
-)
-
-const openId = ref('')
-function wxLogin() {
-  uni.login({
-    // provider:'weixin',
-    success: async (loginRes) => {
-      console.log('loginRes', loginRes)
-      if (loginRes.code) {
-        const { data } = await sendCode2SessionRequest(loginRes.code)
-        openId.value = (data as any)?.openId
-      }
-    },
-  })
-}
+const { wxUserInfo, wxLogin } = useWxUserStore()
 
 const { send: sendBindRequest } = useRequest(
   (status: string) => Webapi_Weixin.wxOpen.onCheckEmployeeRelation({ params: {
-    openId: openId.value,
+    openId: wxUserInfo?.openId,
     userId: userInfo?.id as string,
     status,
   } }),
@@ -43,7 +25,7 @@ function handleCheck() {
     warning('请先登录')
     return
   }
-  if (!openId.value) {
+  if (!wxUserInfo?.openId) {
     warning('请先登录')
     return
   }
@@ -68,7 +50,7 @@ function handleRequest() {
     warning('请先登录')
     return
   }
-  if (!openId.value) {
+  if (!wxUserInfo?.openId) {
     warning('请先登录')
     return
   }
@@ -89,7 +71,7 @@ function handleRequest() {
 }
 
 onLoad(() => {
-  if (logined && openId.value)
+  if (logined && wxUserInfo?.openId)
     handleCheck()
 })
 </script>
@@ -97,7 +79,7 @@ onLoad(() => {
 <template>
   <view class="flex-col gap-y-3 p-4">
     <wd-button block @click="wxLogin">
-      wx login {{ openId }}
+      wx login {{ wxUserInfo?.openId }}
     </wd-button>
     <wd-button block @click="handleRequest">
       请求绑定

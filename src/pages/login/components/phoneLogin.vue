@@ -15,11 +15,7 @@ const agreed = defineModel('agreed', {
 const { easyLogin } = useUserStore()
 const { loading, close: hideLoading } = useGlobalLoading()
 const toast = useGlobalToast()
-
-const { send: sendCode2SessionRequest } = useRequest(
-  (code: string) => Webapi_Weixin.wxOpen.onLogin({ params: { code } }),
-  { immediate: false },
-)
+const { wxLogin } = useWxUserStore()
 
 const { send: sendGetUserPhoneNumberFromCodeRequest } = useRequest(
   (code: string) => Webapi_Weixin.wxOpen.getUserPhoneNumberFromCode({ params: { code } }),
@@ -40,35 +36,19 @@ async function handleLogin(e: { code: string, errMsg: string, encryptedData: str
 
   agreed.value = await checkAccept(agreed.value)
 
-  uni.login({
-    // provider:'weixin',
-    success: async (loginRes) => {
-      console.log('loginRes', loginRes)
-      if (loginRes.code) {
-        const codeResult = await sendCode2SessionRequest(loginRes.code)
-        const { openId, unionId, sessionId } = codeResult.data! as { openId: string, unionId: string, sessionId: string }
-        console.log('code to session', sessionId)
-        loading('loading')
-        // code 换取 完整电话号码
-        const phoneNumberRes = await sendGetUserPhoneNumberFromCodeRequest(code)
-        // request
-        const { isSuccess } = await easyLogin(phoneNumberRes.data!, '', openId, unionId)
-        hideLoading()
-        if (!isSuccess) {
-          toast.error('登录失败')
-          return
-        }
-        // 触发事件
-        emit('loginSuccess')
-      }
-      else {
-        toast.success({ msg: '登录失败' })
-      }
-    },
-    fail: (err) => {
-      toast.error(err.errMsg)
-    },
-  })
+  loading('loading')
+  const wxUser = await wxLogin()
+  // code 换取 完整电话号码
+  const phoneNumberRes = await sendGetUserPhoneNumberFromCodeRequest(code)
+  // request
+  const { isSuccess } = await easyLogin(phoneNumberRes.data!, '', wxUser.openId, wxUser.unionId)
+  hideLoading()
+  if (!isSuccess) {
+    toast.error('登录失败')
+    return
+  }
+  // 触发事件
+  emit('loginSuccess')
 }
 </script>
 

@@ -5,6 +5,7 @@ definePage({
   style: {
     navigationBarTitleText: '用工关系',
   },
+  needLogin: true,
 })
 
 const { logined, userInfo } = useUserStore()

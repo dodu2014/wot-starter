@@ -11,7 +11,9 @@ export const useWxUserStore = defineStore(
     )
 
     function wxLogin() {
+      const { loading, close: hideLoading } = useGlobalLoading()
       return new Promise<WxUser>((resolve, reject) => {
+        loading('loading')
         uni.login({
           success: async (res) => {
             console.log('loginRes', res)
@@ -30,6 +32,9 @@ export const useWxUserStore = defineStore(
               return
             }
             resolve(data)
+          },
+          complete: () => {
+            hideLoading()
           },
         })
       })

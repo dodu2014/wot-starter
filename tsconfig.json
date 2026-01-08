@@ -24,9 +24,7 @@
     "src/**/*.ts",
     "src/**/*.d.ts",
     "src/**/*.tsx",
-    "src/**/*.vue",
-    "async-import.d.ts",
-    "async-component.d.ts"
+    "src/**/*.vue"
   ],
   "exclude": ["node_modules/**", "dist/**", "src/uni_modules/**"]
 }

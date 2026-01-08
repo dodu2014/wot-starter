@@ -1,7 +1,7 @@
 import type { SubscribeResult } from './useSubscribeMessage'
 
 export const subscribeEmployeeMessages = {
-  工单状态变更提醒: 'KFEkDPnaKaohh6CabdhmUDL5la8qf-_qlhWFE6pp45BtlRGaN-psvDHvats8e48b',
+  工单状态变更提醒: 'VxBDiHXkwFxzuZcXZLcviZpWL2nui8J0sDg-CkX7KWJtlRGaN-psvDHvats8e48b',
 }
 
 /** 订阅员工消息名称的联合类型 */

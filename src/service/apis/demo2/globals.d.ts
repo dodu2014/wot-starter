@@ -151,7 +151,7 @@ declare global {
        *
        * [GET] 发送订阅模板消息给指定用户
        *
-       * **path:** /api/Demo/SubscribeMessage/sendTo
+       * **path:** /api/Demo/SubscribeMessage/sendSubscribeMessageTo
        *
        * ---
        *
@@ -189,6 +189,49 @@ declare global {
       >(
         config: Config
       ): Alova2Method<ApiResultOfboolean, 'subscribeMessage.sendSubscribeMessageTo', Config>;
+      /**
+       * ---
+       *
+       * [GET] 发送用工关系订阅模板消息给指定用户
+       *
+       * **path:** /api/Demo/SubscribeMessage/sendSubscribeEmployeeMessageTo
+       *
+       * ---
+       *
+       * **Query Parameters**
+       * ```ts
+       * type QueryParameters = {
+       *   openId?: string
+       * }
+       * ```
+       *
+       * ---
+       *
+       * **Response**
+       * ```ts
+       * type Response = {
+       *   // 响应编号
+       *   code?: number | string
+       *   // 响应消息
+       *   message?: string
+       *   // 响应数据 T
+       *   data?: boolean
+       *   // 扩展数据
+       *   extend?: null
+       *   // 请求是否返回正确
+       *   isSuccess?: boolean
+       * }
+       * ```
+       */
+      sendSubscribeEmployeeMessageTo<
+        Config extends Alova2MethodConfig<ApiResultOfboolean> & {
+          params: {
+            openId?: string;
+          };
+        }
+      >(
+        config: Config
+      ): Alova2Method<ApiResultOfboolean, 'subscribeMessage.sendSubscribeEmployeeMessageTo', Config>;
     };
   }
 

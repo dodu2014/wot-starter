@@ -9,8 +9,8 @@ definePage({
 })
 
 const { logined, userInfo } = useUserStore()
-const { warning } = useGlobalToast()
-const { wxUserInfo, wxLogin } = useWxUserStore()
+const { warning, success } = useGlobalToast()
+const { wxUserInfo } = useWxUserStore()
 
 const { send: sendBindRequest } = useRequest(
   (status: string) => Webapi_Weixin.wxOpen.onCheckEmployeeRelation({ params: {
@@ -33,7 +33,7 @@ function handleCheck() {
   console.log('checkEmployeeRelation')
   wx.checkEmployeeRelation({
     async success(res) {
-      console.log('checkEmployeeRelation success', res)
+      success('检测用工关系成功')
       // request
       await sendBindRequest(res.bindingStatus)
     },
@@ -41,7 +41,7 @@ function handleCheck() {
       console.log('checkEmployeeRelation complete', res)
     },
     fail(res) {
-      console.log('checkEmployeeRelation fail', res)
+      warning(res.errMsg)
     },
   })
 }
@@ -55,9 +55,8 @@ function handleRequest() {
     warning('请先登录')
     return
   }
-  console.log('bindEmployeeRelation')
   wx.bindEmployeeRelation({
-    tmplIds: [],
+    tmplIds: ['VxBDiHXkwFxzuZcXZLcviZpWL2nui8J0sDg-CkX7KWJtlRGaN-psvDHvats8e48b'],
     success(res) {
       console.log('bindEmployeeRelation success', res)
       handleCheck()
@@ -66,9 +65,21 @@ function handleRequest() {
       console.log('bindEmployeeRelation complete', res)
     },
     fail(res) {
-      console.log('bindEmployeeRelation fail', res)
+      warning(res.errMsg)
     },
   })
+}
+
+const { send: sendSubscribeEmployeeMessage } = useRequest(
+  (openId: string) => Webapi_Demo.subscribeMessage.sendSubscribeEmployeeMessageTo({ params: { openId } }),
+  { immediate: false },
+)
+async function testSendMessage() {
+  if (!wxUserInfo?.openId) {
+    warning('请先登录')
+    return
+  }
+  await sendSubscribeEmployeeMessage(wxUserInfo.openId)
 }
 
 onLoad(() => {
@@ -78,15 +89,18 @@ onLoad(() => {
 </script>
 
 <template>
-  <view class="flex-col gap-y-3 p-4">
-    <wd-button block @click="wxLogin">
-      wx login {{ wxUserInfo?.openId }}
-    </wd-button>
+  <view class="flex-1 flex-col justify-center gap-y-3 p-4">
+    <view class="text-center">
+      {{ wxUserInfo?.openId }}
+    </view>
     <wd-button block @click="handleRequest">
       请求绑定
     </wd-button>
     <wd-button block @click="handleCheck">
       检测用工关系
+    </wd-button>
+    <wd-button block @click="testSendMessage">
+      测试 `工单状态变更提醒` 模板消息
     </wd-button>
   </view>
 </template>

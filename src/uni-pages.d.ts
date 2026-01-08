@@ -10,6 +10,7 @@ type _LocationUrl =
   "/pages/article/list" |
   "/pages/feature/employeeRelation" |
   "/pages/feature/index" |
+  "/pages/feature/subscribeMessage" |
   "/pages/login/index" |
   "/pages/login/privacyPolicy" |
   "/pages/login/register" |

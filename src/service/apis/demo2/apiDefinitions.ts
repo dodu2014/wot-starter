@@ -19,5 +19,9 @@
 export default {
   'sse.sse1': ['GET', '/api/Demo/Sse/sse1'],
   'sse.sse2': ['GET', '/api/Demo/Sse/sse2'],
-  'subscribeMessage.sendSubscribeMessageTo': ['GET', '/api/Demo/SubscribeMessage/sendTo']
+  'subscribeMessage.sendSubscribeMessageTo': ['GET', '/api/Demo/SubscribeMessage/sendSubscribeMessageTo'],
+  'subscribeMessage.sendSubscribeEmployeeMessageTo': [
+    'GET',
+    '/api/Demo/SubscribeMessage/sendSubscribeEmployeeMessageTo'
+  ]
 };

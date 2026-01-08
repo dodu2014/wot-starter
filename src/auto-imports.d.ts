@@ -10,6 +10,7 @@ declare global {
   const EffectScope: typeof import('vue')['EffectScope']
   const Webapi_App: typeof import('./service/apis/index')['Webapi_App']
   const Webapi_Base: typeof import('./service/apis/index')['Webapi_Base']
+  const Webapi_Demo: typeof import('./service/apis/index')['Webapi_Demo']
   const Webapi_Weixin: typeof import('./service/apis/index')['Webapi_Weixin']
   const acceptHMRUpdate: typeof import('pinia')['acceptHMRUpdate']
   const asyncComputed: typeof import('@vueuse/core')['asyncComputed']
@@ -372,6 +373,7 @@ declare module 'vue' {
     readonly EffectScope: UnwrapRef<typeof import('vue')['EffectScope']>
     readonly Webapi_App: UnwrapRef<typeof import('./service/apis/index')['Webapi_App']>
     readonly Webapi_Base: UnwrapRef<typeof import('./service/apis/index')['Webapi_Base']>
+    readonly Webapi_Demo: UnwrapRef<typeof import('./service/apis/index')['Webapi_Demo']>
     readonly Webapi_Weixin: UnwrapRef<typeof import('./service/apis/index')['Webapi_Weixin']>
     readonly acceptHMRUpdate: UnwrapRef<typeof import('pinia')['acceptHMRUpdate']>
     readonly asyncComputed: UnwrapRef<typeof import('@vueuse/core')['asyncComputed']>

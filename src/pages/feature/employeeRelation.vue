@@ -3,13 +3,12 @@ definePage({
   name: 'feature-employeeRelation',
   layout: 'default',
   style: {
-    navigationBarTitleText: '用工关系',
+    navigationBarTitleText: '用工关系示例',
   },
   needLogin: true,
 })
 
 const { logined, userInfo } = useUserStore()
-const { warning, success } = useGlobalToast()
 const { wxUserInfo } = useWxUserStore()
 
 const { send: sendBindRequest } = useRequest(
@@ -22,6 +21,13 @@ const { send: sendBindRequest } = useRequest(
   { immediate: false },
 )
 
+const { warning } = useGlobalToast()
+const { bindStatus, bindEmployeeRelation, checkEmployeeRelation, requestSubscribeEmployeeMessage } = useEmployeeMessage({
+  checkSuccessCallback: async (status) => {
+    await sendBindRequest(status, userInfo?.name)
+  },
+})
+
 function handleCheck() {
   if (!logined) {
     warning('请先登录')
@@ -31,26 +37,10 @@ function handleCheck() {
     warning('请先登录')
     return
   }
-  console.log('checkEmployeeRelation')
-  wx.checkEmployeeRelation({
-    async success(res) {
-      if (res.bindingStatus === 'accept')
-        success('已授权用工关系')
-      else
-        warning('未授权用工关系')
-      // request
-      await sendBindRequest(res.bindingStatus, userInfo?.name)
-    },
-    complete(res) {
-      console.log('checkEmployeeRelation complete', res)
-    },
-    fail(res) {
-      warning(res.errMsg)
-    },
-  })
+  checkEmployeeRelation()
 }
 
-function handleRequest() {
+function handleBind() {
   if (!logined) {
     warning('请先登录')
     return
@@ -59,19 +49,11 @@ function handleRequest() {
     warning('请先登录')
     return
   }
-  wx.bindEmployeeRelation({
-    tmplIds: ['VxBDiHXkwFxzuZcXZLcviZpWL2nui8J0sDg-CkX7KWJtlRGaN-psvDHvats8e48b'],
-    success(res) {
-      console.log('bindEmployeeRelation success', res)
-      handleCheck()
-    },
-    complete(res) {
-      console.log('bindEmployeeRelation complete', res)
-    },
-    fail(res) {
-      warning(res.errMsg)
-    },
-  })
+  bindEmployeeRelation('工单状态变更提醒')
+}
+
+async function handleRequestSubscribe() {
+  await requestSubscribeEmployeeMessage('工单状态变更提醒')
 }
 
 const { send: sendSubscribeEmployeeMessage } = useRequest(
@@ -94,14 +76,19 @@ onLoad(() => {
 
 <template>
   <view class="flex-1 flex-col justify-center gap-y-3 p-4">
+    <wd-text custom-class="text-center" :text="wxUserInfo?.openId" :lines="1" />
     <view class="text-center">
-      {{ wxUserInfo?.openId }}
+      用工关系绑定状态：{{ bindStatus || '未知' }}
     </view>
-    <wd-button block @click="handleRequest">
-      请求绑定
+    <wd-divider />
+    <wd-button block @click="handleBind">
+      请求用工关系绑定
     </wd-button>
     <wd-button block @click="handleCheck">
-      检测用工关系
+      检测用工关系状态
+    </wd-button>
+    <wd-button block @click="handleRequestSubscribe">
+      单独订阅指定消息
     </wd-button>
     <wd-button block @click="testSendMessage">
       测试 `工单状态变更提醒` 模板消息

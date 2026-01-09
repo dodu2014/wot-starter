@@ -42,6 +42,7 @@ declare global {
   const defineStore: typeof import('pinia')['defineStore']
   const eagerComputed: typeof import('@vueuse/core')['eagerComputed']
   const effectScope: typeof import('vue')['effectScope']
+  const employeeMessages: typeof import('./composables/useEmployeeMessage')['employeeMessages']
   const extendRef: typeof import('@vueuse/core')['extendRef']
   const getActivePinia: typeof import('pinia')['getActivePinia']
   const getAllExcludePages: typeof import('./utils/page')['getAllExcludePages']
@@ -138,7 +139,6 @@ declare global {
   const shallowRef: typeof import('vue')['shallowRef']
   const store: typeof import('./store/index')['default']
   const storeToRefs: typeof import('pinia')['storeToRefs']
-  const subscribeEmployeeMessages: typeof import('./composables/useSubscribeEmployeeMessage')['subscribeEmployeeMessages']
   const subscribeMessages: typeof import('./composables/useSubscribeMessage')['subscribeMessages']
   const syncRef: typeof import('@vueuse/core')['syncRef']
   const syncRefs: typeof import('@vueuse/core')['syncRefs']
@@ -214,6 +214,7 @@ declare global {
   const useElementHover: typeof import('@vueuse/core')['useElementHover']
   const useElementSize: typeof import('@vueuse/core')['useElementSize']
   const useElementVisibility: typeof import('@vueuse/core')['useElementVisibility']
+  const useEmployeeMessage: typeof import('./composables/useEmployeeMessage')['useEmployeeMessage']
   const useEventBus: typeof import('@vueuse/core')['useEventBus']
   const useEventListener: typeof import('@vueuse/core')['useEventListener']
   const useEventSource: typeof import('@vueuse/core')['useEventSource']
@@ -298,7 +299,6 @@ declare global {
   const useStorage: typeof import('@vueuse/core')['useStorage']
   const useStorageAsync: typeof import('@vueuse/core')['useStorageAsync']
   const useStyleTag: typeof import('@vueuse/core')['useStyleTag']
-  const useSubscribeEmployeeMessage: typeof import('./composables/useSubscribeEmployeeMessage')['useSubscribeEmployeeMessage']
   const useSubscribeMessage: typeof import('./composables/useSubscribeMessage')['useSubscribeMessage']
   const useSupported: typeof import('@vueuse/core')['useSupported']
   const useSwipe: typeof import('@vueuse/core')['useSwipe']
@@ -405,6 +405,7 @@ declare module 'vue' {
     readonly defineStore: UnwrapRef<typeof import('pinia')['defineStore']>
     readonly eagerComputed: UnwrapRef<typeof import('@vueuse/core')['eagerComputed']>
     readonly effectScope: UnwrapRef<typeof import('vue')['effectScope']>
+    readonly employeeMessages: UnwrapRef<typeof import('./composables/useEmployeeMessage')['employeeMessages']>
     readonly extendRef: UnwrapRef<typeof import('@vueuse/core')['extendRef']>
     readonly getActivePinia: UnwrapRef<typeof import('pinia')['getActivePinia']>
     readonly getAllExcludePages: UnwrapRef<typeof import('./utils/page')['getAllExcludePages']>
@@ -500,7 +501,6 @@ declare module 'vue' {
     readonly shallowReadonly: UnwrapRef<typeof import('vue')['shallowReadonly']>
     readonly shallowRef: UnwrapRef<typeof import('vue')['shallowRef']>
     readonly storeToRefs: UnwrapRef<typeof import('pinia')['storeToRefs']>
-    readonly subscribeEmployeeMessages: UnwrapRef<typeof import('./composables/useSubscribeEmployeeMessage')['subscribeEmployeeMessages']>
     readonly subscribeMessages: UnwrapRef<typeof import('./composables/useSubscribeMessage')['subscribeMessages']>
     readonly syncRef: UnwrapRef<typeof import('@vueuse/core')['syncRef']>
     readonly syncRefs: UnwrapRef<typeof import('@vueuse/core')['syncRefs']>
@@ -576,6 +576,7 @@ declare module 'vue' {
     readonly useElementHover: UnwrapRef<typeof import('@vueuse/core')['useElementHover']>
     readonly useElementSize: UnwrapRef<typeof import('@vueuse/core')['useElementSize']>
     readonly useElementVisibility: UnwrapRef<typeof import('@vueuse/core')['useElementVisibility']>
+    readonly useEmployeeMessage: UnwrapRef<typeof import('./composables/useEmployeeMessage')['useEmployeeMessage']>
     readonly useEventBus: UnwrapRef<typeof import('@vueuse/core')['useEventBus']>
     readonly useEventListener: UnwrapRef<typeof import('@vueuse/core')['useEventListener']>
     readonly useEventSource: UnwrapRef<typeof import('@vueuse/core')['useEventSource']>
@@ -660,7 +661,6 @@ declare module 'vue' {
     readonly useStorage: UnwrapRef<typeof import('@vueuse/core')['useStorage']>
     readonly useStorageAsync: UnwrapRef<typeof import('@vueuse/core')['useStorageAsync']>
     readonly useStyleTag: UnwrapRef<typeof import('@vueuse/core')['useStyleTag']>
-    readonly useSubscribeEmployeeMessage: UnwrapRef<typeof import('./composables/useSubscribeEmployeeMessage')['useSubscribeEmployeeMessage']>
     readonly useSubscribeMessage: UnwrapRef<typeof import('./composables/useSubscribeMessage')['useSubscribeMessage']>
     readonly useSupported: UnwrapRef<typeof import('@vueuse/core')['useSupported']>
     readonly useSwipe: UnwrapRef<typeof import('@vueuse/core')['useSwipe']>

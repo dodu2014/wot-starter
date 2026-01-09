@@ -33,7 +33,10 @@ function handleCheck() {
   console.log('checkEmployeeRelation')
   wx.checkEmployeeRelation({
     async success(res) {
-      success('检测用工关系成功')
+      if (res.bindingStatus === 'accept')
+        success('已授权用工关系')
+      else
+        warning('未授权用工关系')
       // request
       await sendBindRequest(res.bindingStatus)
     },

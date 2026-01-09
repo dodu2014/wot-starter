@@ -183,8 +183,6 @@ export interface ApplicationUser {
   description?: string;
   rights?: string;
   rightsList?: string[];
-  openId?: string;
-  unionId?: string;
   signature?: string;
   enabled?: boolean;
   date?: string;
@@ -4430,8 +4428,6 @@ declare global {
        *         // [items] start
        *         // [items] end
        *         rightsList?: string[]
-       *         openId?: string
-       *         unionId?: string
        *         signature?: string
        *         enabled?: boolean
        *         date?: string
@@ -4538,8 +4534,6 @@ declare global {
        *       // [items] start
        *       // [items] end
        *       rightsList?: string[]
-       *       openId?: string
-       *       unionId?: string
        *       signature?: string
        *       enabled?: boolean
        *       date?: string
@@ -4608,8 +4602,6 @@ declare global {
        *     // [items] start
        *     // [items] end
        *     rightsList?: string[]
-       *     openId?: string
-       *     unionId?: string
        *     signature?: string
        *     enabled?: boolean
        *     date?: string
@@ -4662,8 +4654,6 @@ declare global {
        *       // [items] start
        *       // [items] end
        *       rightsList?: string[]
-       *       openId?: string
-       *       unionId?: string
        *       signature?: string
        *       enabled?: boolean
        *       date?: string
@@ -4727,8 +4717,6 @@ declare global {
        *     // [items] start
        *     // [items] end
        *     rightsList?: string[]
-       *     openId?: string
-       *     unionId?: string
        *     signature?: string
        *     enabled?: boolean
        *     date?: string
@@ -4781,8 +4769,6 @@ declare global {
        *       // [items] start
        *       // [items] end
        *       rightsList?: string[]
-       *       openId?: string
-       *       unionId?: string
        *       signature?: string
        *       enabled?: boolean
        *       date?: string
@@ -4864,8 +4850,6 @@ declare global {
        *       // [items] start
        *       // [items] end
        *       rightsList?: string[]
-       *       openId?: string
-       *       unionId?: string
        *       signature?: string
        *       enabled?: boolean
        *       date?: string
@@ -5455,8 +5439,6 @@ declare global {
        *       // [items] start
        *       // [items] end
        *       rightsList?: string[]
-       *       openId?: string
-       *       unionId?: string
        *       signature?: string
        *       enabled?: boolean
        *       date?: string
@@ -5908,8 +5890,6 @@ declare global {
        *     // [items] start
        *     // [items] end
        *     rightsList?: string[]
-       *     openId?: string
-       *     unionId?: string
        *     signature?: string
        *     enabled?: boolean
        *     date?: string
@@ -5990,8 +5970,6 @@ declare global {
        *     // [items] start
        *     // [items] end
        *     rightsList?: string[]
-       *     openId?: string
-       *     unionId?: string
        *     signature?: string
        *     enabled?: boolean
        *     date?: string
@@ -6115,8 +6093,6 @@ declare global {
        *     // [items] start
        *     // [items] end
        *     rightsList?: string[]
-       *     openId?: string
-       *     unionId?: string
        *     signature?: string
        *     enabled?: boolean
        *     date?: string
@@ -6275,8 +6251,6 @@ declare global {
        *     // [items] start
        *     // [items] end
        *     rightsList?: string[]
-       *     openId?: string
-       *     unionId?: string
        *     signature?: string
        *     enabled?: boolean
        *     date?: string
@@ -6352,8 +6326,6 @@ declare global {
        *     // [items] start
        *     // [items] end
        *     rightsList?: string[]
-       *     openId?: string
-       *     unionId?: string
        *     signature?: string
        *     enabled?: boolean
        *     date?: string

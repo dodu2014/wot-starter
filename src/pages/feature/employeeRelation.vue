@@ -13,10 +13,11 @@ const { warning, success } = useGlobalToast()
 const { wxUserInfo } = useWxUserStore()
 
 const { send: sendBindRequest } = useRequest(
-  (status: string) => Webapi_Weixin.wxOpen.onCheckEmployeeRelation({ params: {
+  (status: string, nickName?: string) => Webapi_Weixin.wxOpen.onCheckEmployeeRelation({ params: {
     openId: wxUserInfo?.openId,
     userId: userInfo?.id as string,
     status,
+    nickName,
   } }),
   { immediate: false },
 )
@@ -38,7 +39,7 @@ function handleCheck() {
       else
         warning('未授权用工关系')
       // request
-      await sendBindRequest(res.bindingStatus)
+      await sendBindRequest(res.bindingStatus, userInfo?.name)
     },
     complete(res) {
       console.log('checkEmployeeRelation complete', res)

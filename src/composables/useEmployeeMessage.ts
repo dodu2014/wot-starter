@@ -20,6 +20,10 @@ type BindStatus = WechatMiniprogram.CheckEmployeeRelationSuccessCallbackResult['
 export function useEmployeeMessage(options?: {
   /** 绑定成功回调 */
   checkSuccessCallback?: (status: BindStatus) => void
+  /** 同意消息 */
+  acceptMessage?: string
+  /** 拒绝消息 */
+  rejectMessage?: string
 }) {
   /** 订阅消息名称 */
   const messageIds = ref<string[]>([])
@@ -64,10 +68,12 @@ export function useEmployeeMessage(options?: {
     wx.checkEmployeeRelation({
       async success(res) {
         bindStatus.value = res.bindingStatus
-        if (res.bindingStatus === 'accept')
-          success('已授权用工关系')
-        else
-          warning('未授权用工关系')
+        if (res.bindingStatus === 'accept') {
+          options?.acceptMessage && success(options.acceptMessage)
+        }
+        else {
+          options?.rejectMessage && warning(options.rejectMessage)
+        }
         options?.checkSuccessCallback?.(res.bindingStatus)
       },
       fail(res) {

@@ -26,6 +26,8 @@ const { bindStatus, bindEmployeeRelation, checkEmployeeRelation, requestSubscrib
   checkSuccessCallback: async (status) => {
     await sendBindRequest(status, userInfo?.name)
   },
+  acceptMessage: '已成功授权用工关系',
+  rejectMessage: '未授权用工关系',
 })
 
 function handleCheck() {

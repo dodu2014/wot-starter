@@ -68,7 +68,7 @@
     "@alova/wormhole": "1.5.0",
     "@commitlint/cli": "^20.3.1",
     "@commitlint/config-conventional": "^20.3.1",
-    "@dcloudio/types": "^3.4.28",
+    "@dcloudio/types": "^3.4.29",
     "@dcloudio/uni-automator": "3.0.0-4080720251210001",
     "@dcloudio/uni-cli-shared": "3.0.0-4080720251210001",
     "@dcloudio/uni-stacktracey": "3.0.0-4080720251210001",

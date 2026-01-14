@@ -42,7 +42,7 @@ export function useEmployeeMessage(options?: {
     messageIds.value = tmplIds
 
     loading({ msg: 'loading' })
-    wx.bindEmployeeRelation({
+    uni.bindEmployeeRelation({
       tmplIds,
       success(res) {
         console.log('bindEmployeeRelation success', res)
@@ -65,7 +65,7 @@ export function useEmployeeMessage(options?: {
   /** 检查用工关系状态 */
   function checkEmployeeRelation() {
     loading({ msg: 'loading' })
-    wx.checkEmployeeRelation({
+    uni.checkEmployeeRelation({
       async success(res) {
         bindStatus.value = res.bindingStatus
         if (res.bindingStatus === 'accept') {
@@ -98,7 +98,7 @@ export function useEmployeeMessage(options?: {
     }
     // uni.requestSubscribeMessage 在某些环境下可能直接返回值而非 Promise
     loading({ msg: 'loading' })
-    wx.requestSubscribeEmployeeMessage({
+    uni.requestSubscribeEmployeeMessage({
       tmplIds,
       success(res) {
         if (res.bindingStatus === 'accept')

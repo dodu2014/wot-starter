@@ -9,7 +9,7 @@ definePage({
 })
 
 const { logined, userInfo } = useUserStore()
-const { wxUserInfo } = useWxUserStore()
+const { wxUserInfo, wxLogin } = useWxUserStore()
 
 const { send: sendBindRequest } = useRequest(
   (status: string, nickName?: string) => Webapi_Weixin.wxOpen.onCheckEmployeeRelation({ params: {
@@ -70,7 +70,12 @@ async function testSendMessage() {
   await sendSubscribeEmployeeMessage(wxUserInfo.openId)
 }
 
-onLoad(() => {
+onLoad(async () => {
+  // #ifdef MP-WEIXIN
+  if (!wxUserInfo)
+    await wxLogin()
+  // #endif
+
   if (logined && wxUserInfo?.openId)
     handleCheck()
 })

@@ -46,9 +46,15 @@ function loginSuccess() {
   }
 }
 
-onLoad((e: any) => {
+const { wxUserInfo, wxLogin } = useWxUserStore()
+onLoad(async (e: any) => {
   const { redirect } = e
   redirectUrl.value = (redirect && decodeURIComponent(redirect) as _LocationUrl) || undefined
+
+  // #ifdef MP-WEIXIN
+  if (!wxUserInfo)
+    await wxLogin()
+  // #endif
 })
 </script>
 

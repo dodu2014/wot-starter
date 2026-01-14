@@ -124,11 +124,17 @@ function logout() {
 }
 
 const { messageCount, getMessageList } = useUserBadge()
+const { wxUserInfo, wxLogin } = useWxUserStore()
 
 onLoad(async () => {
   if (logined.value && !userInfo.value) {
     await userStore.loadUserInfo()
   }
+
+  // #ifdef MP-WEIXIN
+  if (!wxUserInfo)
+    await wxLogin()
+  // #endif
 })
 
 onShow(async () => {

@@ -8,7 +8,7 @@ definePage({
 })
 
 const { error } = useGlobalToast()
-const { wxUserInfo } = useWxUserStore()
+const { wxUserInfo, wxLogin } = useWxUserStore()
 const { requestSubscribeMessage } = useSubscribeMessage()
 
 const { send } = useRequest(
@@ -22,6 +22,13 @@ async function testSendMessage() {
   }
   await send(wxUserInfo.openId)
 }
+
+onLoad(async () => {
+  // #ifdef MP-WEIXIN
+  if (!wxUserInfo)
+    await wxLogin()
+  // #endif
+})
 </script>
 
 <template>

@@ -16,7 +16,7 @@ export const useWxUserStore = defineStore(
         loading('loading')
         uni.login({
           success: async (res) => {
-            console.log('loginRes', res)
+            console.log('✈️✈️ wxlogin successed.', res)
             if (!res.code) {
               reject(new Error('code is empty'))
               return

@@ -46,8 +46,25 @@ const { addListener, joinToGroup, startConnection, stopConnection } = useSignalR
 })
 // #endif
 
+// 监听用户登录状态，以便在用户登录后，加入到用户组
+watch(
+  () => logined.value,
+  (val) => {
+    console.log('logined changed', val)
+    if (val) {
+      // #ifdef WEB
+      joinToGroup(`user_${userInfo.value?.id || ''}`)
+      // #endif
+    }
+  },
+  {
+    immediate: true,
+  },
+)
+
 onLaunch(async () => {
   // #ifdef MP-WEIXIN
+  //  检测小程序更新
   checkMiniProgramUpdate()
 
   // 检查用户登录状态，未登录则进行微信登录
@@ -56,11 +73,8 @@ onLaunch(async () => {
   // #endif
 
   // #ifdef WEB
+  // 链接 SignalR
   await startConnection()
-
-  uni.$on('signalR-joinToGroup', async (groupName: string) => {
-    await joinToGroup(groupName)
-  })
 
   setTimeout(async () => {
     if (logined.value) {
@@ -72,10 +86,10 @@ onLaunch(async () => {
 
 onExit(async () => {
   console.log('App onExit called')
-  await stopConnection()
 
   // #ifdef WEB
-  uni.$off('signalR-joinToGroup')
+  // 断开 SignalR 连接
+  await stopConnection()
   // #endif
 })
 </script>

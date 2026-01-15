@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import router, { LOGIN_PAGE } from '@/router'
-import defaultAvatar from '/static/logo.svg'
+import defaultAvatar from '/static/images/devault-avatar.svg'
 
 definePage({
   name: 'my',

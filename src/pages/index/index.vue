@@ -58,18 +58,12 @@ function openUrl(url: string) {
 
 const { getMessageList } = useUserBadge()
 const { userInfo, logined } = useUserStore()
-const { wxUserInfo, wxLogin } = useWxUserStore()
 
 onLoad(async () => {
   if (logined && userInfo?.id) {
     console.log('检测到用户已经登录，立即统计用户消息数量，并设置 tabbar 的角标')
     await getMessageList(userInfo.id)
   }
-
-  // #ifdef MP-WEIXIN
-  if (!wxUserInfo)
-    await wxLogin()
-  // #endif
 })
 </script>
 

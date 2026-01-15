@@ -3,6 +3,7 @@ import { onExit } from '@dcloudio/uni-app'
 import router from './router'
 
 const { logined, userInfo } = storeToRefs(useUserStore())
+const { wxUserInfo, wxLogin } = useWxUserStore()
 
 // #ifdef WEB
 const { addListener, joinToGroup, startConnection, stopConnection } = useSignalR({
@@ -48,6 +49,10 @@ const { addListener, joinToGroup, startConnection, stopConnection } = useSignalR
 onLaunch(async () => {
   // #ifdef MP-WEIXIN
   checkMiniProgramUpdate()
+
+  // 检查用户登录状态，未登录则进行微信登录
+  if (!wxUserInfo)
+    await wxLogin()
   // #endif
 
   // #ifdef WEB

@@ -5,7 +5,7 @@ export const useWxUserStore = defineStore(
   () => {
     const wxUserInfo = ref<WxUser>()
 
-    const { send: sendCode2SessionRequest } = useRequest(
+    const { send: sendOnLoginByCode } = useRequest(
       (code: string) => Webapi_Weixin.wxOpen.onLogin({ params: { code } }),
       { immediate: false },
     )
@@ -21,8 +21,7 @@ export const useWxUserStore = defineStore(
               reject(new Error('code is empty'))
               return
             }
-            const { isSuccess, message, data } = await sendCode2SessionRequest(res.code)
-            wxUserInfo.value = data || undefined
+            const { isSuccess, message, data } = await sendOnLoginByCode(res.code)
             if (!isSuccess) {
               reject(new Error(message))
               return
@@ -31,6 +30,7 @@ export const useWxUserStore = defineStore(
               reject(new Error('data is empty'))
               return
             }
+            wxUserInfo.value = data
             resolve(data)
           },
           complete: () => {
@@ -42,7 +42,6 @@ export const useWxUserStore = defineStore(
 
     return {
       wxUserInfo,
-      sendCode2SessionRequest,
       wxLogin,
     }
   },

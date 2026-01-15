@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import router from '@/router'
+
 definePage({
   name: 'user-settings',
   layout: 'default',
@@ -8,7 +10,23 @@ definePage({
   needLogin: true,
 })
 
-const { userInfo } = useUserStore()
+const { confirm } = useGlobalMessage()
+const { logined, userInfo, logout } = useUserStore()
+function handleLogout() {
+  confirm({
+    title: '退出登录',
+    msg: '确定要退出登录吗？',
+    closeOnClickModal: false,
+    confirmButtonText: '退出登录',
+    cancelButtonText: '取消',
+    success: async (res) => {
+      if (res.action === 'confirm') {
+        await logout()
+        router.back()
+      }
+    },
+  })
+}
 </script>
 
 <template>
@@ -34,5 +52,12 @@ const { userInfo } = useUserStore()
         </template>
       </wd-cell>
     </wd-cell-group>
+
+    <!-- 退出登录/操作区域 -->
+    <view v-if="logined" class="text-center mt-3">
+      <wd-button plain size="small" type="primary" icon="logout" @click="handleLogout">
+        退出登录
+      </wd-button>
+    </view>
   </view>
 </template>

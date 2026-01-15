@@ -11,7 +11,6 @@ definePage({
   },
 })
 
-const { confirm } = useGlobalMessage()
 const userStore = useUserStore()
 const { userInfo, logined } = storeToRefs(userStore)
 
@@ -108,21 +107,6 @@ const darkMode = computed({
   },
 })
 
-function logout() {
-  confirm({
-    title: '退出登录',
-    msg: '确定要退出登录吗？',
-    closeOnClickModal: false,
-    confirmButtonText: '退出登录',
-    cancelButtonText: '取消',
-    success: async (res) => {
-      console.log('res', res)
-      if (res.action === 'confirm')
-        await userStore.logout()
-    },
-  })
-}
-
 const { messageCount, getMessageList } = useUserBadge()
 const { wxUserInfo, wxLogin } = useWxUserStore()
 
@@ -184,18 +168,18 @@ onShow(async () => {
         <view v-if="logined" class="grid grid-cols-2 gap-3 rounded-lg bg-white bg-opacity-20 p-3">
           <view class="text-center" @click="() => router.push({ path: '/pages/about/index', query: { type: 1 } })">
             <view class="text-lg font-bold">
-              ₮ {{ logined ? userStats.usdt : ' --' }}
+              ∫ {{ logined ? userStats.usdt : ' --' }}
             </view>
             <view class="text-xs opacity-90">
-              USDT
+              积分
             </view>
           </view>
           <view class="text-center" @click="() => router.push({ path: '/pages/about/index', query: { type: 2 } })">
             <view class="text-lg font-bold">
-              $ {{ logined ? userStats.bond : ' --' }}
+              ¥ {{ logined ? userStats.bond : ' --' }}
             </view>
             <view class="text-xs opacity-90">
-              美债
+              钱包
             </view>
           </view>
         </view>
@@ -260,14 +244,6 @@ onShow(async () => {
           <wd-badge :model-value="item.badge" :max="99" />
         </wd-cell>
       </wd-cell-group>
-
-      <!-- 退出登录/操作区域 -->
-      <view v-if="logined" class="text-center">
-        <wd-button plain size="small" type="primary" @click="logout">
-          <wd-icon name="logout" class="mr-1" />
-          退出登录
-        </wd-button>
-      </view>
     </view>
   </view>
 

@@ -15,7 +15,8 @@ const agreed = defineModel('agreed', {
 const { easyLogin } = useUserStore()
 const { loading, close: hideLoading } = useGlobalLoading()
 const toast = useGlobalToast()
-const { wxLogin } = useWxUserStore()
+const wxUserStore = useWxUserStore()
+const { wxUserInfo } = storeToRefs(wxUserStore)
 
 const { send: sendGetUserPhoneNumberFromCodeRequest } = useRequest(
   (code: string) => Webapi_Weixin.wxOpen.getUserPhoneNumberFromCode({ params: { code } }),
@@ -37,11 +38,12 @@ async function handleLogin(e: { code: string, errMsg: string, encryptedData: str
   agreed.value = await checkAccept(agreed.value)
 
   loading('loading')
-  const wxUser = await wxLogin()
+  if (!wxUserInfo.value)
+    await wxUserStore.wxLogin()
   // code 换取 完整电话号码
   const phoneNumberRes = await sendGetUserPhoneNumberFromCodeRequest(code)
   // request
-  const { isSuccess } = await easyLogin(phoneNumberRes.data!, '', wxUser.openId, wxUser.unionId)
+  const { isSuccess } = await easyLogin(phoneNumberRes.data!, '', wxUserInfo.value?.openId, wxUserInfo.value?.unionId)
   hideLoading()
   if (!isSuccess) {
     toast.error('登录失败')

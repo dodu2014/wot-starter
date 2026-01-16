@@ -8,7 +8,8 @@ definePage({
 })
 
 const { error } = useGlobalToast()
-const { wxUserInfo, wxLogin } = useWxUserStore()
+const wxUserStore = useWxUserStore()
+const { wxUserInfo } = storeToRefs(wxUserStore)
 const { requestSubscribeMessage } = useSubscribeMessage()
 
 const { send } = useRequest(
@@ -16,17 +17,17 @@ const { send } = useRequest(
   { immediate: false },
 )
 async function testSendMessage() {
-  if (!wxUserInfo?.openId) {
+  if (!wxUserInfo.value?.openId) {
     error('请先登录')
     return
   }
-  await send(wxUserInfo.openId)
+  await send(wxUserInfo.value.openId)
 }
 
 onLoad(async () => {
   // #ifdef MP-WEIXIN
-  if (!wxUserInfo)
-    await wxLogin()
+  if (!wxUserInfo.value)
+    await wxUserStore.wxLogin()
   // #endif
 })
 </script>

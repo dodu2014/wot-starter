@@ -9,11 +9,12 @@ definePage({
 })
 
 const { logined, userInfo } = useUserStore()
-const { wxUserInfo, wxLogin } = useWxUserStore()
+const wxUserStore = useWxUserStore()
+const { wxUserInfo } = storeToRefs(wxUserStore)
 
 const { send: sendBindRequest } = useRequest(
   (status: string, nickName?: string) => Webapi_Weixin.wxOpen.onCheckEmployeeRelation({ params: {
-    openId: wxUserInfo?.openId,
+    openId: wxUserInfo.value?.openId,
     userId: userInfo?.id as string,
     status,
     nickName,
@@ -35,7 +36,7 @@ function handleCheck() {
     warning('请先登录')
     return
   }
-  if (!wxUserInfo?.openId) {
+  if (!wxUserInfo.value?.openId) {
     warning('请先登录')
     return
   }
@@ -47,7 +48,7 @@ function handleBind() {
     warning('请先登录')
     return
   }
-  if (!wxUserInfo?.openId) {
+  if (!wxUserInfo.value?.openId) {
     warning('请先登录')
     return
   }
@@ -63,20 +64,20 @@ const { send: sendSubscribeEmployeeMessage } = useRequest(
   { immediate: false },
 )
 async function testSendMessage() {
-  if (!wxUserInfo?.openId) {
+  if (!wxUserInfo.value?.openId) {
     warning('请先登录')
     return
   }
-  await sendSubscribeEmployeeMessage(wxUserInfo.openId)
+  await sendSubscribeEmployeeMessage(wxUserInfo.value.openId)
 }
 
 onLoad(async () => {
   // #ifdef MP-WEIXIN
-  if (!wxUserInfo)
-    await wxLogin()
+  if (!wxUserInfo.value)
+    await wxUserStore.wxLogin()
   // #endif
 
-  if (logined && wxUserInfo?.openId)
+  if (logined && wxUserInfo.value?.openId)
     handleCheck()
 })
 </script>

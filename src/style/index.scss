@@ -35,10 +35,12 @@
 }
 
 // 上传组件样式
-.wd-upload{
+.wd-upload {
   gap: 10px !important;
 
-  .wd-upload__evoke, .wd-upload__preview {
+  .wd-upload__evoke,
+  .wd-upload__preview {
     margin-bottom: 0 !important;
+    margin-right: 0 !important;
   }
 }

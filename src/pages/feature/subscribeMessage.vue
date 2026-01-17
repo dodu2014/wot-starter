@@ -33,7 +33,7 @@ onLoad(async () => {
 </script>
 
 <template>
-  <view class="flex-1 flex-col justify-center gap-y-3 p-4">
+  <view class="flex-col flex-1 justify-center gap-y-3 p-4">
     <view class="text-center">
       {{ wxUserInfo?.openId }}
     </view>

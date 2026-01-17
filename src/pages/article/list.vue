@@ -85,7 +85,7 @@ onReachBottom(async () => {
     </view>
 
     <!-- 缺省内容 -->
-    <view v-if="loading === false && !modelList.length" class="flex-center flex-col h-65vh">
+    <view v-if="loading === false && !modelList.length" class="h-65vh flex-center flex-col">
       <app-empty image="content" tip="暂无内容" />
     </view>
 

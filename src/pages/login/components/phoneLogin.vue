@@ -55,11 +55,11 @@ async function handleLogin(e: { code: string, errMsg: string, encryptedData: str
 </script>
 
 <template>
-  <view class="flex-col gap-y-3rem items-center">
+  <view class="flex-col items-center gap-y-3rem">
     <view class="flex-center gap-x-20px">
-      <text class="i-carbon:application-mobile text-50px text-primary block" />
-      <text class="i-carbon:direct-link text-24px text-default block" />
-      <text class="i-carbon:bare-metal-server text-50px text-primary block" />
+      <text class="i-carbon:application-mobile block text-50px text-primary" />
+      <text class="i-carbon:direct-link block text-24px text-default" />
+      <text class="i-carbon:bare-metal-server block text-50px text-primary" />
     </view>
 
     <!-- 登录按钮 -->

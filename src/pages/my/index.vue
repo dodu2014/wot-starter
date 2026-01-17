@@ -186,7 +186,7 @@ onShow(async () => {
       </view>
     </view>
 
-    <view class="flex flex-col gap-4 mx-8 mt--10">
+    <view class="mx-8 mt--10 flex flex-col gap-4">
       <!-- 功能菜单区域 -->
       <wd-card custom-class="rounded-lg overflow-hidden shadow-sm !m-0 !px-0" custom-content-class="!p-2">
         <wd-grid clickable :column="3">
@@ -212,7 +212,7 @@ onShow(async () => {
       </wd-card>
 
       <!-- 主题设置 -->
-      <wd-cell-group border insert custom-class="!mx-0">
+      <wd-cell-group insert border custom-class="!mx-0">
         <wd-cell title="跟随系统" center>
           <view class="flex justify-end">
             <wd-switch v-model="isFollowSystem" size="14px" />
@@ -232,7 +232,7 @@ onShow(async () => {
       </wd-cell-group>
 
       <!-- 更多功能列表 -->
-      <wd-cell-group border insert custom-class="!mx-0">
+      <wd-cell-group insert border custom-class="!mx-0">
         <wd-cell
           v-for="item in moreItems"
           :key="item.title"

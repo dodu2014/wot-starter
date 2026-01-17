@@ -54,7 +54,7 @@ function handleLogout() {
     </wd-cell-group>
 
     <!-- 退出登录/操作区域 -->
-    <view v-if="logined" class="text-center mt-3">
+    <view v-if="logined" class="mt-3 text-center">
       <wd-button plain size="small" type="primary" icon="logout" @click="handleLogout">
         退出登录
       </wd-button>

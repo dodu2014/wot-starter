@@ -97,7 +97,7 @@ async function handleToPage(pagePath: string) {
     </view>
 
     <!-- 缺省内容 -->
-    <view v-if="loading === false && !modelList.length" class="flex-center flex-col h-65vh">
+    <view v-if="loading === false && !modelList.length" class="h-65vh flex-center flex-col">
       <app-empty image="content" tip="暂无内容" />
     </view>
 
@@ -111,7 +111,7 @@ async function handleToPage(pagePath: string) {
         @click="() => sendGetMessageRequest(item.id!)"
       >
         <template #icon>
-          <view class="content-center flex items-center pr-3">
+          <view class="flex content-center items-center pr-3">
             <wd-icon name="mail" :size="24" :custom-class="item.isReaded ? 'text-gray' : 'text-primary'" />
           </view>
         </template>
@@ -133,7 +133,7 @@ async function handleToPage(pagePath: string) {
       position="bottom" closable safe-area-inset-bottom lock-scroll
       @close="() => showDetail = false"
     >
-      <view v-if="messageModel" class="px-4 pb-6 pt-8 flex-col gap-y-3 min-h-180px">
+      <view v-if="messageModel" class="min-h-180px flex-col gap-y-3 px-4 pb-6 pt-8">
         <view class="flex-1">
           <wd-text :text="messageModel?.content" custom-class="!text-default" />
         </view>

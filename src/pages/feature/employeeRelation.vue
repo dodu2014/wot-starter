@@ -83,7 +83,7 @@ onLoad(async () => {
 </script>
 
 <template>
-  <view class="flex-1 flex-col justify-center gap-y-3 p-4">
+  <view class="flex-col flex-1 justify-center gap-y-3 p-4">
     <wd-text custom-class="text-center" :text="wxUserInfo?.openId" :lines="1" />
     <view class="text-center">
       用工关系绑定状态：{{ bindStatus || '未知' }}

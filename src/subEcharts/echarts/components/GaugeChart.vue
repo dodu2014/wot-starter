@@ -89,7 +89,7 @@ let timer: NodeJS.Timeout | null = null
 onMounted(() => {
   timer = setInterval(() => {
     const newValue = Math.round(Math.random() * 100)
-    option.value.series[0].data[0].value = newValue
+    option.value.series[0]!.data[0]!.value = newValue
   }, 3000)
 })
 

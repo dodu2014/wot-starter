@@ -137,6 +137,6 @@ export const generateMockData = {
   // 单据状态，可选值为：0 | 100 | 1300 | 300 | 110 | 1310
   stat: (): number => {
     const stats = [100, 1300, 300, 110, 1310]
-    return stats[generateMockData.number(0, stats.length - 1)]
+    return stats[generateMockData.number(0, stats.length - 1)]!
   },
 }

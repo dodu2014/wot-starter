@@ -13,10 +13,10 @@ importers:
     dependencies:
       '@alova/adapter-uniapp':
         specifier: ^2.0.15
-        version: 2.0.15(alova@3.4.1)
+        version: 2.0.15(alova@3.5.0)
       '@alova/mock':
         specifier: ^2.0.18
-        version: 2.0.18(alova@3.4.1)
+        version: 2.0.18(alova@3.5.0)
       '@alova/shared':
         specifier: ^1.3.2
         version: 1.3.2
@@ -84,8 +84,8 @@ importers:
         specifier: ^1.1.2
         version: 1.1.2(vue@3.4.38(typescript@5.9.3))
       alova:
-        specifier: ^3.4.1
-        version: 3.4.1
+        specifier: ^3.5.0
+        version: 3.5.0
       echarts:
         specifier: ^6.0.0
         version: 6.0.0
@@ -169,14 +169,14 @@ importers:
         specifier: ^0.1.11
         version: 0.1.11(rollup@4.53.2)
       '@uni-helper/vite-plugin-uni-manifest':
-        specifier: ^0.2.11
-        version: 0.2.11(vite@5.2.8(@types/node@20.19.25)(less@4.5.1)(sass@1.78.0)(terser@5.31.6))
+        specifier: ^0.2.12
+        version: 0.2.12(vite@5.2.8(@types/node@20.19.25)(less@4.5.1)(sass@1.78.0)(terser@5.31.6))
       '@uni-helper/vite-plugin-uni-pages':
-        specifier: ^0.3.22
-        version: 0.3.22(vite@5.2.8(@types/node@20.19.25)(less@4.5.1)(sass@1.78.0)(terser@5.31.6))
+        specifier: ^0.3.23
+        version: 0.3.23(vite@5.2.8(@types/node@20.19.25)(less@4.5.1)(sass@1.78.0)(terser@5.31.6))
       '@uni-helper/volar-service-uni-pages':
-        specifier: ^0.3.22
-        version: 0.3.22
+        specifier: ^0.3.23
+        version: 0.3.23
       '@uni-ku/bundle-optimizer':
         specifier: ^2.1.0
         version: 2.1.0(@vueuse/core@11.0.3(vue@3.4.38(typescript@5.9.3)))(chokidar@3.6.0)(postcss@8.5.6)(rollup@4.53.2)(vite@5.2.8(@types/node@20.19.25)(less@4.5.1)(sass@1.78.0)(terser@5.31.6))(vue@3.4.38(typescript@5.9.3))
@@ -466,10 +466,6 @@ packages:
 
   '@babel/generator@7.25.6':
     resolution: {integrity: sha512-VPC82gr1seXOpkjAAKoLhP50vx4vGNlF4msF64dSFq1P8RfB+QAuJWGHPXXPc8QyfVWwwB/TNNU4+ayZmHNbZw==}
-    engines: {node: '>=6.9.0'}
-
-  '@babel/generator@7.28.5':
-    resolution: {integrity: sha512-3EwLFhZ38J4VyIP6WNtt2kUdW9dokXA9Cr4IVIFHuCpZ3H8/YFOl5JjZHisrn1fATPBmKKqXzDFvh9fUwHz6CQ==}
     engines: {node: '>=6.9.0'}
 
   '@babel/generator@7.28.6':
@@ -2807,8 +2803,8 @@ packages:
       '@antfu/eslint-config': ^5.0.0
       eslint: ^9.10.0
 
-  '@uni-helper/pages-json-schema@0.3.22':
-    resolution: {integrity: sha512-OE/DErSqiewAgZf9GREFfDBm4fFJUnTghe3gd/DudTOlII+WFQ6hIj7M03JsHGMLPB2J7uedwdbMSz0MXvGPNw==}
+  '@uni-helper/pages-json-schema@0.3.23':
+    resolution: {integrity: sha512-om6Te9tyvcGcfF7K/qG4NRTHHESqtIigZx1n7BR4vwxjce3qNVAUtIklfeqa9uxkweHZqk8iv/lFxXrOzlqMaQ==}
 
   '@uni-helper/plugin-uni@0.1.0':
     resolution: {integrity: sha512-hBPUjoQc/SgqKsyGUl0fJiL+dDwLPhf2es1PJdsXcxHyOujoBP2+D4z5ie+Q72wVwKtTsQSP3tSjww/63JRmbA==}
@@ -2878,18 +2874,18 @@ packages:
   '@uni-helper/vite-plugin-uni-layouts@0.1.11':
     resolution: {integrity: sha512-FXdFATBFsHAl7xY9q3KO0EexMRGua/7txIiQTm2rQi1/bXcft4CUXldtuHl9Upq0V6CT47aanmfzcOF5CpHK7Q==}
 
-  '@uni-helper/vite-plugin-uni-manifest@0.2.11':
-    resolution: {integrity: sha512-0qc+XexlyngeC+TukIM4ogjTj8S9FwU1Ab607EgUIuuhaqbhxhPdEIb406VcAF1klRRwKIxBzZWfNoW9fv+AwQ==}
+  '@uni-helper/vite-plugin-uni-manifest@0.2.12':
+    resolution: {integrity: sha512-3bAl6hEmBb7TA+yLntCAsdhAjedLNmbaDJV6gXKK/G5pOJDvO+agkU/P/Pb9DGXAhUjOZ8QbUr0fLdyVw0h4qw==}
     peerDependencies:
       vite: ^4.0.0 || ^5.0.0 || ^6.0.0
 
-  '@uni-helper/vite-plugin-uni-pages@0.3.22':
-    resolution: {integrity: sha512-VidtQMk2DK7zcKmfdsq8zBmgvAywLVxXbkdZmYvqMCYgHYhOpCIjZPfNq01twz3nZ/CV2dm4vetYKdWq1jq7BA==}
+  '@uni-helper/vite-plugin-uni-pages@0.3.23':
+    resolution: {integrity: sha512-dokW4rY/g1aOwCp3Jjjwyek20YY7vBEwixy/j+lesudrY1+YEGMQwdq8gB6yDdnywQijqy9GRTu+GwlNESDKkA==}
     peerDependencies:
       vite: ^5.0.0
 
-  '@uni-helper/volar-service-uni-pages@0.3.22':
-    resolution: {integrity: sha512-lcao1T4d5/isXF6bnyanRFeUkgoMgWQjDRf/DCQftam5k2/mENxhMjSMq3DYLwzf6+KWWnvMYIJrCGgquagnBQ==}
+  '@uni-helper/volar-service-uni-pages@0.3.23':
+    resolution: {integrity: sha512-3TTmakmO2Ow1zRFroSmzpHOtCOOdwsgaWCdqxOCh2caflq/p0+YSE9tdkl/J2dYjzcwAtUe7hPDjaUG9iMp9LQ==}
     peerDependencies:
       '@volar/language-service': ^1.11.1
     peerDependenciesMeta:
@@ -3556,8 +3552,8 @@ packages:
   alien-signals@3.1.2:
     resolution: {integrity: sha512-d9dYqZTS90WLiU0I5c6DHj/HcKkF8ZyGN3G5x8wSbslulz70KOxaqCT0hQCo9KOyhVqzqGojvNdJXoTumZOtcw==}
 
-  alova@3.4.1:
-    resolution: {integrity: sha512-xGChKIiCHDqcMglF9RyuWAsk+ltwnja8Dp4MgRIRbUlhOi8XFiQnaoWwIQzJcODKeblmmiFAK7YrYnpskFZWLA==}
+  alova@3.5.0:
+    resolution: {integrity: sha512-G3jdC9AQ6QzHKNO7X/J68kcS8rDtwjhruRb2WcxGOi78k5oU+1aGRIiGroqJbVqHQvh1HWgY6IFzyI6PY9J9Eg==}
     engines: {node: '>= 18.0.0'}
 
   ansi-escapes@4.3.2:
@@ -8729,6 +8725,10 @@ packages:
     resolution: {integrity: sha512-+QU2zd6OTD8XWIJCbffaiQeH9U73qIqafo1x6V1snCWYGJf6cVE0cDR4D8xRzcEnfI21IFrUPzPGtcPf8AC+Rw==}
     engines: {node: ^14.17.0 || ^16.13.0 || >=18.0.0}
 
+  write-file-atomic@7.0.0:
+    resolution: {integrity: sha512-YnlPC6JqnZl6aO4uRc+dx5PHguiR9S6WeoLtpxNT9wIG+BDya7ZNE1q7KOjVgaA73hKhKLpVPgJ5QA9THQ5BRg==}
+    engines: {node: ^20.17.0 || >=22.9.0}
+
   ws@7.5.10:
     resolution: {integrity: sha512-+dbF1tHwZpXcbOJdVOkzLDxZP1ailvSxM6ZweXTegylPny803bFhA+vqBYw4s31NSAk4S2Qz+AKXK9a4wkdjcQ==}
     engines: {node: '>=8.3.0'}
@@ -8830,11 +8830,6 @@ packages:
   yaml@2.7.1:
     resolution: {integrity: sha512-10ULxpnOCQXxJvBgxsn9ptjq6uviG/htZKk9veJGhlqn3w/DxQ631zFF+nlQXLwmImeS5amR2dl2U8sg6U9jsQ==}
     engines: {node: '>= 14'}
-    hasBin: true
-
-  yaml@2.8.1:
-    resolution: {integrity: sha512-lcYcMxX2PO9XMGvAJkJ3OsNMw+/7FKes7/hgerGUYWIoWu5j/+YQqcZr5JnPZWzOsEBgMbSbiSTn/dv/69Mkpw==}
-    engines: {node: '>= 14.6'}
     hasBin: true
 
   yaml@2.8.2:
@@ -9013,21 +9008,21 @@ snapshots:
     dependencies:
       '@algolia/client-common': 5.45.0
 
-  '@alova/adapter-uniapp@2.0.15(alova@3.4.1)':
+  '@alova/adapter-uniapp@2.0.15(alova@3.5.0)':
     dependencies:
       '@alova/shared': 1.3.2
-      alova: 3.4.1
+      alova: 3.5.0
 
-  '@alova/mock@2.0.18(alova@3.4.1)':
+  '@alova/mock@2.0.18(alova@3.5.0)':
     dependencies:
       '@alova/shared': 1.3.2
-      alova: 3.4.1
+      alova: 3.5.0
 
   '@alova/shared@1.3.2': {}
 
   '@alova/wormhole@1.5.0':
     dependencies:
-      alova: 3.4.1
+      alova: 3.5.0
       commander: 14.0.0
       esbuild: 0.25.8
       glob: 11.0.3
@@ -9167,14 +9162,6 @@ snapshots:
       '@jridgewell/gen-mapping': 0.3.13
       '@jridgewell/trace-mapping': 0.3.31
       jsesc: 2.5.2
-
-  '@babel/generator@7.28.5':
-    dependencies:
-      '@babel/parser': 7.28.6
-      '@babel/types': 7.28.6
-      '@jridgewell/gen-mapping': 0.3.13
-      '@jridgewell/trace-mapping': 0.3.31
-      jsesc: 3.1.0
 
   '@babel/generator@7.28.6':
     dependencies:
@@ -12436,7 +12423,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@uni-helper/pages-json-schema@0.3.22': {}
+  '@uni-helper/pages-json-schema@0.3.23': {}
 
   '@uni-helper/plugin-uni@0.1.0(@dcloudio/vite-plugin-uni@3.0.0-4080720251210001(@vueuse/core@11.0.3(vue@3.4.38(typescript@5.9.3)))(postcss@8.5.6)(rollup@4.53.2)(vite@5.2.8(@types/node@20.19.25)(less@4.5.1)(sass@1.78.0)(terser@5.31.6))(vue@3.4.38(typescript@5.9.3)))':
     dependencies:
@@ -12538,17 +12525,17 @@ snapshots:
       - magicast
       - rollup
 
-  '@uni-helper/vite-plugin-uni-manifest@0.2.11(vite@5.2.8(@types/node@20.19.25)(less@4.5.1)(sass@1.78.0)(terser@5.31.6))':
+  '@uni-helper/vite-plugin-uni-manifest@0.2.12(vite@5.2.8(@types/node@20.19.25)(less@4.5.1)(sass@1.78.0)(terser@5.31.6))':
     dependencies:
       c12: 2.0.4
       vite: 5.2.8(@types/node@20.19.25)(less@4.5.1)(sass@1.78.0)(terser@5.31.6)
     transitivePeerDependencies:
       - magicast
 
-  '@uni-helper/vite-plugin-uni-pages@0.3.22(vite@5.2.8(@types/node@20.19.25)(less@4.5.1)(sass@1.78.0)(terser@5.31.6))':
+  '@uni-helper/vite-plugin-uni-pages@0.3.23(vite@5.2.8(@types/node@20.19.25)(less@4.5.1)(sass@1.78.0)(terser@5.31.6))':
     dependencies:
-      '@babel/generator': 7.28.5
-      '@babel/types': 7.28.5
+      '@babel/generator': 7.28.6
+      '@babel/types': 7.28.6
       '@types/proper-lockfile': 4.1.4
       '@uni-helper/uni-env': 0.1.8
       '@vue/compiler-sfc': 3.4.21
@@ -12567,13 +12554,14 @@ snapshots:
       typescript: 5.9.2
       unconfig: 7.3.2
       vite: 5.2.8(@types/node@20.19.25)(less@4.5.1)(sass@1.78.0)(terser@5.31.6)
-      yaml: 2.8.1
+      write-file-atomic: 7.0.0
+      yaml: 2.8.2
     transitivePeerDependencies:
       - supports-color
 
-  '@uni-helper/volar-service-uni-pages@0.3.22':
+  '@uni-helper/volar-service-uni-pages@0.3.23':
     dependencies:
-      '@uni-helper/pages-json-schema': 0.3.22
+      '@uni-helper/pages-json-schema': 0.3.23
       vscode-json-languageservice: 5.6.3
       vscode-languageserver-textdocument: 1.0.12
       yaml-language-server: 1.19.2
@@ -13488,7 +13476,7 @@ snapshots:
 
   alien-signals@3.1.2: {}
 
-  alova@3.4.1:
+  alova@3.5.0:
     dependencies:
       '@alova/shared': 1.3.2
       rate-limiter-flexible: 5.0.5
@@ -19588,6 +19576,11 @@ snapshots:
       imurmurhash: 0.1.4
       signal-exit: 4.1.0
 
+  write-file-atomic@7.0.0:
+    dependencies:
+      imurmurhash: 0.1.4
+      signal-exit: 4.1.0
+
   ws@7.5.10(bufferutil@4.0.9):
     optionalDependencies:
       bufferutil: 4.0.9
@@ -19660,8 +19653,6 @@ snapshots:
   yaml@2.5.0: {}
 
   yaml@2.7.1: {}
-
-  yaml@2.8.1: {}
 
   yaml@2.8.2: {}
 

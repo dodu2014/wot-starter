@@ -71,9 +71,6 @@ importers:
       '@microsoft/signalr':
         specifier: ^10.0.0
         version: 10.0.0(bufferutil@4.0.9)
-      '@uni-helper/unh':
-        specifier: ^0.2.10
-        version: 0.2.10
       '@vant/area-data':
         specifier: ^2.1.0
         version: 2.1.0
@@ -153,6 +150,9 @@ importers:
       '@uni-helper/plugin-uni':
         specifier: ^0.1.0
         version: 0.1.0(@dcloudio/vite-plugin-uni@3.0.0-4080720251210001(@vueuse/core@11.0.3(vue@3.4.38(typescript@5.9.3)))(postcss@8.5.6)(rollup@4.53.2)(vite@5.2.8(@types/node@20.19.25)(less@4.5.1)(sass@1.78.0)(terser@5.31.6))(vue@3.4.38(typescript@5.9.3)))
+      '@uni-helper/unh':
+        specifier: ^0.2.10
+        version: 0.2.10
       '@uni-helper/uni-env':
         specifier: ^0.2.0
         version: 0.2.0

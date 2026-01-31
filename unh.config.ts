@@ -17,13 +17,17 @@ export default defineConfig({
     prepare() {
       console.log('prepare ...')
     },
-    // 构建时的钩子，接收平台参数
-    build(platform: string) {
-      console.log('build:', platform)
-    },
     // 开发时的钩子，接收平台参数
-    dev(platform: string) {
-      console.log('dev:', platform)
+    dev({ platform, options, envData }) {
+      console.log('dev:', { platform, options, envData })
+    },
+    // 构建时的钩子，接收平台参数
+    build({ platform, options, envData }) {
+      console.log('build:', { platform, options, envData })
+    },
+    // 构建后的hooks，接收平台参数
+    onBuildAfter({ platform, options, envData }) {
+      console.log('buildAfter:', { platform, options, envData })
     },
   },
   // 自动生成配置
@@ -31,5 +35,10 @@ export default defineConfig({
     // 是否自动生成页面配置
     pages: true,
     manifest: true,
+  },
+  // 小程序开发者工具配置
+  devtools: {
+    // 是否自动打开小程序开发者工具
+    open: true,
   },
 })

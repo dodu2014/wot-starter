@@ -105,6 +105,7 @@ onLoad(async () => {
     <demo-block title="工具链介绍" custom-card-content-class="!p-0">
       <wd-cell-group border custom-class="rounded-2! overflow-hidden">
         <wd-cell title="🧩 WotUI组件库" is-link @click="openUrl('https://wot-ui.cn/')" />
+        <wd-cell title="🧠 Agent Skills" is-link @click="navigateTo('skills')" />
 
         <wd-cell title="🚦 Router 路由管理" is-link @click="navigateTo('router')" />
         <wd-cell title="🌐 Alova 网络请求" is-link @click="navigateTo('request')" />

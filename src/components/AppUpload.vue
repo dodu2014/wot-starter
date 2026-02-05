@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import type { UploadFile, UploadRemoveEvent, UploadSuccessEvent } from 'wot-design-uni/components/wd-upload/types'
-import type { UpFileUploadResult } from '@/service/apis/base/globals'
+import type { ApiResultOfUpFileUploadResult } from '@/service/apis/base/globals'
 
 defineOptions({ name: 'AppUpload' })
 
@@ -53,13 +53,13 @@ const filesList = computed<UploadFile[]>(() => {
 })
 
 function handleSuccessChange({ file }: UploadSuccessEvent) {
-  const json = JSON.parse(file.response as string) as UpFileUploadResult
+  const json = JSON.parse(file.response as string) as ApiResultOfUpFileUploadResult
 
   if (typeof model.value === 'string') {
-    model.value = json?.absUrl || ''
+    model.value = json.data?.absUrl || ''
   }
   else if (Array.isArray(model.value)) {
-    model.value.push(json?.absUrl || '')
+    model.value.push(json.data?.absUrl || '')
   }
   emit('update', model.value)
 }

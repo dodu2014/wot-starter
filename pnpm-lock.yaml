@@ -136,8 +136,8 @@ importers:
         specifier: 3.0.0-4080720251210001
         version: 3.0.0-4080720251210001(@vueuse/core@11.0.3(vue@3.4.38(typescript@5.9.3)))(postcss@8.5.6)(rollup@4.53.2)(vite@5.2.8(@types/node@20.19.25)(less@4.5.1)(sass@1.78.0)(terser@5.31.6))(vue@3.4.38(typescript@5.9.3))
       '@iconify-json/carbon':
-        specifier: ^1.2.16
-        version: 1.2.16
+        specifier: ^1.2.18
+        version: 1.2.18
       '@mini-types/alipay':
         specifier: ^3.0.14
         version: 3.0.14
@@ -178,8 +178,8 @@ importers:
         specifier: ^0.3.23
         version: 0.3.23
       '@uni-ku/bundle-optimizer':
-        specifier: ^2.1.0
-        version: 2.1.0(@vueuse/core@11.0.3(vue@3.4.38(typescript@5.9.3)))(chokidar@3.6.0)(postcss@8.5.6)(rollup@4.53.2)(vite@5.2.8(@types/node@20.19.25)(less@4.5.1)(sass@1.78.0)(terser@5.31.6))(vue@3.4.38(typescript@5.9.3))
+        specifier: ^2.1.1
+        version: 2.1.1(@vueuse/core@11.0.3(vue@3.4.38(typescript@5.9.3)))(chokidar@3.6.0)(postcss@8.5.6)(rollup@4.53.2)(vite@5.2.8(@types/node@20.19.25)(less@4.5.1)(sass@1.78.0)(terser@5.31.6))(vue@3.4.38(typescript@5.9.3))
       '@uni-ku/root':
         specifier: ^1.4.1
         version: 1.4.1(vite@5.2.8(@types/node@20.19.25)(less@4.5.1)(sass@1.78.0)(terser@5.31.6))
@@ -1899,8 +1899,8 @@ packages:
   '@iconify-json/carbon@1.2.14':
     resolution: {integrity: sha512-33u6uGiYJ79Dfp72peT+PBMcjxzi+NyJLpqYRX8pnw0zchsUW7Us2xecgvkWgD83KYcbe6hufyWlHFU9y7fb/Q==}
 
-  '@iconify-json/carbon@1.2.16':
-    resolution: {integrity: sha512-R50UiC4NgPdnoSI3OzaZ/PzKYFVHAsAi3tENWgxvTxjYND3WHiUiG0qfJ0dPuaxwIW/l/2TnZwMPbbedd/+qIQ==}
+  '@iconify-json/carbon@1.2.18':
+    resolution: {integrity: sha512-Grb13E6r/RqTEV4Sqd/BQR2FUt57U2WLuticJ5H8JbTdHLop1LmdePu3EJJA3Xi8DcWRbD6OnC133hKfOwlgtg==}
 
   '@iconify-json/ep@1.2.3':
     resolution: {integrity: sha512-bESiKz5aTcbT4chTVSKjR5P+Nk81ibRtWgR7Gng5JPdF1Az+91+bIOof/OCUKThFRWqWsQ9A4XmSSrakvjuJDQ==}
@@ -2892,8 +2892,8 @@ packages:
       '@volar/language-service':
         optional: true
 
-  '@uni-ku/bundle-optimizer@2.1.0':
-    resolution: {integrity: sha512-SRKmCMYp8eqDJc63HmMBm89nt9ZX9Pme7bjqLghOLmE3ju3ugUBsREbXPJNx46MwsRY4H0416BSjH55qA9HofQ==}
+  '@uni-ku/bundle-optimizer@2.1.1':
+    resolution: {integrity: sha512-jQUL34VYsIsEALpr7n0G1IgfXjz/FzJCpxYPo/JtX6HZk/HpL6jzlYrtoz4nn8lImYm+Qz7Z7p6u+ZmX5IiG9A==}
     peerDependencies:
       vite: ^4.0.0 || ^5.0.0
       vue: ^3.0.0
@@ -5376,6 +5376,7 @@ packages:
 
   glob@10.5.0:
     resolution: {integrity: sha512-DfXN8DfhJ7NH3Oe7cFmu3NCu1wKbkReJ8TorzSAFbSKrlNaQSKfIzqYqVY8zlbs2NLBbWpRiU52GX2PbaBVNkg==}
+    deprecated: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me
     hasBin: true
 
   glob@11.0.3:
@@ -11287,7 +11288,7 @@ snapshots:
     dependencies:
       '@iconify/types': 2.0.0
 
-  '@iconify-json/carbon@1.2.16':
+  '@iconify-json/carbon@1.2.18':
     dependencies:
       '@iconify/types': 2.0.0
 
@@ -12566,7 +12567,7 @@ snapshots:
       vscode-languageserver-textdocument: 1.0.12
       yaml-language-server: 1.19.2
 
-  '@uni-ku/bundle-optimizer@2.1.0(@vueuse/core@11.0.3(vue@3.4.38(typescript@5.9.3)))(chokidar@3.6.0)(postcss@8.5.6)(rollup@4.53.2)(vite@5.2.8(@types/node@20.19.25)(less@4.5.1)(sass@1.78.0)(terser@5.31.6))(vue@3.4.38(typescript@5.9.3))':
+  '@uni-ku/bundle-optimizer@2.1.1(@vueuse/core@11.0.3(vue@3.4.38(typescript@5.9.3)))(chokidar@3.6.0)(postcss@8.5.6)(rollup@4.53.2)(vite@5.2.8(@types/node@20.19.25)(less@4.5.1)(sass@1.78.0)(terser@5.31.6))(vue@3.4.38(typescript@5.9.3))':
     dependencies:
       '@dcloudio/uni-cli-shared': 3.0.0-4020820240925001(@vueuse/core@11.0.3(vue@3.4.38(typescript@5.9.3)))(postcss@8.5.6)(rollup@4.53.2)(vue@3.4.38(typescript@5.9.3))
       '@vue/compiler-sfc': 3.4.21

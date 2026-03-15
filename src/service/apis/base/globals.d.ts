@@ -1359,7 +1359,7 @@ declare global {
        * }
        * ```
        */
-      nodeListArticleCategory<
+      getArticleCategoryNodeList<
         Config extends Alova2MethodConfig<ApiResultOfIEnumerableOfArticleCategory> & {
           params: {
             pid?: string;
@@ -1372,7 +1372,7 @@ declare global {
         }
       >(
         config: Config
-      ): Alova2Method<ApiResultOfIEnumerableOfArticleCategory, 'articleCategory.nodeListArticleCategory', Config>;
+      ): Alova2Method<ApiResultOfIEnumerableOfArticleCategory, 'articleCategory.getArticleCategoryNodeList', Config>;
       /**
        * ---
        *
@@ -3568,7 +3568,7 @@ declare global {
        *
        * [GET] 根据坐标查询位置描述
        *
-       * **path:** /api/Base/Lbs/Geocoder/byLocation
+       * **path:** /api/Base/Lbs/geocoder/byLocation
        *
        * ---
        *
@@ -3646,7 +3646,7 @@ declare global {
        *
        * [GET] 根据位置描述获取坐标
        *
-       * **path:** /api/Base/Lbs/Geocoder/getLocation
+       * **path:** /api/Base/Lbs/geocoder/getLocation
        *
        * ---
        *
@@ -4803,6 +4803,53 @@ declare global {
       >(
         config: Config
       ): Alova2Method<ApiResultOfUserMessage, 'userMessage.updateUserMessage', Config>;
+      /**
+       * ---
+       *
+       * [PUT] 使用户下的所有消息标记已读
+       *
+       * **path:** /api/Base/UserMessages/readAll
+       *
+       * ---
+       *
+       * **Query Parameters**
+       * ```ts
+       * type QueryParameters = {
+       *   // 用户id
+       *   userId?: string
+       * }
+       * ```
+       *
+       * ---
+       *
+       * **Response**
+       * ```ts
+       * type Response = {
+       *   // 响应编号
+       *   code?: number | string
+       *   // 响应消息
+       *   message?: string
+       *   // 响应数据 T
+       *   data?: number | string
+       *   // 扩展数据
+       *   extend?: null
+       *   // 请求是否返回正确
+       *   isSuccess?: boolean
+       * }
+       * ```
+       */
+      setAllUserMessagesRead<
+        Config extends Alova2MethodConfig<ApiResultOfint> & {
+          params: {
+            /**
+             * 用户id
+             */
+            userId?: string;
+          };
+        }
+      >(
+        config: Config
+      ): Alova2Method<ApiResultOfint, 'userMessage.setAllUserMessagesRead', Config>;
       /**
        * ---
        *

@@ -1,67 +1,27 @@
 <script setup lang="ts">
-import { uuid } from '@alova/shared'
+import router from '@/router'
 
 definePage({
   name: 'user-wallt',
   layout: 'default',
   style: {
-    navigationBarTitleText: '钱包',
+    navigationBarTitleText: '我的钱包',
   },
+  needLogin: true,
 })
-
-// eslint-disable-next-line unused-imports/no-unused-vars
-const { warning, success } = useGlobalToast()
-const merchantId = import.meta.env.VITE_WEIXIN_PAY_MERCHANT_ID
-
-const { wxUserInfo } = useWxUserStore()
-
-const { send: sendRequestMerchantTransfer } = useRequest(
-  () => Webapi_Weixin.wxPay.requestMerchantTransfer({
-    params: {
-      amout: 0.01,
-      openId: wxUserInfo?.openId,
-      orderNum: uuid(),
-    },
-  }),
-  {
-    immediate: false,
-  },
-)
-
-async function confirmTransfer() {
-  if (!wx.canIUse('requestMerchantTransfer')) {
-    warning('当前微信版本过低，无法使用该功能，请升级到最新微信版本后重试')
-    return
-  }
-  const { code, data, message } = await sendRequestMerchantTransfer()
-  if (code !== 200) {
-    warning(message!)
-    return
-  }
-  if (data?.state !== 'WAIT_USER_CONFIRM' || !data?.package_info) {
-    warning('请求转账失败，请稍后再试')
-    return
-  }
-
-  wx.requestMerchantTransfer({
-    mchId: merchantId,
-    appId: wx.getAccountInfoSync().miniProgram.appId,
-    package: data.package_info,
-    success: (res) => {
-      // res.err_msg将在页面展示成功后返回应用时返回ok，并不代表付款成功
-      console.log('success:', res)
-    },
-    fail: (res) => {
-      console.log('fail:', res)
-    },
-  })
-}
 </script>
 
 <template>
-  <view class="flex-col gap-y-3">
-    <wd-button @click="confirmTransfer">
-      确认提现
+  <view class="flex-center flex-col flex-full gap-y-3 py-10vh">
+    <wd-icon name="money-circle" size="56px" color="white" custom-class="mb-30px bg-orange rounded-full" />
+    <wd-text text="我的钱包" size="14px" custom-class="!text-default" />
+    <wd-text text="0.00" mode="price" prefix="￥" size="36px" bold custom-class="!text-default" />
+    <view class="flex-full" />
+    <wd-button size="large" type="success" @click="() => router.push('/pages/user/withdraw')">
+      立即提现
+    </wd-button>
+    <wd-button size="large" type="info" @click="() => router.push('/pages/user/walletDetail')">
+      钱包明细
     </wd-button>
   </view>
 </template>

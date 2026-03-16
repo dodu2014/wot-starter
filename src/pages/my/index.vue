@@ -174,7 +174,7 @@ onShow(async () => {
               积分
             </view>
           </view>
-          <view class="text-center" @click="() => router.push({ path: '/pages/about/index', query: { type: 2 } })">
+          <view class="text-center" @click="() => router.push({ path: '/pages/user/wallet', query: { type: 2 } })">
             <view class="text-lg font-bold">
               ¥ {{ logined ? userStats.bond : ' --' }}
             </view>

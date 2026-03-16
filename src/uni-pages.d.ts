@@ -20,6 +20,9 @@ type _LocationUrl =
   "/pages/user/message" |
   "/pages/user/profile" |
   "/pages/user/settings" |
+  "/pages/user/wallet" |
+  "/pages/user/walletDetail" |
+  "/pages/user/withdraw" |
   "/pages/business/order/index" |
   "/pages/business/team/index" |
   "/pages/business/team/join" |

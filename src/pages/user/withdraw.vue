@@ -12,13 +12,23 @@ definePage({
 
 // eslint-disable-next-line unused-imports/no-unused-vars
 const { warning, success } = useGlobalToast()
+const { loading, close: hideLoading } = useGlobalLoading()
+const { confirm } = useGlobalMessage()
 const merchantId = import.meta.env.VITE_WEIXIN_PAY_MERCHANT_ID
 
+const balance = ref(186)
 const amount = ref('')
 
 const { wxUserInfo } = useWxUserStore()
 console.log('wxUserInfo:', wxUserInfo)
 console.log('uuid:', uuid())
+
+function setMaxDrawValue() {
+  let maxValue = balance.value
+  if (maxValue > 200)
+    maxValue = 200
+  amount.value = `${maxValue}`
+}
 
 const { send: sendRequestMerchantTransfer } = useRequest(
   () => Webapi_Weixin.wxPay.requestMerchantTransfer({
@@ -31,9 +41,13 @@ const { send: sendRequestMerchantTransfer } = useRequest(
   {
     immediate: false,
   },
-)
+).onError((err) => {
+  console.log('err:', err)
+}).onComplete(() => {
+  hideLoading()
+})
 
-async function confirmTransfer() {
+function confirmTransfer() {
   if (!wx.canIUse('requestMerchantTransfer')) {
     warning('当前微信版本过低，无法使用该功能，请升级到最新微信版本后重试')
     return
@@ -47,30 +61,44 @@ async function confirmTransfer() {
     warning('提现金额不能小于1元')
     return
   }
+  if (amountValue > balance.value) {
+    warning('提现金额不能大于余额')
+    return
+  }
   if (amountValue > 200) {
     warning('提现金额不能大于200元')
     return
   }
-  const { code, data, message } = await sendRequestMerchantTransfer()
-  if (code !== 200) {
-    warning(message!)
-    return
-  }
-  if (data?.state !== 'WAIT_USER_CONFIRM' || !data?.package_info) {
-    warning('请求转账失败，请稍后再试')
-    return
-  }
+  confirm({
+    confirmButtonText: '确认',
+    cancelButtonText: '取消',
+    msg: '再次确认你的提现金额并继续提现吗？',
+    async success(res) {
+      if (res.action !== 'confirm')
+        return
+      loading('loading')
+      const { code, data, message } = await sendRequestMerchantTransfer()
+      if (code !== 200) {
+        warning(message!)
+        return
+      }
+      if (data?.state !== 'WAIT_USER_CONFIRM' || !data?.package_info) {
+        warning('请求转账失败，请稍后再试')
+        return
+      }
 
-  wx.requestMerchantTransfer({
-    mchId: merchantId,
-    appId: wx.getAccountInfoSync().miniProgram.appId,
-    package: data.package_info,
-    success: (res) => {
-      // res.err_msg将在页面展示成功后返回应用时返回ok，并不代表付款成功
-      console.log('success:', res)
-    },
-    fail: (res) => {
-      console.log('fail:', res)
+      uni.requestMerchantTransfer({
+        mchId: merchantId,
+        appId: uni.getAccountInfoSync().miniProgram.appId,
+        package: data.package_info,
+        success: (res) => {
+          // res.err_msg将在页面展示成功后返回应用时返回ok，并不代表付款成功
+          console.log('success:', res)
+        },
+        fail: (res) => {
+          console.log('fail:', res)
+        },
+      })
     },
   })
 }
@@ -100,13 +128,13 @@ async function confirmTransfer() {
         </template>
       </wd-input>
       <view class="flex-col">
+        <wd-text :text="`当前钱包余额 ${balance} 元`" size="12px" />
         <view class="flex items-center gap-x-2">
-          <wd-text text="当前钱包余额 200 元" size="12px" />
-          <wd-button type="text" size="small">
-            全部提现
+          <wd-text text="最小提现金额为 1 元, 最大 200 元" size="12px" />
+          <wd-button type="text" size="small" @click="setMaxDrawValue">
+            最大提现
           </wd-button>
         </view>
-        <wd-text text="最小提现金额为 1 元" size="12px" />
       </view>
 
       <wd-button type="success" size="large" custom-class="mt-30px" @click="confirmTransfer">

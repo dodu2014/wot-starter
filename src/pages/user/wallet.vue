@@ -15,7 +15,7 @@ definePage({
   <view class="flex-center flex-col flex-full gap-y-3 py-10vh">
     <wd-icon name="money-circle" size="56px" color="white" custom-class="mb-30px bg-orange rounded-full" />
     <wd-text text="我的钱包" size="14px" custom-class="!text-default" />
-    <wd-text text="0.00" mode="price" prefix="￥" size="36px" bold custom-class="!text-default" />
+    <wd-text text="200.00" mode="price" prefix="￥" size="36px" bold custom-class="!text-default" />
     <view class="flex-full" />
     <wd-button size="large" type="success" @click="() => router.push('/pages/user/withdraw')">
       立即提现

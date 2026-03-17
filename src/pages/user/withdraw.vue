@@ -23,7 +23,7 @@ console.log('uuid:', uuid())
 const { send: sendRequestMerchantTransfer } = useRequest(
   () => Webapi_Weixin.wxPay.requestMerchantTransfer({
     params: {
-      amout: 0.01,
+      amout: Number.parseFloat(amount.value),
       openId: wxUserInfo?.openId,
       orderNum: uuid(),
     },
@@ -36,6 +36,19 @@ const { send: sendRequestMerchantTransfer } = useRequest(
 async function confirmTransfer() {
   if (!wx.canIUse('requestMerchantTransfer')) {
     warning('当前微信版本过低，无法使用该功能，请升级到最新微信版本后重试')
+    return
+  }
+  if (!amount.value || Number.isNaN(Number(amount.value))) {
+    warning('请输入正确的金额值')
+    return
+  }
+  const amountValue = Number.parseFloat(amount.value)
+  if (amountValue < 1) {
+    warning('提现金额不能小于1元')
+    return
+  }
+  if (amountValue > 200) {
+    warning('提现金额不能大于200元')
     return
   }
   const { code, data, message } = await sendRequestMerchantTransfer()
@@ -79,18 +92,21 @@ async function confirmTransfer() {
 
     <view class="flex-col gap-y-3 px-8 py-4">
       <wd-text text="提现金额" size="12px" custom-class="!text-default" />
-      <wd-input v-model="amount" size="large" inputmode="decimal" no-border label-width="0" placeholder="请输入提现金额…" focus custom-class="!p-0 !bg-transparent">
+      <wd-input v-model="amount" size="large" inputmode="decimal" no-border label-width="0" placeholder="请输入提现金额…" focus custom-class="!p-0 !bg-transparent is-large2">
         <template #prefix>
           <text class="text-default">
             ¥
           </text>
         </template>
       </wd-input>
-      <view class="flex items-center gap-x-2">
-        <wd-text text="当前钱包余额 0 元" size="12px" />
-        <wd-button type="text" size="small">
-          全部提现
-        </wd-button>
+      <view class="flex-col">
+        <view class="flex items-center gap-x-2">
+          <wd-text text="当前钱包余额 200 元" size="12px" />
+          <wd-button type="text" size="small">
+            全部提现
+          </wd-button>
+        </view>
+        <wd-text text="最小提现金额为 1 元" size="12px" />
       </view>
 
       <wd-button type="success" size="large" custom-class="mt-30px" @click="confirmTransfer">
@@ -99,3 +115,10 @@ async function confirmTransfer() {
     </view>
   </view>
 </template>
+
+<style lang="scss" scoped>
+:deep(.wd-input.is-large2) {
+  .wd-input__prefix,
+  .wd-input__inner {font-size: 20px !important;}
+}
+</style>

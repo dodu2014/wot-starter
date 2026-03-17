@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import type { UserWalletWithdrawOrder } from '@/service/apis/base/globals'
 import { uuid } from '@alova/shared'
 
 definePage({
@@ -19,6 +20,7 @@ const merchantId = import.meta.env.VITE_WEIXIN_PAY_MERCHANT_ID
 const balance = ref(186)
 const amount = ref('')
 
+const { userInfo } = useUserStore()
 const { wxUserInfo } = useWxUserStore()
 console.log('wxUserInfo:', wxUserInfo)
 console.log('uuid:', uuid())
@@ -31,20 +33,62 @@ function setMaxDrawValue() {
 }
 
 const { send: sendRequestMerchantTransfer } = useRequest(
-  () => Webapi_Weixin.wxPay.requestMerchantTransfer({
+  (orderNum: string, amout: number) => Webapi_Weixin.wxPay.requestMerchantTransfer({
     params: {
-      amout: Number.parseFloat(amount.value),
+      amout,
       openId: wxUserInfo?.openId,
-      orderNum: uuid(),
+      orderNum,
     },
   }),
   {
     immediate: false,
   },
-).onError((err) => {
-  console.log('err:', err)
-}).onComplete(() => {
+).onComplete(() => {
   hideLoading()
+}).onError(({ error }) => {
+  warning(error)
+}).onSuccess(({ data: transferBill }) => {
+  loading('loading')
+  const { data, message, isSuccess } = transferBill
+  if (!isSuccess) {
+    warning(message!)
+    return
+  }
+  if (data?.state !== 'WAIT_USER_CONFIRM' || !data?.package_info) {
+    warning('请求转账失败，请稍后再试')
+    return
+  }
+
+  uni.requestMerchantTransfer({
+    mchId: merchantId,
+    appId: uni.getAccountInfoSync().miniProgram.appId,
+    package: data.package_info,
+    success: (res) => {
+      // res.err_msg将在页面展示成功后返回应用时返回ok，并不代表付款成功
+      console.log('success:', res)
+    },
+    fail: (res) => {
+      console.log('fail:', res)
+    },
+  })
+})
+
+const { send: sendCreateUserWalletWithdrawOrder } = useRequest(
+  (data: UserWalletWithdrawOrder) => Webapi_Base.userWalletWithdrawOrder.createUserWalletWithdrawOrder({ data }),
+  { immediate: false },
+).onComplete(() => {
+  hideLoading()
+}).onError(({ error }) => {
+  warning(error)
+}).onSuccess(async ({ data: withdarwOrder }) => {
+  console.log('res:', withdarwOrder)
+  const { data, message, isSuccess } = withdarwOrder
+  if (!isSuccess) {
+    warning(message!)
+    return
+  }
+  loading('loading')
+  await sendRequestMerchantTransfer(data!.orderNum!, data!.amount as number)
 })
 
 function confirmTransfer() {
@@ -77,27 +121,11 @@ function confirmTransfer() {
       if (res.action !== 'confirm')
         return
       loading('loading')
-      const { code, data, message } = await sendRequestMerchantTransfer()
-      if (code !== 200) {
-        warning(message!)
-        return
-      }
-      if (data?.state !== 'WAIT_USER_CONFIRM' || !data?.package_info) {
-        warning('请求转账失败，请稍后再试')
-        return
-      }
-
-      uni.requestMerchantTransfer({
-        mchId: merchantId,
-        appId: uni.getAccountInfoSync().miniProgram.appId,
-        package: data.package_info,
-        success: (res) => {
-          // res.err_msg将在页面展示成功后返回应用时返回ok，并不代表付款成功
-          console.log('success:', res)
-        },
-        fail: (res) => {
-          console.log('fail:', res)
-        },
+      await sendCreateUserWalletWithdrawOrder({
+        userId: userInfo!.id!,
+        userName: userInfo!.name!,
+        openId: wxUserInfo!.openId!,
+        amount: amountValue,
       })
     },
   })

@@ -91,5 +91,12 @@ export default {
   'user.resetUserPassword': ['POST', '/api/Base/Users/resetPassword'],
   'user.deleteUser': ['DELETE', '/api/Base/Users/delete'],
   'user.deleteUserByName': ['DELETE', '/api/Base/Users/deleteByName'],
-  'user.deleteUsers': ['DELETE', '/api/Base/Users/deletes']
+  'user.deleteUsers': ['DELETE', '/api/Base/Users/deletes'],
+  'userWalletWithdrawOrder.getUserWalletWithdrawOrderList': ['GET', '/api/Base/UserWalletWithdrawOrders/list'],
+  'userWalletWithdrawOrder.getUserWalletWithdrawOrder': ['GET', '/api/Base/UserWalletWithdrawOrders/get'],
+  'userWalletWithdrawOrder.getUserWalletWithdrawOrderByNum': ['GET', '/api/Base/UserWalletWithdrawOrders/getByNum'],
+  'userWalletWithdrawOrder.createUserWalletWithdrawOrder': ['POST', '/api/Base/UserWalletWithdrawOrders/create'],
+  'userWalletWithdrawOrder.updateUserWalletWithdrawOrder': ['PUT', '/api/Base/UserWalletWithdrawOrders/update'],
+  'userWalletWithdrawOrder.deleteUserWalletWithdrawOrder': ['DELETE', '/api/Base/UserWalletWithdrawOrders/delete'],
+  'userWalletWithdrawOrder.deleteUserWalletWithdrawOrders': ['DELETE', '/api/Base/UserWalletWithdrawOrders/deletes']
 };

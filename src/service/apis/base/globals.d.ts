@@ -90,6 +90,7 @@ type Alova2Method<
     : never;
 
 export type WaterMarkPositionEnum = number;
+export type UserWalletWithdrawOrderStatusEnum = number;
 export type ArticleCategoryType = number;
 export interface ArticleCategory {
   num: string;
@@ -271,6 +272,17 @@ export interface ResetPasswordModel {
   code?: string;
   userName: string;
   password: string;
+}
+export interface UserWalletWithdrawOrder {
+  id?: string;
+  userId: string;
+  userName: string;
+  openId: string;
+  orderNum?: string;
+  amount: number | string;
+  status?: UserWalletWithdrawOrderStatusEnum;
+  createdTime?: string;
+  completedTime?: string;
 }
 export interface UserProfileInfo {
   id?: string;
@@ -1027,6 +1039,52 @@ export interface ApiResultOfIListOfstring {
    * 响应数据 T
    */
   data?: string[] | null;
+  /**
+   * 扩展数据
+   */
+  extend?: null;
+  /**
+   * 请求是否返回正确
+   */
+  isSuccess?: boolean;
+}
+export interface PageListOfUserWalletWithdrawOrder {
+  list?: UserWalletWithdrawOrder[];
+  page?: number | string;
+  pageSize?: number | string;
+  totalPageCount?: number | string;
+  totalItemCount?: number | string;
+  extendData?: null;
+}
+export interface ApiResultOfPageListOfUserWalletWithdrawOrder {
+  /**
+   * 响应编号
+   */
+  code?: number | string;
+  /**
+   * 响应消息
+   */
+  message?: string;
+  data?: null | PageListOfUserWalletWithdrawOrder;
+  /**
+   * 扩展数据
+   */
+  extend?: null;
+  /**
+   * 请求是否返回正确
+   */
+  isSuccess?: boolean;
+}
+export interface ApiResultOfUserWalletWithdrawOrder {
+  /**
+   * 响应编号
+   */
+  code?: number | string;
+  /**
+   * 响应消息
+   */
+  message?: string;
+  data?: null | UserWalletWithdrawOrder;
   /**
    * 扩展数据
    */
@@ -6447,6 +6505,456 @@ declare global {
       >(
         config: Config
       ): Alova2Method<ApiResult, 'user.deleteUsers', Config>;
+    };
+    userWalletWithdrawOrder: {
+      /**
+       * ---
+       *
+       * [GET] 获取钱包提现账单列表
+       *
+       * **path:** /api/Base/UserWalletWithdrawOrders/list
+       *
+       * ---
+       *
+       * **Query Parameters**
+       * ```ts
+       * type QueryParameters = {
+       *   startTime?: string
+       *   endTime?: string
+       *   // 状态
+       *   status?: number
+       *   // 关键词
+       *   keyword?: string
+       *   // 页码
+       *   page?: number | string
+       *   // 页面大小
+       *   pageSize?: number | string
+       * }
+       * ```
+       *
+       * ---
+       *
+       * **Response**
+       * ```ts
+       * type Response = {
+       *   // 响应编号
+       *   code?: number | string
+       *   // 响应消息
+       *   message?: string
+       *   // [params2] start
+       *   // 响应数据 T
+       *   // [params2] end
+       *   data?: null | {
+       *     // [items] start
+       *     // [items] end
+       *     list?: Array<{
+       *       id?: string
+       *       userId: string
+       *       userName: string
+       *       openId: string
+       *       orderNum?: string
+       *       amount: number | string
+       *       status?: number
+       *       createdTime?: string
+       *       completedTime?: string
+       *     }>
+       *     page?: number | string
+       *     pageSize?: number | string
+       *     totalPageCount?: number | string
+       *     totalItemCount?: number | string
+       *     extendData?: null
+       *   }
+       *   // 扩展数据
+       *   extend?: null
+       *   // 请求是否返回正确
+       *   isSuccess?: boolean
+       * }
+       * ```
+       */
+      getUserWalletWithdrawOrderList<
+        Config extends Alova2MethodConfig<ApiResultOfPageListOfUserWalletWithdrawOrder> & {
+          params: {
+            startTime?: string;
+            endTime?: string;
+            /**
+             * 状态
+             */
+            status?: UserWalletWithdrawOrderStatusEnum;
+            /**
+             * 关键词
+             */
+            keyword?: string;
+            /**
+             * 页码
+             */
+            page?: number | string;
+            /**
+             * 页面大小
+             */
+            pageSize?: number | string;
+          };
+        }
+      >(
+        config: Config
+      ): Alova2Method<
+        ApiResultOfPageListOfUserWalletWithdrawOrder,
+        'userWalletWithdrawOrder.getUserWalletWithdrawOrderList',
+        Config
+      >;
+      /**
+       * ---
+       *
+       * [GET] 获取钱包提现账单详情
+       *
+       * **path:** /api/Base/UserWalletWithdrawOrders/get
+       *
+       * ---
+       *
+       * **Query Parameters**
+       * ```ts
+       * type QueryParameters = {
+       *   // 钱包提现账单id
+       *   id?: string
+       * }
+       * ```
+       *
+       * ---
+       *
+       * **Response**
+       * ```ts
+       * type Response = {
+       *   // 响应编号
+       *   code?: number | string
+       *   // 响应消息
+       *   message?: string
+       *   // [params2] start
+       *   // 响应数据 T
+       *   // [params2] end
+       *   data?: null | {
+       *     id?: string
+       *     userId: string
+       *     userName: string
+       *     openId: string
+       *     orderNum?: string
+       *     amount: number | string
+       *     status?: number
+       *     createdTime?: string
+       *     completedTime?: string
+       *   }
+       *   // 扩展数据
+       *   extend?: null
+       *   // 请求是否返回正确
+       *   isSuccess?: boolean
+       * }
+       * ```
+       */
+      getUserWalletWithdrawOrder<
+        Config extends Alova2MethodConfig<ApiResultOfUserWalletWithdrawOrder> & {
+          params: {
+            /**
+             * 钱包提现账单id
+             */
+            id?: string;
+          };
+        }
+      >(
+        config: Config
+      ): Alova2Method<ApiResultOfUserWalletWithdrawOrder, 'userWalletWithdrawOrder.getUserWalletWithdrawOrder', Config>;
+      /**
+       * ---
+       *
+       * [GET] 获取钱包提现账单详情(by订单编号)
+       *
+       * **path:** /api/Base/UserWalletWithdrawOrders/getByNum
+       *
+       * ---
+       *
+       * **Query Parameters**
+       * ```ts
+       * type QueryParameters = {
+       *   // 钱包提现账单id
+       *   orderNum?: string
+       * }
+       * ```
+       *
+       * ---
+       *
+       * **Response**
+       * ```ts
+       * type Response = {
+       *   // 响应编号
+       *   code?: number | string
+       *   // 响应消息
+       *   message?: string
+       *   // [params2] start
+       *   // 响应数据 T
+       *   // [params2] end
+       *   data?: null | {
+       *     id?: string
+       *     userId: string
+       *     userName: string
+       *     openId: string
+       *     orderNum?: string
+       *     amount: number | string
+       *     status?: number
+       *     createdTime?: string
+       *     completedTime?: string
+       *   }
+       *   // 扩展数据
+       *   extend?: null
+       *   // 请求是否返回正确
+       *   isSuccess?: boolean
+       * }
+       * ```
+       */
+      getUserWalletWithdrawOrderByNum<
+        Config extends Alova2MethodConfig<ApiResultOfUserWalletWithdrawOrder> & {
+          params: {
+            /**
+             * 钱包提现账单id
+             */
+            orderNum?: string;
+          };
+        }
+      >(
+        config: Config
+      ): Alova2Method<
+        ApiResultOfUserWalletWithdrawOrder,
+        'userWalletWithdrawOrder.getUserWalletWithdrawOrderByNum',
+        Config
+      >;
+      /**
+       * ---
+       *
+       * [POST] 创建钱包提现账单
+       *
+       * **path:** /api/Base/UserWalletWithdrawOrders/create
+       *
+       * ---
+       *
+       * **RequestBody**
+       * ```ts
+       * type RequestBody = {
+       *   id?: string
+       *   userId: string
+       *   userName: string
+       *   openId: string
+       *   orderNum?: string
+       *   amount: number | string
+       *   status?: number
+       *   createdTime?: string
+       *   completedTime?: string
+       * }
+       * ```
+       *
+       * ---
+       *
+       * **Response**
+       * ```ts
+       * type Response = {
+       *   // 响应编号
+       *   code?: number | string
+       *   // 响应消息
+       *   message?: string
+       *   // [params2] start
+       *   // 响应数据 T
+       *   // [params2] end
+       *   data?: null | {
+       *     id?: string
+       *     userId: string
+       *     userName: string
+       *     openId: string
+       *     orderNum?: string
+       *     amount: number | string
+       *     status?: number
+       *     createdTime?: string
+       *     completedTime?: string
+       *   }
+       *   // 扩展数据
+       *   extend?: null
+       *   // 请求是否返回正确
+       *   isSuccess?: boolean
+       * }
+       * ```
+       */
+      createUserWalletWithdrawOrder<
+        Config extends Alova2MethodConfig<ApiResultOfUserWalletWithdrawOrder> & {
+          data: UserWalletWithdrawOrder;
+        }
+      >(
+        config: Config
+      ): Alova2Method<
+        ApiResultOfUserWalletWithdrawOrder,
+        'userWalletWithdrawOrder.createUserWalletWithdrawOrder',
+        Config
+      >;
+      /**
+       * ---
+       *
+       * [PUT] 更新钱包提现账单
+       *
+       * **path:** /api/Base/UserWalletWithdrawOrders/update
+       *
+       * ---
+       *
+       * **RequestBody**
+       * ```ts
+       * type RequestBody = {
+       *   id?: string
+       *   userId: string
+       *   userName: string
+       *   openId: string
+       *   orderNum?: string
+       *   amount: number | string
+       *   status?: number
+       *   createdTime?: string
+       *   completedTime?: string
+       * }
+       * ```
+       *
+       * ---
+       *
+       * **Response**
+       * ```ts
+       * type Response = {
+       *   // 响应编号
+       *   code?: number | string
+       *   // 响应消息
+       *   message?: string
+       *   // [params2] start
+       *   // 响应数据 T
+       *   // [params2] end
+       *   data?: null | {
+       *     id?: string
+       *     userId: string
+       *     userName: string
+       *     openId: string
+       *     orderNum?: string
+       *     amount: number | string
+       *     status?: number
+       *     createdTime?: string
+       *     completedTime?: string
+       *   }
+       *   // 扩展数据
+       *   extend?: null
+       *   // 请求是否返回正确
+       *   isSuccess?: boolean
+       * }
+       * ```
+       */
+      updateUserWalletWithdrawOrder<
+        Config extends Alova2MethodConfig<ApiResultOfUserWalletWithdrawOrder> & {
+          data: UserWalletWithdrawOrder;
+        }
+      >(
+        config: Config
+      ): Alova2Method<
+        ApiResultOfUserWalletWithdrawOrder,
+        'userWalletWithdrawOrder.updateUserWalletWithdrawOrder',
+        Config
+      >;
+      /**
+       * ---
+       *
+       * [DELETE] 删除钱包提现账单
+       *
+       * **path:** /api/Base/UserWalletWithdrawOrders/delete
+       *
+       * ---
+       *
+       * **Query Parameters**
+       * ```ts
+       * type QueryParameters = {
+       *   // 钱包提现账单id
+       *   id?: string
+       * }
+       * ```
+       *
+       * ---
+       *
+       * **Response**
+       * ```ts
+       * type Response = {
+       *   // 响应编号
+       *   code?: number | string
+       *   // 响应消息
+       *   message?: string
+       *   // [params2] start
+       *   // 响应数据 T
+       *   // [params2] end
+       *   data?: null | {
+       *     id?: string
+       *     userId: string
+       *     userName: string
+       *     openId: string
+       *     orderNum?: string
+       *     amount: number | string
+       *     status?: number
+       *     createdTime?: string
+       *     completedTime?: string
+       *   }
+       *   // 扩展数据
+       *   extend?: null
+       *   // 请求是否返回正确
+       *   isSuccess?: boolean
+       * }
+       * ```
+       */
+      deleteUserWalletWithdrawOrder<
+        Config extends Alova2MethodConfig<ApiResultOfUserWalletWithdrawOrder> & {
+          params: {
+            /**
+             * 钱包提现账单id
+             */
+            id?: string;
+          };
+        }
+      >(
+        config: Config
+      ): Alova2Method<
+        ApiResultOfUserWalletWithdrawOrder,
+        'userWalletWithdrawOrder.deleteUserWalletWithdrawOrder',
+        Config
+      >;
+      /**
+       * ---
+       *
+       * [DELETE] 批量删除钱包提现账单
+       *
+       * **path:** /api/Base/UserWalletWithdrawOrders/deletes
+       *
+       * ---
+       *
+       * **RequestBody**
+       * ```ts
+       * type RequestBody = string[]
+       * ```
+       *
+       * ---
+       *
+       * **Response**
+       * ```ts
+       * type Response = {
+       *   // 响应编号
+       *   code?: number | string
+       *   // 响应消息
+       *   message?: string
+       *   // 响应数据 T
+       *   data?: null
+       *   // 扩展数据
+       *   extend?: null
+       *   // 请求是否返回正确
+       *   isSuccess?: boolean
+       * }
+       * ```
+       */
+      deleteUserWalletWithdrawOrders<
+        Config extends Alova2MethodConfig<ApiResult> & {
+          data: string[];
+        }
+      >(
+        config: Config
+      ): Alova2Method<ApiResult, 'userWalletWithdrawOrder.deleteUserWalletWithdrawOrders', Config>;
     };
   }
 

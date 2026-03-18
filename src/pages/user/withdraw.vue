@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { UserWalletWithdrawOrder } from '@/service/apis/base/globals'
+import type { WalletWithdrawOrderDTO } from '@/service/apis/weixin/globals'
 import { uuid } from '@alova/shared'
 
 definePage({
@@ -33,16 +33,8 @@ function setMaxDrawValue() {
 }
 
 const { send: sendRequestMerchantTransfer } = useRequest(
-  (orderNum: string, amout: number) => Webapi_Weixin.wxPay.requestMerchantTransfer({
-    params: {
-      amout,
-      openId: wxUserInfo?.openId,
-      orderNum,
-    },
-  }),
-  {
-    immediate: false,
-  },
+  (data: WalletWithdrawOrderDTO) => Webapi_Weixin.wxPay.requestMerchantTransfer({ params: { notifyUrl: '' }, data }),
+  { immediate: false },
 ).onComplete(() => {
   hideLoading()
 }).onError(({ error }) => {
@@ -71,24 +63,6 @@ const { send: sendRequestMerchantTransfer } = useRequest(
       console.log('fail:', res)
     },
   })
-})
-
-const { send: sendCreateUserWalletWithdrawOrder } = useRequest(
-  (data: UserWalletWithdrawOrder) => Webapi_Base.userWalletWithdrawOrder.createUserWalletWithdrawOrder({ data }),
-  { immediate: false },
-).onComplete(() => {
-  hideLoading()
-}).onError(({ error }) => {
-  warning(error)
-}).onSuccess(async ({ data: withdarwOrder }) => {
-  console.log('res:', withdarwOrder)
-  const { data, message, isSuccess } = withdarwOrder
-  if (!isSuccess) {
-    warning(message!)
-    return
-  }
-  loading('loading')
-  await sendRequestMerchantTransfer(data!.orderNum!, data!.amount as number)
 })
 
 function confirmTransfer() {
@@ -121,11 +95,11 @@ function confirmTransfer() {
       if (res.action !== 'confirm')
         return
       loading('loading')
-      await sendCreateUserWalletWithdrawOrder({
+      await sendRequestMerchantTransfer({
         userId: userInfo!.id!,
         userName: userInfo!.name!,
         openId: wxUserInfo!.openId!,
-        amount: amountValue,
+        amout: amountValue,
       })
     },
   })

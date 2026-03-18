@@ -279,7 +279,7 @@ export interface UserWalletWithdrawOrder {
   userName: string;
   openId: string;
   orderNum?: string;
-  amount: number | string;
+  amout: number | string;
   wechatOrderNum?: string;
   packageInfo?: string;
   status?: UserWalletWithdrawOrderStatusEnum;
@@ -6555,7 +6555,7 @@ declare global {
        *       userName: string
        *       openId: string
        *       orderNum?: string
-       *       amount: number | string
+       *       amout: number | string
        *       wechatOrderNum?: string
        *       packageInfo?: string
        *       status?: number
@@ -6640,7 +6640,7 @@ declare global {
        *     userName: string
        *     openId: string
        *     orderNum?: string
-       *     amount: number | string
+       *     amout: number | string
        *     wechatOrderNum?: string
        *     packageInfo?: string
        *     status?: number
@@ -6701,7 +6701,7 @@ declare global {
        *     userName: string
        *     openId: string
        *     orderNum?: string
-       *     amount: number | string
+       *     amout: number | string
        *     wechatOrderNum?: string
        *     packageInfo?: string
        *     status?: number
@@ -6748,7 +6748,7 @@ declare global {
        *   userName: string
        *   openId: string
        *   orderNum?: string
-       *   amount: number | string
+       *   amout: number | string
        *   wechatOrderNum?: string
        *   packageInfo?: string
        *   status?: number
@@ -6775,7 +6775,7 @@ declare global {
        *     userName: string
        *     openId: string
        *     orderNum?: string
-       *     amount: number | string
+       *     amout: number | string
        *     wechatOrderNum?: string
        *     packageInfo?: string
        *     status?: number
@@ -6817,7 +6817,7 @@ declare global {
        *   userName: string
        *   openId: string
        *   orderNum?: string
-       *   amount: number | string
+       *   amout: number | string
        *   wechatOrderNum?: string
        *   packageInfo?: string
        *   status?: number
@@ -6844,7 +6844,7 @@ declare global {
        *     userName: string
        *     openId: string
        *     orderNum?: string
-       *     amount: number | string
+       *     amout: number | string
        *     wechatOrderNum?: string
        *     packageInfo?: string
        *     status?: number
@@ -6904,7 +6904,7 @@ declare global {
        *     userName: string
        *     openId: string
        *     orderNum?: string
-       *     amount: number | string
+       *     amout: number | string
        *     wechatOrderNum?: string
        *     packageInfo?: string
        *     status?: number

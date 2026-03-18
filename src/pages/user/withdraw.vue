@@ -140,7 +140,7 @@ function confirmTransfer() {
           <wd-icon name="money-circle" size="16px" />
           <view class="flex-col items-start gap-x-2">
             <wd-text text="微信零钱" custom-class="!text-default" />
-            <wd-text text="实施到账" size="12px" />
+            <wd-text text="实时到账" size="12px" />
           </view>
         </view>
       </wd-cell>

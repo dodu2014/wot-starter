@@ -141,7 +141,7 @@ function confirmTransfer() {
 
     <view class="flex-col gap-y-3 px-8 py-4">
       <wd-text text="提现金额" size="12px" custom-class="!text-default" />
-      <wd-input v-model="amount" size="large" inputmode="decimal" no-border label-width="0" placeholder="请输入提现金额…" focus custom-class="!p-0 !bg-transparent is-large2">
+      <wd-input v-model="amount" size="large" type="number" inputmode="numeric" no-border label-width="0" placeholder="请输入提现金额…" focus custom-class="!p-0 !bg-transparent is-large2">
         <template #prefix>
           <text class="text-default">
             ¥

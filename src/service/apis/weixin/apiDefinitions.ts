@@ -57,7 +57,7 @@ export default {
   'wxPay.requestMerchantTransfer': ['POST', '/api/Weixin/WxPay/requestMerchantTransfer'],
   'wxPay.queryMerchantTransfer': ['GET', '/api/Weixin/WxPay/queryMerchantTransfer'],
   'wxPay.cancelMerchantTransfer': ['POST', '/api/Weixin/WxPay/cancelMerchantTransfer'],
-  'wxPay.merchantTransferNotify': ['GET', '/api/Weixin/WxPay/merchantTransferNotify'],
+  'wxPay.merchantTransferNotify': ['POST', '/api/Weixin/WxPay/merchantTransferNotify'],
   'wxPay.refundNotifyWxPay': ['POST', '/api/Weixin/WxPay/refundNotify'],
   'wxPay.extractWxPay': ['POST', '/api/Weixin/WxPay/extract'],
   'wxUserMap.getWxUserMapList': ['GET', '/api/Weixin/WxUserMaps/list'],

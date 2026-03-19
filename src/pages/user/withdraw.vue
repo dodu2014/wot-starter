@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import type { WalletWithdrawOrderDTO } from '@/service/apis/weixin/globals'
 import { uuid } from '@alova/shared'
+import router from '@/router'
 
 definePage({
   name: 'user-withdraw',
@@ -11,13 +12,12 @@ definePage({
   needLogin: true,
 })
 
-// eslint-disable-next-line unused-imports/no-unused-vars
 const { warning, success } = useGlobalToast()
-const { loading, close: hideLoading } = useGlobalLoading()
+const { loading: showLoading, close: hideLoading } = useGlobalLoading()
 const { confirm } = useGlobalMessage()
 const merchantId = import.meta.env.VITE_WEIXIN_PAY_MERCHANT_ID
 
-const balance = ref(186)
+const balance = ref(186) // TODO 预设的钱包余额，请根据实际业务设置
 const amount = ref('')
 
 const { userInfo } = useUserStore()
@@ -25,6 +25,7 @@ const { wxUserInfo } = useWxUserStore()
 console.log('wxUserInfo:', wxUserInfo)
 console.log('uuid:', uuid())
 
+/** 设置可提现的最大值 */
 function setMaxDrawValue() {
   let maxValue = balance.value
   if (maxValue > 200)
@@ -32,7 +33,24 @@ function setMaxDrawValue() {
   amount.value = `${maxValue}`
 }
 
-const { send: sendRequestMerchantTransfer } = useRequest(
+/** 成功提现后的处理 */
+function successTransferHandler() {
+  balance.value -= Number(amount.value)
+
+  // 触发用户钱包变化事件
+  uni.$emit('user-wallet-withdraw-successed', Number(amount.value) * -1)
+  amount.value = ''
+
+  success({
+    msg: '成功提现到微信零钱',
+    duration: 1200,
+    closed() {
+      router.back()
+    },
+  })
+}
+
+const { send: sendRequestMerchantTransfer, loading } = useRequest(
   (data: WalletWithdrawOrderDTO) => Webapi_Weixin.wxPay.requestMerchantTransfer({ params: { notifyUrl: '' }, data }),
   { immediate: false },
 ).onComplete(() => {
@@ -40,7 +58,7 @@ const { send: sendRequestMerchantTransfer } = useRequest(
 }).onError(({ error }) => {
   warning(error)
 }).onSuccess(({ data: transferBill }) => {
-  loading('loading')
+  showLoading('loading')
   const { data, message, isSuccess } = transferBill
   if (!isSuccess) {
     warning(message!)
@@ -58,6 +76,7 @@ const { send: sendRequestMerchantTransfer } = useRequest(
     success: (res) => {
       // res.err_msg将在页面展示成功后返回应用时返回ok，并不代表付款成功
       console.log('success:', res)
+      successTransferHandler()
     },
     fail: (res) => {
       console.log('fail:', res)
@@ -94,7 +113,7 @@ function confirmTransfer() {
     async success(res) {
       if (res.action !== 'confirm')
         return
-      loading('loading')
+      showLoading('loading')
       await sendRequestMerchantTransfer({
         userId: userInfo!.id!,
         userName: userInfo!.name!,
@@ -139,7 +158,7 @@ function confirmTransfer() {
         </view>
       </view>
 
-      <wd-button type="success" size="large" custom-class="mt-30px" @click="confirmTransfer">
+      <wd-button type="success" size="large" custom-class="mt-30px" :loading="loading" :disabled="loading" @click="confirmTransfer">
         确认提现
       </wd-button>
     </view>

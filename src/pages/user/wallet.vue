@@ -9,6 +9,20 @@ definePage({
   },
   needLogin: true,
 })
+
+const WITHDRAW_SUCCESSED_EVENT = 'user-wallet-withdraw-successed' // 提现成功事件名称
+
+const balance = ref(186) // TODO 预设的钱包余额，请根据实际业务设置
+
+onLoad(() => {
+  uni.$on(WITHDRAW_SUCCESSED_EVENT, (amount: number) => {
+    balance.value += amount
+  })
+})
+
+onUnload(() => {
+  uni.$off(WITHDRAW_SUCCESSED_EVENT)
+})
 </script>
 
 <template>
@@ -17,7 +31,7 @@ definePage({
       <text class="i-carbon:wallet" />
     </view>
     <wd-text text="我的钱包" size="14px" custom-class="!text-default" />
-    <wd-text text="200.00" mode="price" prefix="￥" size="36px" bold custom-class="!text-default" />
+    <wd-text :text="balance" mode="price" prefix="￥" size="36px" bold custom-class="!text-default" />
     <view class="flex-full" />
     <wd-button size="large" type="success" @click="() => router.push('/pages/user/withdraw')">
       立即提现

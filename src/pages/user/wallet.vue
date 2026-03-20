@@ -36,7 +36,7 @@ onUnload(() => {
     <wd-button size="large" type="success" @click="() => router.push('/pages/user/withdraw')">
       立即提现
     </wd-button>
-    <wd-button size="large" type="info" @click="() => router.push('/pages/user/walletDetail')">
+    <wd-button type="text" icon="bulletpoint" custom-class="!text-gray" @click="() => {}">
       钱包明细
     </wd-button>
   </view>

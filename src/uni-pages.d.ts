@@ -21,8 +21,9 @@ type _LocationUrl =
   "/pages/user/profile" |
   "/pages/user/settings" |
   "/pages/user/wallet" |
-  "/pages/user/walletDetail" |
+  "/pages/user/walletdrawOrderDetail" |
   "/pages/user/withdraw" |
+  "/pages/user/withdrawOrderList" |
   "/pages/business/order/index" |
   "/pages/business/team/index" |
   "/pages/business/team/join" |

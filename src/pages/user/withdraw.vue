@@ -161,6 +161,9 @@ function confirmTransfer() {
       <wd-button type="success" size="large" custom-class="mt-30px" :loading="loading" :disabled="loading" @click="confirmTransfer">
         确认提现
       </wd-button>
+      <wd-button type="text" icon="time" custom-class="!text-gray" @click="() => router.push('/pages/user/withdrawOrderList')">
+        提现记录
+      </wd-button>
     </view>
   </view>
 </template>

@@ -6525,6 +6525,7 @@ declare global {
        *   endTime?: string
        *   // 状态
        *   status?: number
+       *   userId?: string
        *   // 关键词
        *   keyword?: string
        *   // 页码
@@ -6584,6 +6585,7 @@ declare global {
              * 状态
              */
             status?: UserWalletWithdrawOrderStatusEnum;
+            userId?: string;
             /**
              * 关键词
              */

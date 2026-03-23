@@ -90,6 +90,7 @@ type Alova2Method<
     : never;
 
 export type WaterMarkPositionEnum = number;
+export type UserAccountType = number;
 export type UserWalletWithdrawOrderStatusEnum = number;
 export type ArticleCategoryType = number;
 export interface ArticleCategory {
@@ -174,6 +175,23 @@ export interface ApplicationRole {
   id?: string | null;
   normalizedName?: string | null;
   concurrencyStamp?: string | null;
+}
+export interface UserAccount {
+  id?: string;
+  userId: string;
+  type?: UserAccountType;
+  asset?: number | string;
+  frozenAsset?: number | string;
+  description?: string;
+}
+export interface UserAccountLog {
+  id?: string;
+  accountId: string;
+  account?: null | UserAccount;
+  asset?: number | string;
+  remainderAsset?: number | string;
+  description?: string;
+  createdAt?: string;
 }
 export interface ApplicationUser {
   userName: string;
@@ -829,6 +847,98 @@ export interface ApiResultOfApplicationRole {
    */
   message?: string;
   data?: null | ApplicationRole;
+  /**
+   * 扩展数据
+   */
+  extend?: null;
+  /**
+   * 请求是否返回正确
+   */
+  isSuccess?: boolean;
+}
+export interface PageListOfUserAccountLog {
+  list?: UserAccountLog[];
+  page?: number | string;
+  pageSize?: number | string;
+  totalPageCount?: number | string;
+  totalItemCount?: number | string;
+  extendData?: null;
+}
+export interface ApiResultOfPageListOfUserAccountLog {
+  /**
+   * 响应编号
+   */
+  code?: number | string;
+  /**
+   * 响应消息
+   */
+  message?: string;
+  data?: null | PageListOfUserAccountLog;
+  /**
+   * 扩展数据
+   */
+  extend?: null;
+  /**
+   * 请求是否返回正确
+   */
+  isSuccess?: boolean;
+}
+export interface ApiResultOfUserAccountLog {
+  /**
+   * 响应编号
+   */
+  code?: number | string;
+  /**
+   * 响应消息
+   */
+  message?: string;
+  data?: null | UserAccountLog;
+  /**
+   * 扩展数据
+   */
+  extend?: null;
+  /**
+   * 请求是否返回正确
+   */
+  isSuccess?: boolean;
+}
+export interface PageListOfUserAccount {
+  list?: UserAccount[];
+  page?: number | string;
+  pageSize?: number | string;
+  totalPageCount?: number | string;
+  totalItemCount?: number | string;
+  extendData?: null;
+}
+export interface ApiResultOfPageListOfUserAccount {
+  /**
+   * 响应编号
+   */
+  code?: number | string;
+  /**
+   * 响应消息
+   */
+  message?: string;
+  data?: null | PageListOfUserAccount;
+  /**
+   * 扩展数据
+   */
+  extend?: null;
+  /**
+   * 请求是否返回正确
+   */
+  isSuccess?: boolean;
+}
+export interface ApiResultOfUserAccount {
+  /**
+   * 响应编号
+   */
+  code?: number | string;
+  /**
+   * 响应消息
+   */
+  message?: string;
+  data?: null | UserAccount;
   /**
    * 扩展数据
    */
@@ -4426,6 +4536,822 @@ declare global {
       >(
         config: Config
       ): Alova2Method<ApiResultOfUpFileUploadResult, 'upFile.upload', Config>;
+    };
+    userAccountLog: {
+      /**
+       * ---
+       *
+       * [GET] 获取用户账号日志列表
+       *
+       * **path:** /api/Base/UserAccountLogs/list
+       *
+       * ---
+       *
+       * **Query Parameters**
+       * ```ts
+       * type QueryParameters = {
+       *   accountId?: string
+       *   startTime?: string
+       *   endTime?: string
+       *   // 关键词
+       *   keyword?: string
+       *   // 页码
+       *   page?: number | string
+       *   // 页面大小
+       *   pageSize?: number | string
+       * }
+       * ```
+       *
+       * ---
+       *
+       * **Response**
+       * ```ts
+       * type Response = {
+       *   // 响应编号
+       *   code?: number | string
+       *   // 响应消息
+       *   message?: string
+       *   // [params2] start
+       *   // 响应数据 T
+       *   // [params2] end
+       *   data?: null | {
+       *     // [items] start
+       *     // [items] end
+       *     list?: Array<{
+       *       id?: string
+       *       accountId: string
+       *       account?: null | {
+       *         id?: string
+       *         userId: string
+       *         type?: number
+       *         asset?: number | string
+       *         frozenAsset?: number | string
+       *         description?: string
+       *       }
+       *       asset?: number | string
+       *       remainderAsset?: number | string
+       *       description?: string
+       *       createdAt?: string
+       *     }>
+       *     page?: number | string
+       *     pageSize?: number | string
+       *     totalPageCount?: number | string
+       *     totalItemCount?: number | string
+       *     extendData?: null
+       *   }
+       *   // 扩展数据
+       *   extend?: null
+       *   // 请求是否返回正确
+       *   isSuccess?: boolean
+       * }
+       * ```
+       */
+      getUserAccountLogList<
+        Config extends Alova2MethodConfig<ApiResultOfPageListOfUserAccountLog> & {
+          params: {
+            accountId?: string;
+            startTime?: string;
+            endTime?: string;
+            /**
+             * 关键词
+             */
+            keyword?: string;
+            /**
+             * 页码
+             */
+            page?: number | string;
+            /**
+             * 页面大小
+             */
+            pageSize?: number | string;
+          };
+        }
+      >(
+        config: Config
+      ): Alova2Method<ApiResultOfPageListOfUserAccountLog, 'userAccountLog.getUserAccountLogList', Config>;
+      /**
+       * ---
+       *
+       * [GET] 获取用户账号日志详情
+       *
+       * **path:** /api/Base/UserAccountLogs/get
+       *
+       * ---
+       *
+       * **Query Parameters**
+       * ```ts
+       * type QueryParameters = {
+       *   // 用户账号日志id
+       *   id?: string
+       * }
+       * ```
+       *
+       * ---
+       *
+       * **Response**
+       * ```ts
+       * type Response = {
+       *   // 响应编号
+       *   code?: number | string
+       *   // 响应消息
+       *   message?: string
+       *   // [params2] start
+       *   // 响应数据 T
+       *   // [params2] end
+       *   data?: null | {
+       *     id?: string
+       *     accountId: string
+       *     account?: null | {
+       *       id?: string
+       *       userId: string
+       *       type?: number
+       *       asset?: number | string
+       *       frozenAsset?: number | string
+       *       description?: string
+       *     }
+       *     asset?: number | string
+       *     remainderAsset?: number | string
+       *     description?: string
+       *     createdAt?: string
+       *   }
+       *   // 扩展数据
+       *   extend?: null
+       *   // 请求是否返回正确
+       *   isSuccess?: boolean
+       * }
+       * ```
+       */
+      getUserAccountLog<
+        Config extends Alova2MethodConfig<ApiResultOfUserAccountLog> & {
+          params: {
+            /**
+             * 用户账号日志id
+             */
+            id?: string;
+          };
+        }
+      >(
+        config: Config
+      ): Alova2Method<ApiResultOfUserAccountLog, 'userAccountLog.getUserAccountLog', Config>;
+      /**
+       * ---
+       *
+       * [POST] 创建用户账号日志
+       *
+       * **path:** /api/Base/UserAccountLogs/create
+       *
+       * ---
+       *
+       * **RequestBody**
+       * ```ts
+       * type RequestBody = {
+       *   id?: string
+       *   accountId: string
+       *   account?: null | {
+       *     id?: string
+       *     userId: string
+       *     type?: number
+       *     asset?: number | string
+       *     frozenAsset?: number | string
+       *     description?: string
+       *   }
+       *   asset?: number | string
+       *   remainderAsset?: number | string
+       *   description?: string
+       *   createdAt?: string
+       * }
+       * ```
+       *
+       * ---
+       *
+       * **Response**
+       * ```ts
+       * type Response = {
+       *   // 响应编号
+       *   code?: number | string
+       *   // 响应消息
+       *   message?: string
+       *   // [params2] start
+       *   // 响应数据 T
+       *   // [params2] end
+       *   data?: null | {
+       *     id?: string
+       *     accountId: string
+       *     account?: null | {
+       *       id?: string
+       *       userId: string
+       *       type?: number
+       *       asset?: number | string
+       *       frozenAsset?: number | string
+       *       description?: string
+       *     }
+       *     asset?: number | string
+       *     remainderAsset?: number | string
+       *     description?: string
+       *     createdAt?: string
+       *   }
+       *   // 扩展数据
+       *   extend?: null
+       *   // 请求是否返回正确
+       *   isSuccess?: boolean
+       * }
+       * ```
+       */
+      createUserAccountLog<
+        Config extends Alova2MethodConfig<ApiResultOfUserAccountLog> & {
+          data: UserAccountLog;
+        }
+      >(
+        config: Config
+      ): Alova2Method<ApiResultOfUserAccountLog, 'userAccountLog.createUserAccountLog', Config>;
+      /**
+       * ---
+       *
+       * [PUT] 更新用户账号日志
+       *
+       * **path:** /api/Base/UserAccountLogs/update
+       *
+       * ---
+       *
+       * **RequestBody**
+       * ```ts
+       * type RequestBody = {
+       *   id?: string
+       *   accountId: string
+       *   account?: null | {
+       *     id?: string
+       *     userId: string
+       *     type?: number
+       *     asset?: number | string
+       *     frozenAsset?: number | string
+       *     description?: string
+       *   }
+       *   asset?: number | string
+       *   remainderAsset?: number | string
+       *   description?: string
+       *   createdAt?: string
+       * }
+       * ```
+       *
+       * ---
+       *
+       * **Response**
+       * ```ts
+       * type Response = {
+       *   // 响应编号
+       *   code?: number | string
+       *   // 响应消息
+       *   message?: string
+       *   // [params2] start
+       *   // 响应数据 T
+       *   // [params2] end
+       *   data?: null | {
+       *     id?: string
+       *     accountId: string
+       *     account?: null | {
+       *       id?: string
+       *       userId: string
+       *       type?: number
+       *       asset?: number | string
+       *       frozenAsset?: number | string
+       *       description?: string
+       *     }
+       *     asset?: number | string
+       *     remainderAsset?: number | string
+       *     description?: string
+       *     createdAt?: string
+       *   }
+       *   // 扩展数据
+       *   extend?: null
+       *   // 请求是否返回正确
+       *   isSuccess?: boolean
+       * }
+       * ```
+       */
+      updateUserAccountLog<
+        Config extends Alova2MethodConfig<ApiResultOfUserAccountLog> & {
+          data: UserAccountLog;
+        }
+      >(
+        config: Config
+      ): Alova2Method<ApiResultOfUserAccountLog, 'userAccountLog.updateUserAccountLog', Config>;
+      /**
+       * ---
+       *
+       * [DELETE] 删除用户账号日志
+       *
+       * **path:** /api/Base/UserAccountLogs/delete
+       *
+       * ---
+       *
+       * **Query Parameters**
+       * ```ts
+       * type QueryParameters = {
+       *   // 用户账号日志id
+       *   id?: string
+       * }
+       * ```
+       *
+       * ---
+       *
+       * **Response**
+       * ```ts
+       * type Response = {
+       *   // 响应编号
+       *   code?: number | string
+       *   // 响应消息
+       *   message?: string
+       *   // [params2] start
+       *   // 响应数据 T
+       *   // [params2] end
+       *   data?: null | {
+       *     id?: string
+       *     accountId: string
+       *     account?: null | {
+       *       id?: string
+       *       userId: string
+       *       type?: number
+       *       asset?: number | string
+       *       frozenAsset?: number | string
+       *       description?: string
+       *     }
+       *     asset?: number | string
+       *     remainderAsset?: number | string
+       *     description?: string
+       *     createdAt?: string
+       *   }
+       *   // 扩展数据
+       *   extend?: null
+       *   // 请求是否返回正确
+       *   isSuccess?: boolean
+       * }
+       * ```
+       */
+      deleteUserAccountLog<
+        Config extends Alova2MethodConfig<ApiResultOfUserAccountLog> & {
+          params: {
+            /**
+             * 用户账号日志id
+             */
+            id?: string;
+          };
+        }
+      >(
+        config: Config
+      ): Alova2Method<ApiResultOfUserAccountLog, 'userAccountLog.deleteUserAccountLog', Config>;
+      /**
+       * ---
+       *
+       * [DELETE] 批量删除用户账号日志
+       *
+       * **path:** /api/Base/UserAccountLogs/deletes
+       *
+       * ---
+       *
+       * **RequestBody**
+       * ```ts
+       * type RequestBody = string[]
+       * ```
+       *
+       * ---
+       *
+       * **Response**
+       * ```ts
+       * type Response = {
+       *   // 响应编号
+       *   code?: number | string
+       *   // 响应消息
+       *   message?: string
+       *   // 响应数据 T
+       *   data?: null
+       *   // 扩展数据
+       *   extend?: null
+       *   // 请求是否返回正确
+       *   isSuccess?: boolean
+       * }
+       * ```
+       */
+      deleteUserAccountLogs<
+        Config extends Alova2MethodConfig<ApiResult> & {
+          data: string[];
+        }
+      >(
+        config: Config
+      ): Alova2Method<ApiResult, 'userAccountLog.deleteUserAccountLogs', Config>;
+    };
+    userAccount: {
+      /**
+       * ---
+       *
+       * [GET] 获取用户账号列表
+       *
+       * **path:** /api/Base/UserAccounts/list
+       *
+       * ---
+       *
+       * **Query Parameters**
+       * ```ts
+       * type QueryParameters = {
+       *   // 用户id
+       *   userId?: string
+       *   // 账户类型
+       *   type?: number
+       *   // 关键词
+       *   keyword?: string
+       *   // 页码
+       *   page?: number | string
+       *   // 页面大小
+       *   pageSize?: number | string
+       * }
+       * ```
+       *
+       * ---
+       *
+       * **Response**
+       * ```ts
+       * type Response = {
+       *   // 响应编号
+       *   code?: number | string
+       *   // 响应消息
+       *   message?: string
+       *   // [params2] start
+       *   // 响应数据 T
+       *   // [params2] end
+       *   data?: null | {
+       *     // [items] start
+       *     // [items] end
+       *     list?: Array<{
+       *       id?: string
+       *       userId: string
+       *       type?: number
+       *       asset?: number | string
+       *       frozenAsset?: number | string
+       *       description?: string
+       *     }>
+       *     page?: number | string
+       *     pageSize?: number | string
+       *     totalPageCount?: number | string
+       *     totalItemCount?: number | string
+       *     extendData?: null
+       *   }
+       *   // 扩展数据
+       *   extend?: null
+       *   // 请求是否返回正确
+       *   isSuccess?: boolean
+       * }
+       * ```
+       */
+      getUserAccountList<
+        Config extends Alova2MethodConfig<ApiResultOfPageListOfUserAccount> & {
+          params: {
+            /**
+             * 用户id
+             */
+            userId?: string;
+            /**
+             * 账户类型
+             */
+            type?: UserAccountType;
+            /**
+             * 关键词
+             */
+            keyword?: string;
+            /**
+             * 页码
+             */
+            page?: number | string;
+            /**
+             * 页面大小
+             */
+            pageSize?: number | string;
+          };
+        }
+      >(
+        config: Config
+      ): Alova2Method<ApiResultOfPageListOfUserAccount, 'userAccount.getUserAccountList', Config>;
+      /**
+       * ---
+       *
+       * [GET] 获取用户账号详情
+       *
+       * **path:** /api/Base/UserAccounts/get
+       *
+       * ---
+       *
+       * **Query Parameters**
+       * ```ts
+       * type QueryParameters = {
+       *   // 用户账号id
+       *   id?: string
+       * }
+       * ```
+       *
+       * ---
+       *
+       * **Response**
+       * ```ts
+       * type Response = {
+       *   // 响应编号
+       *   code?: number | string
+       *   // 响应消息
+       *   message?: string
+       *   // [params2] start
+       *   // 响应数据 T
+       *   // [params2] end
+       *   data?: null | {
+       *     id?: string
+       *     userId: string
+       *     type?: number
+       *     asset?: number | string
+       *     frozenAsset?: number | string
+       *     description?: string
+       *   }
+       *   // 扩展数据
+       *   extend?: null
+       *   // 请求是否返回正确
+       *   isSuccess?: boolean
+       * }
+       * ```
+       */
+      getUserAccount<
+        Config extends Alova2MethodConfig<ApiResultOfUserAccount> & {
+          params: {
+            /**
+             * 用户账号id
+             */
+            id?: string;
+          };
+        }
+      >(
+        config: Config
+      ): Alova2Method<ApiResultOfUserAccount, 'userAccount.getUserAccount', Config>;
+      /**
+       * ---
+       *
+       * [GET] 获取用户账号详情 By UserId &amp; type, 如果不存在责直接新建对应类型的账号并返回
+       *
+       * **path:** /api/Base/UserAccounts/getByUserId
+       *
+       * ---
+       *
+       * **Query Parameters**
+       * ```ts
+       * type QueryParameters = {
+       *   // 用户账号id
+       *   userId?: string
+       *   // 账号类型
+       *   type?: number
+       * }
+       * ```
+       *
+       * ---
+       *
+       * **Response**
+       * ```ts
+       * type Response = {
+       *   // 响应编号
+       *   code?: number | string
+       *   // 响应消息
+       *   message?: string
+       *   // [params2] start
+       *   // 响应数据 T
+       *   // [params2] end
+       *   data?: null | {
+       *     id?: string
+       *     userId: string
+       *     type?: number
+       *     asset?: number | string
+       *     frozenAsset?: number | string
+       *     description?: string
+       *   }
+       *   // 扩展数据
+       *   extend?: null
+       *   // 请求是否返回正确
+       *   isSuccess?: boolean
+       * }
+       * ```
+       */
+      getUserAccountByUserId<
+        Config extends Alova2MethodConfig<ApiResultOfUserAccount> & {
+          params: {
+            /**
+             * 用户账号id
+             */
+            userId?: string;
+            /**
+             * 账号类型
+             */
+            type?: UserAccountType;
+          };
+        }
+      >(
+        config: Config
+      ): Alova2Method<ApiResultOfUserAccount, 'userAccount.getUserAccountByUserId', Config>;
+      /**
+       * ---
+       *
+       * [POST] 创建用户账号
+       *
+       * **path:** /api/Base/UserAccounts/create
+       *
+       * ---
+       *
+       * **RequestBody**
+       * ```ts
+       * type RequestBody = {
+       *   id?: string
+       *   userId: string
+       *   type?: number
+       *   asset?: number | string
+       *   frozenAsset?: number | string
+       *   description?: string
+       * }
+       * ```
+       *
+       * ---
+       *
+       * **Response**
+       * ```ts
+       * type Response = {
+       *   // 响应编号
+       *   code?: number | string
+       *   // 响应消息
+       *   message?: string
+       *   // [params2] start
+       *   // 响应数据 T
+       *   // [params2] end
+       *   data?: null | {
+       *     id?: string
+       *     userId: string
+       *     type?: number
+       *     asset?: number | string
+       *     frozenAsset?: number | string
+       *     description?: string
+       *   }
+       *   // 扩展数据
+       *   extend?: null
+       *   // 请求是否返回正确
+       *   isSuccess?: boolean
+       * }
+       * ```
+       */
+      createUserAccount<
+        Config extends Alova2MethodConfig<ApiResultOfUserAccount> & {
+          data: UserAccount;
+        }
+      >(
+        config: Config
+      ): Alova2Method<ApiResultOfUserAccount, 'userAccount.createUserAccount', Config>;
+      /**
+       * ---
+       *
+       * [PUT] 更新用户账号
+       *
+       * **path:** /api/Base/UserAccounts/update
+       *
+       * ---
+       *
+       * **RequestBody**
+       * ```ts
+       * type RequestBody = {
+       *   id?: string
+       *   userId: string
+       *   type?: number
+       *   asset?: number | string
+       *   frozenAsset?: number | string
+       *   description?: string
+       * }
+       * ```
+       *
+       * ---
+       *
+       * **Response**
+       * ```ts
+       * type Response = {
+       *   // 响应编号
+       *   code?: number | string
+       *   // 响应消息
+       *   message?: string
+       *   // [params2] start
+       *   // 响应数据 T
+       *   // [params2] end
+       *   data?: null | {
+       *     id?: string
+       *     userId: string
+       *     type?: number
+       *     asset?: number | string
+       *     frozenAsset?: number | string
+       *     description?: string
+       *   }
+       *   // 扩展数据
+       *   extend?: null
+       *   // 请求是否返回正确
+       *   isSuccess?: boolean
+       * }
+       * ```
+       */
+      updateUserAccount<
+        Config extends Alova2MethodConfig<ApiResultOfUserAccount> & {
+          data: UserAccount;
+        }
+      >(
+        config: Config
+      ): Alova2Method<ApiResultOfUserAccount, 'userAccount.updateUserAccount', Config>;
+      /**
+       * ---
+       *
+       * [DELETE] 删除用户账号
+       *
+       * **path:** /api/Base/UserAccounts/delete
+       *
+       * ---
+       *
+       * **Query Parameters**
+       * ```ts
+       * type QueryParameters = {
+       *   // 用户账号id
+       *   id?: string
+       * }
+       * ```
+       *
+       * ---
+       *
+       * **Response**
+       * ```ts
+       * type Response = {
+       *   // 响应编号
+       *   code?: number | string
+       *   // 响应消息
+       *   message?: string
+       *   // [params2] start
+       *   // 响应数据 T
+       *   // [params2] end
+       *   data?: null | {
+       *     id?: string
+       *     userId: string
+       *     type?: number
+       *     asset?: number | string
+       *     frozenAsset?: number | string
+       *     description?: string
+       *   }
+       *   // 扩展数据
+       *   extend?: null
+       *   // 请求是否返回正确
+       *   isSuccess?: boolean
+       * }
+       * ```
+       */
+      deleteUserAccount<
+        Config extends Alova2MethodConfig<ApiResultOfUserAccount> & {
+          params: {
+            /**
+             * 用户账号id
+             */
+            id?: string;
+          };
+        }
+      >(
+        config: Config
+      ): Alova2Method<ApiResultOfUserAccount, 'userAccount.deleteUserAccount', Config>;
+      /**
+       * ---
+       *
+       * [DELETE] 批量删除用户账号
+       *
+       * **path:** /api/Base/UserAccounts/deletes
+       *
+       * ---
+       *
+       * **RequestBody**
+       * ```ts
+       * type RequestBody = string[]
+       * ```
+       *
+       * ---
+       *
+       * **Response**
+       * ```ts
+       * type Response = {
+       *   // 响应编号
+       *   code?: number | string
+       *   // 响应消息
+       *   message?: string
+       *   // 响应数据 T
+       *   data?: null
+       *   // 扩展数据
+       *   extend?: null
+       *   // 请求是否返回正确
+       *   isSuccess?: boolean
+       * }
+       * ```
+       */
+      deleteUserAccounts<
+        Config extends Alova2MethodConfig<ApiResult> & {
+          data: string[];
+        }
+      >(
+        config: Config
+      ): Alova2Method<ApiResult, 'userAccount.deleteUserAccounts', Config>;
     };
     userMessage: {
       /**

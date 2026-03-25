@@ -1,3 +1,6 @@
+export * from './cache/index'
+export * from './cipher'
+export * from './is'
 export * from './klona'
 export * from './page'
 export * from './version'

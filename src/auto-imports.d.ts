@@ -6,6 +6,7 @@
 // biome-ignore lint: disable
 export {}
 declare global {
+  const AesEncryption: typeof import('./utils/cipher').AesEncryption
   const Apis: typeof import('./service/apis/index').Apis
   const CommonUtil: typeof import('wot-design-uni').CommonUtil
   const EffectScope: typeof import('vue').EffectScope
@@ -17,6 +18,7 @@ declare global {
   const asyncComputed: typeof import('@vueuse/core').asyncComputed
   const autoResetRef: typeof import('@vueuse/core').autoResetRef
   const checkMiniProgramUpdate: typeof import('./utils/version').checkMiniProgramUpdate
+  const clearCache: typeof import('./utils/cache/index').clearCache
   const computed: typeof import('vue').computed
   const computedAsync: typeof import('@vueuse/core').computedAsync
   const computedEager: typeof import('@vueuse/core').computedEager
@@ -38,16 +40,20 @@ declare global {
   const customRef: typeof import('vue').customRef
   const debouncedRef: typeof import('@vueuse/core').debouncedRef
   const debouncedWatch: typeof import('@vueuse/core').debouncedWatch
+  const decodeByBase64: typeof import('./utils/cipher').decodeByBase64
   const defineAsyncComponent: typeof import('vue').defineAsyncComponent
   const defineComponent: typeof import('vue').defineComponent
   const defineStore: typeof import('pinia').defineStore
   const eagerComputed: typeof import('@vueuse/core').eagerComputed
   const effectScope: typeof import('vue').effectScope
   const employeeMessages: typeof import('./composables/useEmployeeMessage').employeeMessages
+  const encryptByBase64: typeof import('./utils/cipher').encryptByBase64
+  const encryptByMd5: typeof import('./utils/cipher').encryptByMd5
   const extendRef: typeof import('@vueuse/core').extendRef
   const getActivePinia: typeof import('pinia').getActivePinia
   const getAllExcludePages: typeof import('./utils/page').getAllExcludePages
   const getAllPages: typeof import('./utils/page').getAllPages
+  const getCache: typeof import('./utils/cache/index').getCache
   const getCurrentInstance: typeof import('vue').getCurrentInstance
   const getCurrentPath: typeof import('./utils/page').getCurrentPath
   const getCurrentScope: typeof import('vue').getCurrentScope
@@ -57,13 +63,36 @@ declare global {
   const ignorableWatch: typeof import('@vueuse/core').ignorableWatch
   const inject: typeof import('vue').inject
   const injectLocal: typeof import('@vueuse/core').injectLocal
+  const is: typeof import('./utils/is').is
+  const isArray: typeof import('./utils/is').isArray
+  const isBoolean: typeof import('./utils/is').isBoolean
+  const isClient: typeof import('./utils/is').isClient
+  const isDate: typeof import('./utils/is').isDate
+  const isDef: typeof import('./utils/is').isDef
   const isDefined: typeof import('@vueuse/core').isDefined
+  const isElement: typeof import('./utils/is').isElement
+  const isEmpty: typeof import('./utils/is').isEmpty
+  const isFunction: typeof import('./utils/is').isFunction
+  const isMap: typeof import('./utils/is').isMap
+  const isNull: typeof import('./utils/is').isNull
+  const isNullAndUnDef: typeof import('./utils/is').isNullAndUnDef
+  const isNullOrUnDef: typeof import('./utils/is').isNullOrUnDef
+  const isNumber: typeof import('./utils/is').isNumber
+  const isNumeric: typeof import('./utils/is').isNumeric
+  const isObject: typeof import('./utils/is').isObject
   const isPageTabbar: typeof import('./utils/page').isPageTabbar
+  const isPromise: typeof import('./utils/is').isPromise
   const isProxy: typeof import('vue').isProxy
   const isReactive: typeof import('vue').isReactive
   const isReadonly: typeof import('vue').isReadonly
   const isRef: typeof import('vue').isRef
+  const isRegExp: typeof import('./utils/is').isRegExp
+  const isServer: typeof import('./utils/is').isServer
   const isShallow: typeof import('vue').isShallow
+  const isString: typeof import('./utils/is').isString
+  const isUnDef: typeof import('./utils/is').isUnDef
+  const isUrl: typeof import('./utils/is').isUrl
+  const isWindow: typeof import('./utils/is').isWindow
   const jsonClone: typeof import('./utils/klona').jsonClone
   const makeDestructurable: typeof import('@vueuse/core').makeDestructurable
   const mapActions: typeof import('pinia').mapActions
@@ -132,15 +161,18 @@ declare global {
   const refDefault: typeof import('@vueuse/core').refDefault
   const refThrottled: typeof import('@vueuse/core').refThrottled
   const refWithControl: typeof import('@vueuse/core').refWithControl
+  const removeCache: typeof import('./utils/cache/index').removeCache
   const resolveComponent: typeof import('vue').resolveComponent
   const resolveRef: typeof import('@vueuse/core').resolveRef
   const resolveUnref: typeof import('@vueuse/core').resolveUnref
   const setActivePinia: typeof import('pinia').setActivePinia
+  const setCache: typeof import('./utils/cache/index').setCache
   const setMapStoreSuffix: typeof import('pinia').setMapStoreSuffix
   const setupStore: typeof import('./store/index').setupStore
   const shallowReactive: typeof import('vue').shallowReactive
   const shallowReadonly: typeof import('vue').shallowReadonly
   const shallowRef: typeof import('vue').shallowRef
+  const storage: typeof import('./utils/cache/index').storage
   const store: typeof import('./store/index')['default']
   const storeToRefs: typeof import('pinia').storeToRefs
   const subscribeMessages: typeof import('./composables/useSubscribeMessage').subscribeMessages
@@ -387,6 +419,9 @@ declare global {
   // @ts-ignore
   export type { TabbarItem } from './composables/useTabbar'
   import('./composables/useTabbar')
+  // @ts-ignore
+  export type { AesEncryption, EncryptionParams, AesEncryption } from './utils/cipher'
+  import('./utils/cipher')
 }
 
 // for vue template auto import
@@ -394,6 +429,7 @@ import { UnwrapRef } from 'vue'
 declare module 'vue' {
   interface GlobalComponents {}
   interface ComponentCustomProperties {
+    readonly AesEncryption: UnwrapRef<typeof import('./utils/cipher')['AesEncryption']>
     readonly Apis: UnwrapRef<typeof import('./service/apis/index')['Apis']>
     readonly CommonUtil: UnwrapRef<typeof import('wot-design-uni')['CommonUtil']>
     readonly EffectScope: UnwrapRef<typeof import('vue')['EffectScope']>
@@ -405,6 +441,7 @@ declare module 'vue' {
     readonly asyncComputed: UnwrapRef<typeof import('@vueuse/core')['asyncComputed']>
     readonly autoResetRef: UnwrapRef<typeof import('@vueuse/core')['autoResetRef']>
     readonly checkMiniProgramUpdate: UnwrapRef<typeof import('./utils/version')['checkMiniProgramUpdate']>
+    readonly clearCache: UnwrapRef<typeof import('./utils/cache/index')['clearCache']>
     readonly computed: UnwrapRef<typeof import('vue')['computed']>
     readonly computedAsync: UnwrapRef<typeof import('@vueuse/core')['computedAsync']>
     readonly computedEager: UnwrapRef<typeof import('@vueuse/core')['computedEager']>
@@ -426,16 +463,20 @@ declare module 'vue' {
     readonly customRef: UnwrapRef<typeof import('vue')['customRef']>
     readonly debouncedRef: UnwrapRef<typeof import('@vueuse/core')['debouncedRef']>
     readonly debouncedWatch: UnwrapRef<typeof import('@vueuse/core')['debouncedWatch']>
+    readonly decodeByBase64: UnwrapRef<typeof import('./utils/cipher')['decodeByBase64']>
     readonly defineAsyncComponent: UnwrapRef<typeof import('vue')['defineAsyncComponent']>
     readonly defineComponent: UnwrapRef<typeof import('vue')['defineComponent']>
     readonly defineStore: UnwrapRef<typeof import('pinia')['defineStore']>
     readonly eagerComputed: UnwrapRef<typeof import('@vueuse/core')['eagerComputed']>
     readonly effectScope: UnwrapRef<typeof import('vue')['effectScope']>
     readonly employeeMessages: UnwrapRef<typeof import('./composables/useEmployeeMessage')['employeeMessages']>
+    readonly encryptByBase64: UnwrapRef<typeof import('./utils/cipher')['encryptByBase64']>
+    readonly encryptByMd5: UnwrapRef<typeof import('./utils/cipher')['encryptByMd5']>
     readonly extendRef: UnwrapRef<typeof import('@vueuse/core')['extendRef']>
     readonly getActivePinia: UnwrapRef<typeof import('pinia')['getActivePinia']>
     readonly getAllExcludePages: UnwrapRef<typeof import('./utils/page')['getAllExcludePages']>
     readonly getAllPages: UnwrapRef<typeof import('./utils/page')['getAllPages']>
+    readonly getCache: UnwrapRef<typeof import('./utils/cache/index')['getCache']>
     readonly getCurrentInstance: UnwrapRef<typeof import('vue')['getCurrentInstance']>
     readonly getCurrentPath: UnwrapRef<typeof import('./utils/page')['getCurrentPath']>
     readonly getCurrentScope: UnwrapRef<typeof import('vue')['getCurrentScope']>
@@ -445,13 +486,36 @@ declare module 'vue' {
     readonly ignorableWatch: UnwrapRef<typeof import('@vueuse/core')['ignorableWatch']>
     readonly inject: UnwrapRef<typeof import('vue')['inject']>
     readonly injectLocal: UnwrapRef<typeof import('@vueuse/core')['injectLocal']>
+    readonly is: UnwrapRef<typeof import('./utils/is')['is']>
+    readonly isArray: UnwrapRef<typeof import('./utils/is')['isArray']>
+    readonly isBoolean: UnwrapRef<typeof import('./utils/is')['isBoolean']>
+    readonly isClient: UnwrapRef<typeof import('./utils/is')['isClient']>
+    readonly isDate: UnwrapRef<typeof import('./utils/is')['isDate']>
+    readonly isDef: UnwrapRef<typeof import('./utils/is')['isDef']>
     readonly isDefined: UnwrapRef<typeof import('@vueuse/core')['isDefined']>
+    readonly isElement: UnwrapRef<typeof import('./utils/is')['isElement']>
+    readonly isEmpty: UnwrapRef<typeof import('./utils/is')['isEmpty']>
+    readonly isFunction: UnwrapRef<typeof import('./utils/is')['isFunction']>
+    readonly isMap: UnwrapRef<typeof import('./utils/is')['isMap']>
+    readonly isNull: UnwrapRef<typeof import('./utils/is')['isNull']>
+    readonly isNullAndUnDef: UnwrapRef<typeof import('./utils/is')['isNullAndUnDef']>
+    readonly isNullOrUnDef: UnwrapRef<typeof import('./utils/is')['isNullOrUnDef']>
+    readonly isNumber: UnwrapRef<typeof import('./utils/is')['isNumber']>
+    readonly isNumeric: UnwrapRef<typeof import('./utils/is')['isNumeric']>
+    readonly isObject: UnwrapRef<typeof import('./utils/is')['isObject']>
     readonly isPageTabbar: UnwrapRef<typeof import('./utils/page')['isPageTabbar']>
+    readonly isPromise: UnwrapRef<typeof import('./utils/is')['isPromise']>
     readonly isProxy: UnwrapRef<typeof import('vue')['isProxy']>
     readonly isReactive: UnwrapRef<typeof import('vue')['isReactive']>
     readonly isReadonly: UnwrapRef<typeof import('vue')['isReadonly']>
     readonly isRef: UnwrapRef<typeof import('vue')['isRef']>
+    readonly isRegExp: UnwrapRef<typeof import('./utils/is')['isRegExp']>
+    readonly isServer: UnwrapRef<typeof import('./utils/is')['isServer']>
     readonly isShallow: UnwrapRef<typeof import('vue')['isShallow']>
+    readonly isString: UnwrapRef<typeof import('./utils/is')['isString']>
+    readonly isUnDef: UnwrapRef<typeof import('./utils/is')['isUnDef']>
+    readonly isUrl: UnwrapRef<typeof import('./utils/is')['isUrl']>
+    readonly isWindow: UnwrapRef<typeof import('./utils/is')['isWindow']>
     readonly jsonClone: UnwrapRef<typeof import('./utils/klona')['jsonClone']>
     readonly makeDestructurable: UnwrapRef<typeof import('@vueuse/core')['makeDestructurable']>
     readonly mapActions: UnwrapRef<typeof import('pinia')['mapActions']>
@@ -520,15 +584,18 @@ declare module 'vue' {
     readonly refDefault: UnwrapRef<typeof import('@vueuse/core')['refDefault']>
     readonly refThrottled: UnwrapRef<typeof import('@vueuse/core')['refThrottled']>
     readonly refWithControl: UnwrapRef<typeof import('@vueuse/core')['refWithControl']>
+    readonly removeCache: UnwrapRef<typeof import('./utils/cache/index')['removeCache']>
     readonly resolveComponent: UnwrapRef<typeof import('vue')['resolveComponent']>
     readonly resolveRef: UnwrapRef<typeof import('@vueuse/core')['resolveRef']>
     readonly resolveUnref: UnwrapRef<typeof import('@vueuse/core')['resolveUnref']>
     readonly setActivePinia: UnwrapRef<typeof import('pinia')['setActivePinia']>
+    readonly setCache: UnwrapRef<typeof import('./utils/cache/index')['setCache']>
     readonly setMapStoreSuffix: UnwrapRef<typeof import('pinia')['setMapStoreSuffix']>
     readonly setupStore: UnwrapRef<typeof import('./store/index')['setupStore']>
     readonly shallowReactive: UnwrapRef<typeof import('vue')['shallowReactive']>
     readonly shallowReadonly: UnwrapRef<typeof import('vue')['shallowReadonly']>
     readonly shallowRef: UnwrapRef<typeof import('vue')['shallowRef']>
+    readonly storage: UnwrapRef<typeof import('./utils/cache/index')['storage']>
     readonly storeToRefs: UnwrapRef<typeof import('pinia')['storeToRefs']>
     readonly subscribeMessages: UnwrapRef<typeof import('./composables/useSubscribeMessage')['subscribeMessages']>
     readonly syncRef: UnwrapRef<typeof import('@vueuse/core')['syncRef']>

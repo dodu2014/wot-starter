@@ -2,12 +2,16 @@ import type { AccessTokenModel, LoginModel, UserProfileInfo } from '@/service/ap
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
 import dayjs from 'wot-design-uni/dayjs'
+import router, { LOGIN_PAGE } from '@/router'
 
 export const useUserStore = defineStore(
   'userStore',
   () => {
     const toast = useGlobalToast()
     const { close: hideLoading } = useGlobalLoading()
+    const { alert } = useGlobalMessage()
+
+    const route = useRoute()
 
     /** 定义用户信息 */
     const userInfo = ref<UserProfileInfo>()
@@ -100,7 +104,7 @@ export const useUserStore = defineStore(
 
     /** 退出登录 */
     async function logout() {
-      const { error, send } = useRequest(() => Webapi_Base.auth.logout()).onError((error) => {
+      const { error, send } = useRequest(() => Webapi_Base.auth.logout(), { immediate: false }).onError((error) => {
         toast.error(error.error?.message || '')
       })
       const res = await send()
@@ -108,6 +112,43 @@ export const useUserStore = defineStore(
         console.log('成功退出登录', res)
         clear()
       }
+    }
+
+    /**
+     * 检查用户登录状态，未登录时显示提示弹窗并跳转到登录页面
+     * @returns {Promise<void>} 已登录时 resolve，未登录时 reject
+     * @throws {Error} 当用户未登录时抛出错误，错误信息为"未授权"
+     */
+    function unLoginAlert(): Promise<void> {
+      return new Promise<void>((resolve, reject) => {
+        if (logined.value) {
+          resolve()
+          return
+        }
+        alert({
+          title: '未经授权',
+          msg: '当前页面需要你先登录方可继续。',
+          confirmButtonText: '立即登录',
+          confirmButtonProps: {
+            icon: 'login',
+          },
+          closeOnClickModal: false,
+          success() {
+            let query = ``
+            if (route.query) {
+              const keys = Object.keys(route.query) // 获取对象的key 返回对象key的数组
+              query = keys.reduce((pre, cur) => `${pre + cur}=${route.query[cur]}&`, '?').slice(0, -1)
+            }
+            router.replace({
+              path: LOGIN_PAGE,
+              query: {
+                redirect: `/${getCurrentPath()}${query}`,
+              },
+            })
+          },
+        })
+        reject(new Error('未授权'))
+      })
     }
 
     return {
@@ -133,6 +174,8 @@ export const useUserStore = defineStore(
       easyLogin,
       /** 退出登录 */
       logout,
+      /** 检查用户登录状态，未登录时显示提示弹窗并跳转到登录页面 */
+      unLoginAlert,
     }
   },
   // 持久化

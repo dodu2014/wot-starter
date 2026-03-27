@@ -91,27 +91,34 @@ export function useEmployeeMessage(options?: {
 
   /** 请求订阅用工消息 */
   async function requestSubscribeEmployeeMessage(...messages: EmployeeMessage[]) {
-    const tmplIds = messages.map(key => employeeMessages[key])
-    if (!tmplIds || tmplIds.length === 0) {
-      warning('没有需要订阅的消息')
-      return
-    }
-    // uni.requestSubscribeMessage 在某些环境下可能直接返回值而非 Promise
-    loading({ msg: 'loading' })
-    uni.requestSubscribeEmployeeMessage({
-      tmplIds,
-      success(res) {
-        if (res.bindingStatus === 'accept')
-          success('订阅成功')
-      },
-      fail(res) {
-        if (res.errMsg.includes('current platform is not supported')) {
-          warning('检测失败：当前平台不受支持')
-        }
-      },
-      complete() {
-        hideLoading()
-      },
+    return new Promise<void>((resolve, reject) => {
+      const tmplIds = messages.map(key => employeeMessages[key])
+      if (!tmplIds || tmplIds.length === 0) {
+        warning('没有需要订阅的消息')
+        reject(new Error('没有需要订阅的消息'))
+        return
+      }
+      // uni.requestSubscribeEmployeeMessage 在某些环境下可能直接返回值而非 Promise
+      loading({ msg: 'loading' })
+      uni.requestSubscribeEmployeeMessage({
+        tmplIds,
+        success(res) {
+          if (res.bindingStatus === 'accept') {
+            success('订阅成功')
+            resolve()
+          }
+        },
+        fail(res) {
+          if (res.errMsg.includes('current platform is not supported')) {
+            warning('检测失败：当前平台不受支持')
+            reject(new Error('检测失败：当前平台不受支持'))
+          }
+          reject(new Error(res.errMsg))
+        },
+        complete() {
+          hideLoading()
+        },
+      })
     })
   }
 

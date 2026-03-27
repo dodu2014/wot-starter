@@ -22,16 +22,34 @@ export function useSubscribeMessage() {
 
   /** 请求订阅消息 */
   async function requestSubscribeMessage(...messageIds: SubscribeMessage[]) {
-    const tmplIds = messageIds.map(key => subscribeMessages[key])
-    if (!tmplIds || tmplIds.length === 0) {
-      warning('没有需要订阅的消息')
-      return
-    }
-    // uni.requestSubscribeMessage 在某些环境下可能直接返回值而非 Promise
-    loading({ msg: 'loading' })
-    const requestResult = uni.requestSubscribeMessage({ tmplIds }) as any
-    hideLoading()
-    subscribeResult.value = (requestResult instanceof Promise ? await requestResult : requestResult) as unknown as SubscribeMessageSuccessResult
+    return new Promise<void>((resolve, reject) => {
+      const tmplIds = messageIds.map(key => subscribeMessages[key])
+      if (!tmplIds || tmplIds.length === 0) {
+        warning('没有需要订阅的消息')
+        reject(new Error('没有需要订阅的消息'))
+        return
+      }
+      // uni.requestSubscribeMessage 在某些环境下可能直接返回值而非 Promise
+      loading({ msg: 'loading' })
+      uni.requestSubscribeMessage({
+        tmplIds,
+        success(res) {
+          console.log('订阅成功', res)
+          subscribeResult.value = res as unknown as SubscribeMessageSuccessResult
+          if (isSuccessedSubscribeResult())
+            resolve()
+          else
+            reject(new Error('订阅失败'))
+        },
+        fail(err) {
+          reject(new Error(err.errMsg))
+        },
+        complete() {
+          console.log('订阅完成')
+          hideLoading()
+        },
+      })
+    })
   }
 
   /** 判断订阅消息的结果是否为成功 */

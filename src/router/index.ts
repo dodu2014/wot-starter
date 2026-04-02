@@ -1,5 +1,5 @@
 /// <reference types="@uni-helper/vite-plugin-uni-pages/client" />
-import type { RouterExt } from '@/shims'
+import type { RouterExt } from './route'
 import { pages, subPackages } from 'virtual:uni-pages'
 
 // 定义固定路由页面

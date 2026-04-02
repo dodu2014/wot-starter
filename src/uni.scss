@@ -13,10 +13,10 @@
  */
 
  /* #ifdef MP-WEIXIN */
- @import "@/static/mp-weixin/bg-user.scss"; 
+ @import "@/static/mp-weixin/bg-user.scss";
  /* #endif */
 
-/* #ifdef WEB */
+/* #ifndef MP-WEIXIN */
 $user-bg-url: url('/static/web/bg-user.png');
 /* #endif */
 

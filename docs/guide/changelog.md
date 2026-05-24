@@ -1,6 +1,18 @@
 # 更新日志 
 
 
+## [1.5.0](https://github.com/wot-ui/wot-starter/compare/v1.4.0...v1.5.0) (2026-04-07)
+
+
+### ✨ Features | 新功能
+
+* ✨ add wot-ui skill ([2b9b664](https://github.com/wot-ui/wot-starter/commit/2b9b664a087ca25fba26bcde22d1337a8d00309d))
+
+
+### ✏️ Documentation | 文档
+
+* ✏️  add wot-ui skill docs ([1c15e03](https://github.com/wot-ui/wot-starter/commit/1c15e03c47a1e6cdc3eb0e53cd65b41ef2dadf01))
+
 ## [1.4.0](https://github.com/wot-ui/wot-starter/compare/v1.3.2...v1.4.0) (2026-01-25)
 
 

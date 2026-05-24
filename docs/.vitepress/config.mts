@@ -3,8 +3,8 @@ import { fileURLToPath, URL } from 'node:url'
 import UnoCSS from '@unocss/vite'
 import viteCompression from 'vite-plugin-compression'
 import { defineConfig } from 'vitepress'
-
 import llmstxt from 'vitepress-plugin-llms'
+import packageJson from '../../package.json'
 
 // https://vitepress.dev/reference/site-config
 function copyDemoPlugin() {
@@ -149,6 +149,10 @@ var _hmt = _hmt || [];
       { text: '关于作者', link: 'https://blog.wot-ui.cn/about' },
       { text: 'Uni Helper', link: 'https://uni-helper.cn/' },
       { text: 'Uni Ku 插件', link: 'https://uni-ku.js.org/' },
+      { text: packageJson.version, items: [
+        { text: 'v2', link: 'https://starter.wot-ui.cn' },
+        { text: '更新日志', link: '/guide/changelog.html' },
+      ] },
     ],
     sidebar: [
       {

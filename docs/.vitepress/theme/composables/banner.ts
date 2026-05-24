@@ -13,8 +13,8 @@ export function useBanner() {
   onMounted(async () => {
     // 定义数据源URL列表，按优先级排序
     const urls = [
-      'https://sponsor.wot-ui.cn/banner.json',
-      'https://wot-sponsors.pages.dev/banner.json',
+      'https://sponsor.wot-ui.cn/wot-starter-v1-banner.json',
+      'https://wot-sponsors.pages.dev/wot-starter-v1-banner.json',
     ]
 
     // 尝试从多个数据源获取数据

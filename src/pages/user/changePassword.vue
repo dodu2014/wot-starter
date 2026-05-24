@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { FormExpose } from 'wot-design-uni/components/wd-form/types'
+import type { FormExpose } from '@wot-ui/ui/components/wd-form/types'
 import type { ChangePasswordModel } from '@/service/apis/base/globals'
 
 definePage({

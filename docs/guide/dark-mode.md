@@ -1,7 +1,5 @@
 ---
-title: 暗黑模式
-iframe: true
-url: pages/index/index
+iframeFormatter: pages/index/index
 ---
 
 # 暗黑模式
@@ -401,4 +399,4 @@ rm src/store/manualThemeStore.ts
 
 移除后，你的应用将只使用固定的明亮主题，减少代码复杂度和包体积。
 
-> 📖 **了解更多**: [uni-app 暗黑模式适配指南](https://uniapp.dcloud.net.cn/tutorial/darkmode.html) | [wot-design-uni 主题文档](https://wot-ui.cn/guide/theme.html)
+> 📖 **了解更多**: [uni-app 暗黑模式适配指南](https://uniapp.dcloud.net.cn/tutorial/darkmode.html)

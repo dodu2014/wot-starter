@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { ColPickerColumnChangeOption } from 'wot-design-uni/components/wd-col-picker/types'
+import type { ColPickerColumnChangeOption } from '@wot-ui/ui/components/wd-col-picker/types'
 
 defineOptions({ name: 'CitysPicker' })
 

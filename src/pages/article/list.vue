@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { Article } from '@/service/apis/base/globals'
-import dayjs from 'wot-design-uni/dayjs'
+import dayjs from 'dayjs'
 import router from '@/router'
 
 const toast = useGlobalToast()

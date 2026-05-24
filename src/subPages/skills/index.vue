@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { useToast } from 'wot-design-uni'
-
 definePage({
   name: 'skills',
   layout: 'default',
@@ -72,13 +70,13 @@ function getIconBg(color: string) {
 </script>
 
 <template>
-  <view class="pb-safe box-border min-h-screen bg-[#f9fafb]">
+  <view class="pb-safe wot-bg-bg box-border min-h-screen">
     <!-- Header -->
     <view class="px-6 pb-6 pt-8">
-      <view class="mb-2 text-3xl text-gray-900 font-bold leading-tight">
+      <view class="mb-2 text-3xl font-bold leading-tight wot-text-text-main">
         Agent Skills
       </view>
-      <view class="text-base text-gray-500 leading-relaxed">
+      <view class="text-base leading-relaxed wot-text-text-secondary">
         利用智能工具赋能开发效率，<br>打造极致开发体验。
       </view>
     </view>
@@ -88,7 +86,7 @@ function getIconBg(color: string) {
       <view
         v-for="(skill, index) in skills"
         :key="skill.name"
-        class="group relative animate-fade-in-up overflow-hidden rounded-[24px] bg-white p-5 shadow-sm transition-all duration-300 active:scale-[0.98]"
+        class="group relative animate-fade-in-up overflow-hidden rounded-[24px] p-5 shadow-sm transition-all duration-300 wot-bg-filled-oppo active:scale-[0.98]"
         :style="{ animationDelay: `${index * 100}ms` }"
         @click="handleClick(skill.name)"
       >
@@ -109,12 +107,12 @@ function getIconBg(color: string) {
           <!-- Text Content -->
           <view class="min-w-0 flex-1 pt-0.5">
             <view class="flex items-center justify-between">
-              <view class="truncate pr-2 text-lg text-gray-900 font-bold">
+              <view class="truncate pr-2 text-lg font-bold wot-text-text-main">
                 {{ skill.name }}
               </view>
               <wd-icon name="arrow-right" color="#E5E7EB" size="20px" />
             </view>
-            <view class="line-clamp-2 mt-1 text-sm text-gray-500 leading-relaxed">
+            <view class="line-clamp-2 mt-1 text-sm leading-relaxed wot-text-text-secondary">
               {{ skill.desc }}
             </view>
           </view>
@@ -152,6 +150,7 @@ function getIconBg(color: string) {
 /* Utilities */
 .line-clamp-2 {
   display: -webkit-box;
+  line-clamp: 2;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;

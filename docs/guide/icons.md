@@ -1,7 +1,7 @@
 ---
 title: 图标使用
 iframe: true
-url: subPages/icon/index
+iframeFormatter: subPages/icon/index
 ---
 
 # 图标使用

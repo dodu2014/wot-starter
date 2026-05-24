@@ -33,7 +33,7 @@ export function getMiniProgramVersion() {
  */
 export function checkMiniProgramUpdate(notUpdatePrompt = '') {
   // 全局消息提示（必须在方法局部定义，全局定义会报错）
-  const { alert } = useGlobalMessage()
+  const { alert } = useGlobalDialog()
   const { loading, close: hideLoading } = useGlobalLoading()
 
   // 返回全局唯一的版本更新管理器对象： updateManager，用于管理小程序更新

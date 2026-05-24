@@ -1,7 +1,4 @@
 # 分包优化
-
-
-
 本项目基于 [@uni-ku/bundle-optimizer](https://github.com/uni-ku/bundle-optimizer) 分包优化插件，实现 uni-app Vue3 项目分包优化插件，解决小程序主包体积超限问题。
 
 :::tip 提示

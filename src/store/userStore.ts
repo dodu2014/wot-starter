@@ -1,7 +1,7 @@
 import type { AccessTokenModel, LoginModel, UserProfileInfo } from '@/service/apis/base/globals.d.ts'
+import dayjs from 'dayjs'
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
-import dayjs from 'wot-design-uni/dayjs'
 import router, { LOGIN_PAGE } from '@/router'
 
 export const useUserStore = defineStore(
@@ -9,7 +9,7 @@ export const useUserStore = defineStore(
   () => {
     const toast = useGlobalToast()
     const { close: hideLoading } = useGlobalLoading()
-    const { alert } = useGlobalMessage()
+    const { alert } = useGlobalDialog()
 
     const route = useRoute()
 

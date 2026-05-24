@@ -1,7 +1,7 @@
 ---
 title: 起步
 iframe: true
-url: ''
+iframeFormatter: ''
 ---
 
 # 起步
@@ -35,15 +35,15 @@ url: ''
 ::: code-group
 
 ```bash [create-uni]
-pnpm create uni <project-name> -t wot-starter
+pnpm create uni <project-name> -t wot-starter-v2
 ```
 
 ```bash [degit]
-pnpx degit wot-ui/wot-starter <project-name>
+pnpx degit wot-ui/wot-starter#v2 <project-name>
 ```
 
 ```bash [giget]
-pnpx giget gh:wot-ui/wot-starter <project-name>
+pnpx giget gh:wot-ui/wot-starter#v2 <project-name>
 ```
 
 :::

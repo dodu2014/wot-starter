@@ -14,17 +14,17 @@ function goBack() {
 </script>
 
 <template>
-  <view class="min-h-screen bg-gray-100 py-3 dark:bg-[var(--wot-dark-background)]">
+  <view class="min-h-screen py-3">
     <!-- 头部 -->
     <view class="mx-3 mb-3">
-      <view class="rounded-3 bg-white px-5 py-6 text-center dark:bg-[var(--wot-dark-background2)]">
+      <view class="rounded-3 px-5 py-6 text-center wot-bg-filled-oppo">
         <view class="mb-3 text-8">
           🔒
         </view>
-        <view class="mb-2 text-5 text-gray-800 font-bold dark:text-[var(--wot-dark-color)]">
+        <view class="mb-2 text-5 font-bold wot-text-text-main">
           受保护的页面
         </view>
-        <view class="text-3.5 text-gray-600 dark:text-[var(--wot-dark-color2)]">
+        <view class="text-3.5 wot-text-text-secondary">
           这个页面被路由守卫保护，只有登录用户才能访问
         </view>
       </view>

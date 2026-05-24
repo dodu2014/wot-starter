@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import type { FormExpose } from 'wot-design-uni/components/wd-form/types'
+import type { FormExpose } from '@wot-ui/ui/components/wd-form/types'
 import { checkAccept } from './method'
 
 defineOptions({ name: 'PassLogin' })

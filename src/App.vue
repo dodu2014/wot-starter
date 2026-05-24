@@ -24,7 +24,7 @@ const { addListener, joinToGroup, startConnection, stopConnection } = useSignalR
         return
       }
 
-      const { confirm } = useGlobalMessage()
+      const { confirm } = useGlobalDialog()
       confirm({
         title: '新消息提醒',
         msg: `${message.content}`,
@@ -95,16 +95,16 @@ onExit(async () => {
 </script>
 
 <style lang="scss">
+@use '@wot-ui/ui/styles/theme/index.scss' as *;
 .page-wraper {
   min-height: calc(100vh - var(--window-top));
   box-sizing: border-box;
-  background: #f9f9f9;
+  background: var(--wot-filled-content);
 
   display: flex;
   flex-direction: column;
 }
-
-.wot-theme-dark.page-wraper {
-  background: #222;
-}
+// .wot-theme-dark.page-wraper {
+//   background: #222;
+// }
 </style>

@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import type { UploadFile, UploadRemoveEvent, UploadSuccessEvent } from 'wot-design-uni/components/wd-upload/types'
+import type { UploadFile, UploadRemoveEvent, UploadSuccessEvent } from '@wot-ui/ui/components/wd-upload/types'
 import type { ApiResultOfUpFileUploadResult } from '@/service/apis/base/globals'
 
 defineOptions({ name: 'AppUpload' })

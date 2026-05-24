@@ -1,12 +1,12 @@
 ---
 title: 自定义 Tabbar
 iframe: true
-url: ''
+iframeFormatter: ''
 ---
 
 # 自定义 Tabbar
 
-本项目基于 [wot-design-uni](https://wot-ui.cn/) 的 `wd-tabbar` 组件，提供自定义 Tabbar 的实现。
+本项目基于 [Wot UI](https://wot-ui.cn/) 的 `wd-tabbar` 组件，提供自定义 Tabbar 的实现。
 
 ## 实现原理
 
@@ -15,6 +15,8 @@ url: ''
 1. **配置文件** (`pages.config.ts`) - 启用自定义 Tabbar 并配置基础信息
 2. **组件实现** (`src/layouts/tabbar.vue`) - 自定义 Tabbar 的视图层
 3. **状态管理** (`src/composables/useTabbar.ts`) - Tabbar 的逻辑和状态管理
+
+当前实现中，`tabbar.vue` 会在 APP 端调用 `uni.hideTabBar()` 隐藏原生 Tabbar，并通过 `router.pushTab` 切换页面。
 
 ## 添加 Tabbar 项
 
@@ -43,10 +45,10 @@ tabBar: {
 
 ```typescript
 const tabbarItems = ref<TabbarItem[]>([
-  { name: 'home', value: null, active: true, title: '首页', icon: 'home' },
-  { name: 'about', value: null, active: false, title: '关于', icon: 'user' },
+  { name: 'home', active: true, title: '首页', icon: 'home' },
+  { name: 'about', active: false, title: '关于', icon: 'user' },
   // 添加新的tabbar项
-  { name: 'new-page', value: null, active: false, title: '新页面', icon: 'star' },
+  { name: 'new-page', active: false, title: '新页面', icon: 'star' },
 ])
 ```
 
@@ -55,7 +57,7 @@ const tabbarItems = ref<TabbarItem[]>([
 ```typescript
 interface TabbarItem {
   name: string // 页面名称，对应路由name
-  value: number | null // 徽标数值，null表示不显示徽标
+  value?: number // 徽标数值，不传表示不显示徽标
   active: boolean // 是否为当前激活项
   title: string // 显示标题
   icon: string // 图标名称
@@ -66,9 +68,9 @@ interface TabbarItem {
 
 ### 图标来源
 
-项目使用 [wot-design-uni](https://wot-ui.cn/) 的内置图标库。你可以通过以下方式查看可用图标：
+项目使用 [Wot UI](https://wot-ui.cn/) 的内置图标库。你可以通过以下方式查看可用图标：
 
-1. 访问 [wot-design-uni 图标文档](https://wot-ui.cn/component/icon.html)
+1. 访问 [Wot UI 图标文档](https://wot-ui.cn/component/icon.html)
 2. 查看所有可用的图标名称
 
 ### 修改图标
@@ -77,8 +79,8 @@ interface TabbarItem {
 
 ```typescript
 const tabbarItems = ref<TabbarItem[]>([
-  { name: 'home', value: null, active: true, title: '首页', icon: 'home' },
-  { name: 'about', value: null, active: false, title: '关于', icon: 'user' },
+  { name: 'home', active: true, title: '首页', icon: 'home' },
+  { name: 'about', active: false, title: '关于', icon: 'user' },
 ])
 ```
 
@@ -145,7 +147,7 @@ const tabbarItems = ref<TabbarItem[]>([
 ```typescript
 interface TabbarItem {
   name: string // 页面名称，对应路由name
-  value: number | null // 徽标数值，null表示不显示徽标
+  value?: number // 徽标数值，不传表示不显示徽标
   active: boolean // 是否为当前激活项
   title: string // 显示标题
   icon: string // 图标名称（使用内置图标时）
@@ -160,7 +162,6 @@ interface TabbarItem {
 const tabbarItems = ref<TabbarItem[]>([
   {
     name: 'home',
-    value: null,
     active: true,
     title: '首页',
     icon: 'home',
@@ -169,7 +170,6 @@ const tabbarItems = ref<TabbarItem[]>([
   },
   {
     name: 'about',
-    value: null,
     active: false,
     title: '关于',
     icon: 'user',
@@ -198,12 +198,9 @@ setTabbarItem('about', 5)
 
 ### 清除徽标
 
-将徽标值设置为 `null` 即可清除：
+当前 `setTabbarItem` 的类型签名是 `setTabbarItem(name: string, value: number)`，文档示例只演示数字徽标。
 
-```typescript
-// 清除徽标
-setTabbarItem('about', null)
-```
+如果你希望支持显式清除（例如传 `undefined` 或 `null`），建议先将 `useTabbar.ts` 中的签名改为 `value?: number` 或 `value: number | null`，再在业务中调用。
 
 ### 在组件中使用
 
@@ -213,16 +210,17 @@ const { setTabbarItem } = useTabbar()
 
 // 模拟收到新消息
 function onNewMessage() {
-  setTabbarItem('message', 3) // 显示3条未读消息
+  setTabbarItem('about', 3) // 显示3条未读消息
 }
 
 // 消息已读
 function onMessageRead() {
-  setTabbarItem('message', null) // 清除徽标
+  // 当前实现没有“清除徽标”的独立方法，可按业务约定设置数字值
+  setTabbarItem('about', 1)
 }
 </script>
 ```
- 
+
 ## 取消自定义 Tabbar
 
 如果你想恢复使用 uni-app 原生 Tabbar，按以下步骤操作：
@@ -273,8 +271,9 @@ tabBar: {
 
 1. **平台兼容性**: 自定义 Tabbar 在所有平台都能正常工作，但在 APP 端会自动隐藏原生 Tabbar
 2. **页面路由**: 确保 `pages.config.ts` 中的 `pagePath` 与实际页面文件路径一致
-3. **徽标更新**: 徽标状态是响应式的，可以实时更新
-4. **主题支持**: 自定义 Tabbar 完全支持明暗主题切换
+3. **路由名称**: `tabbarItems` 中的 `name` 需要与目标页面路由名一致，否则 `router.pushTab({ name })` 无法正确跳转
+4. **徽标更新**: 徽标状态是响应式的，可以实时更新
+5. **主题支持**: 自定义 Tabbar 完全支持明暗主题切换
 
 ## API 参考
 
@@ -296,7 +295,7 @@ const {
 
 ```typescript
 // 获取徽标值
-getTabbarItemValue(name: string): number | null
+getTabbarItemValue(name: string): number | undefined
 
 // 设置徽标值
 setTabbarItem(name: string, value: number): void

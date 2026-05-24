@@ -1,4 +1,4 @@
-const { confirm } = useGlobalMessage()
+const { confirm } = useGlobalDialog()
 
 /** 检测是否接收协议 */
 export function checkAccept(agreed: boolean): Promise<boolean> {

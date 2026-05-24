@@ -1,6 +1,6 @@
 # 介绍
 
-Wot Starter 是一个基于 [vitesse-uni-app](https://github.com/uni-helper/vitesse-uni-app) 深度整合 [Wot UI](https://github.com/Moonofweisheng/wot-design-uni) 组件库的快速启动模板，采用直观且可扩展的方式创建类型安全、高性能和生产级的跨端应用。你可以直接开始编写 `.vue` 文件，而无需从头开始配置。
+Wot Starter 是一个基于 [vitesse-uni-app](https://github.com/uni-helper/vitesse-uni-app) 深度整合 [Wot UI V2](https://github.com/wot-ui/wot-ui) 组件库的快速启动模板，采用直观且可扩展的方式创建类型安全、高性能和生产级的跨端应用。你可以直接开始编写 `.vue` 文件，而无需从头开始配置。
 
 ## 为什么
 
@@ -25,7 +25,7 @@ vitess-uni-app 主要由以下开源包组成：
 - 代码质量：[ESLint](https://github.com/uni-helper/eslint-config) 和 [TypeScript](https://www.typescriptlang.org/)
 
 wot-starter 在以上开源包的基础上引入了以下开源包：
-- 组件库：[Wot UI](https://github.com/Moonofweisheng/wot-design-uni)
+- 组件库：[Wot UI V2](https://github.com/wot-ui/wot-ui)
 - CI/CD：[uni-mini-ci](https://github.com/Moonofweisheng/uni-mini-ci)
 - 路由：[@wot-ui/router](https://github.com/wot-ui/my-uni)
 - 图表库：[uni-echarts](https://github.com/xiaohe0601/uni-echarts)

@@ -44,7 +44,7 @@
     "prefix": "v3-wot-starter-listPage",
     "body": [
       "<script setup lang=\"ts\">",
-      "import dayjs from 'wot-design-uni/dayjs'",
+      "import dayjs from 'wot-ui/dayjs'",
       "import router from '@/router'",
       "import type { Article } from '@/service/apis/base/globals'",
       "",

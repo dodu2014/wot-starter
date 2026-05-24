@@ -23,7 +23,7 @@ Wot Starter
 
 - 📑 [布局系统](./src/layouts)
 
-- 🐂 [Wot UI](https://github.com/Moonofweisheng/wot-design-uni) - 基于 Vue3 + TypeScript 的 uni-app 组件库，提供 70+ 高质量组件，支持国际化（内置多语言包）、暗黑模式与通过 CSS 变量进行主题定制
+- 🐂 [Wot UI V2](https://github.com/wot-ui/wot-ui) - 一个轻量、美观、AI友好的 uni-app 组件库
 
 - 🚦 [@wot-ui/router](https://github.com/wot-ui/my-uni) - 适用于uni-app&vue3的轻量级路由库
 
@@ -68,7 +68,6 @@ Wot Starter
 | [wot-starter-retail](https://github.com/Moonofweisheng/wot-starter-retail)                                  | 基于 wot-ui 的 uni-app 零售行业模板          |
 | [uni-mini-ci](https://github.com/Moonofweisheng/uni-mini-ci)                                                | 一个 uni-app 小程序端构建后支持 CI（持续集成）的插件 |
 | [@wot-ui/router](https://github.com/wot-ui/my-uni)                                        | 一个基于 vue3 和 Typescript 的轻量级 uni-app 路由库  |
-| [wot-design-uni AI 助手](https://www.coze.cn/store/bot/7347916532258701363)                                 | 一个能回答你关于 wot-ui 组件库问题的智能助手 |
 | [uni-ku-root](https://github.com/uni-ku/root)                                                               | 一个模拟 App.vue 原有能力的根组件插件                  |
 | [uni-echarts](https://uni-echarts.xiaohe.ink/)                                                             | 适用于 uni-app 的 Apache ECharts 组件                  |
 

@@ -1,8 +1,5 @@
 <script lang="ts" setup>
-defineOptions({
-  name: 'DemoBlock',
-})
-defineProps({
+const props = defineProps({
   // 标题
   title: {
     type: String,
@@ -13,19 +10,26 @@ defineProps({
     type: String,
     default: '',
   },
-  // 自定义类名
-  customCardClass: {
-    type: String,
-    default: '',
+  // 垂直间距
+  ver: {
+    type: [Number, String],
+    default: 10,
   },
-  // 自定义类名
-  customCardContentClass: {
-    type: String,
-    default: '',
+  // 水平间距
+  hor: {
+    type: [Number, String],
+    default: 15,
+  },
+  // 是否透明
+  transparent: {
+    type: Boolean,
+    default: false,
   },
 })
 
-const slots = useSlots()
+const style = computed(() => {
+  return `margin: 0 ${props.hor}px;padding:${props.ver}px 0;`
+})
 </script>
 
 <script lang="ts">
@@ -39,13 +43,18 @@ export default {
 </script>
 
 <template>
-  <view :class="[customClass.split(' ')]" class="flex-col gap-3">
-    <wd-text v-if="title" custom-class="mx-4 pt-2 text-26rpx" :text="title" />
-    <view v-if="slots.description" class="mx-4">
-      <slot name="description" />
+  <view
+    class="mb-3 box-border w-full px-3 text-gray-500 last:mb-0 dark:text-gray-300"
+    :class="[
+      transparent ? '' : 'var(--wot-filled-oppo)',
+      customClass,
+    ]"
+  >
+    <view class="px-4 py-3 text-26rpx">
+      {{ title }}
     </view>
-    <wd-card v-if="slots.default" :custom-class="`!px-0 overflow-hidden !mb-0 ${customCardClass}`" :custom-content-class="`p-4 flex-col gap-3 ${customCardContentClass}`">
+    <view :style="transparent ? '' : style">
       <slot />
-    </wd-card>
+    </view>
   </view>
 </template>

@@ -28,67 +28,102 @@ function navigateToAsync() {
 </script>
 
 <template>
-  <view class="flex-col gap-2 py-5">
+  <view class="bg-gray-50 p-5">
     <!-- 异步 Echarts 入口 -->
-    <wd-card class="shadow-sm" custom-class="!p-0">
-      <wd-button block :round="false" @click="navigateToAsync">
+    <view class="mb-5 rounded-3 bg-[var(--wot-filled-oppo)] p-3 shadow-sm">
+      <view
+        class="rounded-2 bg-blue-500 px-6 py-3 text-white font-medium transition-colors hover:bg-blue-600"
+        @click="navigateToAsync"
+      >
         查看异步 Echarts 示例
-      </wd-button>
-    </wd-card>
-
+      </view>
+    </view>
     <!-- 饼图 -->
-    <wd-card class="shadow-sm" title="饼图示例">
+    <view class="mb-5 rounded-3 bg-[var(--wot-filled-oppo)] p-5 shadow-sm">
+      <view class="mb-5 text-center text-base text-gray-800 font-medium">
+        饼图示例
+      </view>
       <PieChart />
-    </wd-card>
+    </view>
 
     <!-- 柱状图 -->
-    <wd-card class="shadow-sm" title="柱状图示例">
+    <view class="mb-5 rounded-3 bg-[var(--wot-filled-oppo)] p-5 shadow-sm">
+      <view class="mb-5 text-center text-base text-gray-800 font-medium">
+        柱状图示例
+      </view>
       <BarChart />
-    </wd-card>
+    </view>
 
     <!-- 折线图 -->
-    <wd-card class="shadow-sm" title="折线图示例">
+    <view class="mb-5 rounded-3 bg-[var(--wot-filled-oppo)] p-5 shadow-sm">
+      <view class="mb-5 text-center text-base text-gray-800 font-medium">
+        折线图示例
+      </view>
       <LineChart />
-    </wd-card>
+    </view>
 
     <!-- 雷达图 -->
-    <wd-card class="shadow-sm" title="雷达图示例">
+    <view class="mb-5 rounded-3 bg-[var(--wot-filled-oppo)] p-5 shadow-sm">
+      <view class="mb-5 text-center text-base text-gray-800 font-medium">
+        雷达图示例
+      </view>
       <RadarChart />
-    </wd-card>
+    </view>
 
     <!-- 散点图 -->
-    <wd-card class="shadow-sm" title="散点图示例">
+    <view class="mb-5 rounded-3 bg-[var(--wot-filled-oppo)] p-5 shadow-sm">
+      <view class="mb-5 text-center text-base text-gray-800 font-medium">
+        散点图示例
+      </view>
       <ScatterChart />
-    </wd-card>
+    </view>
 
     <!-- 环形图 -->
-    <wd-card class="shadow-sm" title="环形图示例">
+    <view class="mb-5 rounded-3 bg-[var(--wot-filled-oppo)] p-5 shadow-sm">
+      <view class="mb-5 text-center text-base text-gray-800 font-medium">
+        环形图示例
+      </view>
       <DonutChart />
-    </wd-card>
+    </view>
 
     <!-- 漏斗图 -->
-    <wd-card class="shadow-sm" title="漏斗图示例">
+    <view class="mb-5 rounded-3 bg-[var(--wot-filled-oppo)] p-5 shadow-sm">
+      <view class="mb-5 text-center text-base text-gray-800 font-medium">
+        漏斗图示例
+      </view>
       <FunnelChart />
-    </wd-card>
+    </view>
 
     <!-- 仪表盘图 -->
-    <wd-card class="shadow-sm" title="仪表盘示例">
+    <view class="mb-5 rounded-3 bg-[var(--wot-filled-oppo)] p-5 shadow-sm">
+      <view class="mb-5 text-center text-base text-gray-800 font-medium">
+        仪表盘示例
+      </view>
       <GaugeChart />
-    </wd-card>
+    </view>
 
     <!-- 迷你折线图 -->
-    <wd-card class="shadow-sm" title="迷你折线图示例">
+    <view class="mb-5 rounded-3 bg-[var(--wot-filled-oppo)] p-5 shadow-sm">
+      <view class="mb-5 text-center text-base text-gray-800 font-medium">
+        迷你折线图示例
+      </view>
       <MiniLineChart />
-    </wd-card>
+    </view>
 
     <!-- 堆叠柱状图 -->
-    <wd-card class="shadow-sm" title="堆叠柱状图示例">
+    <view class="mb-5 rounded-3 bg-[var(--wot-filled-oppo)] p-5 shadow-sm">
+      <view class="mb-5 text-center text-base text-gray-800 font-medium">
+        堆叠柱状图示例
+      </view>
       <StackedBarChart />
-    </wd-card>
+    </view>
 
     <!-- 水球图 -->
-    <wd-card class="shadow-sm" title="水球图示例">
+    <view class="mb-5 rounded-3 bg-[var(--wot-filled-oppo)] p-5 shadow-sm">
+      <view class="mb-5 text-center text-base text-gray-800 font-medium">
+        水球图示例
+      </view>
       <LiquidFillChart />
-    </wd-card>
+    </view>
   </view>
 </template>

@@ -1,6 +1,6 @@
 export interface TabbarItem {
   name: string
-  value: number | null
+  value?: number
   active: boolean
   title: string
   icon: string
@@ -21,7 +21,7 @@ export function useTabbar() {
 
   const getTabbarItemValue = (name: string) => {
     const item = tabbarItems.value.find(item => item.name === name)
-    return item && item.value ? item.value : null
+    return item?.value
   }
 
   const setTabbarItem = (name: string, value: number) => {

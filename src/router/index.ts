@@ -36,7 +36,7 @@ router.beforeEach((to, from, next) => {
 
   // 演示：对受保护页面的简单拦截
   if (to.name === 'demo-protected') {
-    const { confirm: showConfirm } = useGlobalMessage()
+    const { confirm: showConfirm } = useGlobalDialog()
     console.log('🛡️ 检测到访问受保护页面')
 
     return new Promise<void>((resolve, reject) => {

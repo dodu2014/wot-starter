@@ -91,23 +91,6 @@ const {
   GlobalToast.error(error.error?.message || '用户登录失败')
 })
 
-// 使用真正的 useRequest hook - 获取app版本列表
-const {
-  data: appVersionData,
-  loading: appVersionLoading,
-  error: appVersionError,
-  send: loadAppVersionData,
-} = useRequest(
-  (keyword?: string) => Webapi_App.appVersion.getAppVersionList({
-    params: { keyword },
-  }),
-  {
-    immediate: false,
-  },
-).onError((error) => {
-  GlobalToast.error(error.error?.message || '获取app版本列表失败')
-})
-
 // useRequest 演示函数
 function demoLoadPets() {
   loadPetData('available')
@@ -115,11 +98,6 @@ function demoLoadPets() {
 
 function demoLogin() {
   performLogin('testuser', 'testpass')
-}
-
-// useRequest 演示函数
-async function loadAppVersion() {
-  await loadAppVersionData()
 }
 
 // 链接导航处理
@@ -138,197 +116,168 @@ function handleNavigate(url: string) {
   })
   // #endif
 }
-
-onMounted(async () => {
-  // await loadAppVersionData()
-})
 </script>
 
 <template>
-  <view class="min-h-screen flex-col gap-3 py-3">
+  <view class="min-h-screen py-3">
     <!-- 头部介绍 -->
-    <wd-card class="text-center !mb-0 !py-3">
-      <view class="mb-3 text-10">
-        🌐
-      </view>
-      <view class="mb-2 text-6 text-gray-800 font-bold dark:text-[var(--wot-dark-color)]">
-        Alova 网络请求
-      </view>
-      <view class="mb-2 text-3.5 leading-relaxed">
-        极致高效的请求工具集
-      </view>
-      <view class="text-3 leading-relaxed">
-        alova完美兼容你最喜欢的HTTP client和UI框架，快速开发客户端和服务的应用的业务逻辑，同时让API信息与代码进行交互，像虫洞一样拉近后端协作距离，极致高效地集成你的APIs
-      </view>
-    </wd-card>
-
-    <!-- Alova 核心特性 -->
-    <view class="mx-4 flex-col gap-1">
-      <wd-text class="my-2 text-14px" text="核心特性" />
-      <view class="grid grid-cols-2 gap-3">
-        <wd-card
-          v-for="feature in alovaFeatures"
-          :key="feature.title"
-          custom-class="!mx-0 !mb-0"
-          custom-content-class="py-4 text-center"
-        >
-          <view class="mr-2 text-6">
-            {{ feature.icon }}
-          </view>
-          <view class="flex-1">
-            <view class="text-3.5 text-gray-800 font-bold dark:text-[var(--wot-dark-color)]">
-              {{ feature.title }}
-            </view>
-            <view class="text-3">
-              {{ feature.description }}
-            </view>
-          </view>
-        </wd-card>
+    <view class="mx-3 mb-3">
+      <view class="rounded-3 px-5 py-8 text-center wot-bg-filled-oppo">
+        <view class="mb-3 text-10">
+          🌐
+        </view>
+        <view class="mb-2 text-6 font-bold wot-text-text-main">
+          Alova 网络请求
+        </view>
+        <view class="mb-2 text-3.5 leading-relaxed wot-text-text-secondary">
+          极致高效的请求工具集
+        </view>
+        <view class="text-3 leading-relaxed wot-text-text-secondary">
+          alova完美兼容你最喜欢的HTTP client和UI框架，快速开发客户端和服务的应用的业务逻辑，同时让API信息与代码进行交互，像虫洞一样拉近后端协作距离，极致高效地集成你的APIs
+        </view>
       </view>
     </view>
 
+    <!-- Alova 核心特性 -->
+    <demo-block title="Alova 核心特性" transparent>
+      <view class="grid grid-cols-2 gap-3">
+        <view
+          v-for="feature in alovaFeatures"
+          :key="feature.title"
+          class="rounded-2 p-3 wot-bg-filled-oppo"
+        >
+          <view class="mb-2 flex items-center">
+            <view class="mr-2 text-5">
+              {{ feature.icon }}
+            </view>
+            <view class="flex-1">
+              <view class="text-3.5 font-bold wot-text-text-main">
+                {{ feature.title }}
+              </view>
+              <view class="text-2.5 wot-text-text-secondary">
+                {{ feature.description }}
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </demo-block>
+
     <!-- Alova useRequest 演示 -->
-    <demo-block title="useRequest Hook 演示" custom-card-content-class="!gap-8">
-      <!-- 宠物列表请求 -->
-      <view class="flex-col gap-3">
-        <view class="flex items-center">
-          <view class="mr-2 text-5">
-            🐾
+    <demo-block title="useRequest Hook 演示" transparent>
+      <view class="space-y-3">
+        <!-- 宠物列表请求 -->
+        <view class="rounded-2 p-4 wot-bg-filled-oppo">
+          <view class="mb-3 flex items-center">
+            <view class="mr-2 text-5">
+              🐾
+            </view>
+            <view class="text-4 font-bold wot-text-text-main">
+              宠物列表请求
+            </view>
           </view>
-          <view class="text-4 text-gray-800 font-bold dark:text-[var(--wot-dark-color)]">
-            宠物列表请求
+          <view class="mb-3 text-3 leading-relaxed wot-text-text-secondary">
+            使用 useRequest 获取宠物列表，支持参数传递和错误处理
           </view>
-        </view>
-        <view class="text-3 leading-relaxed">
-          使用 useRequest 获取宠物列表，支持参数传递和错误处理
-        </view>
 
-        <wd-button
-          type="primary"
-          block
-          :loading="petLoading"
-          @click="demoLoadPets"
-        >
-          获取宠物列表
-        </wd-button>
-
-        <!-- 请求状态显示 -->
-        <view v-if="petLoading" class="flex items-center text-3 text-blue-600">
-          <wd-icon name="loading" size="14px" class="mr-1" />
-          正在加载宠物数据...
-        </view>
-        <view v-if="petError" class="text-3 text-red-600">
-          ❌ 请求失败: {{ petError.message }}
-        </view>
-        <view v-if="petData && !petLoading" class="text-3 text-green-600">
-          ✅ 成功获取 {{ petData.length }} 只宠物数据
-        </view>
-
-        <!-- 代码示例 -->
-        <code-content
-          code="代码示例:"
-          code-remark="const { data, loading, send } = useRequest(
-  (status) => Apis.pet.findPetsByStatus({ params: { status } }),
-  { immediate: false }
-).onError((error) => { ... })"
-        />
-      </view>
-
-      <!-- 用户登录请求 -->
-      <view class="flex-col gap-3">
-        <view class="flex items-center">
-          <view class="mr-2 text-5">
-            👤
+          <view class="mb-3">
+            <wd-button
+              type="primary"
+              block
+              :loading="petLoading"
+              @click="demoLoadPets"
+            >
+              获取宠物列表
+            </wd-button>
           </view>
-          <view class="text-4 text-gray-800 font-bold dark:text-[var(--wot-dark-color)]">
-            用户登录请求
+
+          <!-- 请求状态显示 -->
+          <view class="space-y-2">
+            <view v-if="petLoading" class="flex items-center text-3 text-blue-600">
+              <wd-icon name="loading" size="14px" class="mr-1" />
+              正在加载宠物数据...
+            </view>
+            <view v-if="petError" class="text-3 text-red-600">
+              ❌ 请求失败: {{ petError.message }}
+            </view>
+            <view v-if="petData && !petLoading" class="text-3 text-green-600">
+              ✅ 成功获取 {{ petData.length }} 只宠物数据
+            </view>
+          </view>
+
+          <!-- 代码示例 -->
+          <view class="wot-bg-bg mt-3 rounded-2 p-3">
+            <view class="mb-2 text-3 font-bold wot-text-text-secondary">
+              代码示例:
+            </view>
+            <view class="text-2.5 leading-relaxed font-mono wot-text-text-secondary">
+              const { data, loading, send } = useRequest(\n
+              &nbsp;&nbsp;(status) => Apis.pet.findPetsByStatus({ params: { status } }),\n
+              &nbsp;&nbsp;{ immediate: false }\n
+              ).onError((error) => { ... })
+            </view>
           </view>
         </view>
-        <view class="text-3 leading-relaxed">
-          演示多参数传递和POST请求处理
-        </view>
 
-        <wd-button
-          type="warning"
-          block
-          :loading="loginLoading"
-          @click="demoLogin"
-        >
-          模拟用户登录
-        </wd-button>
-
-        <!-- 请求状态显示 -->
-        <view v-if="loginLoading" class="flex items-center text-3 text-blue-600">
-          <wd-icon name="loading" size="14px" class="mr-1" />
-          正在登录中...
-        </view>
-        <view v-if="loginError" class="text-3 text-red-600">
-          ❌ 登录失败: {{ loginError.message }}
-        </view>
-        <view v-if="loginData && !loginLoading" class="text-3 text-green-600">
-          ✅ 登录成功！
-        </view>
-
-        <!-- 代码示例 -->
-        <code-content
-          code="代码示例:"
-          code-remark="const { data, loading, send } = useRequest(
-  (username, password) => Apis.user.loginUser({
-    params: { username, password }
-  }),
-  { immediate: false }
-).onError((error) => { ... })"
-        />
-      </view>
-
-      <!-- app版本列表请求 -->
-      <view class="flex-col gap-3">
-        <view class="flex items-center">
-          <view class="mr-2 text-5">
-            🤖
+        <!-- 用户登录请求 -->
+        <view class="rounded-2 p-4 wot-bg-filled-oppo">
+          <view class="mb-3 flex items-center">
+            <view class="mr-2 text-5">
+              👤
+            </view>
+            <view class="text-4 font-bold wot-text-text-main">
+              用户登录请求
+            </view>
           </view>
-          <view class="text-4 text-gray-800 font-bold dark:text-[var(--wot-dark-color)]">
-            app版本列表请求
+          <view class="mb-3 text-3 leading-relaxed wot-text-text-secondary">
+            演示多参数传递和POST请求处理
+          </view>
+
+          <view class="mb-3">
+            <wd-button
+              type="warning"
+              block
+              :loading="loginLoading"
+              @click="demoLogin"
+            >
+              模拟用户登录
+            </wd-button>
+          </view>
+
+          <!-- 请求状态显示 -->
+          <view class="space-y-2">
+            <view v-if="loginLoading" class="flex items-center text-3 text-blue-600">
+              <wd-icon name="loading" size="14px" class="mr-1" />
+              正在登录中...
+            </view>
+            <view v-if="loginError" class="text-3 text-red-600">
+              ❌ 登录失败: {{ loginError.message }}
+            </view>
+            <view v-if="loginData && !loginLoading" class="text-3 text-green-600">
+              ✅ 登录成功！
+            </view>
+          </view>
+
+          <!-- 代码示例 -->
+          <view class="wot-bg-bg mt-3 rounded-2 p-3">
+            <view class="mb-2 text-3 font-bold wot-text-text-secondary">
+              代码示例:
+            </view>
+            <view class="text-2.5 leading-relaxed font-mono wot-text-text-secondary">
+              const { data, loading, send } = useRequest(\n
+              &nbsp;&nbsp;(username, password) => Apis.user.loginUser({\n
+              &nbsp;&nbsp;&nbsp;&nbsp;params: { username, password }\n
+              &nbsp;&nbsp;}),\n
+              &nbsp;&nbsp;{ immediate: false }\n
+              ).onError((error) => { ... })
+            </view>
           </view>
         </view>
-        <view class="text-3 leading-relaxed">
-          使用 useRequest 获取app版本列表，支持参数传递和错误处理
-        </view>
-
-        <wd-button
-          type="success"
-          block
-          :loading="appVersionLoading"
-          @click="loadAppVersion"
-        >
-          获取app版本列表
-        </wd-button>
-
-        <!-- 请求状态显示 -->
-        <view v-if="appVersionLoading" class="flex items-center text-3 text-blue-600">
-          <wd-icon name="loading" size="14px" class="mr-1" />
-          正在加载app版本数据...
-        </view>
-        <view v-if="appVersionError" class="text-3 text-red-600">
-          ❌ 请求失败: {{ appVersionError.message }}
-        </view>
-        <view v-if="appVersionData && !appVersionLoading" class="text-3 text-green-600">
-          ✅ 成功获取 {{ appVersionData.data?.list?.length }} 个app版本
-        </view>
-
-        <!-- 代码示例 -->
-        <code-content
-          code="代码示例:"
-          code-remark="const { data, loading, send } = useRequest(
-  (status) => Webapi_App.app.GetAppVersionList({ params: { keyword } }),
-  { immediate: false }
-).onError((error) => { ... })"
-        />
       </view>
     </demo-block>
 
     <!-- 相关链接 -->
-    <demo-block title="相关链接" custom-card-content-class="!p-0">
+    <demo-block title="相关链接" transparent>
       <wd-cell-group border custom-class="rounded-2! overflow-hidden">
         <wd-cell title="📚 Alova 官方文档" value="alova.js.org" is-link @click="handleNavigate('https://alova.js.org/')" />
         <wd-cell title="🐙 GitHub 仓库" value="alovajs/alova" is-link @click="handleNavigate('https://github.com/alovajs/alova')" />

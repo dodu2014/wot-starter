@@ -14,7 +14,7 @@ definePage({
 
 const { warning, success } = useGlobalToast()
 const { loading: showLoading, close: hideLoading } = useGlobalLoading()
-const { confirm } = useGlobalMessage()
+const { confirm } = useGlobalDialog()
 const merchantId = import.meta.env.VITE_WEIXIN_PAY_MERCHANT_ID
 
 const balance = ref(186) // TODO 预设的钱包余额，请根据实际业务设置
@@ -152,7 +152,7 @@ function confirmTransfer() {
         <wd-text :text="`当前钱包余额 ${balance} 元`" size="12px" />
         <view class="flex items-center gap-x-2">
           <wd-text text="最小提现金额为 1 元, 最大 200 元" size="12px" />
-          <wd-button type="text" size="small" @click="setMaxDrawValue">
+          <wd-button type="primary" variant="text" size="small" @click="setMaxDrawValue">
             最大提现
           </wd-button>
         </view>
@@ -161,7 +161,7 @@ function confirmTransfer() {
       <wd-button type="success" size="large" custom-class="mt-30px" :loading="loading" :disabled="loading" @click="confirmTransfer">
         确认提现
       </wd-button>
-      <wd-button type="text" icon="time" custom-class="!text-gray" @click="() => router.push('/pages/user/withdrawOrderList')">
+      <wd-button type="primary" variant="text" icon="time" custom-class="!text-gray" @click="() => router.push('/pages/user/withdrawOrderList')">
         提现记录
       </wd-button>
     </view>

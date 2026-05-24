@@ -38,17 +38,17 @@ function pushToGuard() {
 </script>
 
 <template>
-  <view class="min-h-screen bg-gray-100 py-3 dark:bg-[var(--wot-dark-background)]">
+  <view class="min-h-screen py-3">
     <!-- 头部 -->
     <view class="mx-3 mb-3">
-      <view class="rounded-3 bg-white px-5 py-6 text-center dark:bg-[var(--wot-dark-background2)]">
+      <view class="rounded-3 px-5 py-6 text-center wot-bg-filled-oppo">
         <view class="mb-3 text-8">
           📨
         </view>
-        <view class="mb-2 text-5 text-gray-800 font-bold dark:text-[var(--wot-dark-color)]">
+        <view class="mb-2 text-5 font-bold wot-text-text-main">
           query 参数接收演示
         </view>
-        <view class="text-3.5 text-gray-600 dark:text-[var(--wot-dark-color2)]">
+        <view class="text-3.5 wot-text-text-secondary">
           演示如何接收和处理查询参数
         </view>
       </view>
@@ -56,29 +56,29 @@ function pushToGuard() {
 
     <!-- 路由信息 -->
     <demo-block title="当前路由信息" transparent>
-      <view class="rounded-3 bg-white p-4 dark:bg-[var(--wot-dark-background2)]">
+      <view class="rounded-3 p-4 wot-bg-filled-oppo">
         <view class="space-y-2">
-          <view class="flex items-center justify-between border-b border-gray-100 py-2 dark:border-[var(--wot-dark-border)]">
-            <text class="text-3.5 text-gray-600 dark:text-[var(--wot-dark-color2)]">
+          <view class="flex items-center justify-between border-b py-2 wot-border-border-main">
+            <text class="text-3.5 wot-text-text-secondary">
               路径:
             </text>
-            <text class="text-3.5 text-gray-800 font-mono dark:text-[var(--wot-dark-color)]">
+            <text class="text-3.5 font-mono wot-text-text-main">
               {{ route.path }}
             </text>
           </view>
-          <view class="flex items-center justify-between border-b border-gray-100 py-2 dark:border-[var(--wot-dark-border)]">
-            <text class="text-3.5 text-gray-600 dark:text-[var(--wot-dark-color2)]">
+          <view class="flex items-center justify-between border-b py-2 wot-border-border-main">
+            <text class="text-3.5 wot-text-text-secondary">
               查询字符串:
             </text>
-            <text class="text-3.5 text-gray-800 font-mono dark:text-[var(--wot-dark-color)]">
+            <text class="text-3.5 font-mono wot-text-text-main">
               {{ JSON.stringify(route.query) }}
             </text>
           </view>
           <view class="flex items-center justify-between py-2">
-            <text class="text-3.5 text-gray-600 dark:text-[var(--wot-dark-color2)]">
+            <text class="text-3.5 wot-text-text-secondary">
               接收方式:
             </text>
-            <text class="text-3.5 text-gray-800 dark:text-[var(--wot-dark-color)]">
+            <text class="text-3.5 wot-text-text-main">
               onLoad(option)
             </text>
           </view>
@@ -89,30 +89,30 @@ function pushToGuard() {
     <!-- 参数信息 -->
     <demo-block title="接收到的查询参数" transparent>
       <view class="space-y-3">
-        <view class="rounded-2 bg-white p-4 dark:bg-[var(--wot-dark-background2)]">
-          <view class="mb-3 text-4 text-gray-800 font-bold dark:text-[var(--wot-dark-color)]">
+        <view class="rounded-2 p-4 wot-bg-filled-oppo">
+          <view class="mb-3 text-4 font-bold wot-text-text-main">
             原始查询参数 (option)
           </view>
-          <view class="border border-gray-200 rounded-2 bg-gray-50 p-3 dark:border-[var(--wot-dark-border)] dark:bg-[var(--wot-dark-background3)]">
-            <text class="text-3 text-gray-700 font-mono dark:text-[var(--wot-dark-color)]">
+          <view class="wot-bg-bg border rounded-2 p-3 wot-border-border-main">
+            <text class="text-3 font-mono wot-text-text-secondary">
               {{ JSON.stringify(receivedQuery, null, 2) }}
             </text>
           </view>
-          <view class="mt-3 text-3.5 text-gray-600 dark:text-[var(--wot-dark-color2)]">
+          <view class="mt-3 text-3.5 wot-text-text-secondary">
             URL: /demo-query?keyword={{ (receivedQuery as any).keyword }}&type={{ (receivedQuery as any).type }}
           </view>
         </view>
 
-        <view v-if="decodedUser" class="rounded-2 bg-white p-4 dark:bg-[var(--wot-dark-background2)]">
-          <view class="mb-3 text-4 text-gray-800 font-bold dark:text-[var(--wot-dark-color)]">
+        <view v-if="decodedUser" class="rounded-2 p-4 wot-bg-filled-oppo">
+          <view class="mb-3 text-4 font-bold wot-text-text-main">
             解码后的对象参数
           </view>
-          <view class="border border-gray-200 rounded-2 bg-gray-50 p-3 dark:border-[var(--wot-dark-border)] dark:bg-[var(--wot-dark-background3)]">
-            <text class="text-3 text-gray-700 font-mono dark:text-[var(--wot-dark-color)]">
+          <view class="wot-bg-bg border rounded-2 p-3 wot-border-border-main">
+            <text class="text-3 font-mono wot-text-text-secondary">
               {{ JSON.stringify(decodedUser, null, 2) }}
             </text>
           </view>
-          <view class="mt-3 text-3.5 text-gray-600 dark:text-[var(--wot-dark-color2)]">
+          <view class="mt-3 text-3.5 wot-text-text-secondary">
             使用 JSON.parse(decodeURIComponent(decodeURIComponent(option.user))) 解码
           </view>
         </view>
@@ -121,8 +121,8 @@ function pushToGuard() {
 
     <!-- Query vs Params 说明 -->
     <demo-block title="Query vs Params 说明" transparent>
-      <view class="rounded-2 bg-white p-4 dark:bg-[var(--wot-dark-background2)]">
-        <view class="mb-3 text-4 text-gray-800 font-bold dark:text-[var(--wot-dark-color)]">
+      <view class="rounded-2 p-4 wot-bg-filled-oppo">
+        <view class="mb-3 text-4 font-bold wot-text-text-main">
           两种参数传递方式说明
         </view>
         <view class="mb-3 border border-orange-200 rounded-2 bg-orange-50 p-3 dark:bg-orange-900/20">
@@ -162,12 +162,12 @@ function pushToGuard() {
 
     <!-- 代码示例 -->
     <demo-block title="代码示例" transparent>
-      <view class="rounded-2 bg-white p-4 dark:bg-[var(--wot-dark-background2)]">
-        <view class="mb-3 text-4 text-gray-800 font-bold dark:text-[var(--wot-dark-color)]">
+      <view class="rounded-2 p-4 wot-bg-filled-oppo">
+        <view class="mb-3 text-4 font-bold wot-text-text-main">
           接收查询参数的标准写法
         </view>
-        <view class="border border-gray-200 rounded-2 bg-gray-50 p-3 dark:border-[var(--wot-dark-border)] dark:bg-[var(--wot-dark-background3)]">
-          <text class="text-3 text-gray-700 leading-relaxed font-mono dark:text-[var(--wot-dark-color)]">
+        <view class="wot-bg-bg border rounded-2 p-3 wot-border-border-main">
+          <text class="text-3 leading-relaxed font-mono wot-text-text-secondary">
             // 发送方
             router.push({
             path: '/demo-query',

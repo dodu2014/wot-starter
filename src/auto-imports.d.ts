@@ -6,15 +6,19 @@
 // biome-ignore lint: disable
 export {}
 declare global {
+  const $$userConfigMap: typeof import('./api/index')['$$userConfigMap']
   const AesEncryption: typeof import('./utils/cipher').AesEncryption
   const Apis: typeof import('./service/apis/index').Apis
-  const CommonUtil: typeof import('wot-design-uni').CommonUtil
+  const CommonUtil: typeof import('@wot-ui/ui').CommonUtil
   const EffectScope: typeof import('vue').EffectScope
   const Webapi_App: typeof import('./service/apis/index').Webapi_App
   const Webapi_Base: typeof import('./service/apis/index').Webapi_Base
   const Webapi_Demo: typeof import('./service/apis/index').Webapi_Demo
   const Webapi_Weixin: typeof import('./service/apis/index').Webapi_Weixin
   const acceptHMRUpdate: typeof import('pinia').acceptHMRUpdate
+  const alovaInstance: typeof import('./api/index')['alovaInstance']
+  const api: typeof import('./api/index')['default']
+  const apiDefinitions: typeof import('./api/apiDefinitions')['default']
   const asyncComputed: typeof import('@vueuse/core').asyncComputed
   const autoResetRef: typeof import('@vueuse/core').autoResetRef
   const checkMiniProgramUpdate: typeof import('./utils/version').checkMiniProgramUpdate
@@ -26,6 +30,7 @@ declare global {
   const computedWithControl: typeof import('@vueuse/core').computedWithControl
   const controlledComputed: typeof import('@vueuse/core').controlledComputed
   const controlledRef: typeof import('@vueuse/core').controlledRef
+  const createApis: typeof import('./api/createApis')['createApis']
   const createApp: typeof import('vue').createApp
   const createEventHook: typeof import('@vueuse/core').createEventHook
   const createGlobalState: typeof import('@vueuse/core').createGlobalState
@@ -101,6 +106,7 @@ declare global {
   const mapStores: typeof import('pinia').mapStores
   const mapWritableState: typeof import('pinia').mapWritableState
   const markRaw: typeof import('vue').markRaw
+  const mountApis: typeof import('./api/createApis')['mountApis']
   const nextTick: typeof import('vue').nextTick
   const onActivated: typeof import('vue').onActivated
   const onAddToFavorites: typeof import('@dcloudio/uni-app').onAddToFavorites
@@ -146,6 +152,7 @@ declare global {
   const onWatcherCleanup: typeof import('vue').onWatcherCleanup
   const packVersion: typeof import('./utils/version').packVersion
   const pausableWatch: typeof import('@vueuse/core').pausableWatch
+  const persistPlugin: typeof import('./store/persist')['persistPlugin']
   const provide: typeof import('vue').provide
   const provideLocal: typeof import('@vueuse/core').provideLocal
   const reactify: typeof import('@vueuse/core').reactify
@@ -173,7 +180,6 @@ declare global {
   const shallowReadonly: typeof import('vue').shallowReadonly
   const shallowRef: typeof import('vue').shallowRef
   const storage: typeof import('./utils/cache/index').storage
-  const store: typeof import('./store/index')['default']
   const storeToRefs: typeof import('pinia').storeToRefs
   const subscribeMessages: typeof import('./composables/useSubscribeMessage').subscribeMessages
   const syncRef: typeof import('@vueuse/core').syncRef
@@ -241,6 +247,7 @@ declare global {
   const useDeviceOrientation: typeof import('@vueuse/core').useDeviceOrientation
   const useDevicePixelRatio: typeof import('@vueuse/core').useDevicePixelRatio
   const useDevicesList: typeof import('@vueuse/core').useDevicesList
+  const useDialog: typeof import('@wot-ui/ui').useDialog
   const useDisplayMedia: typeof import('@vueuse/core').useDisplayMedia
   const useDocumentVisibility: typeof import('@vueuse/core').useDocumentVisibility
   const useDraggable: typeof import('@vueuse/core').useDraggable
@@ -265,8 +272,8 @@ declare global {
   const useFullscreen: typeof import('@vueuse/core').useFullscreen
   const useGamepad: typeof import('@vueuse/core').useGamepad
   const useGeolocation: typeof import('@vueuse/core').useGeolocation
+  const useGlobalDialog: typeof import('./composables/useGlobalDialog').useGlobalDialog
   const useGlobalLoading: typeof import('./composables/useGlobalLoading').useGlobalLoading
-  const useGlobalMessage: typeof import('./composables/useGlobalMessage').useGlobalMessage
   const useGlobalToast: typeof import('./composables/useGlobalToast').useGlobalToast
   const useId: typeof import('vue').useId
   const useIdle: typeof import('@vueuse/core').useIdle
@@ -286,7 +293,7 @@ declare global {
   const useMediaQuery: typeof import('@vueuse/core').useMediaQuery
   const useMemoize: typeof import('@vueuse/core').useMemoize
   const useMemory: typeof import('@vueuse/core').useMemory
-  const useMessage: typeof import('wot-design-uni').useMessage
+  const useMessage: typeof import('@wot-ui/ui')['useMessage']
   const useModel: typeof import('vue').useModel
   const useMounted: typeof import('@vueuse/core').useMounted
   const useMouse: typeof import('@vueuse/core').useMouse
@@ -295,7 +302,7 @@ declare global {
   const useMutationObserver: typeof import('@vueuse/core').useMutationObserver
   const useNavigatorLanguage: typeof import('@vueuse/core').useNavigatorLanguage
   const useNetwork: typeof import('@vueuse/core').useNetwork
-  const useNotify: typeof import('wot-design-uni').useNotify
+  const useNotify: typeof import('@wot-ui/ui').useNotify
   const useNow: typeof import('@vueuse/core').useNow
   const useObjectUrl: typeof import('@vueuse/core').useObjectUrl
   const useOffsetPagination: typeof import('@vueuse/core').useOffsetPagination
@@ -341,6 +348,7 @@ declare global {
   const useSupported: typeof import('@vueuse/core').useSupported
   const useSwipe: typeof import('@vueuse/core').useSwipe
   const useTabbar: typeof import('./composables/useTabbar').useTabbar
+  const useTeam: typeof import('./composables/useTeam').useTeam
   const useTemplateRef: typeof import('vue').useTemplateRef
   const useTemplateRefsList: typeof import('@vueuse/core').useTemplateRefsList
   const useTextDirection: typeof import('@vueuse/core').useTextDirection
@@ -359,7 +367,7 @@ declare global {
   const useTitle: typeof import('@vueuse/core').useTitle
   const useToNumber: typeof import('@vueuse/core').useToNumber
   const useToString: typeof import('@vueuse/core').useToString
-  const useToast: typeof import('wot-design-uni').useToast
+  const useToast: typeof import('@wot-ui/ui').useToast
   const useToggle: typeof import('@vueuse/core').useToggle
   const useTransition: typeof import('@vueuse/core').useTransition
   const useUrlSearchParams: typeof import('@vueuse/core').useUrlSearchParams
@@ -395,6 +403,7 @@ declare global {
   const watchTriggerable: typeof import('@vueuse/core').watchTriggerable
   const watchWithFilter: typeof import('@vueuse/core').watchWithFilter
   const whenever: typeof import('@vueuse/core').whenever
+  const withConfigType: typeof import('./api/createApis')['withConfigType']
 }
 // for type re-export
 declare global {
@@ -408,8 +417,8 @@ declare global {
   export type { EmployeeMessage, EmployeeMessageId, EmployeeMessageSuccessResult } from './composables/useEmployeeMessage'
   import('./composables/useEmployeeMessage')
   // @ts-ignore
-  export type { GlobalMessageOptions } from './composables/useGlobalMessage'
-  import('./composables/useGlobalMessage')
+  export type { GlobalDialogOptions } from './composables/useGlobalDialog'
+  import('./composables/useGlobalDialog')
   // @ts-ignore
   export type { ThemeColorOption, ThemeMode } from './composables/useManualTheme'
   import('./composables/useManualTheme')
@@ -419,6 +428,9 @@ declare global {
   // @ts-ignore
   export type { TabbarItem } from './composables/useTabbar'
   import('./composables/useTabbar')
+  // @ts-ignore
+  export type { TeamMember } from './composables/useTeam'
+  import('./composables/useTeam')
   // @ts-ignore
   export type { AesEncryption, EncryptionParams, AesEncryption } from './utils/cipher'
   import('./utils/cipher')
@@ -431,7 +443,7 @@ declare module 'vue' {
   interface ComponentCustomProperties {
     readonly AesEncryption: UnwrapRef<typeof import('./utils/cipher')['AesEncryption']>
     readonly Apis: UnwrapRef<typeof import('./service/apis/index')['Apis']>
-    readonly CommonUtil: UnwrapRef<typeof import('wot-design-uni')['CommonUtil']>
+    readonly CommonUtil: UnwrapRef<typeof import('@wot-ui/ui')['CommonUtil']>
     readonly EffectScope: UnwrapRef<typeof import('vue')['EffectScope']>
     readonly Webapi_App: UnwrapRef<typeof import('./service/apis/index')['Webapi_App']>
     readonly Webapi_Base: UnwrapRef<typeof import('./service/apis/index')['Webapi_Base']>
@@ -663,6 +675,7 @@ declare module 'vue' {
     readonly useDeviceOrientation: UnwrapRef<typeof import('@vueuse/core')['useDeviceOrientation']>
     readonly useDevicePixelRatio: UnwrapRef<typeof import('@vueuse/core')['useDevicePixelRatio']>
     readonly useDevicesList: UnwrapRef<typeof import('@vueuse/core')['useDevicesList']>
+    readonly useDialog: UnwrapRef<typeof import('@wot-ui/ui')['useDialog']>
     readonly useDisplayMedia: UnwrapRef<typeof import('@vueuse/core')['useDisplayMedia']>
     readonly useDocumentVisibility: UnwrapRef<typeof import('@vueuse/core')['useDocumentVisibility']>
     readonly useDraggable: UnwrapRef<typeof import('@vueuse/core')['useDraggable']>
@@ -687,8 +700,8 @@ declare module 'vue' {
     readonly useFullscreen: UnwrapRef<typeof import('@vueuse/core')['useFullscreen']>
     readonly useGamepad: UnwrapRef<typeof import('@vueuse/core')['useGamepad']>
     readonly useGeolocation: UnwrapRef<typeof import('@vueuse/core')['useGeolocation']>
+    readonly useGlobalDialog: UnwrapRef<typeof import('./composables/useGlobalDialog')['useGlobalDialog']>
     readonly useGlobalLoading: UnwrapRef<typeof import('./composables/useGlobalLoading')['useGlobalLoading']>
-    readonly useGlobalMessage: UnwrapRef<typeof import('./composables/useGlobalMessage')['useGlobalMessage']>
     readonly useGlobalToast: UnwrapRef<typeof import('./composables/useGlobalToast')['useGlobalToast']>
     readonly useId: UnwrapRef<typeof import('vue')['useId']>
     readonly useIdle: UnwrapRef<typeof import('@vueuse/core')['useIdle']>
@@ -708,7 +721,6 @@ declare module 'vue' {
     readonly useMediaQuery: UnwrapRef<typeof import('@vueuse/core')['useMediaQuery']>
     readonly useMemoize: UnwrapRef<typeof import('@vueuse/core')['useMemoize']>
     readonly useMemory: UnwrapRef<typeof import('@vueuse/core')['useMemory']>
-    readonly useMessage: UnwrapRef<typeof import('wot-design-uni')['useMessage']>
     readonly useModel: UnwrapRef<typeof import('vue')['useModel']>
     readonly useMounted: UnwrapRef<typeof import('@vueuse/core')['useMounted']>
     readonly useMouse: UnwrapRef<typeof import('@vueuse/core')['useMouse']>
@@ -717,7 +729,7 @@ declare module 'vue' {
     readonly useMutationObserver: UnwrapRef<typeof import('@vueuse/core')['useMutationObserver']>
     readonly useNavigatorLanguage: UnwrapRef<typeof import('@vueuse/core')['useNavigatorLanguage']>
     readonly useNetwork: UnwrapRef<typeof import('@vueuse/core')['useNetwork']>
-    readonly useNotify: UnwrapRef<typeof import('wot-design-uni')['useNotify']>
+    readonly useNotify: UnwrapRef<typeof import('@wot-ui/ui')['useNotify']>
     readonly useNow: UnwrapRef<typeof import('@vueuse/core')['useNow']>
     readonly useObjectUrl: UnwrapRef<typeof import('@vueuse/core')['useObjectUrl']>
     readonly useOffsetPagination: UnwrapRef<typeof import('@vueuse/core')['useOffsetPagination']>
@@ -763,6 +775,7 @@ declare module 'vue' {
     readonly useSupported: UnwrapRef<typeof import('@vueuse/core')['useSupported']>
     readonly useSwipe: UnwrapRef<typeof import('@vueuse/core')['useSwipe']>
     readonly useTabbar: UnwrapRef<typeof import('./composables/useTabbar')['useTabbar']>
+    readonly useTeam: UnwrapRef<typeof import('./composables/useTeam')['useTeam']>
     readonly useTemplateRef: UnwrapRef<typeof import('vue')['useTemplateRef']>
     readonly useTemplateRefsList: UnwrapRef<typeof import('@vueuse/core')['useTemplateRefsList']>
     readonly useTextDirection: UnwrapRef<typeof import('@vueuse/core')['useTextDirection']>
@@ -781,7 +794,7 @@ declare module 'vue' {
     readonly useTitle: UnwrapRef<typeof import('@vueuse/core')['useTitle']>
     readonly useToNumber: UnwrapRef<typeof import('@vueuse/core')['useToNumber']>
     readonly useToString: UnwrapRef<typeof import('@vueuse/core')['useToString']>
-    readonly useToast: UnwrapRef<typeof import('wot-design-uni')['useToast']>
+    readonly useToast: UnwrapRef<typeof import('@wot-ui/ui')['useToast']>
     readonly useToggle: UnwrapRef<typeof import('@vueuse/core')['useToggle']>
     readonly useTransition: UnwrapRef<typeof import('@vueuse/core')['useTransition']>
     readonly useUrlSearchParams: UnwrapRef<typeof import('@vueuse/core')['useUrlSearchParams']>

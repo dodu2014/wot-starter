@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { UserMessage } from '@/service/apis/base/globals'
-import dayjs from 'wot-design-uni/dayjs'
+import dayjs from 'dayjs'
 import router from '@/router'
 
 const { userInfo } = useUserStore()
@@ -153,7 +153,7 @@ async function handleToPage(pagePath: string) {
     <!-- 留言 -->
     <wd-fab v-if="false" :expandable="false">
       <template #trigger>
-        <wd-button icon="chat" type="error" @click="() => router.push('/pages/user/message')">
+        <wd-button icon="chat" type="danger" @click="() => router.push('/pages/user/message')">
           给平台留言
         </wd-button>
       </template>

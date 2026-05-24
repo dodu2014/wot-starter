@@ -10,7 +10,7 @@ definePage({
   needLogin: true,
 })
 
-const { confirm } = useGlobalMessage()
+const { confirm } = useGlobalDialog()
 const { logined, userInfo, logout } = useUserStore()
 function handleLogout() {
   confirm({

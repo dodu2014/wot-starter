@@ -1,6 +1,24 @@
 # 更新日志 
 
 
+## [2.0.0](https://github.com/wot-ui/wot-starter/compare/v1.5.0...v2.0.0) (2026-04-21)
+
+
+### ✨ Features | 新功能
+
+* ✨ 集成 @wot-ui/vitepress-theme ([341f935](https://github.com/wot-ui/wot-starter/commit/341f935fef0da676c7f002506b51662baff09025))
+* ✨ 支持 wot-ui v2 ([874455f](https://github.com/wot-ui/wot-starter/commit/874455f80abdd97d8ef11b4624d169ac3020a100))
+
+
+### ✏️ Documentation | 文档
+
+* ✏️  更新全局反馈组件文档，增加使用前提和示例 ([8866c45](https://github.com/wot-ui/wot-starter/commit/8866c459a0b33d933a1cbfecaacb4d3673a85351))
+
+
+### 🐛 Bug Fixes | Bug 修复
+
+* 🐛 更新 banner URLs 为 wot-starter-v2-banner.json ([aa773d4](https://github.com/wot-ui/wot-starter/commit/aa773d409db38c041ba0e32b68602dc55f3fd2ec))
+
 ## [1.5.0](https://github.com/wot-ui/wot-starter/compare/v1.4.0...v1.5.0) (2026-04-07)
 
 

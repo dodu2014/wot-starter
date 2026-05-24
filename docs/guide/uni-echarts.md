@@ -1,7 +1,7 @@
 ---
 title: uni-echarts
 iframe: true
-url: subEcharts/echarts/index
+iframeFormatter: subEcharts/echarts/index
 ---
 # Echarts
 
@@ -58,7 +58,7 @@ import { UniEchartsResolver } from 'uni-echarts/resolver'
 
 export default defineConfig({
   optimizeDeps: {
-    exclude: process.env.NODE_ENV === 'development' ? ['wot-design-uni', 'uni-echarts'] : [],
+    exclude:['@wot-ui/ui', 'uni-echarts'] : [],
   },
   plugins: [
     // 组件自动导入
@@ -386,8 +386,8 @@ export default async () => {
 
   return defineConfig({
     optimizeDeps: {
-      exclude: process.env.NODE_ENV === 'development' ? ['wot-design-uni', 'uni-echarts'] : [], // [!code --]
-      exclude: process.env.NODE_ENV === 'development' ? ['wot-design-uni',] : [], // [!code ++]
+      exclude: ['@wot-ui/ui', 'uni-echarts'] : [], // [!code --]
+      exclude: ['@wot-ui/ui',] : [], // [!code ++]
     },
     plugins: [
       UniHelperManifest(),
@@ -417,7 +417,7 @@ export default async () => {
           from: '@wot-ui/router',
           imports: ['createRouter', 'useRouter', 'useRoute'],
         }, {
-          from: 'wot-design-uni',
+          from: '@wot-ui/ui',
           imports: ['useToast', 'useMessage', 'useNotify', 'CommonUtil'],
         }, {
           from: 'alova/client',

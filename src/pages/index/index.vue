@@ -68,15 +68,18 @@ onLoad(async () => {
 </script>
 
 <template>
-  <view class="min-h-screen flex-col gap-3 py-3">
-    <wd-card class="!mb-0" title="Wot Starter">
-      <view class="text-30rpx leading-relaxed">
+  <view class="box-border py-3">
+    <view class="mx-3 box-border rounded-3 px-4 py-6 text-center wot-bg-filled-oppo">
+      <text class="mb-3 block text-left text-5 font-bold wot-text-text-main">
+        Wot Starter
+      </text>
+      <text class="mb-3 block text-left text-30rpx leading-relaxed wot-text-text-secondary">
         ⚡️ 基于 vitesse-uni-app 由 vite & uni-app 驱动的、深度整合 Wot UI 组件库的快速启动模板
-      </view>
-      <view class="my-3 text-3 leading-relaxed">
+      </text>
+      <text class="block text-left text-3 leading-relaxed wot-text-text-auxiliary">
         背靠 Uni Helper、Wot UI 团队，告别 HBuilderX ，拥抱现代前端开发工具链
-      </view>
-    </wd-card>
+      </text>
+    </view>
 
     <demo-block title="基础设置" custom-card-content-class="!p-0">
       <wd-cell-group border custom-class="rounded-2! overflow-hidden">
@@ -105,7 +108,7 @@ onLoad(async () => {
     <demo-block title="工具链介绍" custom-card-content-class="!p-0">
       <wd-cell-group border custom-class="rounded-2! overflow-hidden">
         <wd-cell title="🧩 WotUI组件库" is-link @click="openUrl('https://wot-ui.cn/')" />
-        <wd-cell title="🧠 Agent Skills" is-link @click="navigateTo('skills')" />
+        <!-- <wd-cell title="🧠 Agent Skills" is-link @click="navigateTo('skills')" /> -->
 
         <wd-cell title="🚦 Router 路由管理" is-link @click="navigateTo('router')" />
         <wd-cell title="🌐 Alova 网络请求" is-link @click="navigateTo('request')" />
@@ -113,7 +116,7 @@ onLoad(async () => {
         <wd-cell title="✨ Unocss 原子化" is-link @click="navigateTo('styles')" />
         <wd-cell title="🍍 Pinia 持久化" is-link @click="navigateTo('pinia')" />
         <wd-cell title="💬 Fedback 反馈组件" is-link @click="navigateTo('feedback')" />
-        <wd-cell title="🌱 CreateUni 脚手架" is-link @click="navigateTo('create-uni') " />
+        <!-- <wd-cell title="🌱 CreateUni 脚手架" is-link @click="navigateTo('create-uni') " /> -->
         <wd-cell title="🔄 CI/CD 持续集成" is-link @click="navigateTo('ci')" />
         <wd-cell title="🦾  uni-ku/root" is-link @click="navigateTo('root')" />
         <wd-cell title="📊 uni-echarts" is-link @click="navigateTo('echarts')" />
@@ -131,15 +134,15 @@ onLoad(async () => {
         <view
           v-for="option in themeColorOptions"
           :key="option.value"
-          class="flex items-center justify-between border-b border-gray-100 py-3 last:border-b-0 dark:border-gray-700"
+          class="flex items-center justify-between border-b py-3 wot-border-border-main last:border-b-0"
           @click="handleThemeColorSelect(option)"
         >
           <view class="flex items-center gap-3">
             <view
-              class="h-6 w-6 border-2 border-gray-200 rounded-full dark:border-gray-600"
+              class="h-6 w-6 border-2 rounded-full wot-border-border-main"
               :style="{ backgroundColor: option.primary }"
             />
-            <text class="text-4 text-gray-800 dark:text-gray-200">
+            <text class="text-4 wot-text-text-main">
               {{ option.name }}
             </text>
           </view>

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { UserWalletWithdrawOrder } from '@/service/apis/base/globals'
-import dayjs from 'wot-design-uni/dayjs'
+import dayjs from 'dayjs'
 import router from '@/router'
 
 const toast = useGlobalToast()

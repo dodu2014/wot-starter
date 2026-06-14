@@ -58,10 +58,11 @@ export function checkMiniProgramUpdate(notUpdatePrompt = '') {
       title: '版本更新',
       msg: `新版本 v${res.version || ''} 已经准备好，是否更新并重启应用？`,
       closeOnClickModal: false,
-      beforeConfirm: ({ resolve }) => {
+      success(res) {
+        if (res.action === 'confirm') {
         // 当新版本下载完成，调用该方法会强制当前uni-app应用上新版本并重启
-        updateManager.applyUpdate()
-        resolve(true)
+          updateManager.applyUpdate()
+        }
       },
     })
   })

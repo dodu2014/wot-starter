@@ -1,14 +1,12 @@
 <script setup lang="ts">
-import type { ColPickerColumnChangeOption } from '@wot-ui/ui/components/wd-col-picker/types'
+import type { CellProps } from '@wot-ui/ui/components/wd-cell/types'
 
 defineOptions({ name: 'CitysPicker' })
 
 // eslint-disable-next-line unused-imports/no-unused-vars
 const props = withDefaults(defineProps<Props>(), {
-  label: '行政区域',
+  title: '行政区域',
   labelWidth: '75px',
-  required: false,
-  markerSide: 'after',
 })
 
 const emit = defineEmits<{
@@ -18,27 +16,12 @@ const emit = defineEmits<{
 const model = defineModel<string[]>('value', { default: () => [] })
 const modelLabels = defineModel<string[]>('labels', { default: () => [] })
 
-interface Props {
-  label?: string
-  labelWidth?: string
-  required?: boolean
-  markerSide?: 'before' | 'after'
-  prop?: string
+interface Props extends CellProps {
 }
-const { colPickerData, findChildrenByCode } = useColPickerData()
+const { colPickerData } = useColPickerData()
 const columns = ref<any[]>([
   colPickerData.map(item => ({ value: item.value, label: item.text })),
 ])
-function columnChange({ selectedItem, resolve, finish }: ColPickerColumnChangeOption) {
-  console.log(selectedItem, resolve, finish)
-  const areaData = findChildrenByCode(colPickerData, selectedItem.value)
-  if (areaData && areaData.length) {
-    resolve(areaData.map(item => ({ value: item.value, label: item.text })))
-  }
-  else {
-    finish()
-  }
-}
 
 /**
  * 最后一列选项选中时触发
@@ -55,15 +38,11 @@ function handleConfirm(e: { value: string[], selectedItems: { value: string, lab
 </script>
 
 <template>
-  <wd-col-picker
+  <wd-cell :title="title" :title-width="labelWidth" :required="required" :asterisk-position="asteriskPosition" :hide-asterisk="hideAsterisk" :ellipsis="ellipsis" :value="value" is-link />
+  <wd-picker
     v-model="model"
-    :label="label"
-    :label-width="labelWidth"
-    :prop="prop"
-    :required="required"
-    :marker-side="markerSide"
     :columns="columns"
-    :column-change="columnChange"
+    cascade
     auto-complete
     @confirm="handleConfirm"
   />

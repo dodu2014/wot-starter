@@ -17,8 +17,8 @@ export const useManualThemeStore = defineStore('manualTheme', {
     theme: 'light',
     followSystem: true, // 是否跟随系统主题
     hasUserSet: false, // 用户是否手动设置过主题
-    currentThemeColor: themeColorOptions[0],
-    themeVars: buildThemeVars(themeColorOptions[0]),
+    currentThemeColor: themeColorOptions[0]!,
+    themeVars: buildThemeVars(themeColorOptions[0]!),
   }),
 
   getters: {

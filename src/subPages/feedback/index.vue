@@ -292,16 +292,16 @@ function handleNavigate(url: string) {
               基础用法
             </view>
             <view class="grid grid-cols-2 mb-3 gap-2">
-              <wd-button type="success" size="small" @click="demoToastSuccess">
+              <wd-button type="success" @click="demoToastSuccess">
                 成功提示
               </wd-button>
-              <wd-button type="danger" size="small" @click="demoToastError">
+              <wd-button type="danger" @click="demoToastError">
                 错误提示
               </wd-button>
-              <wd-button type="warning" size="small" @click="demoToastWarning">
+              <wd-button type="warning" @click="demoToastWarning">
                 警告提示
               </wd-button>
-              <wd-button type="info" size="small" @click="demoToastInfo">
+              <wd-button type="info" @click="demoToastInfo">
                 信息提示
               </wd-button>
             </view>
@@ -330,16 +330,16 @@ function handleNavigate(url: string) {
               <wd-input v-model="customMessage" placeholder="请输入自定义消息" />
             </view>
             <view class="grid grid-cols-2 mb-3 gap-2">
-              <wd-button type="primary" size="small" @click="demoCustomToast">
+              <wd-button type="primary" @click="demoCustomToast">
                 自定义消息
               </wd-button>
-              <wd-button type="success" size="small" @click="demoToastPosition('top')">
+              <wd-button type="success" @click="demoToastPosition('top')">
                 顶部显示
               </wd-button>
-              <wd-button type="warning" size="small" @click="demoToastPosition('middle')">
+              <wd-button type="warning" @click="demoToastPosition('middle')">
                 中间显示
               </wd-button>
-              <wd-button type="info" size="small" @click="demoToastPosition('bottom')">
+              <wd-button type="info" @click="demoToastPosition('bottom')">
                 底部显示
               </wd-button>
             </view>
@@ -371,16 +371,16 @@ function handleNavigate(url: string) {
               基础用法
             </view>
             <view class="grid grid-cols-2 mb-3 gap-2">
-              <wd-button type="primary" size="small" @click="demoBasicLoading">
+              <wd-button type="primary" @click="demoBasicLoading">
                 显示加载(3秒)
               </wd-button>
-              <wd-button type="warning" size="small" @click="closeLoading">
+              <wd-button type="warning" @click="closeLoading">
                 手动关闭
               </wd-button>
-              <wd-button type="success" size="small" @click="demoLoadingNoCover">
+              <wd-button type="success" @click="demoLoadingNoCover">
                 无遮罩加载
               </wd-button>
-              <wd-button type="info" size="small" @click="demoComplex">
+              <wd-button type="info" @click="demoComplex">
                 组合演示
               </wd-button>
             </view>
@@ -440,13 +440,13 @@ function handleNavigate(url: string) {
               基础用法
             </view>
             <view class="grid grid-cols-3 mb-3 gap-2">
-              <wd-button type="primary" size="small" @click="demoConfirm">
+              <wd-button type="primary" @click="demoConfirm">
                 确认弹窗
               </wd-button>
-              <wd-button type="warning" size="small" @click="demoAlert">
+              <wd-button type="warning" @click="demoAlert">
                 警告弹窗
               </wd-button>
-              <wd-button type="success" size="small" @click="demoPrompt">
+              <wd-button type="success" @click="demoPrompt">
                 输入弹窗
               </wd-button>
             </view>

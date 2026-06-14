@@ -98,7 +98,7 @@ async function handleToPage(pagePath: string) {
 
     <!-- 缺省内容 -->
     <view v-if="loading === false && !modelList.length" class="h-65vh flex-center flex-col">
-      <app-empty image="content" tip="暂无内容" />
+      <wd-empty icon="no-content" tip="暂无内容" />
     </view>
 
     <!-- 列表 -->

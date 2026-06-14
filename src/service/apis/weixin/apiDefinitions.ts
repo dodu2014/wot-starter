@@ -2,9 +2,9 @@
 /* tslint:disable */
 /* eslint-disable */
 /**
- * TNT.WebApi 接口文档 | 微信模块 - version v10.0.4.0
+ * TNT.WebApi 接口文档 | 微信模块 - version v10.0.5.0
  *
- * TNT.WebApi 项目接口文档, Powered By .NET 10.0.5
+ * TNT.WebApi 项目接口文档, Powered By .NET 10.0.9
  *
  * OpenAPI version: 3.1.1
  *
@@ -50,16 +50,15 @@ export default {
   'wxOpen.generateWxcode': ['GET', '/api/Weixin/WxOpen/generateWxcode'],
   'wxOpen.generateScheme': ['GET', '/api/Weixin/WxOpen/generateScheme'],
   'wxOpen.generateUrlLink': ['GET', '/api/Weixin/WxOpen/generateUrlLink'],
-  'wxPay.createWxPayUnifiedorder': ['POST', '/api/Weixin/WxPay/createUnifiedorder'],
-  'wxPay.wxPayPaymentNotify': ['POST', '/api/Weixin/WxPay/paymentNotify'],
-  'wxPay.queryWxPay': ['GET', '/api/Weixin/WxPay/query'],
+  'wxPay.createJsapiPayOrder': ['POST', '/api/Weixin/WxPay/createJsapiOrder'],
+  'wxPay.createAppPayOrder': ['POST', '/api/Weixin/WxPay/createAppOrder'],
+  'wxPay.wxPayPaymentNotify': ['POST', '/api/Weixin/WxPay/{merchant_id}/paymentNotify'],
+  'wxPay.queryWxPayByOutTradeNumber': ['POST', '/api/Weixin/WxPay/queryByOutTradeNumber'],
   'wxPay.refundWxPay': ['POST', '/api/Weixin/WxPay/refund'],
   'wxPay.requestMerchantTransfer': ['POST', '/api/Weixin/WxPay/requestMerchantTransfer'],
-  'wxPay.queryMerchantTransfer': ['GET', '/api/Weixin/WxPay/queryMerchantTransfer'],
+  'wxPay.queryMerchantTransfer': ['POST', '/api/Weixin/WxPay/queryMerchantTransfer'],
   'wxPay.cancelMerchantTransfer': ['POST', '/api/Weixin/WxPay/cancelMerchantTransfer'],
-  'wxPay.merchantTransferNotify': ['POST', '/api/Weixin/WxPay/merchantTransferNotify'],
-  'wxPay.refundNotifyWxPay': ['POST', '/api/Weixin/WxPay/refundNotify'],
-  'wxPay.extractWxPay': ['POST', '/api/Weixin/WxPay/extract'],
+  'wxPay.merchantTransferNotify': ['POST', '/api/Weixin/WxPay/{merchant_id}/merchantTransferNotify'],
   'wxUserMap.getWxUserMapList': ['GET', '/api/Weixin/WxUserMaps/list'],
   'wxUserMap.getWxUserMap': ['GET', '/api/Weixin/WxUserMaps/get'],
   'wxUserMap.createWxUserMap': ['POST', '/api/Weixin/WxUserMaps/create'],

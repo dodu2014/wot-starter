@@ -39,7 +39,7 @@ const gridItems = ref<MenuItem[]>([
   },
   {
     title: '团队成员',
-    icon: 'usergroup',
+    icon: 'user-group',
     path: '/pages/about/index',
     badge: 8,
   },
@@ -50,20 +50,20 @@ const gridItems = ref<MenuItem[]>([
   },
   {
     title: '功能页面',
-    icon: 'app',
+    icon: 'apps',
     path: '/pages/feature/index',
   },
 ])
 const moreItems = ref<MenuItem[]>([
   {
     title: '消息中心',
-    icon: 'chat1',
+    icon: 'message',
     path: '/pages/user/message',
     badge: 0,
   },
   {
     title: '帮助中心',
-    icon: 'help-circle',
+    icon: 'question-circle',
     path: '/pages/article/list',
     query: {
       num: '02',
@@ -161,7 +161,7 @@ onShow(async () => {
               {{ logined && (userInfo?.description || '这家伙很懒，什么都没有写') || '点击此处登录' }}
             </view>
           </view>
-          <wd-icon v-if="logined" name="setting1" size="30px" @click.prevent.stop="() => router.push({ path: '/pages/user/settings' })" />
+          <wd-icon v-if="logined" name="settings" size="30px" @click.prevent.stop="() => router.push({ path: '/pages/user/settings' })" />
         </view>
 
         <!-- 统计信息卡片 -->
@@ -203,7 +203,7 @@ onShow(async () => {
           <!-- #ifdef MP-WEIXIN -->
           <wd-grid-item custom-icon="text-primary" custom-class="rounded">
             <button open-type="contact" class="button-reset flex-col gap-8px">
-              <wd-icon name="service" size="26px" custom-class="text-primary line-height-37px" />
+              <wd-icon name="mic" size="26px" custom-class="text-primary line-height-37px" />
               <wd-text text="联系客服" size="12px" custom-class="!line-height-12px" />
             </button>
           </wd-grid-item>
@@ -237,7 +237,7 @@ onShow(async () => {
           v-for="item in moreItems"
           :key="item.title"
           :title="item.title"
-          :icon="item.icon"
+          :prefix-icon="item.icon"
           is-link
           @click="() => router.push({ path: item.path, query: item.query })"
         >

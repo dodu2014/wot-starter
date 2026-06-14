@@ -130,7 +130,7 @@ function confirmTransfer() {
     <wd-card type="rectangle" custom-class="!mb-0">
       <wd-cell title="提现方式" title-width="80px" is-link>
         <view class="w-full flex gap-x-2">
-          <wd-icon name="money-circle" size="16px" />
+          <wd-icon name="info-circle" size="16px" />
           <view class="flex-col items-start gap-x-2">
             <wd-text text="微信零钱" custom-class="!text-default" />
             <wd-text text="实时到账" size="12px" />

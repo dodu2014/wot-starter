@@ -39,7 +39,7 @@ const mockAdapter = createAlovaMockAdapter(allMocks, {
   delay: Math.random() * 400 + 200,
 
   // 在开发环境下打印mock请求日志
-  mockRequestLogger: import.meta.env.MODE === 'development',
+  mockRequestLogger: isDev,
   // 路径匹配模式 - 使用完整路径匹配
   matchMode: 'pathname',
 })

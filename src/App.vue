@@ -7,7 +7,7 @@ const { wxUserInfo, wxLogin } = useWxUserStore()
 
 // #ifdef WEB
 const { addListener, joinToGroup, startConnection, stopConnection } = useSignalR({
-  url: `${import.meta.env.VITE_API_BASE_URL}/hubs/commonHub`,
+  url: `${VITE_API_BASE_URL}/hubs/commonHub`,
   immediate: false,
   onConnectedCallback: async () => {
     console.log('SignalR connected')

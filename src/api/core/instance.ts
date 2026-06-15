@@ -5,7 +5,7 @@ import mockAdapter from '../mock/mockAdapter'
 import { handleAlovaError, handleAlovaResponse } from './handlers'
 
 export const alovaInstance = createAlova({
-  baseURL: import.meta.env.VITE_API_BASE_URL || 'https://petstore3.swagger.io/api/v3',
+  baseURL: VITE_API_BASE_URL || 'https://petstore3.swagger.io/api/v3',
   ...AdapterUniapp({
     mockRequest: mockAdapter,
   }),
@@ -22,10 +22,10 @@ export const alovaInstance = createAlova({
     }
 
     // Log request in development
-    if (import.meta.env.MODE === 'development') {
+    if (isDev) {
       console.log(`[Alova Request] ${method.type} ${method.url}`, method.data || method.config.params)
-      console.log(`[API Base URL] ${import.meta.env.VITE_API_BASE_URL}`)
-      console.log(`[Environment] ${import.meta.env.VITE_ENV_NAME}`)
+      console.log(`[API Base URL] ${VITE_API_BASE_URL}`)
+      console.log(`[Environment] ${VITE_ENV_NAME}`)
     }
 
     // Add token in request header

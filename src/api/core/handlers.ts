@@ -60,7 +60,7 @@ export async function handleAlovaResponse(
   // The data is already parsed by UniApp adapter
   const json = data as ApiResponse
   // Log response in development
-  if (import.meta.env.MODE === 'development') {
+  if (isDev) {
     console.log('[Alova Response]', json)
   }
 
@@ -77,7 +77,7 @@ export async function handleAlovaResponse(
 export function handleAlovaError(error: any, method: Method) {
   const globalToast = useGlobalToast()
   // Log error in development
-  if (import.meta.env.MODE === 'development') {
+  if (isDev) {
     console.error('[Alova Error]', error, method)
   }
 

@@ -11,6 +11,14 @@ declare global {
   const Apis: typeof import('./service/apis/index').Apis
   const CommonUtil: typeof import('@wot-ui/ui').CommonUtil
   const EffectScope: typeof import('vue').EffectScope
+  const VITE_API_BASE_URL: typeof import('./utils/env').VITE_API_BASE_URL
+  const VITE_APPID: typeof import('./utils/env').VITE_APPID
+  const VITE_APP_NAME: typeof import('./utils/env').VITE_APP_NAME
+  const VITE_ENV_NAME: typeof import('./utils/env').VITE_ENV_NAME
+  const VITE_ICP: typeof import('./utils/env').VITE_ICP
+  const VITE_PLATFORMID: typeof import('./utils/env').VITE_PLATFORMID
+  const VITE_UPLOAD_URL: typeof import('./utils/env').VITE_UPLOAD_URL
+  const VITE_WEIXIN_PAY_MERCHANT_ID: typeof import('./utils/env').VITE_WEIXIN_PAY_MERCHANT_ID
   const Webapi_App: typeof import('./service/apis/index').Webapi_App
   const Webapi_Base: typeof import('./service/apis/index').Webapi_Base
   const Webapi_Demo: typeof import('./service/apis/index').Webapi_Demo
@@ -75,6 +83,7 @@ declare global {
   const isDate: typeof import('./utils/is').isDate
   const isDef: typeof import('./utils/is').isDef
   const isDefined: typeof import('@vueuse/core').isDefined
+  const isDev: typeof import('./utils/env').isDev
   const isElement: typeof import('./utils/is').isElement
   const isEmpty: typeof import('./utils/is').isEmpty
   const isFunction: typeof import('./utils/is').isFunction
@@ -86,6 +95,7 @@ declare global {
   const isNumeric: typeof import('./utils/is').isNumeric
   const isObject: typeof import('./utils/is').isObject
   const isPageTabbar: typeof import('./utils/page').isPageTabbar
+  const isPro: typeof import('./utils/env').isPro
   const isPromise: typeof import('./utils/is').isPromise
   const isProxy: typeof import('vue').isProxy
   const isReactive: typeof import('vue').isReactive
@@ -445,6 +455,14 @@ declare module 'vue' {
     readonly Apis: UnwrapRef<typeof import('./service/apis/index')['Apis']>
     readonly CommonUtil: UnwrapRef<typeof import('@wot-ui/ui')['CommonUtil']>
     readonly EffectScope: UnwrapRef<typeof import('vue')['EffectScope']>
+    readonly VITE_API_BASE_URL: UnwrapRef<typeof import('./utils/env')['VITE_API_BASE_URL']>
+    readonly VITE_APPID: UnwrapRef<typeof import('./utils/env')['VITE_APPID']>
+    readonly VITE_APP_NAME: UnwrapRef<typeof import('./utils/env')['VITE_APP_NAME']>
+    readonly VITE_ENV_NAME: UnwrapRef<typeof import('./utils/env')['VITE_ENV_NAME']>
+    readonly VITE_ICP: UnwrapRef<typeof import('./utils/env')['VITE_ICP']>
+    readonly VITE_PLATFORMID: UnwrapRef<typeof import('./utils/env')['VITE_PLATFORMID']>
+    readonly VITE_UPLOAD_URL: UnwrapRef<typeof import('./utils/env')['VITE_UPLOAD_URL']>
+    readonly VITE_WEIXIN_PAY_MERCHANT_ID: UnwrapRef<typeof import('./utils/env')['VITE_WEIXIN_PAY_MERCHANT_ID']>
     readonly Webapi_App: UnwrapRef<typeof import('./service/apis/index')['Webapi_App']>
     readonly Webapi_Base: UnwrapRef<typeof import('./service/apis/index')['Webapi_Base']>
     readonly Webapi_Demo: UnwrapRef<typeof import('./service/apis/index')['Webapi_Demo']>
@@ -505,6 +523,7 @@ declare module 'vue' {
     readonly isDate: UnwrapRef<typeof import('./utils/is')['isDate']>
     readonly isDef: UnwrapRef<typeof import('./utils/is')['isDef']>
     readonly isDefined: UnwrapRef<typeof import('@vueuse/core')['isDefined']>
+    readonly isDev: UnwrapRef<typeof import('./utils/env')['isDev']>
     readonly isElement: UnwrapRef<typeof import('./utils/is')['isElement']>
     readonly isEmpty: UnwrapRef<typeof import('./utils/is')['isEmpty']>
     readonly isFunction: UnwrapRef<typeof import('./utils/is')['isFunction']>
@@ -516,6 +535,7 @@ declare module 'vue' {
     readonly isNumeric: UnwrapRef<typeof import('./utils/is')['isNumeric']>
     readonly isObject: UnwrapRef<typeof import('./utils/is')['isObject']>
     readonly isPageTabbar: UnwrapRef<typeof import('./utils/page')['isPageTabbar']>
+    readonly isPro: UnwrapRef<typeof import('./utils/env')['isPro']>
     readonly isPromise: UnwrapRef<typeof import('./utils/is')['isPromise']>
     readonly isProxy: UnwrapRef<typeof import('vue')['isProxy']>
     readonly isReactive: UnwrapRef<typeof import('vue')['isReactive']>

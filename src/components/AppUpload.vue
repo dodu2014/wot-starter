@@ -16,7 +16,7 @@ withDefaults(
   {
     limit: 1,
     multiple: false,
-    actionUrl: import.meta.env.VITE_UPLOAD_URL,
+    actionUrl: VITE_UPLOAD_URL,
   },
 )
 

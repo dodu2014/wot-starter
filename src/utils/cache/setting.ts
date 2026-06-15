@@ -10,4 +10,4 @@ export const cacheCipher = {
 }
 
 // Whether the system cache is encrypted using aes
-export const enableStorageEncryption = import.meta.env.MODE !== 'development'
+export const enableStorageEncryption = !isDev

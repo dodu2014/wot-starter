@@ -1,5 +1,7 @@
 <script lang="ts" setup>
 import type { FormExpose } from '@wot-ui/ui/components/wd-form/types'
+import { zodAdapter } from '@wot-ui/ui'
+import { z } from 'zod'
 import { checkAccept } from './method'
 
 defineOptions({ name: 'PassLogin' })
@@ -68,31 +70,40 @@ async function handleLogin() {
   <view class="flex-col gap-y-5">
     <wd-card custom-class="!rounded-lg !shadow-sm !shadow-gray !shadow-op-10 !m-0 !bg-#ffffff98 !dark:bg-#1a1a1a98" custom-content-class="flex flex-col gap-15px py-6">
       <wd-text text="欢迎登录" custom-class="text-center font-bold !text-default" size="20px" />
-      <wd-form ref="loginFormRef" :model="model" error-type="message">
-        <wd-cell-group custom-class="!bg-transparent">
+      <wd-form
+        ref="loginFormRef" :model="model" :schema="zodAdapter(
+          z.object({
+            userName: z.string().min(1, 'required'),
+            password: z.string().min(1, 'required'),
+          }),
+        )" error-type="message"
+      >
+        <wd-form-item
+          prop="userName"
+          title="登录账号"
+          title-width="80px" custom-class="!bg-transparent"
+        >
           <!-- 用户名输入 -->
           <wd-input
             v-model="model.userName"
-            prop="userName"
-            label="账号"
-            label-width="60px"
-            placeholder="请输入登录账号"
-            size="large"
-            :rules="[{ required: true, message: '必填' }]"
+            placeholder="输入你的登录账户"
+            :rules="[{ required: true, message: 'required' }]"
           />
+        </wd-form-item>
 
-          <!-- 密码输入 -->
+        <!-- 密码输入 -->
+        <wd-form-item
+          prop="password"
+          title="登录密码"
+          title-width="80px" custom-class="!bg-transparent"
+        >
           <wd-input
             v-model="model.password"
-            prop="password"
-            label="密码"
-            label-width="60px"
-            placeholder="请输入密码"
+            placeholder="输入你的密码"
             show-password
-            size="large"
-            :rules="[{ required: true, message: '必填' }]"
+            :rules="[{ required: true, message: 'required' }]"
           />
-        </wd-cell-group>
+        </wd-form-item>
       </wd-form>
     </wd-card>
 

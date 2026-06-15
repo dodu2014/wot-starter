@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import type { UploadFile, UploadRemoveEvent, UploadSuccessEvent } from '@wot-ui/ui/components/wd-upload/types'
+import type { UploadFile, UploadRemoveEvent, UploadSizeType, UploadSourceType, UploadSuccessEvent } from '@wot-ui/ui/components/wd-upload/types'
 import type { ApiResultOfUpFileUploadResult } from '@/service/apis/base/globals'
 
 defineOptions({ name: 'AppUpload' })
@@ -8,14 +8,23 @@ withDefaults(
   defineProps<{
     /** 限制上传数量，默认1 */
     limit?: number
+    // show-limit-num
+    showLimitNum?: boolean
     /** 是否支持多选, 默认单选，如果最多上传1张时无效 */
     multiple?: boolean
+    sourceType?: UploadSourceType[]
+    sizeType?: UploadSizeType[]
+    disabled?: boolean
     /** 上传地址 */
     actionUrl?: string
   }>(),
   {
-    limit: 1,
+    limit: undefined,
+    showLimitNum: undefined,
     multiple: false,
+    sourceType: () => ['album', 'camera'],
+    sizeType: () => ['original', 'compressed'],
+    disabled: undefined,
     actionUrl: VITE_UPLOAD_URL,
   },
 )
@@ -61,7 +70,9 @@ function handleSuccessChange({ file }: UploadSuccessEvent) {
   else if (Array.isArray(model.value)) {
     model.value.push(json.data?.absUrl || '')
   }
-  emit('update', model.value)
+  nextTick(() => {
+    emit('update', model.value)
+  })
 }
 
 function handleRemove({ file }: UploadRemoveEvent) {
@@ -72,7 +83,9 @@ function handleRemove({ file }: UploadRemoveEvent) {
     const index = model.value.findIndex(i => i === file.url)
     model.value.splice(index, 1)
   }
-  emit('update', model.value)
+  nextTick(() => {
+    emit('update', model.value)
+  })
 }
 </script>
 
@@ -82,7 +95,11 @@ function handleRemove({ file }: UploadRemoveEvent) {
     image-mode="aspectFill"
     :action="actionUrl"
     :limit="limit"
-    :multiple="multiple && limit > 1"
+    :show-limit-num="showLimitNum"
+    :source-type="sourceType"
+    :size-type="sizeType"
+    :multiple="multiple && Number(limit) > 1"
+    :disabled="disabled"
     @success="handleSuccessChange" @remove="handleRemove"
   />
 </template>

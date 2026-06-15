@@ -54,7 +54,13 @@ export default defineManifestConfig({
       /* ios打包配置 */
       ios: {},
       /* SDK配置 */
-      sdkConfigs: {},
+      sdkConfigs: {
+        payment: {
+          weixin: {
+            appid: '',
+          },
+        },
+      },
     },
   },
   /* 快应用特有相关 */

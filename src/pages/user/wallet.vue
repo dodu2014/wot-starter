@@ -33,10 +33,10 @@ onUnload(() => {
     <wd-text text="我的钱包" size="14px" custom-class="!text-default" />
     <wd-text :text="balance" mode="price" prefix="￥" size="36px" bold custom-class="!text-default" />
     <view class="flex-full" />
-    <wd-button size="large" type="success" @click="() => router.push('/pages/user/withdraw')">
+    <wd-button size="large" type="primary" @click="() => router.push('/pages/user/withdraw')">
       立即提现
     </wd-button>
-    <wd-button type="info" variant="text" icon="bulletpoint" custom-class="!text-gray" @click="() => {}">
+    <wd-button type="info" variant="text" size="small" icon="list" @click="() => {}">
       钱包明细
     </wd-button>
   </view>

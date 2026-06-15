@@ -158,10 +158,10 @@ function confirmTransfer() {
         </view>
       </view>
 
-      <wd-button type="success" size="large" custom-class="mt-30px" :loading="loading" :disabled="loading" @click="confirmTransfer">
+      <wd-button type="primary" size="large" custom-class="mt-30px" :loading="loading" :disabled="loading" @click="confirmTransfer">
         确认提现
       </wd-button>
-      <wd-button type="primary" variant="text" icon="time" custom-class="!text-gray" @click="() => router.push('/pages/user/withdrawOrderList')">
+      <wd-button type="info" variant="text" icon="time-line" size="small" @click="() => router.push('/pages/user/withdrawOrderList')">
         提现记录
       </wd-button>
     </view>

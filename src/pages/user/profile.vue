@@ -6,7 +6,7 @@ definePage({
   name: 'user-profile',
   layout: 'default',
   style: {
-    navigationBarTitleText: '用户档案',
+    navigationBarTitleText: '个人资料',
   },
   needLogin: true,
 })
@@ -15,12 +15,11 @@ const { userInfo, loadUserInfo } = useUserStore()
 const { success, warning } = useGlobalToast()
 const model = reactive<UserProfileModel>(jsonClone(userInfo) as UserProfileModel)
 
-const form = ref<FormExpose>()
-const uploadUrl = import.meta.env.VITE_UPLOAD_URL
+const formRef = ref<FormExpose>()
 
 function handleChooseAvatar(e: { avatarUrl: string }) {
   uni.uploadFile({
-    url: uploadUrl,
+    url: VITE_UPLOAD_URL,
     name: 'file',
     filePath: e.avatarUrl,
     success({ statusCode, errMsg, data }) {
@@ -46,11 +45,11 @@ const { error, loading, send } = useRequest(
   { immediate: false },
 )
   .onError((error) => {
-    warning(error.error?.message || '修改密码失败')
+    warning(error.error?.message || '修改失败')
   })
 
 async function handleSubmit() {
-  const res = await form.value?.validate()
+  const res = await formRef.value?.validate()
   console.log('valid', res)
   if (!res || !res?.valid)
     return
@@ -59,7 +58,7 @@ async function handleSubmit() {
   await send()
   if (!error.value) {
     await loadUserInfo()
-    success('档案修改成功')
+    success('修改成功')
   }
 }
 
@@ -67,76 +66,85 @@ onLoad(() => {})
 </script>
 
 <template>
-  <view class="flex-col gap-y-3">
-    <wd-form ref="form" :model="model">
-      <wd-cell-group border>
+  <view class="flex-col gap-y-4">
+    <wd-form ref="formRef" border :model="model">
+      <wd-form-item
+        title="账号"
+        title-width="100px"
+        prop="userName"
+      >
         <wd-input
           v-model="model.userName"
-          label="账号"
-          label-width="100px"
-          prop="userName"
           clearable
           disabled
           placeholder="请输入用户名"
           marker-side="after"
           :rules="[{ required: true, message: '必填' }]"
         />
+      </wd-form-item>
+      <wd-form-item
+        title="邮箱"
+        title-width="100px"
+        prop="email"
+      >
         <wd-input
           v-model="model.email!"
-          label="电子邮箱"
-          label-width="100px"
-          prop="email"
           clearable
           disabled
-          placeholder="请输入电子邮箱"
+          placeholder="请输入邮箱"
           marker-side="after"
           :rules="[
             { required: true, message: '必填' },
             { required: false, pattern: /^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/, message: '邮箱格式不正确' },
           ]"
         />
+      </wd-form-item>
+      <wd-form-item
+        title="昵称"
+        title-width="100px"
+        prop="name"
+      >
         <wd-input
           v-model="model.name"
-          label="昵称"
-          label-width="100px"
-          prop="name"
           clearable
           :maxlength="10"
           marker-side="after"
           type="nickname"
           :rules="[
             { required: true, message: '必填' },
-            { required: false, validator: (value: string) => value.length >= 2, message: '格式不正确, 2-10位' },
+            { required: false, validator: (value: string) => value.length >= 2, message: '格式不正确，2-10个字符' },
           ]"
         />
-        <wd-cell title="头像" title-width="100px">
-          <view class="flex-col items-start gap-3">
-            <app-upload v-model:value="model.avatarUrl!" />
-            <!-- #ifdef MP-WEIXIN -->
-            <wd-button type="info" size="small" open-type="chooseAvatar" @chooseavatar="handleChooseAvatar">
-              使用微信头像
-            </wd-button>
-            <!-- #endif -->
-          </view>
-        </wd-cell>
-
+      </wd-form-item>
+      <wd-form-item title="头像" title-width="100px">
+        <view class="flex-col items-start gap-3">
+          <app-upload v-model:value="model.avatarUrl!" :limit="1" :show-limit-num="false" />
+          <!-- #ifdef MP-WEIXIN -->
+          <wd-button type="info" size="small" open-type="chooseAvatar" @chooseavatar="handleChooseAvatar">
+            使用微信头像
+          </wd-button>
+          <!-- #endif -->
+        </view>
+      </wd-form-item>
+      <wd-form-item
+        title="简介"
+        title-width="100px"
+        prop="description"
+      >
         <wd-textarea
           v-model="model.description"
-          label="描述"
-          label-width="100px"
-          prop="description"
           clearable
-          placeholder="描述"
+          placeholder="简介"
           :maxlength="200"
           show-word-limit
-          class="!h-100px"
         />
-      </wd-cell-group>
-      <view class="m-4">
-        <wd-button :loading="loading" type="primary" block @click="handleSubmit">
-          提交
-        </wd-button>
-      </view>
+      </wd-form-item>
     </wd-form>
+
+    <view class="mx-4">
+      <wd-button :loading="loading" type="primary" round block @click="handleSubmit">
+        提交
+      </wd-button>
+    </view>
   </view>
 </template>

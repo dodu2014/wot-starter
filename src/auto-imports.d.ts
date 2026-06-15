@@ -11,6 +11,8 @@ declare global {
   const Apis: typeof import('./service/apis/index').Apis
   const CommonUtil: typeof import('@wot-ui/ui').CommonUtil
   const EffectScope: typeof import('vue').EffectScope
+  const HubConnection: typeof import('./utils/uni-signalr-client').HubConnection
+  const HubConnectionBuilder: typeof import('./utils/uni-signalr-client').HubConnectionBuilder
   const VITE_API_BASE_URL: typeof import('./utils/env').VITE_API_BASE_URL
   const VITE_APPID: typeof import('./utils/env').VITE_APPID
   const VITE_APP_NAME: typeof import('./utils/env').VITE_APP_NAME
@@ -189,6 +191,7 @@ declare global {
   const shallowReactive: typeof import('vue').shallowReactive
   const shallowReadonly: typeof import('vue').shallowReadonly
   const shallowRef: typeof import('vue').shallowRef
+  const sleep: typeof import('./utils/common').sleep
   const storage: typeof import('./utils/cache/index').storage
   const storeToRefs: typeof import('pinia').storeToRefs
   const subscribeMessages: typeof import('./composables/useSubscribeMessage').subscribeMessages
@@ -444,6 +447,9 @@ declare global {
   // @ts-ignore
   export type { AesEncryption, EncryptionParams, AesEncryption } from './utils/cipher'
   import('./utils/cipher')
+  // @ts-ignore
+  export type { HubConnection, HubConnectionBuilder } from './utils/uni-signalr-client'
+  import('./utils/uni-signalr-client')
 }
 
 // for vue template auto import
@@ -455,6 +461,8 @@ declare module 'vue' {
     readonly Apis: UnwrapRef<typeof import('./service/apis/index')['Apis']>
     readonly CommonUtil: UnwrapRef<typeof import('@wot-ui/ui')['CommonUtil']>
     readonly EffectScope: UnwrapRef<typeof import('vue')['EffectScope']>
+    readonly HubConnection: UnwrapRef<typeof import('./utils/uni-signalr-client')['HubConnection']>
+    readonly HubConnectionBuilder: UnwrapRef<typeof import('./utils/uni-signalr-client')['HubConnectionBuilder']>
     readonly VITE_API_BASE_URL: UnwrapRef<typeof import('./utils/env')['VITE_API_BASE_URL']>
     readonly VITE_APPID: UnwrapRef<typeof import('./utils/env')['VITE_APPID']>
     readonly VITE_APP_NAME: UnwrapRef<typeof import('./utils/env')['VITE_APP_NAME']>
@@ -627,6 +635,7 @@ declare module 'vue' {
     readonly shallowReactive: UnwrapRef<typeof import('vue')['shallowReactive']>
     readonly shallowReadonly: UnwrapRef<typeof import('vue')['shallowReadonly']>
     readonly shallowRef: UnwrapRef<typeof import('vue')['shallowRef']>
+    readonly sleep: UnwrapRef<typeof import('./utils/common')['sleep']>
     readonly storage: UnwrapRef<typeof import('./utils/cache/index')['storage']>
     readonly storeToRefs: UnwrapRef<typeof import('pinia')['storeToRefs']>
     readonly subscribeMessages: UnwrapRef<typeof import('./composables/useSubscribeMessage')['subscribeMessages']>

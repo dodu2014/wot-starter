@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { WalletWithdrawOrderDTO } from '@/service/apis/weixin/globals'
+import type { CreateMerchantTransferRequest } from '@/service/apis/weixin/globals'
 import { uuid } from '@alova/shared'
 import router from '@/router'
 
@@ -51,7 +51,7 @@ function successTransferHandler() {
 }
 
 const { send: sendRequestMerchantTransfer, loading } = useRequest(
-  (data: WalletWithdrawOrderDTO) => Webapi_Weixin.wxPay.requestMerchantTransfer({ params: { notifyUrl: '' }, data }),
+  (data: CreateMerchantTransferRequest) => Webapi_Weixin.wxPay.requestMerchantTransfer({ params: { notifyUrl: '' }, data }),
   { immediate: false },
 ).onComplete(() => {
   hideLoading()
@@ -116,9 +116,11 @@ function confirmTransfer() {
       showLoading('loading')
       await sendRequestMerchantTransfer({
         userId: userInfo!.id!,
-        userName: userInfo!.name!,
         openId: wxUserInfo!.openId!,
-        amout: amountValue,
+        amount: amountValue,
+        appId: VITE_APPID,
+        mchId: VITE_WEIXIN_PAY_MERCHANT_ID,
+
       })
     },
   })

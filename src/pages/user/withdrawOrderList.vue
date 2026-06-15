@@ -83,7 +83,7 @@ onLoad(async (e: any) => {
         is-link center
         @click="() => router.push({ path: '/pages/article/detail', query: { id: item.id as string } })"
       >
-        <wd-text type="primary" :text="item.amout" prefix="¥" />
+        <wd-text type="primary" :text="item.amount" prefix="¥" />
       </wd-cell>
     </wd-cell-group>
 

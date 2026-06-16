@@ -47,7 +47,6 @@
     "@dcloudio/uni-mp-weixin": "3.0.0-5000720260410001",
     "@dcloudio/uni-mp-xhs": "3.0.0-5000720260410001",
     "@dcloudio/uni-quickapp-webview": "3.0.0-5000720260410001",
-    "@microsoft/signalr": "^10.0.0",
     "@vant/area-data": "^2.1.0",
     "@vueuse/core": "^11.0.3",
     "@wot-ui/router": "^1.1.2",

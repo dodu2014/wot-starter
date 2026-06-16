@@ -1,6 +1,5 @@
-import type { HubConnection } from '@microsoft/signalr'
-import { HubConnectionBuilder, LogLevel } from '@microsoft/signalr'
 import { onMounted, onUnmounted, ref } from 'vue'
+import { HubConnectionBuilder } from '@/utils/uni-signalr-client'
 
 /** signalr 配置选项 */
 interface SianalrOption {
@@ -8,12 +7,21 @@ interface SianalrOption {
   url: string
   /** 立即执行 */
   immediate: boolean
+  /** 手动管理模式 — 连接生命周期由外部控制，不绑定 onMounted/onUnmounted */
+  manual?: boolean
   /** 连接成功后的回调方法 */
   onConnectedCallback?: () => void
   /** 重连成功后的回调方法 */
   onReconnectedCallback?: () => void
   /** 连接断开后的回调方法 */
   onDisConnectedCallback?: () => void
+  /** 访问令牌工厂 */
+  accessTokenFactory?: () => string | Promise<string>
+  /** 日志记录器 */
+  logger?: {
+    log: (message: string) => void
+    error: (message: string) => void
+  }
 }
 
 /**
@@ -29,12 +37,18 @@ interface SianalrOption {
  * @returns 一个包含 SignalR 连接、连接状态和管理连接的方法的对象。
  */
 export function useSignalR(options: SianalrOption) {
-  const connection = ref<HubConnection | null>()
+  const connection = ref<any>(null)
   const isConnected = ref(false)
   const isReconnected = ref(false)
 
   /** 内部变量，事件列表，存储通过 addListener 方法注册的事件 */
   let eventList: { eventName: string, func: () => void }[] = []
+
+  /** 重连定时器 */
+  let reconnectTimer: ReturnType<typeof setTimeout> | null = null
+
+  /** 是否正在主动断开连接 */
+  let isManualDisconnect = false
 
   /**
    * 添加一个事件监听器。
@@ -61,36 +75,64 @@ export function useSignalR(options: SianalrOption) {
     }
   }
 
+  /** 调度重连 */
+  const scheduleReconnect = () => {
+    if (reconnectTimer)
+      return
+
+    console.log('SignalR reconnecting in 5 seconds...')
+    isReconnected.value = true
+
+    reconnectTimer = setTimeout(async () => {
+      reconnectTimer = null
+      try {
+        await connection.value?.start()
+        isConnected.value = true
+        isReconnected.value = false
+        console.log('SignalR reconnected')
+        options.onReconnectedCallback?.()
+      }
+      catch (err) {
+        console.error('SignalR reconnect failed:', err)
+        scheduleReconnect()
+      }
+    }, 5000)
+  }
+
   /** 初始化连接 */
   const initailConnection = () => {
-    connection.value = new HubConnectionBuilder()
+    const builder = new HubConnectionBuilder()
       .withUrl(options.url)
-      .withAutomaticReconnect()
-      .withServerTimeout(60 * 1000)
-      .withKeepAliveInterval(5 * 1000)
-      // .withStatefulReconnect()
-      .configureLogging(LogLevel.Information)
-      .build()
 
-    connection.value.onreconnecting(() => {
+    // 配置访问令牌
+    if (options.accessTokenFactory) {
+      builder.withAccessTokenFactory(options.accessTokenFactory)
+    }
+
+    // 配置日志
+    if (options.logger) {
+      builder.configureLogging(options.logger)
+    }
+    else {
+      builder.configureLogging({
+        log: msg => console.log(`[SignalR] ${msg}`),
+        error: msg => console.error(`[SignalR] ${msg}`),
+      })
+    }
+
+    connection.value = builder.build()
+
+    // 注册连接关闭回调
+    connection.value.onclose((reason?: string) => {
       isConnected.value = false
-      isReconnected.value = true
-      console.log('SignalR reconnecting...')
-    })
+      console.log(`SignalR connection closed: ${reason}`)
 
-    connection.value.onreconnected(() => {
-      isConnected.value = true
-      isReconnected.value = false
-      console.log('SignalR reconnected')
-      if (options.onReconnectedCallback)
-        options.onReconnectedCallback()
-    })
+      if (!isManualDisconnect) {
+        // 自动重连
+        scheduleReconnect()
+      }
 
-    connection.value.onclose(() => {
-      isConnected.value = false
-      console.log('SignalR connection closed')
-      if (options.onDisConnectedCallback)
-        options.onDisConnectedCallback()
+      options.onDisConnectedCallback?.()
     })
   }
 
@@ -103,19 +145,18 @@ export function useSignalR(options: SianalrOption) {
   const startConnection = async (): Promise<void> => {
     if (!connection.value) {
       initailConnection()
-      startConnection()
-      return
     }
 
+    isManualDisconnect = false
+
     try {
-      await connection.value.start()
+      await connection.value?.start()
       isConnected.value = true
-      if (options.onConnectedCallback)
-        options.onConnectedCallback()
+      options.onConnectedCallback?.()
     }
     catch (err) {
       console.error('启动连接时出错: ', err)
-      setTimeout(startConnection, 5000) // 5秒后重试连接
+      // 失败时会通过 onclose 触发重连
     }
   }
 
@@ -126,18 +167,21 @@ export function useSignalR(options: SianalrOption) {
    * @throws 如果在停止连接时发生错误，则会在控制台输出错误信息。
    */
   const stopConnection = async (): Promise<void> => {
-    if (connection.value && isConnected.value) {
+    if (reconnectTimer) {
+      clearTimeout(reconnectTimer)
+      reconnectTimer = null
+    }
+
+    isManualDisconnect = true
+
+    if (connection.value) {
       try {
         await connection.value.stop()
         isConnected.value = false
         console.log('SignalR 已断开')
 
-        // 遍历注销所有注册的时间
-
-        for (let index = 0; index < eventList.length; index++) {
-          const item = eventList.at(index)
-          if (!item)
-            break
+        // 遍历注销所有注册的事件
+        for (const item of eventList) {
           removeListener(item.eventName, item.func)
           console.log('signalr 移除监听', item.eventName)
         }
@@ -173,15 +217,17 @@ export function useSignalR(options: SianalrOption) {
       await connection.value?.invoke('LeaveGroup', groupName)
   }
 
-  onMounted(async () => {
-    initailConnection()
-    if (options.immediate)
-      await startConnection()
-  })
+  if (!options.manual) {
+    onMounted(async () => {
+      initailConnection()
+      if (options.immediate)
+        await startConnection()
+    })
 
-  onUnmounted(() => {
-    stopConnection()
-  })
+    onUnmounted(() => {
+      stopConnection()
+    })
+  }
 
   return {
     connection,

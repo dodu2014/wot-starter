@@ -130,6 +130,14 @@ export interface Article {
   tagMaps?: ArticleTagMap[];
   categoryMaps?: ArticleCategoryMap[];
 }
+export interface RegisterByEmailModel {
+  userName: string;
+  email: string;
+  validateCode: string;
+  password: string;
+  confirmPassword: string;
+  inviterUserName?: string | null;
+}
 export interface Carousel {
   id?: string;
   key: string;
@@ -349,6 +357,28 @@ export interface ApiResult {
    * 响应数据 T
    */
   data?: null;
+  /**
+   * 扩展数据
+   */
+  extend?: null;
+  /**
+   * 请求是否返回正确
+   */
+  isSuccess?: boolean;
+}
+export interface ApiResultOfstring {
+  /**
+   * 响应编号
+   */
+  code?: number | string;
+  /**
+   * 响应消息
+   */
+  message?: string;
+  /**
+   * 响应数据 T
+   */
+  data?: string | null;
   /**
    * 扩展数据
    */
@@ -643,6 +673,25 @@ export interface ApiResultOfAccessTokenModel {
    */
   message?: string;
   data?: null | AccessTokenModel;
+  /**
+   * 扩展数据
+   */
+  extend?: null;
+  /**
+   * 请求是否返回正确
+   */
+  isSuccess?: boolean;
+}
+export interface ApiResultOfApplicationUser {
+  /**
+   * 响应编号
+   */
+  code?: number | string;
+  /**
+   * 响应消息
+   */
+  message?: string;
+  data?: null | ApplicationUser;
   /**
    * 扩展数据
    */
@@ -1110,25 +1159,6 @@ export interface Api_result_of_client_route {
    * 响应数据 T
    */
   data?: ClientRoute[] | null;
-  /**
-   * 扩展数据
-   */
-  extend?: null;
-  /**
-   * 请求是否返回正确
-   */
-  isSuccess?: boolean;
-}
-export interface ApiResultOfApplicationUser {
-  /**
-   * 响应编号
-   */
-  code?: number | string;
-  /**
-   * 响应消息
-   */
-  message?: string;
-  data?: null | ApplicationUser;
   /**
    * 扩展数据
    */
@@ -2795,6 +2825,108 @@ declare global {
       >(
         config: Config
       ): Alova2Method<ApiResult, 'auth.sendEmail', Config>;
+      /**
+       * ---
+       *
+       * [GET] 生成随机帐户用户名并将其作为 API 结果返回。
+       *
+       * **path:** /api/Base/Auth/generateRandomAccount
+       *
+       * ---
+       *
+       * **Response**
+       * ```ts
+       * type Response = {
+       *   // 响应编号
+       *   code?: number | string
+       *   // 响应消息
+       *   message?: string
+       *   // 响应数据 T
+       *   data?: string | null
+       *   // 扩展数据
+       *   extend?: null
+       *   // 请求是否返回正确
+       *   isSuccess?: boolean
+       * }
+       * ```
+       */
+      generateRandomAccount<Config extends Alova2MethodConfig<ApiResultOfstring>>(
+        config?: Config
+      ): Alova2Method<ApiResultOfstring, 'auth.generateRandomAccount', Config>;
+      /**
+       * ---
+       *
+       * [POST] 注册用户
+       *
+       * **path:** /api/Base/Auth/register
+       *
+       * ---
+       *
+       * **RequestBody**
+       * ```ts
+       * type RequestBody = {
+       *   userName: string
+       *   email: string
+       *   validateCode: string
+       *   password: string
+       *   confirmPassword: string
+       *   inviterUserName?: string | null
+       * }
+       * ```
+       *
+       * ---
+       *
+       * **Response**
+       * ```ts
+       * type Response = {
+       *   // 响应编号
+       *   code?: number | string
+       *   // 响应消息
+       *   message?: string
+       *   // [params2] start
+       *   // 响应数据 T
+       *   // [params2] end
+       *   data?: null | {
+       *     userName: string
+       *     email?: string | null
+       *     name?: string
+       *     avatarUrl?: string
+       *     phoneNumber?: string | null
+       *     description?: string
+       *     rights?: string
+       *     // [items] start
+       *     // [items] end
+       *     rightsList?: string[]
+       *     signature?: string
+       *     enabled?: boolean
+       *     date?: string
+       *     id?: string | null
+       *     normalizedUserName?: string | null
+       *     normalizedEmail?: string | null
+       *     emailConfirmed?: boolean
+       *     passwordHash?: string | null
+       *     securityStamp?: string | null
+       *     concurrencyStamp?: string | null
+       *     phoneNumberConfirmed?: boolean
+       *     twoFactorEnabled?: boolean
+       *     lockoutEnd?: string | null
+       *     lockoutEnabled?: boolean
+       *     accessFailedCount?: number | string
+       *   }
+       *   // 扩展数据
+       *   extend?: null
+       *   // 请求是否返回正确
+       *   isSuccess?: boolean
+       * }
+       * ```
+       */
+      register<
+        Config extends Alova2MethodConfig<ApiResultOfApplicationUser> & {
+          data: RegisterByEmailModel;
+        }
+      >(
+        config: Config
+      ): Alova2Method<ApiResultOfApplicationUser, 'auth.register', Config>;
     };
     carousel: {
       /**

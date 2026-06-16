@@ -100,11 +100,12 @@ onLoad(async (e: any) => {
       <!-- #endif -->
     </view>
 
-    <view class="z-10 flex justify-center pb-30px text-14px">
+    <view class="z-10 flex justify-center pb-30px">
       <wd-checkbox v-model="agreed" shape="square">
         已阅读并同意
       </wd-checkbox>
       <wd-text type="primary" text="《用户协议》" @click="toProtocol('userAgreement')" />
+      <wd-text text="&" />
       <wd-text type="primary" text="《隐私政策》" @click="toProtocol('privacyPolicy')" />
     </view>
   </view>

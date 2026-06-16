@@ -2,6 +2,7 @@
 import type { FormExpose } from '@wot-ui/ui/components/wd-form/types'
 import { zodAdapter } from '@wot-ui/ui'
 import { z } from 'zod'
+import router from '@/router'
 import { checkAccept } from './method'
 
 defineOptions({ name: 'PassLogin' })
@@ -68,7 +69,7 @@ async function handleLogin() {
 
 <template>
   <view class="flex-col gap-y-5">
-    <wd-card custom-class="!rounded-lg !shadow-sm !shadow-gray !shadow-op-10 !m-0 !bg-#ffffff98 !dark:bg-#1a1a1a98" custom-content-class="flex flex-col gap-15px py-6">
+    <wd-card custom-class="!rounded-lg !shadow-sm !shadow-gray !shadow-op-10 !m-0 !bg-#ffffff98 !dark:bg-#1a1a1a98" custom-content-class="flex-col gap-15px !py-5">
       <wd-text text="欢迎登录" custom-class="text-center font-bold !text-default" size="20px" />
       <wd-form
         ref="loginFormRef" :model="model" :schema="zodAdapter(
@@ -112,10 +113,11 @@ async function handleLogin() {
       立即登录
     </wd-button>
 
-    <view class="flex justify-center">
+    <view class="flex-center gap-2">
       <wd-checkbox v-model="model.remember" shape="square">
         记住账号
       </wd-checkbox>
+      <wd-text type="primary" text="注册新账号" @click="() => router.push('/pages/login/register')" />
     </view>
   </view>
 </template>

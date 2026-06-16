@@ -1,4 +1,4 @@
-import type { AccessTokenModel, LoginModel, UserProfileInfo } from '@/service/apis/base/globals.d.ts'
+import type { AccessTokenModel, LoginModel, RegisterByEmailModel, UserProfileInfo } from '@/service/apis/base/globals.d.ts'
 import dayjs from 'dayjs'
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
@@ -114,6 +114,31 @@ export const useUserStore = defineStore(
       }
     }
 
+    /** 注册请求 */
+    const { send: sendRegisterRequest } = useRequest(
+      (data: RegisterByEmailModel, role: string) => Webapi_Base.auth.register({ data, headers: { role } }),
+      { immediate: false },
+    ).onSuccess((res) => {
+      console.log('注册成功', res)
+    }).onError((res) => {
+      console.log('注册失败', res)
+      toast.warning(res.error?.message || 'Registration failed...')
+    }).onComplete(() => {
+      hideLoading()
+    })
+
+    /** 注册 */
+    async function register(model: RegisterByEmailModel, role: string) {
+      try {
+        const res = await sendRegisterRequest(model, encodeURIComponent(role))
+        return { isSuccess: res?.isSuccess, data: res?.data }
+      }
+      catch (err: any) {
+        // toast.error(err?.error?.message || 'Registration failed')
+        return { isSuccess: false, error: err }
+      }
+    }
+
     /**
      * 检查用户登录状态，未登录时显示提示弹窗并跳转到登录页面
      * @returns {Promise<void>} 已登录时 resolve，未登录时 reject
@@ -174,6 +199,8 @@ export const useUserStore = defineStore(
       easyLogin,
       /** 退出登录 */
       logout,
+      /** 注册 */
+      register,
       /** 检查用户登录状态，未登录时显示提示弹窗并跳转到登录页面 */
       unLoginAlert,
     }

@@ -39,6 +39,8 @@ export default {
   'auth.getProfileInfo': ['GET', '/api/Base/Auth/getProfileInfo'],
   'auth.logout': ['POST', '/api/Base/Auth/logout'],
   'auth.sendEmail': ['POST', '/api/Base/Auth/sendEmail'],
+  'auth.generateRandomAccount': ['GET', '/api/Base/Auth/generateRandomAccount'],
+  'auth.register': ['POST', '/api/Base/Auth/register'],
   'carousel.getCarouselList': ['GET', '/api/Base/Carousels/list'],
   'carousel.getCarousel': ['GET', '/api/Base/Carousels/get'],
   'carousel.getCarouselByKey': ['GET', '/api/Base/Carousels/getByKey'],

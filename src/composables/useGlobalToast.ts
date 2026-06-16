@@ -31,25 +31,29 @@ export const useGlobalToast = defineStore('global-toast', {
       this.show(CommonUtil.deepMerge({
         iconName: 'success',
         duration: 1500,
+        iconColor: '#07C160',
       }, typeof option === 'string' ? { msg: option } : option) as ToastOptions)
     },
     // 关闭提示
     error(option: ToastOptions | string) {
       this.show(CommonUtil.deepMerge({
         iconName: 'error',
-        direction: 'vertical',
+        direction: 'horizontal',
+        iconColor: '#FF4757',
       }, typeof option === 'string' ? { msg: option } : option) as ToastOptions)
     },
     // 常规提示
     info(option: ToastOptions | string) {
       this.show(CommonUtil.deepMerge({
         iconName: 'info',
+        iconColor: 'gray',
       }, typeof option === 'string' ? { msg: option } : option) as ToastOptions)
     },
     // 警告提示
     warning(option: ToastOptions | string) {
       this.show(CommonUtil.deepMerge({
         iconName: 'warning',
+        iconColor: '#FF7D00',
       }, typeof option === 'string' ? { msg: option } : option) as ToastOptions)
     },
     // 关闭Toast

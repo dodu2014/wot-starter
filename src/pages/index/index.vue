@@ -11,7 +11,6 @@ definePage({
 
 const {
   theme,
-  followSystem,
   toggleTheme,
   currentThemeColor,
   showThemeColorSheet,
@@ -21,15 +20,6 @@ const {
   selectThemeColor,
   setFollowSystem,
 } = useManualTheme()
-
-const isFollowSystem = computed<boolean>({
-  get() {
-    return followSystem.value
-  },
-  set(val) {
-    setFollowSystem(val)
-  },
-})
 
 const isDark = computed({
   get() {
@@ -55,16 +45,6 @@ function handleThemeColorSelect(option: any) {
 function openUrl(url: string) {
   window.open(url, '_blank')
 }
-
-const { getMessageList } = useUserBadge()
-const { userInfo, logined } = useUserStore()
-
-onLoad(async () => {
-  if (logined && userInfo?.id) {
-    console.log('检测到用户已经登录，立即统计用户消息数量，并设置 tabbar 的角标')
-    await getMessageList(userInfo.id)
-  }
-})
 </script>
 
 <template>
@@ -81,17 +61,15 @@ onLoad(async () => {
       </text>
     </view>
 
-    <demo-block title="基础设置" custom-card-content-class="!p-0">
+    <demo-block title="基础设置" transparent>
       <wd-cell-group border custom-class="rounded-2! overflow-hidden">
-        <wd-cell title="跟随系统" center>
-          <view class="flex justify-end">
-            <wd-switch v-model="isFollowSystem" size="14px" />
-          </view>
-        </wd-cell>
         <wd-cell title="暗黑模式">
-          <view class="flex justify-end">
-            <wd-switch v-model="isDark" size="14px" :disabled="isFollowSystem" />
-          </view>
+          <wd-switch v-model="isDark" size="18px" />
+        </wd-cell>
+        <wd-cell title="跟随系统">
+          <wd-button size="small" @click="setFollowSystem">
+            跟随系统
+          </wd-button>
         </wd-cell>
         <wd-cell title="选择主题色" is-link @click="openThemeColorPicker">
           <view class="flex items-center justify-end gap-2">
@@ -105,7 +83,7 @@ onLoad(async () => {
       </wd-cell-group>
     </demo-block>
 
-    <demo-block title="工具链介绍" custom-card-content-class="!p-0">
+    <demo-block title="工具链介绍" transparent>
       <wd-cell-group border custom-class="rounded-2! overflow-hidden">
         <wd-cell title="🧩 WotUI组件库" is-link @click="openUrl('https://wot-ui.cn/')" />
         <!-- <wd-cell title="🧠 Agent Skills" is-link @click="navigateTo('skills')" /> -->

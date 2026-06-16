@@ -20,21 +20,21 @@ export const useGlobalDialog = defineStore('global-Dialog', {
     show(option: GlobalDialogOptions | string) {
       const opt = (CommonUtil.isString(option) ? { title: option } : option)
       opt.cancelButtonProps = {
-        text: 'Cancel',
+        // text: '取消',
         round: false,
         variant: 'base',
         ...opt.cancelButtonProps as any,
       }
       opt.confirmButtonProps = {
-        text: 'Confirm',
+        // text: '确认',
         customClass: '!bg-primary-gradient',
         round: false,
         ...opt.confirmButtonProps as any,
       }
       this.currentPage = getCurrentPath()
       this.dialogOptions = {
-        cancelButtonText: 'Cancel',
-        confirmButtonText: 'Confirm',
+        // cancelButtonText: '取消',
+        // confirmButtonText: '确认',
         ...opt,
       }
     },
@@ -48,21 +48,21 @@ export const useGlobalDialog = defineStore('global-Dialog', {
       return new Promise<DialogResult>((resolve, reject) => {
         const opt = (CommonUtil.isString(option) ? { title: option } : option)
         opt.cancelButtonProps = {
-          text: 'Cancel',
+          // text: 'Cancel',
           round: false,
           variant: 'base',
           ...opt.cancelButtonProps as any,
         }
         opt.confirmButtonProps = {
-          text: 'Confirm',
+          // text: 'Confirm',
           customClass: '!bg-primary-gradient',
           round: false,
           ...opt.confirmButtonProps as any,
         }
         this.currentPage = getCurrentPath()
         this.dialogOptions = {
-          cancelButtonText: 'Cancel',
-          confirmButtonText: 'Confirm',
+          // cancelButtonText: 'Cancel',
+          // confirmButtonText: 'Confirm',
           ...opt,
           success(res) {
             resolve(res)

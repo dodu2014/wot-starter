@@ -196,7 +196,7 @@ onShow(async () => {
             :icon="item.icon"
             :text="item.title"
             :value="item.badge"
-            custom-icon="text-primary"
+            custom-icon="!text-primary"
             custom-class="rounded"
             @itemclick="() => router.push({ path: item.path, query: item.query })"
           />
@@ -212,18 +212,28 @@ onShow(async () => {
       </wd-card>
 
       <!-- 主题设置 -->
-      <wd-cell-group insert border custom-class="!mx-0">
+      <wd-cell-group insert border custom-class="!mx-0 shadow-md">
         <wd-cell title="跟随系统" center>
+          <template #prefix>
+            <text class="i-carbon:screen mr-2 text-18px text-primary" />
+          </template>
           <view class="flex justify-end">
             <wd-switch v-model="isFollowSystem" size="14px" />
           </view>
         </wd-cell>
         <wd-cell title="暗黑模式" center>
+          <template #prefix>
+            <text v-if="darkMode" class="i-carbon:moon mr-2 text-18px text-primary" />
+            <text v-else class="i-carbon:sun mr-2 text-18px text-primary" />
+          </template>
           <view class="flex justify-end">
             <wd-switch v-model="darkMode" size="14px" :disabled="isFollowSystem" />
           </view>
         </wd-cell>
         <wd-cell title="选择主题色" is-link @click="openThemeColorPicker">
+          <template #prefix>
+            <text class="i-carbon:color-palette mr-2 text-18px text-primary" />
+          </template>
           <view class="flex items-center justify-end gap-2">
             <view class="h-3 w-3 rounded-full bg-primary" />
             <text>{{ currentThemeColor.name }}</text>
@@ -238,6 +248,7 @@ onShow(async () => {
           :key="item.title"
           :title="item.title"
           :prefix-icon="item.icon"
+          custom-prefix-class="!text-primary !mr-2 !text-22px"
           is-link
           @click="() => router.push({ path: item.path, query: item.query })"
         >

@@ -1,7 +1,6 @@
-const { confirm } = useGlobalDialog()
-
 /** 检测是否接收协议 */
 export function checkAccept(agreed: boolean): Promise<boolean> {
+  const { confirm } = useGlobalDialog()
   return new Promise((resolve, reject) => {
     if (agreed) {
       resolve(true)

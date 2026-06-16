@@ -1,4 +1,5 @@
 import { defineConfig } from '@uni-helper/unh'
+import { copyBuildApkToDist, copyDevApkToDist } from './scripts/copyBaseApk'
 
 export default defineConfig({
   // 平台配置
@@ -21,6 +22,12 @@ export default defineConfig({
     dev({ platform, options, envData }) {
       console.log('dev:', { platform, options, envData })
     },
+    onDevAfter({ platform, options, envData }) {
+      console.log('devAfter:', { platform, options, envData })
+      if (platform === 'app') {
+        copyDevApkToDist()
+      }
+    },
     // 构建时的钩子，接收平台参数
     build({ platform, options, envData }) {
       console.log('build:', { platform, options, envData })
@@ -28,6 +35,9 @@ export default defineConfig({
     // 构建后的hooks，接收平台参数
     onBuildAfter({ platform, options, envData }) {
       console.log('buildAfter:', { platform, options, envData })
+      if (platform === 'app') {
+        copyBuildApkToDist()
+      }
     },
   },
   // 自动生成配置

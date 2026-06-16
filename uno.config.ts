@@ -45,15 +45,21 @@ export default defineConfig({
   shortcuts: [
     {
       'flex-center': 'flex justify-center items-center',
+      'flex-row': 'flex flex-row',
       'flex-col': 'flex flex-col',
-      'text-default': 'text-gray-800 dark:text-[var(--wot-dark-color)]',
-      'bg-default': 'bg-white dark:bg-[var(--wot-dark-background)]',
+      'text-default': 'text-[var(--wot-text-main)]',
+      'bg-default': 'bg-[var(--wot-filled-oppo)]',
+      'bg-second': 'bg-[var(--wot-filled-bottom)]',
+      'bg-third': 'bg-[var(--wot-filled-content)]',
     },
   ],
   theme: {
     colors: {
       /** 主题色，用法如: text-primary */
-      primary: 'var(--wot-color-theme, #4d80f0)',
+      primary: 'var(--wot-primary-6, #4D7FFF)',
+      warning: 'var(--wot-warning-6, #F57F00)',
+      success: 'var(--wot-success-6, #12B886)',
+      danger: 'var(--wot-danger-6, #F14646)',
     },
     fontSize: {
       /** 提供更小号的字体，用法如：text-2xs */

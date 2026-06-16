@@ -7,7 +7,7 @@ import { tabBar } from '../pages.json'
  */
 export function getCurrentPath() {
   const pages = getCurrentPages<{ needLogin?: boolean }>()
-  const currentPage = pages.at(-1)
+  const currentPage = pages[pages.length - 1]
   return currentPage?.route || ''
 }
 

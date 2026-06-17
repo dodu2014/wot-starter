@@ -66,7 +66,13 @@ export const useUserStore = defineStore(
 
     /* 登录请求 */
     const { send: sendLoginRequest } = useRequest(
-      (model: LoginModel, openId?: string) => Webapi_Base.auth.login({ params: { openId }, data: model }),
+      (model: LoginModel, openId?: string) => Webapi_Base.auth.login({
+        params: { openId },
+        data: model,
+        headers: {
+          // roles: encodeURIComponent('业务'),
+        },
+      }),
       { immediate: false },
     ).onError((error) => {
       toast.error(error.error?.message || '')

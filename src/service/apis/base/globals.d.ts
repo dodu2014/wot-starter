@@ -2516,8 +2516,6 @@ declare global {
        * **Query Parameters**
        * ```ts
        * type QueryParameters = {
-       *   // 通过账号密码获取认证token
-       *   roles?: string
        *   // 移动端 openId
        *   openId?: string
        * }
@@ -2563,10 +2561,6 @@ declare global {
       login<
         Config extends Alova2MethodConfig<ApiResultOfAccessTokenModel> & {
           params: {
-            /**
-             * 通过账号密码获取认证token
-             */
-            roles?: string;
             /**
              * 移动端 openId
              */

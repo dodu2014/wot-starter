@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import { onExit } from '@dcloudio/uni-app'
+import { useI18nSync } from './hooks/useI18nSync'
+import { useIframeMessage } from './hooks/useIframeMessage'
 import router from './router'
 
 const { logined, userInfo } = storeToRefs(useUserStore())
@@ -61,6 +63,15 @@ watch(
     immediate: true,
   },
 )
+
+const { setLocale } = useI18nSync() // 禁用内置的iframe消息监听，使用专门的hook处理
+
+// 使用专门的iframe消息处理hook
+useIframeMessage({
+  onLocaleChange: (locale) => {
+    setLocale(locale)
+  },
+})
 
 onLaunch(async () => {
   // #ifdef MP-WEIXIN

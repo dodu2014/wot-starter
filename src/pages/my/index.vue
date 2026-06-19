@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { useI18nSync } from '@/hooks/useI18nSync'
 import router, { LOGIN_PAGE } from '@/router'
 import defaultAvatar from '/static/images/devault-avatar.svg'
 
@@ -54,27 +55,6 @@ const gridItems = ref<MenuItem[]>([
     path: '/pages/feature/index',
   },
 ])
-const moreItems = ref<MenuItem[]>([
-  {
-    title: '消息中心',
-    icon: 'message',
-    path: '/pages/user/message',
-    badge: 0,
-  },
-  {
-    title: '帮助中心',
-    icon: 'question-circle',
-    path: '/pages/article/list',
-    query: {
-      num: '02',
-    },
-  },
-  {
-    title: '关于我们',
-    icon: 'info-circle',
-    path: '/pages/about/index',
-  },
-])
 
 const {
   theme,
@@ -110,6 +90,32 @@ const darkMode = computed({
 const { messageCount, getMessageList } = useUserBadge()
 const { wxUserInfo, wxLogin } = useWxUserStore()
 
+// 使用国际化钩子
+const { setLocale, currentLang } = useI18nSync()
+function handleToggleLanguage(item: LanguageAction) {
+  setLocale(item.key)
+}
+// 控制语言切换弹出层的显示
+const showLanguageSwitch = ref(false)
+interface LanguageAction {
+  name: string
+  key: 'zh-CN' | 'en-US'
+  color: string
+}
+// 语言切换选项
+const languageActions = computed<LanguageAction[]>(() => [
+  {
+    name: '中文 🇨🇳',
+    key: 'zh-CN',
+    color: currentLang.value === 'zh-CN' ? 'var(--wot-primary-6, #0083ff)' : '',
+  },
+  {
+    name: 'English 🇺🇸',
+    key: 'en-US',
+    color: currentLang.value === 'en-US' ? 'var(--wot-primary-6, #0083ff)' : '',
+  },
+])
+
 onLoad(async () => {
   if (logined.value && !userInfo.value) {
     await userStore.loadUserInfo()
@@ -128,9 +134,6 @@ onShow(async () => {
 
     // 统计消息列表, 并更新对应消息中心项的角标
     await getMessageList(userInfo.value!.id!)
-    const messageItem = moreItems.value.find(item => item.title === '消息中心')
-    if (messageItem)
-      messageItem.badge = messageCount.value
   }
 })
 </script>
@@ -140,7 +143,7 @@ onShow(async () => {
     <!-- 用户信息头部 -->
     <view class="from-orange/75 to-primary bg-gradient-to-rb text-white">
       <wd-navbar
-        title="个人中心"
+        :title="$t('pages.my.title')"
         safe-area-inset-top placeholder fixed
         custom-class="!bg-transparent"
         :bordered="false"
@@ -155,10 +158,10 @@ onShow(async () => {
           />
           <view class="mr-auto">
             <view class="text-xl font-semibold">
-              {{ logined && (userInfo?.name || userInfo?.userName) || '未登录用户' }}
+              {{ logined && (userInfo?.name || userInfo?.userName) || $t('pages.my.userInfo.guestName') }}
             </view>
             <view class="mt-1 text-xs opacity-75">
-              {{ logined && (userInfo?.description || '这家伙很懒，什么都没有写') || '点击此处登录' }}
+              {{ logined && (userInfo?.description || $t('pages.my.userInfo.description')) || $t('pages.my.userInfo.login-description') }}
             </view>
           </view>
           <wd-icon v-if="logined" name="settings" size="30px" @click.prevent.stop="() => router.push({ path: '/pages/user/settings' })" />
@@ -213,7 +216,7 @@ onShow(async () => {
 
       <!-- 主题设置 -->
       <wd-cell-group insert border custom-class="!mx-0 shadow-md">
-        <wd-cell title="跟随系统" center>
+        <wd-cell :title="$t('pages.my.themeSetting.auto-mode-title')" center>
           <template #prefix>
             <text class="i-carbon:screen mr-2 text-18px text-primary" />
           </template>
@@ -221,7 +224,7 @@ onShow(async () => {
             <wd-switch v-model="isFollowSystem" size="14px" />
           </view>
         </wd-cell>
-        <wd-cell title="暗黑模式" center>
+        <wd-cell :title="$t('pages.my.themeSetting.dark-mode-title')" center>
           <template #prefix>
             <text v-if="darkMode" class="i-carbon:moon mr-2 text-18px text-primary" />
             <text v-else class="i-carbon:sun mr-2 text-18px text-primary" />
@@ -230,13 +233,13 @@ onShow(async () => {
             <wd-switch v-model="darkMode" size="14px" :disabled="isFollowSystem" />
           </view>
         </wd-cell>
-        <wd-cell title="选择主题色" is-link @click="openThemeColorPicker">
+        <wd-cell :title="$t('pages.my.themeSetting.custom-theme-title')" is-link @click="openThemeColorPicker">
           <template #prefix>
             <text class="i-carbon:color-palette mr-2 text-18px text-primary" />
           </template>
           <view class="flex items-center justify-end gap-2">
             <view class="h-3 w-3 rounded-full bg-primary" />
-            <text>{{ currentThemeColor.name }}</text>
+            <text>{{ $t(`pages.my.themeSheet.${currentThemeColor.value}`) }}</text>
           </view>
         </wd-cell>
       </wd-cell-group>
@@ -244,24 +247,61 @@ onShow(async () => {
       <!-- 更多功能列表 -->
       <wd-cell-group insert border custom-class="!mx-0">
         <wd-cell
-          v-for="item in moreItems"
-          :key="item.title"
-          :title="item.title"
-          :prefix-icon="item.icon"
+          :title="$t('pages.my.otherSetting.language-title')"
+          prefix-icon="language"
           custom-prefix-class="!text-primary !mr-2 !text-22px"
           is-link
-          @click="() => router.push({ path: item.path, query: item.query })"
+          @click="showLanguageSwitch = true"
         >
-          <wd-badge :model-value="item.badge" :max="99" />
+          <wd-text :text="currentLang === 'zh-CN' ? '中文' : 'English'" />
         </wd-cell>
+        <wd-cell
+          :title="$t('pages.my.controlPanel.message-title')"
+          is-link
+          center
+          prefix-icon="message"
+          custom-prefix-class="!text-primary !mr-2 !text-22px"
+          @click="() => router.push('/pages/user/message')"
+        >
+          <wd-badge :value="messageCount" :max="99" />
+        </wd-cell>
+        <wd-cell
+          :title="$t('pages.my.otherSetting.help-title')"
+          is-link
+          center
+          prefix-icon="question-circle"
+          custom-prefix-class="!text-primary !mr-2 !text-22px"
+          @click="() => router.push({ path: '/pages/article/list', query: { num: '02' } })"
+        />
+        <wd-cell
+          :title="$t('pages.my.otherSetting.about-title')"
+          is-link
+          center
+          prefix-icon="info-circle"
+          custom-prefix-class="!text-primary !mr-2 !text-22px"
+          @click="() => router.push('/pages/about/index')"
+        />
       </wd-cell-group>
     </view>
+
+    <view class="mt-auto flex-center flex-col gap-1 pb-4">
+      <wd-text :text="$t('pages.my.description')" size="12px" />
+      <wd-text :text="$t('pages.my.copyright')" size="10px" />
+    </view>
   </view>
+
+  <wd-action-sheet
+    v-model="showLanguageSwitch"
+    :actions="languageActions"
+    :title="$t('pages.my.languageSheet.title')"
+    custom-class="pb-50px"
+    @select="({ item }: { item: LanguageAction }) => handleToggleLanguage(item)"
+  />
 
   <!-- 主题色选择 ActionSheet -->
   <wd-action-sheet
     v-model="showThemeColorSheet"
-    title="选择主题色"
+    :title="$t('pages.my.themeSheet.title')"
     :close-on-click-action="true"
     @cancel="closeThemeColorPicker"
   >
@@ -278,7 +318,7 @@ onShow(async () => {
             :style="{ backgroundColor: option.primary }"
           />
           <text class="text-4 text-gray-800 dark:text-gray-200">
-            {{ option.name }}
+            {{ $t(`pages.my.themeSheet.${option.value}`) }}
           </text>
         </view>
         <wd-icon

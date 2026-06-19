@@ -1,0 +1,44 @@
+{
+  "pages": {
+    "my": {
+      "title": "个人中心",
+      "userInfo": {
+        "guestName": "游客",
+        "description": "这个家伙很懒，什么也没写。",
+        "login-description": "点击此处登录"
+      },
+      "controlPanel": {
+        "title": "控制面板",
+        "order-title": "云主机订单",
+        "message-title": "用户消息"
+      },
+      "themeSetting": {
+        "title": "主题设置",
+        "auto-mode-title": "跟随系统",
+        "dark-mode-title": "深色模式",
+        "custom-theme-title": "选择主题色"
+      },
+      "themeSheet": {
+        "title": "选择主题色",
+        "bluepurple": "蓝紫色",
+        "blue": "默认蓝",
+        "orange": "活力橙",
+        "green": "薄荷绿",
+        "pink": "樱花粉",
+        "purple": "紫罗兰",
+        "red": "朱砂红"
+      },
+      "otherSetting": {
+        "language-title": "语言",
+        "help-title": "帮助",
+        "customer-service-title": "联系客服",
+        "about-title": "关于我们"
+      },
+      "languageSheet": {
+        "title": "切换语言"
+      },
+      "description": "应用描述 应用描述 应用描述 应用描述",
+      "copyright": "©2026 TNTAPP 版权所有"
+    }
+  }
+}

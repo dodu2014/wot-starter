@@ -1,0 +1,44 @@
+{
+  "pages": {
+    "my": {
+      "title": "Personal Center",
+      "userInfo": {
+        "guestName": "guest",
+        "description": "This guy is very lazy and hasn't written anything.",
+        "login-description": "Click here to login"
+      },
+      "controlPanel": {
+        "title": "Control Panel",
+        "order-title": "Cloud Hosting Order",
+        "message-title": "User Messages"
+      },
+      "themeSetting": {
+        "title": "Theme Setting",
+        "auto-mode-title": "Follow System",
+        "dark-mode-title": "Dark Mode",
+        "custom-theme-title": "Select Theme Color"
+      },
+      "themeSheet": {
+        "title": "Choose theme color",
+        "bluepurple": "Blue purple",
+        "blue": "Default Blue",
+        "orange": "Vibrant Orange",
+        "green": "Mint Green",
+        "pink": "Cherry Pink",
+        "purple": "Violet",
+        "red": "Crimson Red"
+      },
+      "otherSetting": {
+        "language-title": "Language",
+        "help-title": "Help",
+        "customer-service-title": "Customer Service",
+        "about-title": "About Us"
+      },
+      "languageSheet": {
+        "title": "Switch Language"
+      },
+      "description": "Your Privacy Shield, secure, fast, and private",
+      "copyright": "©2026 TNTAPP All rights reserved."
+    }
+  }
+}

@@ -40,8 +40,11 @@ export default {
     @change="handleTabbarChange"
   >
     <wd-tabbar-item
-      v-for="(item, index) in tabbarList" :key="index" :name="item.name"
-      :value="getTabbarItemValue(item.name)" :title="item.title" :icon="item.icon"
+      v-for="(item, index) in tabbarList" :key="index"
+      :name="item.name"
+      :value="getTabbarItemValue(item.name)"
+      :title="$t(item.title)"
+      :icon="item.icon"
     />
   </wd-tabbar>
 </template>

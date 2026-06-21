@@ -38,7 +38,12 @@
         "title": "切换语言"
       },
       "description": "应用描述 应用描述 应用描述 应用描述",
-      "copyright": "©2026 TNTAPP 版权所有"
+      "copyright": "©{0} TNTAPP 版权所有"
     }
+  },
+
+  "tabbar": {
+    "index": "首页",
+    "my": "我的"
   }
 }

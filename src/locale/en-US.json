@@ -38,7 +38,12 @@
         "title": "Switch Language"
       },
       "description": "Your Privacy Shield, secure, fast, and private",
-      "copyright": "©2026 TNTAPP All rights reserved."
+      "copyright": "©{0} TNTAPP All rights reserved."
     }
+  },
+
+  "tabbar": {
+    "index": "home",
+    "my": "my"
   }
 }

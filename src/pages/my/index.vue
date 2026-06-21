@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import dayjs from 'dayjs'
 import { useI18nSync } from '@/hooks/useI18nSync'
 import router, { LOGIN_PAGE } from '@/router'
 import defaultAvatar from '/static/images/devault-avatar.svg'
@@ -286,7 +287,7 @@ onShow(async () => {
 
     <view class="mt-auto flex-center flex-col gap-1 pb-4">
       <wd-text :text="$t('pages.my.description')" size="12px" />
-      <wd-text :text="$t('pages.my.copyright')" size="10px" />
+      <wd-text :text="$t('pages.my.copyright', [dayjs().year()])" size="10px" />
     </view>
   </view>
 

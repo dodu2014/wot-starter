@@ -1,4 +1,11 @@
 {
+  "common": {
+    "dialog": {
+      "cancel": "取消",
+      "confirm": "确认"
+    }
+  },
+
   "pages": {
     "home": {
       "title": "首页"

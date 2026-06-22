@@ -1,4 +1,11 @@
 {
+  "common": {
+    "dialog": {
+      "cancel": "Cancel",
+      "confirm": "Confirm"
+    }
+  },
+
   "pages": {
     "home": {
       "title": "Home"

@@ -28,39 +28,6 @@ const userStats = ref({
   teamMembers: 8,
 })
 
-// 功能菜单项
-interface MenuItem {
-  title: string
-  icon: string
-  path: _LocationUrl
-  query?: Record<string, string | number>
-  badge?: number
-}
-const gridItems = ref<MenuItem[]>([
-  {
-    title: '我的订单',
-    icon: 'list',
-    path: '/pages/about/index',
-    badge: 3,
-  },
-  {
-    title: '团队成员',
-    icon: 'user-group',
-    path: '/pages/about/index',
-    badge: 8,
-  },
-  {
-    title: '邀请加入',
-    icon: 'qrcode',
-    path: '/pages/about/index',
-  },
-  {
-    title: '功能页面',
-    icon: 'apps',
-    path: '/pages/feature/index',
-  },
-])
-
 const {
   theme,
   followSystem,
@@ -199,23 +166,45 @@ onShow(async () => {
       <wd-card custom-class="rounded-lg overflow-hidden shadow-sm !m-0 !px-0" custom-content-class="!p-2">
         <wd-grid clickable :column="3">
           <wd-grid-item
-            v-for="item in gridItems"
-            :key="item.title"
-            :icon="item.icon"
-            :text="item.title"
-            :value="item.badge"
+            :text="$t('pages.my.gridInfo.item-orderList')"
+            icon="list"
+            value="3"
             custom-icon="!text-primary"
             custom-class="rounded"
-            @itemclick="() => router.push({ path: item.path, query: item.query })"
+            custom-text="!text-12px"
+            @click="() => router.push('/pages/business/order/index')"
           />
-          <!-- #ifdef MP-WEIXIN -->
+          <wd-grid-item
+            :text="$t('pages.my.gridInfo.item-teamGroup')"
+            icon="user-group"
+            value="8"
+            custom-icon="!text-primary"
+            custom-class="rounded"
+            custom-text="!text-12px"
+            @click="() => router.push('/pages/business/team/index')"
+          />
+          <wd-grid-item
+            :text="$t('pages.my.gridInfo.item-invite')"
+            icon="qrcode"
+            custom-icon="!text-primary"
+            custom-class="rounded"
+            custom-text="!text-12px"
+            @click="() => router.push('/pages/business/team/join')"
+          />
+          <wd-grid-item
+            :text="$t('pages.my.gridInfo.item-moreFeature')"
+            icon="apps"
+            custom-icon="!text-primary"
+            custom-class="rounded"
+            custom-text="!text-12px"
+            @click="() => router.push('/pages/feature/index')"
+          />
           <wd-grid-item custom-icon="text-primary" custom-class="rounded">
-            <button open-type="contact" class="button-reset flex-col gap-8px">
-              <wd-icon name="mic" size="26px" custom-class="text-primary line-height-37px" />
-              <wd-text text="联系客服" size="12px" custom-class="!line-height-12px" />
+            <button open-type="contact" class="button-reset flex-col">
+              <wd-icon name="mic" size="32px" custom-class="text-primary" />
+              <wd-text :text="$t('pages.my.gridInfo.item-customerService')" size="12px" :lines="1" custom-class="!text-default !line-height-24px mt-4px" />
             </button>
           </wd-grid-item>
-        <!-- #endif -->
         </wd-grid>
       </wd-card>
 

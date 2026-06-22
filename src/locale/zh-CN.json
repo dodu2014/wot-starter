@@ -10,6 +10,13 @@
         "description": "这个家伙很懒，什么也没写。",
         "login-description": "点击此处登录"
       },
+      "gridInfo": {
+        "item-orderList": "我的订单",
+        "item-teamGroup": "团队成员",
+        "item-invite": "邀请加入",
+        "item-moreFeature": "功能页面",
+        "item-customerService": "联系客服"
+      },
       "controlPanel": {
         "title": "控制面板",
         "order-title": "云主机订单",

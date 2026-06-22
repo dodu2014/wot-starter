@@ -10,6 +10,13 @@
         "description": "This guy is very lazy and hasn't written anything.",
         "login-description": "Click here to login"
       },
+      "gridInfo": {
+        "item-orderList": "My Orders",
+        "item-teamGroup": "Team Members",
+        "item-invite": "Invite",
+        "item-moreFeature": "More Funs",
+        "item-customerService": "Customer Service"
+      },
       "controlPanel": {
         "title": "Control Panel",
         "order-title": "Cloud Hosting Order",

@@ -1,5 +1,15 @@
+import type { USE_LOCALES } from '@/hooks/useI18nSync'
+
+export const tagStyle = {
+  h3: 'font-weight: bold; font-size: 18px; line-height: 1.8em; margin: 12px 0;',
+  h4: 'font-weight: bold; font-size: 16px; line-height: 1.8em; margin: 12px 0;',
+  ul: 'margin: 8px 0; padding-left: 20px; line-height: 1.8em;',
+  li: 'line-height: 1.8em;',
+  p: 'margin: 8px 0; line-height: 1.8em;',
+}
+
 /** 用户服务协议 html 内容 */
-export const userAgreementContent: string = `<div>
+export const userAgreementContentCn: string = `<div>
   <div class="group-infos">
     <p>
       本指引是本应用开发者（以下简称“开发者”）为处理你的个人信息而制定。
@@ -101,3 +111,112 @@ export const userAgreementContent: string = `<div>
   <p style="text-align: right; margin-top: 30px">更新日期：2025-04-20</p>
   <p style="text-align: right; margin-bottom: 20px">生效日期：2025-04-20</p>
 </div>`
+
+/** 用户服务协议 html 内容 */
+export const userAgreementContentEn: string = `<div>
+  <div class="group-infos">
+    <p>
+      This guide is formulated by the developer of this application (hereinafter referred to as the "Developer") for the processing of your personal information.
+    </p>
+  </div>
+  <div class="group-infos">
+    <div class="group-infos__hd">
+      <h4 class="group-infos__title">Information Processed by the Developer</h4>
+      <p class="group-infos__hd-privacyText">
+        In accordance with applicable laws, the Developer only processes information necessary for the functionality of the Mini Program.
+      </p>
+    </div>
+    <ul class="privacy-config__list">
+      <li>
+        To quickly fill in your personal information, the Developer will collect your WeChat nickname and avatar after obtaining your explicit consent.
+      </li>
+      <li>
+        To match you with the nearest service provider, the Developer will collect your location information after obtaining your explicit consent.
+      </li>
+      <li>The Developer collects your address for quick registration of your delivery address.</li>
+      <li>The Developer collects your selected photos or video information for uploading business-related content.</li>
+      <li>
+        To capture on-site conditions for business purposes, the Developer will access your camera after obtaining your explicit consent.
+      </li>
+      <li>
+        To quickly complete user registration, the Developer will collect your mobile phone number after obtaining your explicit consent.
+      </li>
+      <li>The Developer collects your ID number for identity verification and related business purposes.</li>
+      <li>
+        To quickly register vehicle information, the Developer will collect your license plate number after obtaining your explicit consent.
+      </li>
+      <li>The Developer collects your email address for sending electronic invoice information.</li>
+      <li>The Developer obtains your selected location information for selecting your location during business registration.</li>
+    </ul>
+  </div>
+  <div class="group-infos">
+    <div class="group-infos__hd">
+      <h4 class="group-infos__title">Your Rights</h4>
+      <p class="group-infos__hd-privacyText"></p>
+    </div>
+    <p class="group-infos_order">
+      Regarding your personal information, you may contact the Developer through the following means to exercise your legal rights, including the right to access, copy, correct, and delete your information.
+    </p>
+    <p class="group-infos_order">
+      If you have registered an account in the Mini Program, you may contact the Developer through the following means to request the deletion of your account. Upon receiving your request, the Developer undertakes to complete the verification and processing within fifteen business days and handle your relevant information in accordance with applicable laws and regulations.
+    </p>
+    <p>
+      <span style="margin-right: 10px">Email : </span>
+      <span style="overflow: hidden; word-break: break-all">business@liangdiang.cc</span>
+    </p>
+  </div>
+  <div class="group-infos">
+    <div class="group-infos__hd">
+      <h4 class="group-infos__title">Information Storage by the Developer</h4>
+      <p class="group-infos__hd-privacyText"></p>
+    </div>
+    <p class="group-infos_order">
+      The Developer undertakes that, unless otherwise provided by laws and regulations, the retention period for your information shall be the shortest time necessary to achieve the processing purpose.
+    </p>
+  </div>
+  <div class="group-infos">
+    <div class="group-infos__hd">
+      <h4 class="group-infos__title">Rules for Use of Information</h4>
+      <p class="group-infos__hd-privacyText"></p>
+    </div>
+    <p class="group-infos_order">
+      The Developer will use the collected information within the purposes expressly stated in this guide.
+    </p>
+    <p>
+      <span class="privacyLabel group-infos_order">If the Developer uses your information beyond the purposes or reasonable scope of this guide, the Developer must, before changing the purpose or scope of use, once again notify you through a</span>
+      <span>Privacy Policy Change Notice</span>
+      <span class="privacyLabel">and obtain your explicit consent.</span>
+    </p>
+  </div>
+  <div class="group-infos">
+    <div class="group-infos__hd">
+      <h4 class="group-infos__title">External Provision of Information</h4>
+      <p class="group-infos__hd-privacyText"></p>
+    </div>
+    <p class="group-infos_order">
+      The Developer undertakes not to proactively share or transfer your information to any third party. Where such sharing or transfer is truly necessary, the Developer shall directly obtain your separate consent or confirm that the third party has obtained your separate consent.
+    </p>
+    <p class="group-infos_order">
+      The Developer undertakes not to publicly disclose your information. Where public disclosure is necessary, the Developer shall inform you of the purpose of the disclosure, the types of information to be disclosed, and the information that may be involved, and obtain your separate consent.
+    </p>
+  </div>
+  <div class="group-infos">
+    <div class="group-infos__hd">
+      <h4 class="group-infos__title">
+        If you believe the Developer has not complied with the above commitments, or if you have other complaints or suggestions, or questions regarding the protection of minors' personal information, you may contact the Developer through the following means; or file a complaint with WeChat.
+      </h4>
+      <p class="group-infos__hd-privacyText"></p>
+    </div>
+    <p>
+      <span style="margin-right: 10px">Email : </span>
+      <span style="overflow: hidden; word-break: break-all">business@liangdiang.cc</span>
+    </p>
+  </div>
+  <p style="text-align: right; margin-top: 30px">Updated: 2025-04-20</p>
+  <p style="text-align: right; margin-bottom: 20px">Effective Date: 2025-04-20</p>
+</div>`
+
+export const userAgreementContent: Record<USE_LOCALES, string> = {
+  'zh-CN': userAgreementContentCn,
+  'en-US': userAgreementContentEn,
+}

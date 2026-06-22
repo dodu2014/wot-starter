@@ -1,8 +1,10 @@
 <script setup lang="ts">
+import type { USE_LOCALES } from '@/hooks/useI18nSync'
+import { useI18n } from 'vue-i18n'
 import { usePageTitle } from '@/hooks/usePageTitle'
 // @ts-expect-error vue2 在 vue3 中不可识别
 import mpHtml from '@/uni_modules/mp-html/components/mp-html/mp-html.vue'
-import { userAgreementContent } from './content'
+import { tagStyle, userAgreementContent } from './content'
 
 definePage({
   name: 'privacy-policy',
@@ -14,15 +16,12 @@ definePage({
 
 usePageTitle('pages.login.privacyPolicy.title')
 
-const tagStyle = {
-  h4: 'font-weight: bold; font-size: 16px; line-height: 16px; margin: 12px 0;',
-  ul: 'margin: 8px 0; padding-left: 20px;',
-  p: 'margin: 8px 0',
-}
+const { locale } = useI18n()
+const content = computed(() => userAgreementContent[locale.value as USE_LOCALES])
 </script>
 
 <template>
   <view class="p-15px text-default">
-    <mp-html :content="userAgreementContent" :tag-style="tagStyle" />
+    <mp-html :content="content" :tag-style="tagStyle" />
   </view>
 </template>

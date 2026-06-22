@@ -17,13 +17,12 @@ function isButtonPropsObject(value: unknown): value is Record<string, any> {
   return value !== null && CommonUtil.isObj(value)
 }
 
-function normalizeButtonProps(props: DialogBoxButtonOption | undefined, text?: string, customClass?: string): DialogBoxButtonOption | undefined {
+function normalizeButtonProps(props: DialogBoxButtonOption | undefined, text?: string): DialogBoxButtonOption | undefined {
   if (isButtonPropsObject(props)) {
     return {
       ...props,
       variant: 'base',
       ...(text ? { text } : {}),
-      ...(customClass ? { customClass } : {}),
     }
   }
 
@@ -31,7 +30,6 @@ function normalizeButtonProps(props: DialogBoxButtonOption | undefined, text?: s
     return {
       variant: 'base',
       ...(text ? { text } : {}),
-      ...(customClass ? { customClass } : {}),
     }
   }
 
@@ -59,7 +57,8 @@ function withDefaultTypeOptions(option: GlobalDialogOptions, type?: DialogType):
 function normalizeDialogOptions(option: GlobalDialogOptions, type?: DialogType): GlobalDialogOptions {
   const next = withDefaultTypeOptions(option, type)
 
-  next.confirmButtonProps = normalizeButtonProps(next.confirmButtonProps, next.confirmButtonText, '!bg-primary-gradient') as DialogOptions['confirmButtonProps']
+  const props = next.confirmButtonProps ? next.confirmButtonProps : {}
+  next.confirmButtonProps = normalizeButtonProps({ ...props as object, customClass: '!bg-primary-gradient' }, next.confirmButtonText) as DialogOptions['confirmButtonProps']
 
   if (next.showCancelButton === false) {
     next.cancelButtonProps = null

@@ -1,6 +1,10 @@
 <script setup lang="ts">
 import type { FormExpose } from '@wot-ui/ui/components/wd-form/types'
 import type { ApiResultOfUpFileUploadResult, UserProfileModel } from '@/service/apis/base/globals'
+import { useI18n } from 'vue-i18n'
+import { usePageTitle } from '@/hooks/usePageTitle'
+
+const { t } = useI18n()
 
 definePage({
   name: 'user-profile',
@@ -10,6 +14,8 @@ definePage({
   },
   needLogin: true,
 })
+
+usePageTitle('pages.user.profile.title')
 
 const { userInfo, loadUserInfo } = useUserStore()
 const { success, warning } = useGlobalToast()
@@ -45,7 +51,7 @@ const { error, loading, send } = useRequest(
   { immediate: false },
 )
   .onError((error) => {
-    warning(error.error?.message || '修改失败')
+    warning(error.error?.message || t('pages.user.profile.modifyFailed'))
   })
 
 async function handleSubmit() {
@@ -58,7 +64,7 @@ async function handleSubmit() {
   await send()
   if (!error.value) {
     await loadUserInfo()
-    success('修改成功')
+    success(t('pages.user.profile.modifySuccess'))
   }
 }
 
@@ -69,7 +75,7 @@ onLoad(() => {})
   <view class="flex-col gap-y-4">
     <wd-form ref="formRef" border :model="model">
       <wd-form-item
-        title="账号"
+        :title="$t('pages.user.profile.account')"
         title-width="100px"
         prop="userName"
       >
@@ -77,13 +83,13 @@ onLoad(() => {})
           v-model="model.userName"
           clearable
           disabled
-          placeholder="请输入用户名"
+          :placeholder="$t('pages.user.profile.accountPlaceholder')"
           marker-side="after"
-          :rules="[{ required: true, message: '必填' }]"
+          :rules="[{ required: true, message: t('pages.user.profile.required') }]"
         />
       </wd-form-item>
       <wd-form-item
-        title="邮箱"
+        :title="$t('pages.user.profile.email')"
         title-width="100px"
         prop="email"
       >
@@ -91,16 +97,16 @@ onLoad(() => {})
           v-model="model.email!"
           clearable
           disabled
-          placeholder="请输入邮箱"
+          :placeholder="$t('pages.user.profile.emailPlaceholder')"
           marker-side="after"
           :rules="[
-            { required: true, message: '必填' },
+            { required: true, message: t('pages.user.profile.required') },
             { required: false, pattern: /^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/, message: '邮箱格式不正确' },
           ]"
         />
       </wd-form-item>
       <wd-form-item
-        title="昵称"
+        :title="$t('pages.user.profile.nickname')"
         title-width="100px"
         prop="name"
       >
@@ -111,30 +117,30 @@ onLoad(() => {})
           marker-side="after"
           type="nickname"
           :rules="[
-            { required: true, message: '必填' },
+            { required: true, message: t('pages.user.profile.required') },
             { required: false, validator: (value: string) => value.length >= 2, message: '格式不正确，2-10个字符' },
           ]"
         />
       </wd-form-item>
-      <wd-form-item title="头像" title-width="100px">
+      <wd-form-item :title="$t('pages.user.profile.avatar')" title-width="100px">
         <view class="flex-col items-start gap-3">
           <app-upload v-model:value="model.avatarUrl!" :limit="1" :show-limit-num="false" />
           <!-- #ifdef MP-WEIXIN -->
           <wd-button type="info" size="small" open-type="chooseAvatar" @chooseavatar="handleChooseAvatar">
-            使用微信头像
+            {{ $t('pages.user.profile.useWechatAvatar') }}
           </wd-button>
           <!-- #endif -->
         </view>
       </wd-form-item>
       <wd-form-item
-        title="简介"
+        :title="$t('pages.user.profile.description')"
         title-width="100px"
         prop="description"
       >
         <wd-textarea
           v-model="model.description"
           clearable
-          placeholder="简介"
+          :placeholder="$t('pages.user.profile.descriptionPlaceholder')"
           :maxlength="200"
           show-word-limit
         />
@@ -143,7 +149,7 @@ onLoad(() => {})
 
     <view class="mx-4">
       <wd-button :loading="loading" type="primary" round block @click="handleSubmit">
-        提交
+        {{ $t('pages.user.profile.submit') }}
       </wd-button>
     </view>
   </view>

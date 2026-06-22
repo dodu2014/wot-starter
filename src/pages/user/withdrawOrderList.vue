@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import type { UserWalletWithdrawOrder } from '@/service/apis/base/globals'
 import dayjs from 'dayjs'
+import { usePageTitle } from '@/hooks/usePageTitle'
 import router from '@/router'
 
 const toast = useGlobalToast()
@@ -20,6 +21,8 @@ definePage({
   },
   needLogin: true,
 })
+
+usePageTitle('pages.user.withdrawOrder.title')
 
 type Mode = 'push' | 'replace'
 const { loading, send: sendGetListRequest } = useRequest(
@@ -71,15 +74,15 @@ onLoad(async (e: any) => {
 
     <!-- 缺省内容 -->
     <view v-if="loading === false && !modelList.length" class="h-65vh flex-center flex-col">
-      <wd-empty icon="no-content" tip="暂无内容" />
+      <app-empty image="content" :tip="$t('pages.user.withdrawOrder.noContent')" />
     </view>
 
     <!-- 列表 -->
     <wd-cell-group border>
       <wd-cell
         v-for="(item, index) in modelList" :key="index"
-        title="用户提现到微信零钱"
-        :label="`日期：${dayjs(item.completedTime).format('YYYY-MM-DD HH:mm')}`"
+        :title="$t('pages.user.withdrawOrder.userWithdrawToWechat')"
+        :label="`${$t('pages.user.withdrawOrder.date')}：${dayjs(item.completedTime).format('YYYY-MM-DD HH:mm')}`"
         is-link center
         @click="() => router.push({ path: '/pages/article/detail', query: { id: item.id as string } })"
       >

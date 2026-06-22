@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import { useI18n } from 'vue-i18n'
 import { checkAccept } from './method'
 
 defineOptions({ name: 'PhoneLogin' })
@@ -6,6 +7,8 @@ defineOptions({ name: 'PhoneLogin' })
 const emit = defineEmits<{
   loginSuccess: []
 }>()
+
+const { t } = useI18n()
 
 const agreed = defineModel('agreed', {
   required: true,
@@ -27,15 +30,15 @@ async function handleLogin(e: { code: string, errMsg: string, encryptedData: str
   console.log('login-detail', e)
   const { code, errMsg } = e
   if (!errMsg.includes(':ok')) {
-    toast.warning('用户已取消')
+    toast.warning(t('pages.login.phoneLogin.userCancelled'))
     return
   }
   if (!code) {
-    toast.warning('获取用户手机号失败')
+    toast.warning(t('pages.login.phoneLogin.getPhoneFailed'))
     return
   }
 
-  agreed.value = await checkAccept(agreed.value)
+  agreed.value = await checkAccept(agreed.value, t)
 
   loading('loading')
   if (!wxUserInfo.value)
@@ -46,7 +49,7 @@ async function handleLogin(e: { code: string, errMsg: string, encryptedData: str
   const { isSuccess } = await easyLogin(phoneNumberRes.data!, '', wxUserInfo.value?.openId, wxUserInfo.value?.unionId)
   hideLoading()
   if (!isSuccess) {
-    toast.error('登录失败')
+    toast.error(t('pages.login.phoneLogin.loginFailed'))
     return
   }
   // 触发事件
@@ -64,7 +67,7 @@ async function handleLogin(e: { code: string, errMsg: string, encryptedData: str
 
     <!-- 登录按钮 -->
     <wd-button type="primary" icon="mobile" block custom-class="mx-4 w-full" open-type="getPhoneNumber" @getphonenumber="handleLogin">
-      一键快捷登录
+      {{ $t('pages.login.phoneLogin.quickLoginBtn') }}
     </wd-button>
   </view>
 </template>

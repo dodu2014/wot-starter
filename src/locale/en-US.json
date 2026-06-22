@@ -1,5 +1,8 @@
 {
   "pages": {
+    "home": {
+      "title": "Home"
+    },
     "my": {
       "title": "Personal Center",
       "userInfo": {
@@ -39,6 +42,179 @@
       },
       "description": "Your Privacy Shield, secure, fast, and private",
       "copyright": "©{0} TNTAPP All rights reserved."
+    },
+    "about": {
+      "title": "About US"
+    },
+    "login": {
+      "title": "User Login",
+      "privacyPolicy": {
+        "title": "Privacy Policy"
+      },
+      "userAgreement": {
+        "title": "User Service Agreement"
+      },
+      "quickLogin": "Quick Login",
+      "passwordLogin": "Password Login",
+      "agree": "Agree",
+      "agreeAndContinue": "Agree and Continue",
+      "agreePrompt": "Please confirm and read and agree to the 'User Service Agreement' and 'Privacy Policy Statement'",
+      "userServiceAgreement": "User Service Agreement",
+      "privacyPolicyStatement": "Privacy Policy Statement",
+      "and": "&",
+      "register": {
+        "title": "User Registration",
+        "createAccount": "Create Account",
+        "username": "Username",
+        "usernamePlaceholder": "Enter username",
+        "email": "Email",
+        "emailPlaceholder": "Enter email",
+        "code": "Code",
+        "codePlaceholder": "Enter code",
+        "sendCode": "Send Code",
+        "password": "Password",
+        "passwordPlaceholder": "Enter password",
+        "confirmPassword": "Confirm",
+        "confirmPasswordPlaceholder": "Confirm password",
+        "agreeUserAgreement": "Agree",
+        "agreeCloudHostAgreement": "Agree",
+        "cloudHostUsageAgreement": "Cloud Host Usage Agreement",
+        "registering": "Registering...",
+        "registerBtn": "Register",
+        "alreadyHaveAccount": "Already have an account?",
+        "backToLogin": "Back to login",
+        "registrationSuccess": "Registration successful",
+        "clickOkReturn": "Click OK to return to login",
+        "pleaseAcceptUserAgreement": "Please accept the user agreement",
+        "pleaseAcceptCloudHostAgreement": "Please accept the cloud host agreement",
+        "pleaseEnterEmail": "Please enter your email",
+        "pleaseEnterValidEmail": "Please enter a valid email address",
+        "verificationCodeSent": "Verification code sent",
+        "registrationFailed": "Registration failed",
+        "repasswordMismatch": "The two passwords do not match",
+        "usernameMinLength": "Minimum 6 digits",
+        "invalidFormat": "Invalid format",
+        "required": "Required",
+        "passwordMinLength": "At least 6 digits",
+        "ok": "OK"
+      },
+      "passLogin": {
+        "welcome": "Welcome",
+        "account": "Account",
+        "accountPlaceholder": "Enter your login account",
+        "password": "Password",
+        "passwordPlaceholder": "Enter your password",
+        "rememberAccount": "Remember account",
+        "loginBtn": "Login",
+        "registerNewUser": "Register a new user",
+        "loging": "loging ..",
+        "loginSuccess": "Login successful",
+        "required": "Required"
+      },
+      "phoneLogin": {
+        "quickLoginBtn": "One-Click Quick Login",
+        "userCancelled": "User cancelled",
+        "getPhoneFailed": "Failed to get phone number",
+        "loginFailed": "Login failed"
+      }
+    },
+    "user": {
+      "settings": {
+        "title": "User Settings",
+        "authSetting": "Authorization Settings",
+        "miniProgram": "Mini Program",
+        "personalProfile": "Personal Profile",
+        "changePassword": "Change Password",
+        "logout": "Logout",
+        "logoutTitle": "Logout",
+        "logoutMsg": "Are you sure you want to logout?",
+        "confirmLogout": "Logout"
+      },
+      "changePassword": {
+        "title": "Change Password",
+        "account": "Account",
+        "accountPlaceholder": "Enter your username",
+        "originalPassword": "Original Password",
+        "originalPasswordPlaceholder": "Enter the original password",
+        "newPassword": "New Password",
+        "newPasswordPlaceholder": "Enter a new password",
+        "confirmPassword": "Confirm Password",
+        "confirmPasswordPlaceholder": "Confirm the new password",
+        "submit": "Submit",
+        "changeFailed": "Failed to change password",
+        "changeSuccess": "Password changed successfully",
+        "repasswordMismatch": "The two passwords do not match",
+        "passwordMinLength": "At least 6 characters",
+        "required": "Required"
+      },
+      "message": {
+        "title": "User Messages",
+        "noContent": "No Content Available",
+        "viewDetail": "View Details",
+        "comment": "Comment"
+      },
+      "profile": {
+        "title": "Personal Profile",
+        "account": "Account",
+        "accountPlaceholder": "Please enter your username",
+        "email": "Email",
+        "emailPlaceholder": "Please enter your email",
+        "nickname": "Nickname",
+        "avatar": "Avatar",
+        "useWechatAvatar": "Use WeChat Avatar",
+        "description": "Description",
+        "descriptionPlaceholder": "Description",
+        "submit": "Submit",
+        "modifySuccess": "Profile modified successfully",
+        "modifyFailed": "Failed to modify profile",
+        "emailFormatError": "Invalid email format",
+        "required": "Required",
+        "nicknameFormat": "Invalid format, 2-10 characters"
+      },
+      "wallet": {
+        "title": "My Wallet",
+        "balance": "My Wallet",
+        "withdrawNow": "Withdraw Now",
+        "walletDetail": "Wallet Details"
+      },
+      "withdraw": {
+        "title": "Withdraw",
+        "method": "Withdrawal Method",
+        "wechatBalance": "WeChat Balance",
+        "realTime": "Real-time Transfer",
+        "amount": "Withdrawal Amount",
+        "amountPlaceholder": "Enter withdrawal amount…",
+        "currentBalance": "Current wallet balance: {0} CNY",
+        "minMaxAmount": "Min withdrawal: 1 CNY, Max: 200 CNY",
+        "maxWithdraw": "Max Withdraw",
+        "confirmBtn": "Confirm Withdrawal",
+        "withdrawRecord": "Withdrawal Records",
+        "confirmMsg": "Are you sure you want to proceed with this withdrawal?",
+        "confirm": "Confirm",
+        "cancel": "Cancel",
+        "successMsg": "Successfully withdrawn to WeChat Balance",
+        "wechatVersionLow": "Your WeChat version is too low. Please update to the latest version and try again.",
+        "invalidAmount": "Please enter a valid amount",
+        "amountLessThan1": "Withdrawal amount cannot be less than 1 CNY",
+        "amountGreaterThanBalance": "Withdrawal amount cannot exceed your balance",
+        "amountGreaterThan200": "Withdrawal amount cannot exceed 200 CNY",
+        "transferFailed": "Transfer request failed, please try again later"
+      },
+      "withdrawOrder": {
+        "title": "Withdrawal Records",
+        "detailTitle": "Withdrawal Order Details",
+        "userWithdrawToWechat": "User withdrew to WeChat Balance",
+        "date": "Date",
+        "noContent": "No Content Available"
+      }
+    },
+    "article": {
+      "title": "Infomatinfo List",
+      "noContent": "No Content",
+      "date": "Date",
+      "detail": {
+        "title": "Infomation Detail"
+      }
     }
   },
 

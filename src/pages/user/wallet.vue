@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { usePageTitle } from '@/hooks/usePageTitle'
 import router from '@/router'
 
 definePage({
@@ -9,6 +10,8 @@ definePage({
   },
   needLogin: true,
 })
+
+usePageTitle('pages.user.wallet.title')
 
 const WITHDRAW_SUCCESSED_EVENT = 'user-wallet-withdraw-successed' // 提现成功事件名称
 
@@ -30,14 +33,14 @@ onUnload(() => {
     <view class="mb-30px h-56px w-56px flex flex-center rounded-full bg-orange text-26px text-white">
       <text class="i-carbon:wallet" />
     </view>
-    <wd-text text="我的钱包" size="14px" custom-class="!text-default" />
+    <wd-text :text="$t('pages.user.wallet.balance')" size="14px" custom-class="!text-default" />
     <wd-text :text="balance" mode="price" prefix="￥" size="36px" bold custom-class="!text-default" />
     <view class="flex-full" />
     <wd-button size="large" type="primary" @click="() => router.push('/pages/user/withdraw')">
-      立即提现
+      {{ $t('pages.user.wallet.withdrawNow') }}
     </wd-button>
     <wd-button type="info" variant="text" size="small" icon="list" @click="() => {}">
-      钱包明细
+      {{ $t('pages.user.wallet.walletDetail') }}
     </wd-button>
   </view>
 </template>

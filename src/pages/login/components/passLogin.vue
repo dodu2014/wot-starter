@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import type { FormExpose } from '@wot-ui/ui/components/wd-form/types'
 import { zodAdapter } from '@wot-ui/ui'
+import { useI18n } from 'vue-i18n'
 import { z } from 'zod'
 import router from '@/router'
 import { checkAccept } from './method'
@@ -10,6 +11,8 @@ defineOptions({ name: 'PassLogin' })
 const emit = defineEmits<{
   loginSuccess: []
 }>()
+
+const { t } = useI18n()
 
 const agreed = defineModel('agreed', {
   required: true,
@@ -35,9 +38,9 @@ async function handleLogin() {
     return
   }
 
-  agreed.value = await checkAccept(agreed.value)
+  agreed.value = await checkAccept(agreed.value, t)
 
-  loading('登录中..')
+  loading(t('pages.login.passLogin.loging'))
   // #ifdef MP-WEIXIN
   await wxUserStore.wxLogin()
   // #endif
@@ -57,7 +60,7 @@ async function handleLogin() {
 
   // 这里添加实际登录逻辑
   toast.success({
-    msg: '登录成功',
+    msg: t('pages.login.passLogin.loginSuccess'),
     duration: 300,
     closed() {
       // 触发成功登录时间
@@ -69,55 +72,63 @@ async function handleLogin() {
 
 <template>
   <view class="flex-col gap-y-5">
-    <wd-card custom-class="!rounded-lg !shadow-sm !shadow-gray !shadow-op-10 !m-0 !bg-#ffffff98 !dark:bg-#1a1a1a98" custom-content-class="flex-col gap-15px !py-5">
-      <wd-text text="欢迎登录" custom-class="text-center font-bold !text-default" size="20px" />
+    <wd-card custom-class="!rounded-lg !shadow-sm !shadow-gray !shadow-op-10 !m-0 !bg-#ffffff55 !dark:bg-#1a1a1a55 backdrop-blur-10px" custom-content-class="flex flex-col gap-15px !py-6">
+      <wd-text :text="$t('pages.login.passLogin.welcome')" custom-class="text-center font-bold !text-default" size="20px" />
       <wd-form
         ref="loginFormRef" :model="model" :schema="zodAdapter(
           z.object({
-            userName: z.string().min(1, 'required'),
-            password: z.string().min(1, 'required'),
+            userName: z.string().min(1, t('pages.login.passLogin.required')),
+            password: z.string().min(1, t('pages.login.passLogin.required')),
           }),
         )" error-type="message"
       >
         <wd-form-item
           prop="userName"
-          title="登录账号"
+          :title="$t('pages.login.passLogin.account')"
           title-width="80px" custom-class="!bg-transparent"
         >
           <!-- 用户名输入 -->
           <wd-input
             v-model="model.userName"
-            placeholder="输入你的登录账户"
-            :rules="[{ required: true, message: 'required' }]"
+            :placeholder="$t('pages.login.passLogin.accountPlaceholder')"
+            :rules="[{ required: true, message: t('pages.login.passLogin.required') }]"
           />
         </wd-form-item>
 
         <!-- 密码输入 -->
         <wd-form-item
           prop="password"
-          title="登录密码"
+          :title="$t('pages.login.passLogin.password')"
           title-width="80px" custom-class="!bg-transparent"
         >
           <wd-input
             v-model="model.password"
-            placeholder="输入你的密码"
+            :placeholder="$t('pages.login.passLogin.passwordPlaceholder')"
             show-password
-            :rules="[{ required: true, message: 'required' }]"
+            :rules="[{ required: true, message: t('pages.login.passLogin.required') }]"
           />
         </wd-form-item>
       </wd-form>
     </wd-card>
 
+    <view class="flex justify-center">
+      <wd-checkbox v-model="model.remember" type="square" placement="left">
+        {{ $t('pages.login.passLogin.rememberAccount') }}
+      </wd-checkbox>
+    </view>
+
     <!-- 登录按钮 -->
-    <wd-button type="primary" icon="login" custom-class="mx-4" @click="handleLogin">
-      立即登录
+    <wd-button type="primary" round custom-class="!bg-primary-gradient mx-4" @click="handleLogin">
+      <view class="flex-center gap-2">
+        <text class="i-carbon:login" />
+        <text>
+          {{ $t('pages.login.passLogin.loginBtn') }}
+        </text>
+      </view>
     </wd-button>
 
-    <view class="flex-center gap-2">
-      <wd-checkbox v-model="model.remember" shape="square">
-        记住账号
-      </wd-checkbox>
-      <wd-text type="primary" text="注册新账号" @click="() => router.push('/pages/login/register')" />
+    <view class="flex-center flex-row">
+      <wd-text :text="$t('pages.login.passLogin.registerNewUser')" size="12px" custom-class="!text-primary" @click="() => router.push('/pages/login/register')" />
     </view>
   </view>
 </template>

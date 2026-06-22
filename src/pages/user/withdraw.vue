@@ -1,7 +1,11 @@
 <script setup lang="ts">
 import type { CreateMerchantTransferRequest } from '@/service/apis/weixin/globals'
 import { uuid } from '@alova/shared'
+import { useI18n } from 'vue-i18n'
+import { usePageTitle } from '@/hooks/usePageTitle'
 import router from '@/router'
+
+const { t } = useI18n()
 
 definePage({
   name: 'user-withdraw',
@@ -11,6 +15,8 @@ definePage({
   },
   needLogin: true,
 })
+
+usePageTitle('pages.user.withdraw.title')
 
 const { warning, success } = useGlobalToast()
 const { loading: showLoading, close: hideLoading } = useGlobalLoading()
@@ -42,7 +48,7 @@ function successTransferHandler() {
   amount.value = ''
 
   success({
-    msg: '成功提现到微信零钱',
+    msg: t('pages.user.withdraw.successMsg'),
     duration: 1200,
     closed() {
       router.back()
@@ -65,7 +71,7 @@ const { send: sendRequestMerchantTransfer, loading } = useRequest(
     return
   }
   if (data?.state !== 'WAIT_USER_CONFIRM' || !data?.package_info) {
-    warning('请求转账失败，请稍后再试')
+    warning(t('pages.user.withdraw.transferFailed'))
     return
   }
 
@@ -86,30 +92,30 @@ const { send: sendRequestMerchantTransfer, loading } = useRequest(
 
 function confirmTransfer() {
   if (!wx.canIUse('requestMerchantTransfer')) {
-    warning('当前微信版本过低，无法使用该功能，请升级到最新微信版本后重试')
+    warning(t('pages.user.withdraw.wechatVersionLow'))
     return
   }
   if (!amount.value || Number.isNaN(Number(amount.value))) {
-    warning('请输入正确的金额值')
+    warning(t('pages.user.withdraw.invalidAmount'))
     return
   }
   const amountValue = Number.parseFloat(amount.value)
   if (amountValue < 1) {
-    warning('提现金额不能小于1元')
+    warning(t('pages.user.withdraw.amountLessThan1'))
     return
   }
   if (amountValue > balance.value) {
-    warning('提现金额不能大于余额')
+    warning(t('pages.user.withdraw.amountGreaterThanBalance'))
     return
   }
   if (amountValue > 200) {
-    warning('提现金额不能大于200元')
+    warning(t('pages.user.withdraw.amountGreaterThan200'))
     return
   }
   confirm({
-    confirmButtonText: '确认',
-    cancelButtonText: '取消',
-    msg: '再次确认你的提现金额并继续提现吗？',
+    confirmButtonText: t('pages.user.withdraw.confirm'),
+    cancelButtonText: t('pages.user.withdraw.cancel'),
+    msg: t('pages.user.withdraw.confirmMsg'),
     async success(res) {
       if (res.action !== 'confirm')
         return
@@ -130,20 +136,20 @@ function confirmTransfer() {
 <template>
   <view class="flex-col flex-full">
     <wd-card type="rectangle" custom-class="!mb-0">
-      <wd-cell title="提现方式" title-width="80px" is-link>
+      <wd-cell :title="$t('pages.user.withdraw.method')" title-width="80px" is-link>
         <view class="w-full flex gap-x-2">
           <wd-icon name="info-circle" size="16px" />
           <view class="flex-col items-start gap-x-2">
-            <wd-text text="微信零钱" custom-class="!text-default" />
-            <wd-text text="实时到账" size="12px" />
+            <wd-text :text="$t('pages.user.withdraw.wechatBalance')" custom-class="!text-default" />
+            <wd-text :text="$t('pages.user.withdraw.realTime')" size="12px" />
           </view>
         </view>
       </wd-cell>
     </wd-card>
 
     <view class="flex-col gap-y-3 px-8 py-4">
-      <wd-text text="提现金额" size="12px" custom-class="!text-default" />
-      <wd-input v-model="amount" size="large" type="number" inputmode="numeric" no-border label-width="0" placeholder="请输入提现金额…" focus custom-class="!p-0 !bg-transparent is-large2">
+      <wd-text :text="$t('pages.user.withdraw.amount')" size="12px" custom-class="!text-default" />
+      <wd-input v-model="amount" size="large" type="number" inputmode="numeric" no-border label-width="0" :placeholder="$t('pages.user.withdraw.amountPlaceholder')" focus custom-class="!p-0 !bg-transparent is-large2">
         <template #prefix>
           <text class="text-default">
             ¥
@@ -151,20 +157,20 @@ function confirmTransfer() {
         </template>
       </wd-input>
       <view class="flex-col">
-        <wd-text :text="`当前钱包余额 ${balance} 元`" size="12px" />
+        <wd-text :text="$t('pages.user.withdraw.currentBalance', [balance])" size="12px" />
         <view class="flex items-center gap-x-2">
-          <wd-text text="最小提现金额为 1 元, 最大 200 元" size="12px" />
+          <wd-text :text="$t('pages.user.withdraw.minMaxAmount')" size="12px" />
           <wd-button type="primary" variant="text" size="small" @click="setMaxDrawValue">
-            最大提现
+            {{ $t('pages.user.withdraw.maxWithdraw') }}
           </wd-button>
         </view>
       </view>
 
       <wd-button type="primary" size="large" custom-class="mt-30px" :loading="loading" :disabled="loading" @click="confirmTransfer">
-        确认提现
+        {{ $t('pages.user.withdraw.confirmBtn') }}
       </wd-button>
       <wd-button type="info" variant="text" icon="time-line" size="small" @click="() => router.push('/pages/user/withdrawOrderList')">
-        提现记录
+        {{ $t('pages.user.withdraw.withdrawRecord') }}
       </wd-button>
     </view>
   </view>

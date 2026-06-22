@@ -8,7 +8,7 @@ import { computed, onBeforeMount } from 'vue'
 import i18n from '../locale'
 
 // 支持的语言列表
-const SUPPORTED_LOCALES = [
+export const SUPPORTED_LOCALES = [
   'zh-CN',
   'en-US',
   'zh-TW',
@@ -24,14 +24,18 @@ const SUPPORTED_LOCALES = [
   'ko-KR',
   'tr-TR',
   'ru-RU',
-]
+] as const
+
+// 通过 typeof 获取数组类型，再用 [number] 索引得到元素联合类型
+export type LOCALES = typeof SUPPORTED_LOCALES[number]
+export type USE_LOCALES = Extract<LOCALES, 'zh-CN' | 'en-US'>
 
 /**
  * 设置语言
  * @param locale 语言代码
  * @param syncComponentLib 是否同步组件库语言设置
  */
-function setLocale(locale: 'zh-CN' | 'en-US', syncComponentLib: boolean = true) {
+function setLocale(locale: LOCALES, syncComponentLib: boolean = true) {
   if (!SUPPORTED_LOCALES.includes(locale)) {
     console.warn(`不支持的语言: ${locale}，将使用默认语言 zh-CN`)
     locale = 'zh-CN'
@@ -58,7 +62,7 @@ function setLocale(locale: 'zh-CN' | 'en-US', syncComponentLib: boolean = true) 
  * @param defaultLocale 默认语言
  * @param syncComponentLib 是否同步组件库语言设置
  */
-function initLocale(defaultLocale: string, syncComponentLib: boolean) {
+function initLocale(defaultLocale: LOCALES, syncComponentLib: boolean) {
   const storedLocale = uni.getStorageSync('currentLang') || defaultLocale
   setLocale(storedLocale, syncComponentLib)
 }
@@ -67,7 +71,7 @@ interface I18nSyncOptions {
   /** 是否同步组件库语言设置 */
   syncComponentLib?: boolean
   /** 默认语言 */
-  defaultLocale?: string
+  defaultLocale?: LOCALES
 }
 
 /**
@@ -84,7 +88,7 @@ export function useI18nSync(options?: I18nSyncOptions) {
 
   return {
     currentLang,
-    setLocale: (locale: 'zh-CN' | 'en-US') => setLocale(locale, syncComponentLib),
+    setLocale: (locale: LOCALES) => setLocale(locale, syncComponentLib),
     supportedLocales: SUPPORTED_LOCALES,
   }
 }

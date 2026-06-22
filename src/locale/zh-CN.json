@@ -1,5 +1,8 @@
 {
   "pages": {
+    "home": {
+      "title": "首页"
+    },
     "my": {
       "title": "个人中心",
       "userInfo": {
@@ -39,6 +42,179 @@
       },
       "description": "应用描述 应用描述 应用描述 应用描述",
       "copyright": "©{0} TNTAPP 版权所有"
+    },
+    "about": {
+      "title": "关于我们"
+    },
+    "login": {
+      "title": "用户登录",
+      "privacyPolicy": {
+        "title": "隐私政策"
+      },
+      "userAgreement": {
+        "title": "用户服务协议"
+      },
+      "quickLogin": "快捷登录",
+      "passwordLogin": "密码登录",
+      "agree": "同意",
+      "agreeAndContinue": "同意并继续",
+      "agreePrompt": "请确认已阅读并同意《用户服务协议》和《隐私政策声明》",
+      "userServiceAgreement": "用户服务协议",
+      "privacyPolicyStatement": "隐私政策声明",
+      "and": "&",
+      "register": {
+        "title": "用户注册",
+        "createAccount": "创建账号",
+        "username": "用户名",
+        "usernamePlaceholder": "请输入用户名",
+        "email": "邮箱",
+        "emailPlaceholder": "请输入邮箱",
+        "code": "验证码",
+        "codePlaceholder": "请输入验证码",
+        "sendCode": "发送验证码",
+        "password": "密码",
+        "passwordPlaceholder": "请输入密码",
+        "confirmPassword": "确认密码",
+        "confirmPasswordPlaceholder": "请确认密码",
+        "agreeUserAgreement": "同意",
+        "agreeCloudHostAgreement": "同意",
+        "cloudHostUsageAgreement": "云主机使用协议",
+        "registering": "注册中...",
+        "registerBtn": "注册",
+        "alreadyHaveAccount": "已有账号？",
+        "backToLogin": "返回登录",
+        "registrationSuccess": "注册成功",
+        "clickOkReturn": "点击确定返回登录",
+        "pleaseAcceptUserAgreement": "请同意用户协议",
+        "pleaseAcceptCloudHostAgreement": "请同意云主机协议",
+        "pleaseEnterEmail": "请输入邮箱",
+        "pleaseEnterValidEmail": "请输入有效的邮箱地址",
+        "verificationCodeSent": "验证码已发送",
+        "registrationFailed": "注册失败",
+        "repasswordMismatch": "两次密码不一致",
+        "usernameMinLength": "最少6位",
+        "invalidFormat": "格式不正确",
+        "required": "必填",
+        "passwordMinLength": "至少6位",
+        "ok": "确定"
+      },
+      "passLogin": {
+        "welcome": "欢迎登录",
+        "account": "账号",
+        "accountPlaceholder": "请输入您的登录账号",
+        "password": "密码",
+        "passwordPlaceholder": "请输入密码",
+        "rememberAccount": "记住账号",
+        "loginBtn": "登录",
+        "registerNewUser": "注册新用户",
+        "loging": "登录中……",
+        "loginSuccess": "登录成功",
+        "required": "必填"
+      },
+      "phoneLogin": {
+        "quickLoginBtn": "一键快捷登录",
+        "userCancelled": "用户已取消",
+        "getPhoneFailed": "获取用户手机号失败",
+        "loginFailed": "登录失败"
+      }
+    },
+    "user": {
+      "settings": {
+        "title": "用户设置",
+        "authSetting": "授权设置",
+        "miniProgram": "小程序",
+        "personalProfile": "个人资料",
+        "changePassword": "修改密码",
+        "logout": "退出登录",
+        "logoutTitle": "退出登录",
+        "logoutMsg": "确定要退出登录吗？",
+        "confirmLogout": "退出登录"
+      },
+      "changePassword": {
+        "title": "修改密码",
+        "account": "账号",
+        "accountPlaceholder": "请输入用户名",
+        "originalPassword": "原密码",
+        "originalPasswordPlaceholder": "请输入原密码",
+        "newPassword": "新密码",
+        "newPasswordPlaceholder": "请输入新密码",
+        "confirmPassword": "确认密码",
+        "confirmPasswordPlaceholder": "请再次输入密码",
+        "submit": "提交",
+        "changeFailed": "修改密码失败",
+        "changeSuccess": "修改密码成功",
+        "repasswordMismatch": "两次密码不一致",
+        "passwordMinLength": "至少6个字符",
+        "required": "必填"
+      },
+      "message": {
+        "title": "用户消息",
+        "noContent": "暂无内容",
+        "viewDetail": "转到详情",
+        "comment": "给平台留言"
+      },
+      "profile": {
+        "title": "个人资料",
+        "account": "账号",
+        "accountPlaceholder": "请输入用户名",
+        "email": "邮箱",
+        "emailPlaceholder": "请输入邮箱",
+        "nickname": "昵称",
+        "avatar": "头像",
+        "useWechatAvatar": "使用微信头像",
+        "description": "简介",
+        "descriptionPlaceholder": "简介",
+        "submit": "提交",
+        "modifySuccess": "修改成功",
+        "modifyFailed": "修改失败",
+        "emailFormatError": "邮箱格式不正确",
+        "required": "必填",
+        "nicknameFormat": "格式不正确，2-10个字符"
+      },
+      "wallet": {
+        "title": "我的钱包",
+        "balance": "我的钱包",
+        "withdrawNow": "立即提现",
+        "walletDetail": "钱包明细"
+      },
+      "withdraw": {
+        "title": "提现",
+        "method": "提现方式",
+        "wechatBalance": "微信零钱",
+        "realTime": "实时到账",
+        "amount": "提现金额",
+        "amountPlaceholder": "请输入提现金额…",
+        "currentBalance": "当前钱包余额 {0} 元",
+        "minMaxAmount": "最小提现金额为 1 元, 最大 200 元",
+        "maxWithdraw": "最大提现",
+        "confirmBtn": "确认提现",
+        "withdrawRecord": "提现记录",
+        "confirmMsg": "再次确认你的提现金额并继续提现吗？",
+        "confirm": "确认",
+        "cancel": "取消",
+        "successMsg": "成功提现到微信零钱",
+        "wechatVersionLow": "当前微信版本过低，无法使用该功能，请升级到最新微信版本后重试",
+        "invalidAmount": "请输入正确的金额值",
+        "amountLessThan1": "提现金额不能小于1元",
+        "amountGreaterThanBalance": "提现金额不能大于余额",
+        "amountGreaterThan200": "提现金额不能大于200元",
+        "transferFailed": "请求转账失败，请稍后再试"
+      },
+      "withdrawOrder": {
+        "title": "提现记录",
+        "detailTitle": "提现单详情",
+        "userWithdrawToWechat": "用户提现到微信零钱",
+        "date": "日期",
+        "noContent": "暂无内容"
+      }
+    },
+    "article": {
+      "title": "信息列表",
+      "noContent": "暂无内容",
+      "date": "日期",
+      "detail": {
+        "title": "信息详情"
+      }
     }
   },
 

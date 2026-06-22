@@ -1,14 +1,13 @@
+import type { USE_LOCALES } from '@/hooks/useI18nSync'
 import Locale from '@wot-ui/ui/locale'
 import WotEnUS from '@wot-ui/ui/locale/lang/en-US'
-// eslint-disable-next-line ts/ban-ts-comment
-// @ts-ignore
 import { createI18n } from 'vue-i18n'
 import enUS from './en-US.json'
 import zhCN from './zh-CN.json'
 
 Locale.add({ 'en-US': WotEnUS })
 
-const messages = {
+const messages: Record<USE_LOCALES, typeof zhCN> = {
   'zh-CN': {
     ...zhCN,
   },

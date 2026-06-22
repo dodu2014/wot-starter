@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { useTeam } from '@/composables/useTeam'
+import { usePageTitle } from '@/hooks/usePageTitle'
 
 definePage({
   name: 'about',
@@ -7,6 +8,9 @@ definePage({
     navigationBarTitleText: '关于',
   },
 })
+
+// 语言切换时自动更新页面标题
+usePageTitle('pages.about.title')
 
 const { data: coreTeam } = useTeam()
 

@@ -18,6 +18,8 @@ export default uni(
       './src/service/**',
       // 忽略微信原生组件
       './src/wxcomponents/**',
+      // 忽略类型声明文件，不然会自动移除第一句导入
+      'src/shime-vue-i18n.d.ts',
     ],
   },
 )

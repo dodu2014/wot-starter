@@ -2,7 +2,11 @@
 import type { FormExpose } from '@wot-ui/ui/components/wd-form/types'
 import type { ChangePasswordModel } from '@/service/apis/base/globals'
 import { zodAdapter } from '@wot-ui/ui'
+import { useI18n } from 'vue-i18n'
 import { z } from 'zod'
+import { usePageTitle } from '@/hooks/usePageTitle'
+
+const { t } = useI18n()
 
 definePage({
   name: 'user-change-password',
@@ -12,6 +16,8 @@ definePage({
   },
   needLogin: true,
 })
+
+usePageTitle('pages.user.changePassword.title')
 
 const { userInfo } = useUserStore()
 const { success, warning } = useGlobalToast()
@@ -32,7 +38,7 @@ const { error, loading, send } = useRequest(
   { immediate: false },
 )
   .onError((error) => {
-    warning(error.error?.message || '修改密码失败')
+    warning(error.error?.message || t('pages.user.changePassword.changeFailed'))
   })
 
 async function handleSubmit() {
@@ -44,7 +50,7 @@ async function handleSubmit() {
   // request
   await send()
   if (!error.value) {
-    success('密码修改成功')
+    success(t('pages.user.changePassword.changeSuccess'))
   }
 }
 </script>
@@ -55,15 +61,15 @@ async function handleSubmit() {
       ref="formRef" border :model="model"
       :schema="zodAdapter(
         z.object({
-          password: z.string().min(6, '至少6个字符').min(1, '必填'),
-          newPassword: z.string().min(6, '至少6个字符').min(1, '必填'),
-          confirmPassword: z.string().min(1, '必填'),
+          password: z.string().min(6, t('pages.user.changePassword.passwordMinLength')).min(1, t('pages.user.changePassword.required')),
+          newPassword: z.string().min(6, t('pages.user.changePassword.passwordMinLength')).min(1, t('pages.user.changePassword.required')),
+          confirmPassword: z.string().min(1, t('pages.user.changePassword.required')),
         })
-          .refine(data => data.newPassword === data.confirmPassword, { message: '两次密码输入不一致', path: ['confirmPassword'] }),
+          .refine(data => data.newPassword === data.confirmPassword, { message: t('pages.user.changePassword.repasswordMismatch'), path: ['confirmPassword'] }),
       )"
     >
       <wd-form-item
-        title="账号"
+        :title="$t('pages.user.changePassword.account')"
         title-width="140px"
         prop="userName"
       >
@@ -71,12 +77,12 @@ async function handleSubmit() {
           v-model="model.userName"
           clearable
           disabled
-          placeholder="请输入用户名"
+          :placeholder="$t('pages.user.changePassword.accountPlaceholder')"
           marker-side="after"
         />
       </wd-form-item>
       <wd-form-item
-        title="原密码"
+        :title="$t('pages.user.changePassword.originalPassword')"
         title-width="140px"
         prop="password"
       >
@@ -84,12 +90,12 @@ async function handleSubmit() {
           v-model="model.password"
           show-password
           clearable
-          placeholder="请输入原密码"
+          :placeholder="$t('pages.user.changePassword.originalPasswordPlaceholder')"
           marker-side="after"
         />
       </wd-form-item>
       <wd-form-item
-        title="新密码"
+        :title="$t('pages.user.changePassword.newPassword')"
         title-width="140px"
         prop="newPassword"
       >
@@ -97,12 +103,12 @@ async function handleSubmit() {
           v-model="model.newPassword"
           show-password
           clearable
-          placeholder="请输入新密码"
+          :placeholder="$t('pages.user.changePassword.newPasswordPlaceholder')"
           marker-side="after"
         />
       </wd-form-item>
       <wd-form-item
-        title="确认密码"
+        :title="$t('pages.user.changePassword.confirmPassword')"
         title-width="140px"
         prop="confirmPassword"
       >
@@ -110,7 +116,7 @@ async function handleSubmit() {
           v-model="model.confirmPassword"
           show-password
           clearable
-          placeholder="请输入确认密码"
+          :placeholder="$t('pages.user.changePassword.confirmPasswordPlaceholder')"
           marker-side="after"
         />
       </wd-form-item>
@@ -118,7 +124,7 @@ async function handleSubmit() {
 
     <view class="px-4">
       <wd-button :loading="loading" type="primary" round block @click="handleSubmit">
-        提交
+        {{ $t('pages.user.changePassword.submit') }}
       </wd-button>
     </view>
   </view>

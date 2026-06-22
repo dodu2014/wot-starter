@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { usePageTitle } from '@/hooks/usePageTitle'
 import router from '@/router'
 
 definePage({
@@ -8,6 +9,8 @@ definePage({
     navigationBarTitleText: '首页',
   },
 })
+
+usePageTitle('pages.home.title')
 
 const {
   theme,

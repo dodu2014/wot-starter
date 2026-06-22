@@ -1,16 +1,20 @@
+import type { LOCALES } from './useI18nSync'
 /*
  * @Author: Trae AI
  * @Date: 2025-03-31 16:28:38
  * @Description: iframe消息处理hook，用于处理示例项目和docs项目之间的通信
  */
 import { onMounted } from 'vue'
+import { useI18nSync } from './useI18nSync'
+
+const { supportedLocales } = useI18nSync()
 
 interface IframeMessageOptions {
   /**
    * 语言变更处理函数
    * @param locale 语言代码
    */
-  onLocaleChange?: (locale: 'zh-CN' | 'en-US') => void
+  onLocaleChange?: (locale: LOCALES) => void
 
   /**
    * 主题变更处理函数
@@ -26,25 +30,6 @@ interface IframeMessageOptions {
 export function useIframeMessage(options: IframeMessageOptions = {}) {
   const { onLocaleChange, onThemeChange } = options
 
-  // 支持的语言列表
-  const SUPPORTED_LOCALES = [
-    'zh-CN',
-    'en-US',
-    'zh-TW',
-    'zh-HK',
-    'th-TH',
-    'vi-VN',
-    'ar-SA',
-    'de-DE',
-    'es-ES',
-    'pt-PT',
-    'fr-FR',
-    'ja-JP',
-    'ko-KR',
-    'tr-TR',
-    'ru-RU',
-  ]
-
   // 处理接收到的消息
   function handleMessage(event: MessageEvent) {
     // 确保消息来源是父窗口
@@ -54,8 +39,8 @@ export function useIframeMessage(options: IframeMessageOptions = {}) {
     const data = event.data
 
     // 处理语言切换消息
-    if (typeof data === 'string' && SUPPORTED_LOCALES.includes(data)) {
-      onLocaleChange?.(data as 'zh-CN' | 'en-US')
+    if (typeof data === 'string' && supportedLocales.includes(data as LOCALES)) {
+      onLocaleChange?.(data as LOCALES)
     }
 
     // 处理主题切换消息

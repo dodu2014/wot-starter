@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { Article } from '@/service/apis/base/globals'
+import { usePageTitle } from '@/hooks/usePageTitle'
 // @ts-expect-error vue2 在 vue3 中不可识别
 import mpHtml from '@/uni_modules/mp-html/components/mp-html/mp-html.vue'
 
@@ -10,6 +11,8 @@ definePage({
     navigationBarTitleText: '资讯详情',
   },
 })
+
+usePageTitle('pages.article.detail.title')
 
 const toast = useGlobalToast()
 const article = ref<Article>()

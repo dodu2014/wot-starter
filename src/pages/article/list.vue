@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import type { Article } from '@/service/apis/base/globals'
 import dayjs from 'dayjs'
+import { usePageTitle } from '@/hooks/usePageTitle'
 import router from '@/router'
 
 const toast = useGlobalToast()
@@ -18,6 +19,8 @@ definePage({
     enablePullDownRefresh: true,
   },
 })
+
+usePageTitle('pages.article.title')
 
 const { send: sendGetDetailRequest } = useRequest(
   (num: string) => Webapi_Base.articleCategory.getArticleCategory({ params: { num } }),
@@ -86,7 +89,7 @@ onReachBottom(async () => {
 
     <!-- 缺省内容 -->
     <view v-if="loading === false && !modelList.length" class="h-65vh flex-center flex-col">
-      <wd-empty icon="no-content" tip="暂无内容" />
+      <wd-empty icon="no-content" :tip="$t('pages.article.noContent')" />
     </view>
 
     <!-- 列表 -->
@@ -94,7 +97,7 @@ onReachBottom(async () => {
       <wd-cell
         v-for="(item, index) in modelList" :key="index"
         :title="`${item.title}`"
-        :label="`日期：${dayjs(item.creationDate).format('YYYY-MM-DD HH:mm')}`"
+        :label="`${$t('pages.article.date')}：${dayjs(item.creationDate).format('YYYY-MM-DD HH:mm')}`"
         is-link center
         @click="() => router.push({ path: '/pages/article/detail', query: { id: item.id as string } })"
       />

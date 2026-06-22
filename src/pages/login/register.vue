@@ -2,8 +2,12 @@
 import type { FormExpose } from '@wot-ui/ui/components/wd-form/types'
 import type { RegisterByEmailModel } from '@/service/apis/base/globals'
 import { zodAdapter } from '@wot-ui/ui'
+import { useI18n } from 'vue-i18n'
 import { z } from 'zod'
+import { usePageTitle } from '@/hooks/usePageTitle'
 import router from '@/router'
+
+const { t } = useI18n()
 
 definePage({
   name: 'register',
@@ -12,6 +16,8 @@ definePage({
     navigationBarTitleText: '用户注册',
   },
 })
+
+usePageTitle('pages.login.register.title')
 
 const toast = useGlobalToast()
 const { loading } = useGlobalLoading()
@@ -30,20 +36,20 @@ const model = ref<RegisterByEmailModel>({
 })
 
 const sendCodeLoading = ref(false)
-const sendCodeText = ref('验证码')
+const sendCodeText = ref(t('pages.login.register.sendCode'))
 const countdown = ref(0)
 let countdownTimer: ReturnType<typeof setInterval> | null = null
 
 // 通过 zodAdapter 转换 zod 的模式对象
 const schema = zodAdapter(
   z.object({
-    userName: z.string().min(6, '最少6位数字'),
-    email: z.email('格式无效'),
-    validateCode: z.string().min(1, '必填'),
-    password: z.string().min(6, '至少6位数字'),
-    confirmPassword: z.string().min(6, '至少6位数字'),
+    userName: z.string().min(6, t('pages.login.register.usernameMinLength')),
+    email: z.email(t('pages.login.register.invalidFormat')),
+    validateCode: z.string().min(1, t('pages.login.register.required')),
+    password: z.string().min(6, t('pages.login.register.passwordMinLength')),
+    confirmPassword: z.string().min(6, t('pages.login.register.passwordMinLength')),
   })
-    .refine(data => data.password === data.confirmPassword, { message: '两次密码不匹配', path: ['confirmPassword'] }),
+    .refine(data => data.password === data.confirmPassword, { message: t('pages.login.register.repasswordMismatch'), path: ['confirmPassword'] }),
 )
 
 async function handleSendCode() {
@@ -51,13 +57,13 @@ async function handleSendCode() {
     return
 
   if (!model.value.email) {
-    toast.error('请输入你的邮箱')
+    toast.error(t('pages.login.register.pleaseEnterEmail'))
     return
   }
 
   const emailRegex = /^[\w.%+-]+@[\w.-]+\.[a-z]{2,}$/i
   if (!emailRegex.test(model.value.email)) {
-    toast.error('请输入有效的电子邮件地址')
+    toast.error(t('pages.login.register.pleaseEnterValidEmail'))
     return
   }
 
@@ -70,14 +76,14 @@ async function handleSendCode() {
       toast.error(err.error.message)
     })
     await sendEmailCode(model.value.email)
-    toast.success('验证码已发送')
+    toast.success(t('pages.login.register.verificationCodeSent'))
     countdown.value = 60
     sendCodeText.value = '60s'
     countdownTimer = setInterval(() => {
       countdown.value--
       sendCodeText.value = `${countdown.value}s`
       if (countdown.value <= 0) {
-        sendCodeText.value = '验证码'
+        sendCodeText.value = t('pages.login.register.sendCode')
         if (countdownTimer) {
           clearInterval(countdownTimer)
           countdownTimer = null
@@ -100,11 +106,11 @@ async function handleRegister() {
   }
 
   if (!agreed.value) {
-    toast.warning('请接受用户协议')
+    toast.warning(t('pages.login.register.pleaseAcceptUserAgreement'))
     return
   }
 
-  loading('注册...')
+  loading(t('pages.login.register.registering'))
 
   const { isSuccess, error } = await userStore.register({
     userName: model.value.userName,
@@ -116,9 +122,9 @@ async function handleRegister() {
 
   if (isSuccess) {
     alert({
-      title: '注册成功',
-      msg: '点击确定返回登录',
-      confirmButtonText: 'OK',
+      title: t('pages.login.register.registrationSuccess'),
+      msg: t('pages.login.register.clickOkReturn'),
+      confirmButtonText: t('pages.login.register.ok'),
       showCancelButton: false,
       closeOnClickModal: false,
       success: () => {
@@ -127,7 +133,7 @@ async function handleRegister() {
     })
   }
   else {
-    toast.error(error?.error?.message || '注册失败')
+    toast.error(error?.error?.message || t('pages.login.register.registrationFailed'))
   }
 }
 
@@ -157,7 +163,7 @@ onUnmounted(() => {
     <image class="bg-animation" src="/static/images/login-bg.svg" mode="aspectFill" />
 
     <wd-navbar
-      title="用户注册"
+      :title="$t('pages.login.register.title')"
       :bordered="false"
       placeholder safe-area-inset-top left-arrow fixed
       custom-class="!bg-transparent"
@@ -169,30 +175,30 @@ onUnmounted(() => {
         custom-class="!rounded-lg !m-0 !bg-#ffffff55 !dark:bg-#00000044 backdrop-blur-10px"
         custom-content-class="flex flex-col gap-15px !py-6"
       >
-        <wd-text text="注册新账号" custom-class="text-center font-bold !text-default" size="20px" />
+        <wd-text :text="$t('pages.login.register.createAccount')" custom-class="text-center font-bold !text-default" size="20px" />
 
         <wd-form ref="registerFormRef" :model="model" :schema="schema" error-type="message">
-          <wd-form-item title="登录账号" title-width="80px" prop="userName" custom-class="!bg-transparent">
+          <wd-form-item :title="$t('pages.login.register.username')" title-width="80px" prop="userName" custom-class="!bg-transparent">
             <!-- 用户名 -->
             <wd-input
               v-model="model.userName"
-              placeholder="用户名"
+              :placeholder="$t('pages.login.register.usernamePlaceholder')"
             />
           </wd-form-item>
 
           <!-- 邮箱 -->
-          <wd-form-item title="邮箱" title-width="80px" prop="email" custom-class="!bg-transparent">
+          <wd-form-item :title="$t('pages.login.register.email')" title-width="80px" prop="email" custom-class="!bg-transparent">
             <wd-input
               v-model="model.email"
-              placeholder="电子邮箱"
+              :placeholder="$t('pages.login.register.emailPlaceholder')"
             />
           </wd-form-item>
 
           <!-- 验证码 -->
-          <wd-form-item title="验证码" title-width="80px" prop="validateCode" custom-class="!bg-transparent">
+          <wd-form-item :title="$t('pages.login.register.code')" title-width="80px" prop="validateCode" custom-class="!bg-transparent">
             <wd-input
               v-model="model.validateCode"
-              placeholder="邮箱验证码"
+              :placeholder="$t('pages.login.register.codePlaceholder')"
               custom-class="flex-1"
             >
               <template #suffix>
@@ -211,19 +217,19 @@ onUnmounted(() => {
           </wd-form-item>
 
           <!-- 密码 -->
-          <wd-form-item title="密码" title-width="80px" prop="password" custom-class="!bg-transparent">
+          <wd-form-item :title="$t('pages.login.register.password')" title-width="80px" prop="password" custom-class="!bg-transparent">
             <wd-input
               v-model="model.password"
-              placeholder="密码"
+              :placeholder="$t('pages.login.register.passwordPlaceholder')"
               show-password
             />
           </wd-form-item>
 
           <!-- 确认密码 -->
-          <wd-form-item title="确认密码" title-width="80px" prop="confirmPassword" custom-class="!bg-transparent">
+          <wd-form-item :title="$t('pages.login.register.confirmPassword')" title-width="80px" prop="confirmPassword" custom-class="!bg-transparent">
             <wd-input
               v-model="model.confirmPassword"
-              placeholder="确认密码"
+              :placeholder="$t('pages.login.register.confirmPasswordPlaceholder')"
               show-password
             />
           </wd-form-item>
@@ -233,11 +239,11 @@ onUnmounted(() => {
       <!-- 协议勾选 -->
       <view class="flex-center gap-1">
         <wd-checkbox v-model="agreed" type="square" custom-label-class="!text-12px">
-          阅读并同意
+          {{ $t('pages.login.register.agreeUserAgreement') }}
         </wd-checkbox>
-        <wd-text type="primary" text="用户服务协议" size="12px" @click="toProtocol('userAgreement')" />
-        <wd-text text="&" size="12px" />
-        <wd-text type="primary" text="隐私政策" size="12px" @click="toProtocol('privacyPolicy')" />
+        <wd-text type="primary" :text="$t('pages.login.userServiceAgreement')" size="12px" @click="toProtocol('userAgreement')" />
+        <wd-text :text="$t('pages.login.and')" size="12px" />
+        <wd-text type="primary" :text="$t('pages.login.privacyPolicyStatement')" size="12px" @click="toProtocol('privacyPolicy')" />
       </view>
 
       <!-- 注册按钮 -->
@@ -250,13 +256,13 @@ onUnmounted(() => {
         @click="handleRegister"
       >
         <text class="i-carbon:checkmark" />
-        提交注册
+        {{ $t('pages.login.register.registerBtn') }}
       </wd-button>
 
       <!-- 已有账号 -->
       <view class="flex-center flex-row">
-        <wd-text text="已经有账户?" size="12px" custom-class="!text-default" />
-        <wd-text text="返回登录" size="12px" custom-class="!text-primary ml-1" @click="handleBack" />
+        <wd-text :text="$t('pages.login.register.alreadyHaveAccount')" size="12px" custom-class="!text-default" />
+        <wd-text :text="$t('pages.login.register.backToLogin')" size="12px" custom-class="!text-primary ml-1" @click="handleBack" />
       </view>
     </view>
   </view>

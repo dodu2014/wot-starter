@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import type { UserMessage } from '@/service/apis/base/globals'
 import dayjs from 'dayjs'
+import { usePageTitle } from '@/hooks/usePageTitle'
 import router from '@/router'
 
 const { userInfo } = useUserStore()
@@ -19,6 +20,8 @@ definePage({
   },
   needLogin: true,
 })
+
+usePageTitle('pages.user.message.title')
 
 type Mode = 'push' | 'replace'
 const { loading, send: sendGetListRequest } = useRequest(
@@ -98,7 +101,7 @@ async function handleToPage(pagePath: string) {
 
     <!-- 缺省内容 -->
     <view v-if="loading === false && !modelList.length" class="h-65vh flex-center flex-col">
-      <wd-empty icon="no-content" tip="暂无内容" />
+      <app-empty image="content" :tip="$t('pages.user.message.noContent')" />
     </view>
 
     <!-- 列表 -->
@@ -142,7 +145,7 @@ async function handleToPage(pagePath: string) {
           <view>
             <!-- #ifdef MP-WEIXIN -->
             <wd-button v-if="messageModel?.pagePath" @click="() => handleToPage(messageModel!.pagePath!)">
-              转到详情
+              {{ $t('pages.user.message.viewDetail') }}
             </wd-button>
             <!-- #endif -->
           </view>
@@ -154,7 +157,7 @@ async function handleToPage(pagePath: string) {
     <wd-fab v-if="false" :expandable="false">
       <template #trigger>
         <wd-button icon="chat" type="danger" @click="() => router.push('/pages/user/message')">
-          给平台留言
+          {{ $t('pages.user.message.comment') }}
         </wd-button>
       </template>
     </wd-fab>

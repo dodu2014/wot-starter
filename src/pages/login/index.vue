@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import { usePageTitle } from '@/hooks/usePageTitle'
 import router, { HOME_PAGE } from '@/router'
 import PassLogin from './components/passLogin.vue'
 import PhoneLogin from './components/phoneLogin.vue'
@@ -9,6 +10,8 @@ definePage({
     navigationBarTitleText: '登录',
   },
 })
+
+usePageTitle('pages.login.title')
 
 const agreed = ref(false)
 const redirectUrl = ref<_LocationUrl>()
@@ -61,7 +64,7 @@ onLoad(async (e: any) => {
 <template>
   <view class="page">
     <wd-navbar
-      title="用户登陆"
+      :title="$t('pages.login.title')"
       :bordered="false"
       :fixed="true"
       placeholder
@@ -80,14 +83,14 @@ onLoad(async (e: any) => {
       <!-- tabs -->
       <wd-tabs v-model="tab" animated>
         <!-- 微信快捷登录 -->
-        <wd-tab title="快捷登录" name="phone">
+        <wd-tab :title="$t('pages.login.quickLogin')" name="phone">
           <view class="tab-content">
             <phone-login v-model:agreed="agreed" class="mt--120px" @login-success="loginSuccess" />
           </view>
         </wd-tab>
 
         <!-- 账号密码登录 -->
-        <wd-tab title="密码登录" name="password">
+        <wd-tab :title="$t('pages.login.passwordLogin')" name="password">
           <view class="tab-content">
             <pass-login v-model:agreed="agreed" @login-success="loginSuccess" />
           </view>
@@ -100,13 +103,13 @@ onLoad(async (e: any) => {
       <!-- #endif -->
     </view>
 
-    <view class="z-10 flex justify-center pb-30px">
+    <view class="z-10 flex-center gap-1 pb-30px">
       <wd-checkbox v-model="agreed" shape="square">
-        已阅读并同意
+        {{ $t('pages.login.agree') }}
       </wd-checkbox>
-      <wd-text type="primary" text="《用户协议》" @click="toProtocol('userAgreement')" />
-      <wd-text text="&" />
-      <wd-text type="primary" text="《隐私政策》" @click="toProtocol('privacyPolicy')" />
+      <wd-text type="primary" :text="$t('pages.login.userServiceAgreement')" @click="toProtocol('userAgreement')" />
+      <wd-text :text="$t('pages.login.and')" />
+      <wd-text type="primary" :text="$t('pages.login.privacyPolicyStatement')" @click="toProtocol('privacyPolicy')" />
     </view>
   </view>
 </template>

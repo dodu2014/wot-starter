@@ -1,6 +1,8 @@
 <script setup lang="ts">
+import type { LOCALES } from '@/hooks/useI18nSync'
 import dayjs from 'dayjs'
 import { useI18nSync } from '@/hooks/useI18nSync'
+import { usePageTitle } from '@/hooks/usePageTitle'
 import router, { LOGIN_PAGE } from '@/router'
 import defaultAvatar from '/static/images/devault-avatar.svg'
 
@@ -12,6 +14,8 @@ definePage({
     navigationBarTitleText: '个人中心',
   },
 })
+
+usePageTitle('pages.my.title')
 
 const userStore = useUserStore()
 const { userInfo, logined } = storeToRefs(userStore)
@@ -100,7 +104,7 @@ function handleToggleLanguage(item: LanguageAction) {
 const showLanguageSwitch = ref(false)
 interface LanguageAction {
   name: string
-  key: 'zh-CN' | 'en-US'
+  key: LOCALES
   color: string
 }
 // 语言切换选项

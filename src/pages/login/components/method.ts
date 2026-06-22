@@ -1,5 +1,5 @@
 /** 检测是否接收协议 */
-export function checkAccept(agreed: boolean): Promise<boolean> {
+export function checkAccept(agreed: boolean, t: (key: string) => string): Promise<boolean> {
   const { confirm } = useGlobalDialog()
   return new Promise((resolve, reject) => {
     if (agreed) {
@@ -7,9 +7,9 @@ export function checkAccept(agreed: boolean): Promise<boolean> {
       return
     }
     confirm({
-      title: '同意并继续',
-      msg: '请确认以及阅读且同意‘用户服务协议’和‘隐私政策’',
-      confirmButtonText: '已阅读',
+      title: t('pages.login.agreeAndContinue'),
+      msg: t('pages.login.agreePrompt'),
+      confirmButtonText: t('pages.login.agree'),
       closeOnClickModal: false,
       success: (e) => {
         if (e.action === 'confirm') {
@@ -17,7 +17,7 @@ export function checkAccept(agreed: boolean): Promise<boolean> {
           resolve(true)
           return
         }
-        reject(new Error('已取消'))
+        reject(new Error('Cancelled'))
       },
       fail: (res) => {
         reject(res)

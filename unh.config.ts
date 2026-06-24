@@ -8,7 +8,7 @@ export default defineConfig({
     default: 'h5',
     // 平台别名，可以使用短名称代替完整平台名称
     alias: {
-      'h5': ['w', 'h'],
+      h5: ['w', 'h'],
       'mp-weixin': ['wx'],
     },
   },

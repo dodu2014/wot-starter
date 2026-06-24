@@ -10,12 +10,7 @@
 import { presetUni } from '@uni-helper/unocss-preset-uni'
 import { presetWot } from '@wot-ui/unocss-preset'
 
-import {
-  defineConfig,
-  presetIcons,
-  transformerDirectives,
-  transformerVariantGroup,
-} from 'unocss'
+import { defineConfig, presetIcons, transformerDirectives, transformerVariantGroup } from 'unocss'
 
 export default defineConfig({
   presets: [
@@ -29,7 +24,7 @@ export default defineConfig({
       scale: 1.2,
       warn: true,
       extraProperties: {
-        'display': 'inline-block',
+        display: 'inline-block',
         'vertical-align': 'middle',
       },
       // HBuilderX 必须针对要使用的 Collections 做异步导入
@@ -38,10 +33,7 @@ export default defineConfig({
       // },
     }),
   ],
-  transformers: [
-    transformerDirectives(),
-    transformerVariantGroup(),
-  ],
+  transformers: [transformerDirectives(), transformerVariantGroup()],
   shortcuts: [
     {
       'flex-center': 'flex justify-center items-center',

@@ -9,7 +9,12 @@ const buttonConfig: ConfigProviderProps['button'] = {
 </script>
 
 <template>
-  <wd-config-provider :theme-vars="themeVars" :theme="theme" :button="buttonConfig" :custom-class="`page-wraper ${theme}`">
+  <wd-config-provider
+    :theme-vars="themeVars"
+    :theme="theme"
+    :button="buttonConfig"
+    :custom-class="`page-wraper ${theme}`"
+  >
     <ku-root-view />
     <wd-notify />
     <wd-dialog />

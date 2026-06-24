@@ -7,7 +7,7 @@ export const employeeMessages = {
 /** 订阅用工消息名称的联合类型 */
 export type EmployeeMessage = keyof typeof employeeMessages
 /** 订阅用工消息 id 的联合类型 */
-export type EmployeeMessageId = typeof employeeMessages[EmployeeMessage]
+export type EmployeeMessageId = (typeof employeeMessages)[EmployeeMessage]
 
 /** 订阅用工消息的成功结果 */
 export type EmployeeMessageSuccessResult = UniApp.RequestSubscribeMessageSuccessCallbackResult & {
@@ -70,8 +70,7 @@ export function useEmployeeMessage(options?: {
         bindStatus.value = res.bindingStatus
         if (res.bindingStatus === 'accept') {
           options?.acceptMessage && success(options.acceptMessage)
-        }
-        else {
+        } else {
           options?.rejectMessage && warning(options.rejectMessage)
         }
         options?.checkSuccessCallback?.(res.bindingStatus)
@@ -127,8 +126,7 @@ export function useEmployeeMessage(options?: {
     // 遍历结果中除 errMsg 的 key，判断其值是否全部为 accept，只要包含 reject 则返回 false
     for (const key in subscribeResult.value) {
       // 判断是否为 SubscribeMessageId 类型
-      if (key === 'errMsg')
-        continue
+      if (key === 'errMsg') continue
       if (subscribeResult.value[key] === 'reject') {
         warning('需要同意所有订阅')
         return false

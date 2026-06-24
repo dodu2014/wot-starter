@@ -7,12 +7,12 @@ export const HOME_PAGE: _LocationUrl = '/pages/index/index'
 export const LOGIN_PAGE: _LocationUrl = '/pages/login/index'
 
 function generateRoutes() {
-  const routes = pages.map((page) => {
+  const routes = pages.map(page => {
     const newPath = `/${page.path}`
     return { ...page, path: newPath }
   })
   if (subPackages && subPackages.length > 0) {
-    subPackages.forEach((subPackage) => {
+    subPackages.forEach(subPackage => {
       const subRoutes = subPackage.pages.map((page: any) => {
         const newPath = `/${subPackage.root}/${page.path}`
         return { ...page, path: newPath }

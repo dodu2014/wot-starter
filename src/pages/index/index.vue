@@ -53,9 +53,7 @@ function openUrl(url: string) {
 <template>
   <view class="box-border py-3">
     <view class="mx-3 box-border rounded-3 px-4 py-6 text-center wot-bg-filled-oppo">
-      <text class="mb-3 block text-left text-5 font-bold wot-text-text-main">
-        Wot Starter
-      </text>
+      <text class="mb-3 block text-left text-5 font-bold wot-text-text-main"> Wot Starter </text>
       <text class="mb-3 block text-left text-30rpx leading-relaxed wot-text-text-secondary">
         ⚡️ 基于 vitesse-uni-app 由 vite & uni-app 驱动的、深度整合 Wot UI 组件库的快速启动模板
       </text>
@@ -70,9 +68,7 @@ function openUrl(url: string) {
           <wd-switch v-model="isDark" size="18px" />
         </wd-cell>
         <wd-cell title="跟随系统">
-          <wd-button size="small" @click="setFollowSystem">
-            跟随系统
-          </wd-button>
+          <wd-button size="small" @click="setFollowSystem"> 跟随系统 </wd-button>
         </wd-cell>
         <wd-cell title="选择主题色" is-link @click="openThemeColorPicker">
           <view class="flex items-center justify-end gap-2">

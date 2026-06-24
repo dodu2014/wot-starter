@@ -14,25 +14,23 @@ export function getCurrentPath() {
 /** 得到所有 pages，包括主包和分包的 */
 export function getAllPages() {
   // 这里处理主包
-  const mainPages = pages
-    .map(page => ({
-      ...page,
-      path: `/${page.path}`,
-    }))
+  const mainPages = pages.map(page => ({
+    ...page,
+    path: `/${page.path}`,
+  }))
 
   // 这里处理分包
   const subPages: any[] = []
-  subPackages.forEach((subPageObj) => {
+  subPackages.forEach(subPageObj => {
     // console.log(subPageObj)
     const { root } = subPageObj
 
-    subPageObj.pages
-      .forEach((page: { path: string } & Record<string, any>) => {
-        subPages.push({
-          ...page,
-          path: `/${root}/${page.path}`,
-        })
+    subPageObj.pages.forEach((page: { path: string } & Record<string, any>) => {
+      subPages.push({
+        ...page,
+        path: `/${root}/${page.path}`,
       })
+    })
   })
   return [...mainPages, ...subPages]
 }
@@ -52,8 +50,7 @@ export function getAllExcludePages(key = 'needLogin') {
 
 /** 判断是否是 tabbar 页面 */
 export function isPageTabbar(path: _LocationUrl) {
-  // eslint-disable-next-line style/no-mixed-operators
-  let lastPath = path.includes('?') && path.split('?')[0] || ''
+  let lastPath = (path.includes('?') && path.split('?')[0]) || ''
   if (lastPath?.startsWith('/')) {
     lastPath = lastPath.slice(1)
   }

@@ -11,7 +11,7 @@ export function checkAccept(agreed: boolean, t: (key: string) => string): Promis
       msg: t('pages.login.agreePrompt'),
       confirmButtonText: t('pages.login.agree'),
       closeOnClickModal: false,
-      success: (e) => {
+      success: e => {
         if (e.action === 'confirm') {
           agreed = true
           resolve(true)
@@ -19,7 +19,7 @@ export function checkAccept(agreed: boolean, t: (key: string) => string): Promis
         }
         reject(new Error('Cancelled'))
       },
-      fail: (res) => {
+      fail: res => {
         reject(res)
       },
     })

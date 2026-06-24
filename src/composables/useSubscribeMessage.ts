@@ -5,7 +5,7 @@ export const subscribeMessages = {
 /** 订阅消息名称的联合类型 */
 export type SubscribeMessage = keyof typeof subscribeMessages
 /** 订阅消息 id 的联合类型 */
-export type SubscribeMessageId = typeof subscribeMessages[SubscribeMessage]
+export type SubscribeMessageId = (typeof subscribeMessages)[SubscribeMessage]
 /** 订阅消息的结果 */
 export type SubscribeResult = 'accept' | 'reject'
 
@@ -36,10 +36,8 @@ export function useSubscribeMessage() {
         success(res) {
           console.log('订阅成功', res)
           subscribeResult.value = res as unknown as SubscribeMessageSuccessResult
-          if (isSuccessedSubscribeResult())
-            resolve()
-          else
-            reject(new Error('订阅失败'))
+          if (isSuccessedSubscribeResult()) resolve()
+          else reject(new Error('订阅失败'))
         },
         fail(err) {
           reject(new Error(err.errMsg))
@@ -57,8 +55,7 @@ export function useSubscribeMessage() {
     // 遍历结果中除 errMsg 的 key，判断其值是否全部为 accept，只要包含 reject 则返回 false
     for (const key in subscribeResult.value) {
       // 判断是否为 SubscribeMessageId 类型
-      if (key === 'errMsg')
-        continue
+      if (key === 'errMsg') continue
       if (subscribeResult.value[key] === 'reject') {
         warning('需要同意所有订阅')
         return false

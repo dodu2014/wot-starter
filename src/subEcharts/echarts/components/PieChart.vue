@@ -4,13 +4,7 @@ import { DatasetComponent, LegendComponent, TooltipComponent } from 'echarts/com
 import * as echarts from 'echarts/core'
 import { CanvasRenderer } from 'echarts/renderers'
 
-echarts.use([
-  LegendComponent,
-  TooltipComponent,
-  DatasetComponent,
-  PieChart,
-  CanvasRenderer,
-])
+echarts.use([LegendComponent, TooltipComponent, DatasetComponent, PieChart, CanvasRenderer])
 
 const option = ref({
   legend: {

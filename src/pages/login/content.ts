@@ -1,6 +1,6 @@
 import type { USE_LOCALES } from '@/hooks/useI18nSync'
 
-export const tagStyle = {
+export const htmlElement = {
   h3: 'font-weight: bold; font-size: 18px; line-height: 1.8em; margin: 12px 0;',
   h4: 'font-weight: bold; font-size: 16px; line-height: 1.8em; margin: 12px 0;',
   ul: 'margin: 8px 0; padding-left: 20px; line-height: 1.8em;',

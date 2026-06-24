@@ -154,12 +154,8 @@ function handleNavigate(url: string) {
     <!-- 头部介绍 -->
     <view class="mx-3 mb-3">
       <view class="rounded-3 px-5 py-8 text-center wot-bg-filled-oppo">
-        <view class="mb-3 text-10">
-          🎨
-        </view>
-        <view class="mb-2 text-6 font-bold wot-text-text-main">
-          UnoCSS 原子化CSS
-        </view>
+        <view class="mb-3 text-10"> 🎨 </view>
+        <view class="mb-2 text-6 font-bold wot-text-text-main"> UnoCSS 原子化CSS </view>
         <view class="mb-2 text-3.5 leading-relaxed wot-text-text-secondary">
           即时按需的原子化CSS引擎
         </view>
@@ -195,11 +191,7 @@ function handleNavigate(url: string) {
 
     <!-- 颜色系统 -->
     <demo-block title="颜色系统" transparent>
-      <view
-        v-for="category in colorCategories"
-        :key="category.name"
-        class="mb-4 last:mb-0"
-      >
+      <view v-for="category in colorCategories" :key="category.name" class="mb-4 last:mb-0">
         <view class="mb-3 text-4 font-bold wot-text-text-main">
           {{ category.name }}
         </view>
@@ -236,14 +228,15 @@ function handleNavigate(url: string) {
             <view class="text-4 font-bold wot-text-text-main">
               {{ example.title }}
             </view>
-            <view class="rounded px-2 py-1 text-2.5 font-mono wot-text-text-secondary" @click="copyCode(example.code)">
+            <view
+              class="rounded px-2 py-1 text-2.5 font-mono wot-text-text-secondary"
+              @click="copyCode(example.code)"
+            >
               {{ example.code }}
             </view>
           </view>
           <view v-if="example.title === 'Flex 居中'" :class="example.class">
-            <text class="text-3.5">
-              居中内容
-            </text>
+            <text class="text-3.5"> 居中内容 </text>
           </view>
           <view v-else-if="example.title === 'Grid 网格'" :class="example.class">
             <view
@@ -255,12 +248,8 @@ function handleNavigate(url: string) {
             </view>
           </view>
           <view v-else :class="example.class">
-            <text class="text-3.5">
-              左侧
-            </text>
-            <text class="text-3.5">
-              右侧
-            </text>
+            <text class="text-3.5"> 左侧 </text>
+            <text class="text-3.5"> 右侧 </text>
           </view>
         </view>
       </view>
@@ -269,9 +258,7 @@ function handleNavigate(url: string) {
     <!-- 间距系统 -->
     <demo-block title="间距系统" transparent>
       <view class="rounded-2 p-4 wot-bg-filled-oppo">
-        <view class="mb-3 text-4 font-bold wot-text-text-main">
-          内边距 (Padding)
-        </view>
+        <view class="mb-3 text-4 font-bold wot-text-text-main"> 内边距 (Padding) </view>
         <view class="mb-4 text-3 leading-relaxed wot-text-text-secondary">
           点击下方色块复制对应的 padding 类名
         </view>
@@ -297,9 +284,7 @@ function handleNavigate(url: string) {
     <!-- 字体系统 -->
     <demo-block title="字体系统" transparent>
       <view class="rounded-2 p-4 wot-bg-filled-oppo">
-        <view class="mb-3 text-4 font-bold wot-text-text-main">
-          字体大小
-        </view>
+        <view class="mb-3 text-4 font-bold wot-text-text-main"> 字体大小 </view>
         <view class="space-y-3">
           <view
             v-for="font in fontExamples"
@@ -307,9 +292,7 @@ function handleNavigate(url: string) {
             class="flex items-center justify-between border-b pb-2 wot-border-border-main last:border-b-0"
             @click="copyCode(font.name)"
           >
-            <text :class="font.class" class="wot-text-text-main">
-              字体演示文字
-            </text>
+            <text :class="font.class" class="wot-text-text-main"> 字体演示文字 </text>
             <view class="flex items-center space-x-2">
               <text class="text-2.5 wot-text-text-secondary">
                 {{ font.size }}
@@ -333,9 +316,7 @@ function handleNavigate(url: string) {
           @click="copyCode(effect.name)"
         >
           <view class="flex items-center justify-between">
-            <text class="text-3.5 wot-text-text-main">
-              阴影效果演示
-            </text>
+            <text class="text-3.5 wot-text-text-main"> 阴影效果演示 </text>
             <text class="rounded px-2 py-1 text-2.5 font-mono wot-text-text-secondary">
               {{ effect.name }}
             </text>
@@ -349,34 +330,31 @@ function handleNavigate(url: string) {
       <view class="space-y-4">
         <!-- 悬停效果 -->
         <view class="rounded-2 p-4 wot-bg-filled-oppo">
-          <view class="mb-3 text-4 font-bold wot-text-text-main">
-            悬停效果
-          </view>
+          <view class="mb-3 text-4 font-bold wot-text-text-main"> 悬停效果 </view>
           <view class="grid grid-cols-2 gap-3">
-            <view class="rounded-2 bg-blue-100 p-4 text-center transition-all duration-300 active:scale-95 hover:scale-105 hover:bg-blue-200">
-              <text class="text-3 text-blue-800">
-                悬停变色
-              </text>
+            <view
+              class="rounded-2 bg-blue-100 p-4 text-center transition-all duration-300 active:scale-95 hover:scale-105 hover:bg-blue-200"
+            >
+              <text class="text-3 text-blue-800"> 悬停变色 </text>
             </view>
-            <view class="rounded-2 bg-green-100 p-4 text-center transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
-              <text class="text-3 text-green-800">
-                悬停上浮
-              </text>
+            <view
+              class="rounded-2 bg-green-100 p-4 text-center transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
+            >
+              <text class="text-3 text-green-800"> 悬停上浮 </text>
             </view>
           </view>
-          <view class="mt-3 rounded p-2 text-2.5 font-mono wot-text-text-secondary" @click="copyCode('hover:bg-blue-200 hover:scale-105 transition-all duration-300')">
+          <view
+            class="mt-3 rounded p-2 text-2.5 font-mono wot-text-text-secondary"
+            @click="copyCode('hover:bg-blue-200 hover:scale-105 transition-all duration-300')"
+          >
             hover:bg-blue-200 hover:scale-105 transition-all duration-300
           </view>
         </view>
 
         <!-- 动画效果 -->
         <view class="rounded-2 p-4 wot-bg-filled-oppo">
-          <view class="mb-3 text-4 font-bold wot-text-text-main">
-            动画效果
-          </view>
-          <wd-button type="primary" block @click="toggleAnimation">
-            切换动画状态
-          </wd-button>
+          <view class="mb-3 text-4 font-bold wot-text-text-main"> 动画效果 </view>
+          <wd-button type="primary" block @click="toggleAnimation"> 切换动画状态 </wd-button>
           <view class="mt-4 flex justify-center">
             <view
               class="rounded-2 p-6 text-center transition-all duration-500 ease-in-out"
@@ -386,14 +364,16 @@ function handleNavigate(url: string) {
                   : 'wot-text-text-main transform rotate-0 scale-100 shadow-sm  ',
               ]"
             >
-              <text class="text-4 font-bold">
-                动画演示
-              </text>
+              <text class="text-4 font-bold"> 动画演示 </text>
             </view>
           </view>
-          <view class="mt-3 rounded p-2 text-2.5 leading-relaxed font-mono wot-text-text-secondary" @click="copyCode('transition-all duration-500 ease-in-out transform rotate-12 scale-110')">
-            transition-all duration-500 ease-in-out\n
-            transform rotate-12 scale-110
+          <view
+            class="mt-3 rounded p-2 text-2.5 leading-relaxed font-mono wot-text-text-secondary"
+            @click="
+              copyCode('transition-all duration-500 ease-in-out transform rotate-12 scale-110')
+            "
+          >
+            transition-all duration-500 ease-in-out\n transform rotate-12 scale-110
           </view>
         </view>
       </view>
@@ -402,16 +382,14 @@ function handleNavigate(url: string) {
     <!-- 响应式设计 -->
     <demo-block title="响应式设计" transparent>
       <view class="rounded-2 p-4 wot-bg-filled-oppo">
-        <view class="mb-3 text-4 font-bold wot-text-text-main">
-          响应式断点
-        </view>
+        <view class="mb-3 text-4 font-bold wot-text-text-main"> 响应式断点 </view>
         <view class="mb-4 text-3 leading-relaxed wot-text-text-secondary">
           UnoCSS 支持响应式断点，可以根据屏幕尺寸应用不同样式
         </view>
-        <view class="mb-4 rounded-2 bg-red-100 p-4 text-center dark:bg-red-900/30 lg:bg-yellow-100 md:bg-blue-100 sm:bg-green-100 dark:lg:bg-yellow-900/30 dark:md:bg-blue-900/30 dark:sm:bg-green-900/30">
-          <text class="text-3.5 font-bold wot-text-text-main">
-            响应式背景色
-          </text>
+        <view
+          class="mb-4 rounded-2 bg-red-100 p-4 text-center dark:bg-red-900/30 lg:bg-yellow-100 md:bg-blue-100 sm:bg-green-100 dark:lg:bg-yellow-900/30 dark:md:bg-blue-900/30 dark:sm:bg-green-900/30"
+        >
+          <text class="text-3.5 font-bold wot-text-text-main"> 响应式背景色 </text>
         </view>
         <view class="grid grid-cols-1 gap-3 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2">
           <view
@@ -422,9 +400,11 @@ function handleNavigate(url: string) {
             项目 {{ n }}
           </view>
         </view>
-        <view class="mt-4 rounded p-2 text-2.5 leading-relaxed font-mono wot-text-text-secondary" @click="copyCode('grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4')">
-          grid-cols-1 sm:grid-cols-2\n
-          md:grid-cols-3 lg:grid-cols-4
+        <view
+          class="mt-4 rounded p-2 text-2.5 leading-relaxed font-mono wot-text-text-secondary"
+          @click="copyCode('grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4')"
+        >
+          grid-cols-1 sm:grid-cols-2\n md:grid-cols-3 lg:grid-cols-4
         </view>
       </view>
     </demo-block>
@@ -434,30 +414,25 @@ function handleNavigate(url: string) {
       <view class="space-y-4">
         <!-- 显示隐藏 -->
         <view class="rounded-2 p-4 wot-bg-filled-oppo">
-          <view class="mb-3 text-4 font-bold wot-text-text-main">
-            显示/隐藏
-          </view>
+          <view class="mb-3 text-4 font-bold wot-text-text-main"> 显示/隐藏 </view>
           <view class="mb-3 flex flex-wrap gap-2">
-            <view class="rounded bg-green-100 px-3 py-2 text-3 text-green-800">
-              显示 (block)
-            </view>
-            <view class="rounded bg-blue-100 px-3 py-2 text-3 text-blue-800">
-              内联 (inline)
-            </view>
+            <view class="rounded bg-green-100 px-3 py-2 text-3 text-green-800"> 显示 (block) </view>
+            <view class="rounded bg-blue-100 px-3 py-2 text-3 text-blue-800"> 内联 (inline) </view>
             <view class="rounded bg-purple-100 px-3 py-2 text-3 text-purple-800">
               弹性 (flex)
             </view>
           </view>
-          <view class="rounded p-2 text-2.5 font-mono wot-text-text-secondary" @click="copyCode('block inline flex hidden')">
+          <view
+            class="rounded p-2 text-2.5 font-mono wot-text-text-secondary"
+            @click="copyCode('block inline flex hidden')"
+          >
             block inline flex hidden
           </view>
         </view>
 
         <!-- 定位 -->
         <view class="rounded-2 p-4 wot-bg-filled-oppo">
-          <view class="mb-3 text-4 font-bold wot-text-text-main">
-            定位系统
-          </view>
+          <view class="mb-3 text-4 font-bold wot-text-text-main"> 定位系统 </view>
           <view class="relative h-24 rounded-2 bg-gray-100">
             <view class="absolute left-2 top-2 rounded bg-red-500 px-2 py-1 text-2.5 text-white">
               top-2 left-2
@@ -465,14 +440,21 @@ function handleNavigate(url: string) {
             <view class="absolute right-2 top-2 rounded bg-blue-500 px-2 py-1 text-2.5 text-white">
               top-2 right-2
             </view>
-            <view class="absolute bottom-2 left-2 rounded bg-green-500 px-2 py-1 text-2.5 text-white">
+            <view
+              class="absolute bottom-2 left-2 rounded bg-green-500 px-2 py-1 text-2.5 text-white"
+            >
               bottom-2 left-2
             </view>
-            <view class="absolute bottom-2 right-2 rounded bg-purple-500 px-2 py-1 text-2.5 text-white wot-bg-warning">
+            <view
+              class="absolute bottom-2 right-2 rounded bg-purple-500 px-2 py-1 text-2.5 text-white wot-bg-warning"
+            >
               bottom-2 right-2
             </view>
           </view>
-          <view class="mt-3 rounded p-2 text-2.5 font-mono wot-text-text-secondary" @click="copyCode('absolute relative top-2 left-2 right-2 bottom-2')">
+          <view
+            class="mt-3 rounded p-2 text-2.5 font-mono wot-text-text-secondary"
+            @click="copyCode('absolute relative top-2 left-2 right-2 bottom-2')"
+          >
             absolute relative top-2 left-2 right-2 bottom-2
           </view>
         </view>
@@ -482,11 +464,36 @@ function handleNavigate(url: string) {
     <!-- 相关链接 -->
     <demo-block title="相关链接" transparent>
       <wd-cell-group border custom-class="rounded-2! overflow-hidden">
-        <wd-cell title="📚 UnoCSS 官方文档" value="unocss.dev" is-link @click="handleNavigate('https://unocss.dev/')" />
-        <wd-cell title="🐙 GitHub 仓库" value="unocss/unocss" is-link @click="handleNavigate('https://github.com/unocss/unocss')" />
-        <wd-cell title="🎮 在线演练场" value="在线体验" is-link @click="handleNavigate('https://unocss.dev/play/')" />
-        <wd-cell title="📖 Tailwind CSS" value="参考文档" is-link @click="handleNavigate('https://tailwindcss.com/docs')" />
-        <wd-cell title="💡 最佳实践" value="使用指南" is-link @click="handleNavigate('https://unocss.dev/guide/')" />
+        <wd-cell
+          title="📚 UnoCSS 官方文档"
+          value="unocss.dev"
+          is-link
+          @click="handleNavigate('https://unocss.dev/')"
+        />
+        <wd-cell
+          title="🐙 GitHub 仓库"
+          value="unocss/unocss"
+          is-link
+          @click="handleNavigate('https://github.com/unocss/unocss')"
+        />
+        <wd-cell
+          title="🎮 在线演练场"
+          value="在线体验"
+          is-link
+          @click="handleNavigate('https://unocss.dev/play/')"
+        />
+        <wd-cell
+          title="📖 Tailwind CSS"
+          value="参考文档"
+          is-link
+          @click="handleNavigate('https://tailwindcss.com/docs')"
+        />
+        <wd-cell
+          title="💡 最佳实践"
+          value="使用指南"
+          is-link
+          @click="handleNavigate('https://unocss.dev/guide/')"
+        />
       </wd-cell-group>
     </demo-block>
   </view>

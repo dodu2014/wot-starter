@@ -117,12 +117,8 @@ function handleNavigate(url: string) {
     <!-- 头部介绍 -->
     <view class="mx-3 mb-3">
       <view class="rounded-3 px-5 py-8 text-center wot-bg-filled-oppo">
-        <view class="mb-3 text-10">
-          🌱
-        </view>
-        <view class="mb-2 text-6 font-bold wot-text-text-main">
-          CreateUni 脚手架
-        </view>
+        <view class="mb-3 text-10"> 🌱 </view>
+        <view class="mb-2 text-6 font-bold wot-text-text-main"> CreateUni 脚手架 </view>
         <view class="mb-2 text-3.5 leading-relaxed wot-text-text-secondary">
           由 uni-helper 团队开发的轻量级脚手架工具
         </view>
@@ -185,9 +181,7 @@ function handleNavigate(url: string) {
       <demo-block title="快速创建 WotUI 项目" transparent>
         <view class="rounded-3 p-5 wot-bg-filled-oppo">
           <view class="mb-3 flex items-center">
-            <view class="mr-2 text-7">
-              🎨
-            </view>
+            <view class="mr-2 text-7"> 🎨 </view>
             <view class="text-4.5 font-bold wot-text-text-main">
               {{ wotQuickStart.title }}
             </view>
@@ -195,16 +189,17 @@ function handleNavigate(url: string) {
           <view class="mb-3 text-3.5 leading-relaxed wot-text-text-secondary">
             {{ wotQuickStart.desc }}
           </view>
-          <view class="wot-bg-bg mb-3 flex items-center justify-between border rounded-2 p-3 wot-border-border-main" @click="copyCommand(wotQuickStart.command)">
+          <view
+            class="wot-bg-bg mb-3 flex items-center justify-between border rounded-2 p-3 wot-border-border-main"
+            @click="copyCommand(wotQuickStart.command)"
+          >
             <text class="flex-1 break-all text-3 font-mono wot-text-text-secondary">
               {{ wotQuickStart.command }}
             </text>
             <wd-icon name="copy" size="16px" color="#666" />
           </view>
           <view>
-            <view class="mb-2 text-3.5 font-bold wot-text-text-main">
-              这个命令会：
-            </view>
+            <view class="mb-2 text-3.5 font-bold wot-text-text-main"> 这个命令会： </view>
             <view
               v-for="feature in wotQuickStart.features"
               :key="feature"
@@ -229,7 +224,10 @@ function handleNavigate(url: string) {
           <view class="mb-2 text-3.5 leading-relaxed wot-text-text-secondary">
             {{ method.desc }}
           </view>
-          <view class="wot-bg-bg flex items-center justify-between border rounded-2 p-2 wot-border-border-main" @click="copyCommand(method.command)">
+          <view
+            class="wot-bg-bg flex items-center justify-between border rounded-2 p-2 wot-border-border-main"
+            @click="copyCommand(method.command)"
+          >
             <text class="flex-1 break-all text-3 font-mono wot-text-text-secondary">
               {{ method.command }}
             </text>
@@ -241,11 +239,36 @@ function handleNavigate(url: string) {
       <!-- 相关链接 -->
       <demo-block title="相关链接" custom-card-content-class="!p-0">
         <wd-cell-group border custom-class="rounded-2! overflow-hidden">
-          <wd-cell title="📦 NPM 包" value="create uni" is-link @click="handleNavigate('https://www.npmjs.com/package/create-uni')" />
-          <wd-cell title="🐙 GitHub 仓库" value="create uni" is-link @click="handleNavigate('https://github.com/uni-helper/create-uni')" />
-          <wd-cell title="🎨 Wot UI" value="UI 组件库" is-link @click="handleNavigate('https://wot-ui.cn/')" />
-          <wd-cell title="🛠️ Uni Helper" value="先进工具集合" is-link @click="handleNavigate('https://github.com/uni-helper')" />
-          <wd-cell title="💝 赞助CreateUni" value="支持开发者" is-link @click="handleNavigate('https://github.com/uni-helper/create-uni')" />
+          <wd-cell
+            title="📦 NPM 包"
+            value="create uni"
+            is-link
+            @click="handleNavigate('https://www.npmjs.com/package/create-uni')"
+          />
+          <wd-cell
+            title="🐙 GitHub 仓库"
+            value="create uni"
+            is-link
+            @click="handleNavigate('https://github.com/uni-helper/create-uni')"
+          />
+          <wd-cell
+            title="🎨 Wot UI"
+            value="UI 组件库"
+            is-link
+            @click="handleNavigate('https://wot-ui.cn/')"
+          />
+          <wd-cell
+            title="🛠️ Uni Helper"
+            value="先进工具集合"
+            is-link
+            @click="handleNavigate('https://github.com/uni-helper')"
+          />
+          <wd-cell
+            title="💝 赞助CreateUni"
+            value="支持开发者"
+            is-link
+            @click="handleNavigate('https://github.com/uni-helper/create-uni')"
+          />
         </wd-cell-group>
       </demo-block>
     </view>

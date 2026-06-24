@@ -33,14 +33,17 @@ interface ApiResponse {
 
 // Handle successful responses
 export async function handleAlovaResponse(
-  response: UniApp.RequestSuccessCallbackResult | UniApp.UploadFileSuccessCallbackResult | UniApp.DownloadSuccessData,
+  response:
+    | UniApp.RequestSuccessCallbackResult
+    | UniApp.UploadFileSuccessCallbackResult
+    | UniApp.DownloadSuccessData,
 ) {
   const globalToast = useGlobalToast()
   // Extract status code and data from UniApp response
   const { statusCode, data } = response as UniNamespace.RequestSuccessCallbackResult
 
   // 处理401/403错误（如果不是在handleAlovaResponse中处理的）
-  if ((statusCode === 401 || statusCode === 403)) {
+  if (statusCode === 401 || statusCode === 403) {
     // 如果是未授权错误，清除用户信息并跳转到登录页
     globalToast.error({ msg: '登录已过期，请重新登录！', duration: 500 })
     const timer = setTimeout(() => {
@@ -95,14 +98,11 @@ export function handleAlovaError(error: any, method: Method) {
   // Handle different types of errors
   if (error.name === 'NetworkError') {
     globalToast.error('网络错误，请检查您的网络连接')
-  }
-  else if (error.name === 'TimeoutError') {
+  } else if (error.name === 'TimeoutError') {
     globalToast.error('请求超时，请重试')
-  }
-  else if (error instanceof ApiError) {
+  } else if (error instanceof ApiError) {
     globalToast.error(error.message || '请求失败')
-  }
-  else {
+  } else {
     globalToast.error('发生意外错误')
   }
 

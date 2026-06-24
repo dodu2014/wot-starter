@@ -45,10 +45,7 @@ export default {
 <template>
   <view
     class="mb-3 box-border w-full px-3 text-gray-500 last:mb-0 dark:text-gray-300"
-    :class="[
-      transparent ? '' : 'var(--wot-filled-oppo)',
-      customClass,
-    ]"
+    :class="[transparent ? '' : 'var(--wot-filled-oppo)', customClass]"
   >
     <view class="px-4 py-3 text-26rpx">
       {{ title }}

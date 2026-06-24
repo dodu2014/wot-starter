@@ -53,13 +53,19 @@ function copy() {
     @click="copy"
   >
     <view class="flex items-center justify-between">
-      <text class="text-3 text-gray-700 dark:text-[var(--wot-dark-color)]" :class="[{ 'font-bold': Boolean(codeRemark?.trim()) }, customCodeClass]">
+      <text
+        class="text-3 text-gray-700 dark:text-[var(--wot-dark-color)]"
+        :class="[{ 'font-bold': Boolean(codeRemark?.trim()) }, customCodeClass]"
+      >
         {{ code }}
       </text>
       <wd-icon v-if="showIcon" name="copy" size="16px" color="#666" />
     </view>
     <view v-if="codeRemark?.trim()" class="mt-2 max-h-60 overflow-y-auto">
-      <pre class="whitespace-pre-wrap text-2.5 text-gray-600 leading-relaxed font-mono dark:text-[var(--wot-dark-color2)]">{{ codeRemark?.trim() }}</pre>
+      <pre
+        class="whitespace-pre-wrap text-2.5 text-gray-600 leading-relaxed font-mono dark:text-[var(--wot-dark-color2)]"
+        >{{ codeRemark?.trim() }}</pre
+      >
     </view>
   </view>
 </template>

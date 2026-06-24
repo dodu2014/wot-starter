@@ -1,6 +1,6 @@
 ---
-name: "wot-ui-unocss-preset-guide"
-description: "指导安装、配置并使用 @wot-ui/unocss-preset。Invoke when 用户询问该预设的接入、配置、使用示例或常见问题排查。"
+name: 'wot-ui-unocss-preset-guide'
+description: '指导安装、配置并使用 @wot-ui/unocss-preset。Invoke when 用户询问该预设的接入、配置、使用示例或常见问题排查。'
 ---
 
 # Wot UnoCSS Preset 使用指南
@@ -63,7 +63,9 @@ export default defineConfig({
 
 ```vue
 <template>
-  <view class="wot-bg-filled-oppo wot-rounded-2xl wot-p-super-loose wot-border-border-main wot-border-stroke-main">
+  <view
+    class="wot-bg-filled-oppo wot-rounded-2xl wot-p-super-loose wot-border-border-main wot-border-stroke-main"
+  >
     <text class="wot-text-title-large wot-text-text-main wot-font-semibold">
       Wot UnoCSS Preset
     </text>
@@ -134,15 +136,18 @@ presetWot({
 ## 常见问题排查
 
 1. 类名不生效
+
 - 确认项目已启用 UnoCSS 且 `presetWot()` 已加入 `presets`。
 - 确认类名前缀与配置一致（默认 `wot-`）。
 
 2. VS Code 没有自动补全
+
 - 确认安装 UnoCSS 官方扩展。
 - 确认编辑器能定位到项目 `unocss.config.ts`。
 - 确认类名写在扩展可扫描的文件类型内。
 
 3. CI 能复现但本地不复现（或反过来）
+
 - 对齐 Node/pnpm 版本与锁文件。
 - 对齐执行顺序（例如先构建主包，再构建依赖主包产物的 playground）。
 

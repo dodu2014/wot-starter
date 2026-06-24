@@ -66,14 +66,14 @@ loading.close()
 
 ### ToastOptions
 
-| 参数 | 类型 | 默认值 | 说明 |
-|------|------|--------|------|
-| msg | string | - | 加载文案 |
-| iconName | string | `loading` | 图标名称 |
-| duration | number | `0` | 持续时间，`0` 表示不自动关闭 |
-| cover | boolean | `true` | 是否显示遮罩 |
-| position | string | `middle` | 显示位置：`top` \| `middle` \| `bottom` |
-| show | boolean | `true` | 是否显示，内部状态字段 |
+| 参数     | 类型    | 默认值    | 说明                                    |
+| -------- | ------- | --------- | --------------------------------------- |
+| msg      | string  | -         | 加载文案                                |
+| iconName | string  | `loading` | 图标名称                                |
+| duration | number  | `0`       | 持续时间，`0` 表示不自动关闭            |
+| cover    | boolean | `true`    | 是否显示遮罩                            |
+| position | string  | `middle`  | 显示位置：`top` \| `middle` \| `bottom` |
+| show     | boolean | `true`    | 是否显示，内部状态字段                  |
 
 ### 参数形式
 
@@ -91,8 +91,7 @@ async function fetchData() {
   try {
     showLoading('正在加载数据...')
     await api.getData()
-  }
-  finally {
+  } finally {
     close()
   }
 }

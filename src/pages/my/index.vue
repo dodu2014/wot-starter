@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import type { LOCALES } from '@/hooks/useI18nSync'
-import dayjs from 'dayjs'
 import { useI18nSync } from '@/hooks/useI18nSync'
 import { usePageTitle } from '@/hooks/usePageTitle'
 import router, { LOGIN_PAGE } from '@/router'
 import defaultAvatar from '/static/images/devault-avatar.svg'
+import dayjs from 'dayjs'
 
 definePage({
   name: 'my',
@@ -94,8 +94,7 @@ onLoad(async () => {
   }
 
   // #ifdef MP-WEIXIN
-  if (!wxUserInfo)
-    await wxLogin()
+  if (!wxUserInfo) await wxLogin()
   // #endif
 })
 
@@ -116,7 +115,9 @@ onShow(async () => {
     <view class="from-orange/75 to-primary bg-gradient-to-rb text-white">
       <wd-navbar
         :title="$t('pages.my.title')"
-        safe-area-inset-top placeholder fixed
+        safe-area-inset-top
+        placeholder
+        fixed
         custom-class="!bg-transparent"
         :bordered="false"
       />
@@ -124,38 +125,48 @@ onShow(async () => {
       <view class="mx-8 mb-16 mt-4 flex-col gap-y-6">
         <view class="flex items-center gap-4" @click="() => !logined && router.push(LOGIN_PAGE)">
           <wd-img
-            :src="logined && userInfo?.avatarUrl || defaultAvatar"
-            :width="54" :height="54"
+            :src="(logined && userInfo?.avatarUrl) || defaultAvatar"
+            :width="54"
+            :height="54"
             round
           />
           <view class="mr-auto">
             <view class="text-xl font-semibold">
-              {{ logined && (userInfo?.name || userInfo?.userName) || $t('pages.my.userInfo.guestName') }}
+              {{
+                (logined && (userInfo?.name || userInfo?.userName)) ||
+                $t('pages.my.userInfo.guestName')
+              }}
             </view>
             <view class="mt-1 text-xs opacity-75">
-              {{ logined && (userInfo?.description || $t('pages.my.userInfo.description')) || $t('pages.my.userInfo.login-description') }}
+              {{
+                (logined && (userInfo?.description || $t('pages.my.userInfo.description'))) ||
+                $t('pages.my.userInfo.login-description')
+              }}
             </view>
           </view>
-          <wd-icon v-if="logined" name="settings" size="30px" @click.prevent.stop="() => router.push({ path: '/pages/user/settings' })" />
+          <wd-icon
+            v-if="logined"
+            name="settings"
+            size="30px"
+            @click.prevent.stop="() => router.push({ path: '/pages/user/settings' })"
+          />
         </view>
 
         <!-- 统计信息卡片 -->
         <view v-if="logined" class="grid grid-cols-2 gap-3 rounded-lg bg-white bg-opacity-20 p-3">
-          <view class="text-center" @click="() => router.push({ path: '/pages/about/index', query: { type: 1 } })">
-            <view class="text-lg font-bold">
-              ∫ {{ logined ? userStats.usdt : ' --' }}
-            </view>
-            <view class="text-xs opacity-90">
-              积分
-            </view>
+          <view
+            class="text-center"
+            @click="() => router.push({ path: '/pages/about/index', query: { type: 1 } })"
+          >
+            <view class="text-lg font-bold"> ∫ {{ logined ? userStats.usdt : ' --' }} </view>
+            <view class="text-xs opacity-90"> 积分 </view>
           </view>
-          <view class="text-center" @click="() => router.push({ path: '/pages/user/wallet', query: { type: 2 } })">
-            <view class="text-lg font-bold">
-              ¥ {{ logined ? userStats.bond : ' --' }}
-            </view>
-            <view class="text-xs opacity-90">
-              钱包
-            </view>
+          <view
+            class="text-center"
+            @click="() => router.push({ path: '/pages/user/wallet', query: { type: 2 } })"
+          >
+            <view class="text-lg font-bold"> ¥ {{ logined ? userStats.bond : ' --' }} </view>
+            <view class="text-xs opacity-90"> 钱包 </view>
           </view>
         </view>
       </view>
@@ -163,7 +174,10 @@ onShow(async () => {
 
     <view class="mx-8 mt--10 flex flex-col gap-4">
       <!-- 功能菜单区域 -->
-      <wd-card custom-class="rounded-lg overflow-hidden shadow-sm !m-0 !px-0" custom-content-class="!p-2">
+      <wd-card
+        custom-class="rounded-lg overflow-hidden shadow-sm !m-0 !px-0"
+        custom-content-class="!p-2"
+      >
         <wd-grid clickable :column="3">
           <wd-grid-item
             :text="$t('pages.my.gridInfo.item-orderList')"
@@ -202,7 +216,12 @@ onShow(async () => {
           <wd-grid-item custom-icon="text-primary" custom-class="rounded">
             <button open-type="contact" class="button-reset flex-col">
               <wd-icon name="mic" size="32px" custom-class="text-primary" />
-              <wd-text :text="$t('pages.my.gridInfo.item-customerService')" size="12px" :lines="1" custom-class="!text-default !line-height-24px mt-4px" />
+              <wd-text
+                :text="$t('pages.my.gridInfo.item-customerService')"
+                size="12px"
+                :lines="1"
+                custom-class="!text-default !line-height-24px mt-4px"
+              />
             </button>
           </wd-grid-item>
         </wd-grid>
@@ -227,7 +246,11 @@ onShow(async () => {
             <wd-switch v-model="darkMode" size="14px" :disabled="isFollowSystem" />
           </view>
         </wd-cell>
-        <wd-cell :title="$t('pages.my.themeSetting.custom-theme-title')" is-link @click="openThemeColorPicker">
+        <wd-cell
+          :title="$t('pages.my.themeSetting.custom-theme-title')"
+          is-link
+          @click="openThemeColorPicker"
+        >
           <template #prefix>
             <text class="i-carbon:color-palette mr-2 text-18px text-primary" />
           </template>

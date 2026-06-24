@@ -10,7 +10,7 @@ export const alovaInstance = createAlova({
     mockRequest: mockAdapter,
   }),
   statesHook: vueHook,
-  beforeRequest: (method) => {
+  beforeRequest: method => {
     // Add content type for POST/PUT/PATCH requests
     if (['POST', 'PUT', 'PATCH'].includes(method.type)) {
       method.config.headers['Content-Type'] = 'application/json'
@@ -23,7 +23,10 @@ export const alovaInstance = createAlova({
 
     // Log request in development
     if (isDev) {
-      console.log(`[Alova Request] ${method.type} ${method.url}`, method.data || method.config.params)
+      console.log(
+        `[Alova Request] ${method.type} ${method.url}`,
+        method.data || method.config.params,
+      )
       console.log(`[API Base URL] ${VITE_API_BASE_URL}`)
       console.log(`[Environment] ${VITE_ENV_NAME}`)
     }

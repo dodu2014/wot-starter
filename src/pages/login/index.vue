@@ -1,8 +1,6 @@
 <script lang="ts" setup>
 import { usePageTitle } from '@/hooks/usePageTitle'
 import router, { HOME_PAGE } from '@/router'
-import PassLogin from './components/passLogin.vue'
-import PhoneLogin from './components/phoneLogin.vue'
 
 definePage({
   style: {
@@ -21,10 +19,8 @@ const tab = ref<TabMode>('phone')
 
 function back() {
   const pages = getCurrentPages()
-  if (pages.length > 1)
-    router.back()
-  else
-    router.pushTab({ path: HOME_PAGE })
+  if (pages.length > 1) router.back()
+  else router.pushTab({ path: HOME_PAGE })
 }
 
 function toProtocol(type: 'privacyPolicy' | 'userAgreement') {
@@ -34,17 +30,14 @@ function toProtocol(type: 'privacyPolicy' | 'userAgreement') {
 
 function loginSuccess() {
   if (!redirectUrl.value) {
-    if (getCurrentPages().length > 1)
-      router.back()
-    else
-      router.pushTab({ path: HOME_PAGE })
+    if (getCurrentPages().length > 1) router.back()
+    else router.pushTab({ path: HOME_PAGE })
     return
   }
   // 判断 redirectUrl 是否为 tab 页面
   if (isPageTabbar(redirectUrl.value)) {
     router.pushTab(redirectUrl.value)
-  }
-  else {
+  } else {
     router.replace(redirectUrl.value)
   }
 }
@@ -52,11 +45,10 @@ function loginSuccess() {
 const { wxUserInfo, wxLogin } = useWxUserStore()
 onLoad(async (e: any) => {
   const { redirect } = e
-  redirectUrl.value = (redirect && decodeURIComponent(redirect) as _LocationUrl) || undefined
+  redirectUrl.value = (redirect && (decodeURIComponent(redirect) as _LocationUrl)) || undefined
 
   // #ifdef MP-WEIXIN
-  if (!wxUserInfo)
-    await wxLogin()
+  if (!wxUserInfo) await wxLogin()
   // #endif
 })
 </script>
@@ -107,9 +99,17 @@ onLoad(async (e: any) => {
       <wd-checkbox v-model="agreed" shape="square">
         {{ $t('pages.login.agree') }}
       </wd-checkbox>
-      <wd-text type="primary" :text="$t('pages.login.userServiceAgreement')" @click="toProtocol('userAgreement')" />
+      <wd-text
+        type="primary"
+        :text="$t('pages.login.userServiceAgreement')"
+        @click="toProtocol('userAgreement')"
+      />
       <wd-text :text="$t('pages.login.and')" />
-      <wd-text type="primary" :text="$t('pages.login.privacyPolicyStatement')" @click="toProtocol('privacyPolicy')" />
+      <wd-text
+        type="primary"
+        :text="$t('pages.login.privacyPolicyStatement')"
+        @click="toProtocol('privacyPolicy')"
+      />
     </view>
   </view>
 </template>

@@ -34,7 +34,7 @@ const { addListener, joinToGroup, startConnection, stopConnection } = useSignalR
         confirmButtonText: '立即查看',
         closeOnClickModal: false,
         type: 'confirm',
-        success: (e) => {
+        success: e => {
           if (e.action === 'confirm') {
             router.push('/pages/about/index')
           }
@@ -51,7 +51,7 @@ const { addListener, joinToGroup, startConnection, stopConnection } = useSignalR
 // 监听用户登录状态，以便在用户登录后，加入到用户组
 watch(
   () => logined.value,
-  (val) => {
+  val => {
     console.log('logined changed', val)
     if (val) {
       // #ifdef WEB
@@ -68,7 +68,7 @@ const { setLocale } = useI18nSync() // 禁用内置的iframe消息监听，使�
 
 // 使用专门的iframe消息处理hook
 useIframeMessage({
-  onLocaleChange: (locale) => {
+  onLocaleChange: locale => {
     setLocale(locale)
   },
 })
@@ -79,8 +79,7 @@ onLaunch(async () => {
   checkMiniProgramUpdate()
 
   // 检查用户登录状态，未登录则进行微信登录
-  if (!wxUserInfo)
-    await wxLogin()
+  if (!wxUserInfo) await wxLogin()
   // #endif
 
   // #ifdef WEB

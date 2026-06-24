@@ -1,8 +1,7 @@
 <script setup lang="ts">
 import type { Article } from '@/service/apis/base/globals'
 import { usePageTitle } from '@/hooks/usePageTitle'
-// @ts-expect-error vue2 在 vue3 中不可识别
-import mpHtml from '@/uni_modules/mp-html/components/mp-html/mp-html.vue'
+import { htmlElement } from '../login/content'
 
 definePage({
   name: 'article-detail',
@@ -17,26 +16,17 @@ usePageTitle('pages.article.detail.title')
 const toast = useGlobalToast()
 const article = ref<Article>()
 
-const tagStyle = {
-  h4: 'font-weight: bold; font-size: 16px; line-height: 16px; margin: 12px 0;',
-  ul: 'margin: 8px 0; padding-left: 20px;',
-  p: 'margin: 8px 0',
-}
-
-const { send } = useRequest(
-  (id: string) => Webapi_Base.article.getArticle({ params: { id } }),
-  { immediate: false },
-)
-  .onError((error) => {
-    toast.error(error.error?.message)
-  })
+const { send } = useRequest((id: string) => Webapi_Base.article.getArticle({ params: { id } }), {
+  immediate: false,
+}).onError(error => {
+  toast.error(error.error?.message)
+})
 
 onLoad(async (e: any) => {
   if (e.id) {
     const { data } = await send(e.id)
     article.value = data!
-    if (!article.value)
-      return
+    if (!article.value) return
     uni.setNavigationBarTitle({
       title: `${article.value.title}`,
     })
@@ -46,6 +36,6 @@ onLoad(async (e: any) => {
 
 <template>
   <view class="p-15px text-default">
-    <mp-html v-if="article" :content="article.content" :tag-style="tagStyle" />
+    <mp-html v-if="article" :content="article.content" :tag-style="htmlElement" />
   </view>
 </template>

@@ -4,12 +4,7 @@ import { LegendComponent, TooltipComponent } from 'echarts/components'
 import * as echarts from 'echarts/core'
 import { CanvasRenderer } from 'echarts/renderers'
 
-echarts.use([
-  LegendComponent,
-  TooltipComponent,
-  FunnelChart,
-  CanvasRenderer,
-])
+echarts.use([LegendComponent, TooltipComponent, FunnelChart, CanvasRenderer])
 
 const option = ref({
   tooltip: {

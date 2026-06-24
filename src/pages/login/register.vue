@@ -42,19 +42,22 @@ let countdownTimer: ReturnType<typeof setInterval> | null = null
 
 // 通过 zodAdapter 转换 zod 的模式对象
 const schema = zodAdapter(
-  z.object({
-    userName: z.string().min(6, t('pages.login.register.usernameMinLength')),
-    email: z.email(t('pages.login.register.invalidFormat')),
-    validateCode: z.string().min(1, t('pages.login.register.required')),
-    password: z.string().min(6, t('pages.login.register.passwordMinLength')),
-    confirmPassword: z.string().min(6, t('pages.login.register.passwordMinLength')),
-  })
-    .refine(data => data.password === data.confirmPassword, { message: t('pages.login.register.repasswordMismatch'), path: ['confirmPassword'] }),
+  z
+    .object({
+      userName: z.string().min(6, t('pages.login.register.usernameMinLength')),
+      email: z.email(t('pages.login.register.invalidFormat')),
+      validateCode: z.string().min(1, t('pages.login.register.required')),
+      password: z.string().min(6, t('pages.login.register.passwordMinLength')),
+      confirmPassword: z.string().min(6, t('pages.login.register.passwordMinLength')),
+    })
+    .refine(data => data.password === data.confirmPassword, {
+      message: t('pages.login.register.repasswordMismatch'),
+      path: ['confirmPassword'],
+    }),
 )
 
 async function handleSendCode() {
-  if (countdown.value > 0)
-    return
+  if (countdown.value > 0) return
 
   if (!model.value.email) {
     toast.error(t('pages.login.register.pleaseEnterEmail'))
@@ -72,7 +75,7 @@ async function handleSendCode() {
     const { send: sendEmailCode } = useRequest(
       (email: string) => Webapi_Base.auth.sendEmail({ params: { email } }),
       { immediate: false },
-    ).onError((err) => {
+    ).onError(err => {
       toast.error(err.error.message)
     })
     await sendEmailCode(model.value.email)
@@ -90,11 +93,9 @@ async function handleSendCode() {
         }
       }
     }, 1000)
-  }
-  catch {
+  } catch {
     // toast.error('Failed to send verification code')
-  }
-  finally {
+  } finally {
     sendCodeLoading.value = false
   }
 }
@@ -112,13 +113,16 @@ async function handleRegister() {
 
   loading(t('pages.login.register.registering'))
 
-  const { isSuccess, error } = await userStore.register({
-    userName: model.value.userName,
-    password: model.value.password,
-    confirmPassword: model.value.confirmPassword,
-    email: model.value.email,
-    validateCode: model.value.validateCode,
-  }, '业务')
+  const { isSuccess, error } = await userStore.register(
+    {
+      userName: model.value.userName,
+      password: model.value.password,
+      confirmPassword: model.value.confirmPassword,
+      email: model.value.email,
+      validateCode: model.value.validateCode,
+    },
+    '业务',
+  )
 
   if (isSuccess) {
     alert({
@@ -131,8 +135,7 @@ async function handleRegister() {
         router.back()
       },
     })
-  }
-  else {
+  } else {
     toast.error(error?.error?.message || t('pages.login.register.registrationFailed'))
   }
 }
@@ -144,8 +147,7 @@ function handleBack() {
 function toProtocol(type: 'userAgreement' | 'privacyPolicy') {
   if (type === 'userAgreement') {
     router.push({ path: '/pages/login/userAgreement' })
-  }
-  else if (type === 'privacyPolicy') {
+  } else if (type === 'privacyPolicy') {
     router.push({ path: '/pages/login/privacyPolicy' })
   }
 }
@@ -165,7 +167,10 @@ onUnmounted(() => {
     <wd-navbar
       :title="$t('pages.login.register.title')"
       :bordered="false"
-      placeholder safe-area-inset-top left-arrow fixed
+      placeholder
+      safe-area-inset-top
+      left-arrow
+      fixed
       custom-class="!bg-transparent"
       @click-left="handleBack"
     />
@@ -175,10 +180,19 @@ onUnmounted(() => {
         custom-class="!rounded-lg !m-0 !bg-#ffffff55 !dark:bg-#00000044 backdrop-blur-10px"
         custom-content-class="flex flex-col gap-15px !py-6"
       >
-        <wd-text :text="$t('pages.login.register.createAccount')" custom-class="text-center font-bold !text-default" size="20px" />
+        <wd-text
+          :text="$t('pages.login.register.createAccount')"
+          custom-class="text-center font-bold !text-default"
+          size="20px"
+        />
 
         <wd-form ref="registerFormRef" :model="model" :schema="schema" error-type="message">
-          <wd-form-item :title="$t('pages.login.register.username')" title-width="80px" prop="userName" custom-class="!bg-transparent">
+          <wd-form-item
+            :title="$t('pages.login.register.username')"
+            title-width="80px"
+            prop="userName"
+            custom-class="!bg-transparent"
+          >
             <!-- 用户名 -->
             <wd-input
               v-model="model.userName"
@@ -187,7 +201,12 @@ onUnmounted(() => {
           </wd-form-item>
 
           <!-- 邮箱 -->
-          <wd-form-item :title="$t('pages.login.register.email')" title-width="80px" prop="email" custom-class="!bg-transparent">
+          <wd-form-item
+            :title="$t('pages.login.register.email')"
+            title-width="80px"
+            prop="email"
+            custom-class="!bg-transparent"
+          >
             <wd-input
               v-model="model.email"
               :placeholder="$t('pages.login.register.emailPlaceholder')"
@@ -195,7 +214,12 @@ onUnmounted(() => {
           </wd-form-item>
 
           <!-- 验证码 -->
-          <wd-form-item :title="$t('pages.login.register.code')" title-width="80px" prop="validateCode" custom-class="!bg-transparent">
+          <wd-form-item
+            :title="$t('pages.login.register.code')"
+            title-width="80px"
+            prop="validateCode"
+            custom-class="!bg-transparent"
+          >
             <wd-input
               v-model="model.validateCode"
               :placeholder="$t('pages.login.register.codePlaceholder')"
@@ -217,7 +241,12 @@ onUnmounted(() => {
           </wd-form-item>
 
           <!-- 密码 -->
-          <wd-form-item :title="$t('pages.login.register.password')" title-width="80px" prop="password" custom-class="!bg-transparent">
+          <wd-form-item
+            :title="$t('pages.login.register.password')"
+            title-width="80px"
+            prop="password"
+            custom-class="!bg-transparent"
+          >
             <wd-input
               v-model="model.password"
               :placeholder="$t('pages.login.register.passwordPlaceholder')"
@@ -226,7 +255,12 @@ onUnmounted(() => {
           </wd-form-item>
 
           <!-- 确认密码 -->
-          <wd-form-item :title="$t('pages.login.register.confirmPassword')" title-width="80px" prop="confirmPassword" custom-class="!bg-transparent">
+          <wd-form-item
+            :title="$t('pages.login.register.confirmPassword')"
+            title-width="80px"
+            prop="confirmPassword"
+            custom-class="!bg-transparent"
+          >
             <wd-input
               v-model="model.confirmPassword"
               :placeholder="$t('pages.login.register.confirmPasswordPlaceholder')"
@@ -241,9 +275,19 @@ onUnmounted(() => {
         <wd-checkbox v-model="agreed" type="square" custom-label-class="!text-12px">
           {{ $t('pages.login.register.agreeUserAgreement') }}
         </wd-checkbox>
-        <wd-text type="primary" :text="$t('pages.login.userServiceAgreement')" size="12px" @click="toProtocol('userAgreement')" />
+        <wd-text
+          type="primary"
+          :text="$t('pages.login.userServiceAgreement')"
+          size="12px"
+          @click="toProtocol('userAgreement')"
+        />
         <wd-text :text="$t('pages.login.and')" size="12px" />
-        <wd-text type="primary" :text="$t('pages.login.privacyPolicyStatement')" size="12px" @click="toProtocol('privacyPolicy')" />
+        <wd-text
+          type="primary"
+          :text="$t('pages.login.privacyPolicyStatement')"
+          size="12px"
+          @click="toProtocol('privacyPolicy')"
+        />
       </view>
 
       <!-- 注册按钮 -->
@@ -261,8 +305,17 @@ onUnmounted(() => {
 
       <!-- 已有账号 -->
       <view class="flex-center flex-row">
-        <wd-text :text="$t('pages.login.register.alreadyHaveAccount')" size="12px" custom-class="!text-default" />
-        <wd-text :text="$t('pages.login.register.backToLogin')" size="12px" custom-class="!text-primary ml-1" @click="handleBack" />
+        <wd-text
+          :text="$t('pages.login.register.alreadyHaveAccount')"
+          size="12px"
+          custom-class="!text-default"
+        />
+        <wd-text
+          :text="$t('pages.login.register.backToLogin')"
+          size="12px"
+          custom-class="!text-primary ml-1"
+          @click="handleBack"
+        />
       </view>
     </view>
   </view>

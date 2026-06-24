@@ -61,7 +61,13 @@ export const generateMockData = {
   }),
 
   // 生成列表响应对象
-  listResponse: <T>(data: T[] = [], total = data.length, more = false, code = 2000, msg = '操作成功') => ({
+  listResponse: <T>(
+    data: T[] = [],
+    total = data.length,
+    more = false,
+    code = 2000,
+    msg = '操作成功',
+  ) => ({
     code,
     data,
     total,

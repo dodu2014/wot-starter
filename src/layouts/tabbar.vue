@@ -36,11 +36,15 @@ export default {
   <slot />
   <wd-gap safe-area-bottom height="var(--wot-tabbar-height, 50px)" />
   <wd-tabbar
-    :model-value="activeTabbar!.name" bordered safe-area-inset-bottom fixed
+    :model-value="activeTabbar!.name"
+    bordered
+    safe-area-inset-bottom
+    fixed
     @change="handleTabbarChange"
   >
     <wd-tabbar-item
-      v-for="(item, index) in tabbarList" :key="index"
+      v-for="(item, index) in tabbarList"
+      :key="index"
       :name="item.name"
       :value="getTabbarItemValue(item.name)"
       :title="$t(item.title)"

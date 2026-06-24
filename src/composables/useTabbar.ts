@@ -32,11 +32,10 @@ export function useTabbar() {
   }
 
   const setTabbarItemActive = (name: string) => {
-    tabbarItems.value.forEach((item) => {
+    tabbarItems.value.forEach(item => {
       if (item.name === name) {
         item.active = true
-      }
-      else {
+      } else {
         item.active = false
       }
     })

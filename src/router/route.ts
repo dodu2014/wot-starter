@@ -20,13 +20,16 @@ export type RouteLocationRaw = _LocationUrl | RouteNameLocation | RoutePathLocat
 
 // 扩展 Router 接口的方法签名
 type Modify<T, R> = {
-  [K in keyof T]: K extends keyof R ? R[K] : T[K];
+  [K in keyof T]: K extends keyof R ? R[K] : T[K]
 }
-export type RouterExt = Modify<Router, {
-  push: (to: RouteLocationRaw) => void
-  pushTab: (to: RouteLocationRaw) => void
-  replace: (to: RouteLocationRaw) => void
-  replaceAll: (to: RouteLocationRaw) => void
-  back: (to?: RouteBackRaw) => void
-  needLogin?: boolean
-}>
+export type RouterExt = Modify<
+  Router,
+  {
+    push: (to: RouteLocationRaw) => void
+    pushTab: (to: RouteLocationRaw) => void
+    replace: (to: RouteLocationRaw) => void
+    replaceAll: (to: RouteLocationRaw) => void
+    back: (to?: RouteBackRaw) => void
+    needLogin?: boolean
+  }
+>

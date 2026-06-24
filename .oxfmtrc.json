@@ -1,0 +1,24 @@
+{
+  "$schema": "./node_modules/oxfmt/configuration_schema.json",
+  "semi": false,
+  "singleQuote": true,
+  "trailingComma": "all",
+  "arrowParens": "avoid",
+  "bracketSpacing": true,
+  "bracketSameLine": false,
+  "proseWrap": "preserve",
+  "ignorePatterns": [
+    ".agents",
+    ".claude",
+    ".codebuddy",
+    ".cursor",
+    ".github",
+    ".vscode",
+    "dist",
+    "docs",
+    "pnpm-lock.yaml",
+    "src/uni_modules",
+    "static",
+    "src/service/apis"
+  ]
+}

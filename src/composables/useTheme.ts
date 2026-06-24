@@ -44,7 +44,7 @@ export function useTheme() {
     store.initSystemTheme()
     // 监听系统主题变化
     if (typeof uni !== 'undefined' && uni.onThemeChange) {
-      uni.onThemeChange((res) => {
+      uni.onThemeChange(res => {
         // 系统主题变化时自动更新，导航栏颜色由 theme.json 自动处理
         store.setTheme(res.theme as ThemeMode)
         console.log('系统主题已切换至:', res.theme)
@@ -55,7 +55,7 @@ export function useTheme() {
   // 组件卸载时清理监听
   onUnmounted(() => {
     if (typeof uni !== 'undefined' && uni.offThemeChange) {
-      uni.offThemeChange((res) => {
+      uni.offThemeChange(res => {
         store.setTheme(res.theme as ThemeMode)
       })
     }

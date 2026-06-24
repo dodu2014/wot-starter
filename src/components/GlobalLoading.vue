@@ -14,16 +14,18 @@ nextTick(() => {
 })
 // #endif
 
-watch(() => loadingOptions.value, (newVal) => {
-  if (newVal && newVal.show) {
-    if (currentPage.value === currentPath) {
-      loading.loading(loadingOptions.value)
+watch(
+  () => loadingOptions.value,
+  newVal => {
+    if (newVal && newVal.show) {
+      if (currentPage.value === currentPath) {
+        loading.loading(loadingOptions.value)
+      }
+    } else {
+      loading.close()
     }
-  }
-  else {
-    loading.close()
-  }
-})
+  },
+)
 </script>
 
 <script lang="ts">

@@ -1,4 +1,4 @@
-/* eslint-disable no-irregular-whitespace */
+// oxlint-disable no-irregular-whitespace
 
 import type { Config } from '@alova/wormhole'
 
@@ -56,7 +56,7 @@ export default <Config>{
       /**
        * filter or convert the generated api information, return an apiDescriptor, if this function is not specified, the apiDescripor object is not converted
        */
-      handleApi: (apiDescriptor) => {
+      handleApi: apiDescriptor => {
         // Skip logging to console
         // console.log(apiDescriptor)
 
@@ -119,7 +119,7 @@ export default <Config>{
       /**
        * filter or convert the generated api information, return an apiDescriptor, if this function is not specified, the apiDescripor object is not converted
        */
-      handleApi: (apiDescriptor) => {
+      handleApi: apiDescriptor => {
         // Skip logging to console
         // console.log(apiDescriptor)
 
@@ -182,7 +182,7 @@ export default <Config>{
       /**
        * filter or convert the generated api information, return an apiDescriptor, if this function is not specified, the apiDescripor object is not converted
        */
-      handleApi: (apiDescriptor) => {
+      handleApi: apiDescriptor => {
         // Skip logging to console
         // console.log(apiDescriptor)
 
@@ -245,7 +245,7 @@ export default <Config>{
       /**
        * filter or convert the generated api information, return an apiDescriptor, if this function is not specified, the apiDescripor object is not converted
        */
-      handleApi: (apiDescriptor) => {
+      handleApi: apiDescriptor => {
         // Skip logging to console
         // console.log(apiDescriptor)
 
@@ -308,7 +308,7 @@ export default <Config>{
       /**
        * filter or convert the generated api information, return an apiDescriptor, if this function is not specified, the apiDescripor object is not converted
        */
-      handleApi: (apiDescriptor) => {
+      handleApi: apiDescriptor => {
         // Skip logging to console
         // console.log(apiDescriptor)
 

@@ -1,4 +1,9 @@
-import type { AccessTokenModel, LoginModel, RegisterByEmailModel, UserProfileInfo } from '@/service/apis/base/globals.d.ts'
+import type {
+  AccessTokenModel,
+  LoginModel,
+  RegisterByEmailModel,
+  UserProfileInfo,
+} from '@/service/apis/base/globals.d.ts'
 import dayjs from 'dayjs'
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
@@ -32,7 +37,7 @@ export const useUserStore = defineStore(
 
     /** 加载用户信息 */
     const loadUserInfo = async () => {
-      const { send } = useRequest(() => Webapi_Base.auth.getProfileInfo()).onError((error) => {
+      const { send } = useRequest(() => Webapi_Base.auth.getProfileInfo()).onError(error => {
         toast.error(error.error?.message || '获取用户档案失败')
       })
 
@@ -49,8 +54,7 @@ export const useUserStore = defineStore(
 
     // 验证是否过期
     function isExpired() {
-      if (!tokenModel.value || !tokenModel.value.token || !tokenModel.value.expiration)
-        return true
+      if (!tokenModel.value || !tokenModel.value.token || !tokenModel.value.expiration) return true
       const expired = dayjs().valueOf() >= dayjs(tokenModel.value.expiration).valueOf()
       console.log('☑️☑️ userStore: token is expired?', expired)
       if (expired) {
@@ -66,19 +70,22 @@ export const useUserStore = defineStore(
 
     /* 登录请求 */
     const { send: sendLoginRequest } = useRequest(
-      (model: LoginModel, openId?: string) => Webapi_Base.auth.login({
-        params: { openId },
-        data: model,
-        headers: {
-          // roles: encodeURIComponent('业务'),
-        },
-      }),
+      (model: LoginModel, openId?: string) =>
+        Webapi_Base.auth.login({
+          params: { openId },
+          data: model,
+          headers: {
+            // roles: encodeURIComponent('业务'),
+          },
+        }),
       { immediate: false },
-    ).onError((error) => {
-      toast.error(error.error?.message || '')
-    }).onComplete(() => {
-      hideLoading()
-    })
+    )
+      .onError(error => {
+        toast.error(error.error?.message || '')
+      })
+      .onComplete(() => {
+        hideLoading()
+      })
     /** 登录 */
     async function login(model: LoginModel, openId?: string) {
       const { isSuccess, data } = await sendLoginRequest(model, openId)
@@ -93,13 +100,16 @@ export const useUserStore = defineStore(
     /** 简易登录 */
     async function easyLogin(phoneNumber: string, userId = '', openId = '', unionId = '') {
       const { send } = useRequest(
-        (phoneNumber: string, userId = '', openId = '', unionId = '') => Webapi_Base.auth.easyLogin({ params: { phoneNumber, userId, openId, unionId } }),
+        (phoneNumber: string, userId = '', openId = '', unionId = '') =>
+          Webapi_Base.auth.easyLogin({ params: { phoneNumber, userId, openId, unionId } }),
         { immediate: false },
-      ).onError((error) => {
-        toast.error(error.error?.message || '登录失败')
-      }).onComplete(() => {
-        hideLoading()
-      })
+      )
+        .onError(error => {
+          toast.error(error.error?.message || '登录失败')
+        })
+        .onComplete(() => {
+          hideLoading()
+        })
       const { isSuccess, data } = await send(phoneNumber, userId, openId, unionId)
       if (isSuccess) {
         setToken(data!)
@@ -110,7 +120,9 @@ export const useUserStore = defineStore(
 
     /** 退出登录 */
     async function logout() {
-      const { error, send } = useRequest(() => Webapi_Base.auth.logout(), { immediate: false }).onError((error) => {
+      const { error, send } = useRequest(() => Webapi_Base.auth.logout(), {
+        immediate: false,
+      }).onError(error => {
         toast.error(error.error?.message || '')
       })
       const res = await send()
@@ -122,24 +134,27 @@ export const useUserStore = defineStore(
 
     /** 注册请求 */
     const { send: sendRegisterRequest } = useRequest(
-      (data: RegisterByEmailModel, role: string) => Webapi_Base.auth.register({ data, headers: { role } }),
+      (data: RegisterByEmailModel, role: string) =>
+        Webapi_Base.auth.register({ data, headers: { role } }),
       { immediate: false },
-    ).onSuccess((res) => {
-      console.log('注册成功', res)
-    }).onError((res) => {
-      console.log('注册失败', res)
-      toast.warning(res.error?.message || 'Registration failed...')
-    }).onComplete(() => {
-      hideLoading()
-    })
+    )
+      .onSuccess(res => {
+        console.log('注册成功', res)
+      })
+      .onError(res => {
+        console.log('注册失败', res)
+        toast.warning(res.error?.message || 'Registration failed...')
+      })
+      .onComplete(() => {
+        hideLoading()
+      })
 
     /** 注册 */
     async function register(model: RegisterByEmailModel, role: string) {
       try {
         const res = await sendRegisterRequest(model, encodeURIComponent(role))
         return { isSuccess: res?.isSuccess, data: res?.data }
-      }
-      catch (err: any) {
+      } catch (err: any) {
         // toast.error(err?.error?.message || 'Registration failed')
         return { isSuccess: false, error: err }
       }
@@ -168,7 +183,9 @@ export const useUserStore = defineStore(
             let query = ``
             if (route.query) {
               const keys = Object.keys(route.query) // 获取对象的key 返回对象key的数组
-              query = keys.reduce((pre, cur) => `${pre + cur}=${route.query[cur]}&`, '?').slice(0, -1)
+              query = keys
+                .reduce((pre, cur) => `${pre + cur}=${route.query[cur]}&`, '?')
+                .slice(0, -1)
             }
             router.replace({
               path: LOGIN_PAGE,

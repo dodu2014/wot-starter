@@ -26,8 +26,7 @@ async function testSendMessage() {
 
 onLoad(async () => {
   // #ifdef MP-WEIXIN
-  if (!wxUserInfo.value)
-    await wxUserStore.wxLogin()
+  if (!wxUserInfo.value) await wxUserStore.wxLogin()
   // #endif
 })
 </script>
@@ -38,11 +37,7 @@ onLoad(async () => {
       {{ wxUserInfo?.openId }}
     </view>
 
-    <wd-button block @click="() => requestSubscribeMessage('业务受理通知')">
-      订阅
-    </wd-button>
-    <wd-button block @click="testSendMessage">
-      测试 `业务受理通知` 模板消息
-    </wd-button>
+    <wd-button block @click="() => requestSubscribeMessage('业务受理通知')"> 订阅 </wd-button>
+    <wd-button block @click="testSendMessage"> 测试 `业务受理通知` 模板消息 </wd-button>
   </view>
 </template>

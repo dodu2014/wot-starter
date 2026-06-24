@@ -22,7 +22,7 @@ vitess-uni-app 主要由以下开源包组成：
 - 引擎：[uni-app](https://github.com/dcloudio/uni-app)
 - 打包器：[Vite](http://vite.dev/)
 - CSS 样式：[UnoCSS](https://unocss.dev/)
-- 代码质量：[ESLint](https://github.com/uni-helper/eslint-config) 和 [TypeScript](https://www.typescriptlang.org/)
+- 代码质量：[Oxlint](https://oxc.rs/) 和 [TypeScript](https://www.typescriptlang.org/)
 
 wot-starter 在以上开源包的基础上引入了以下开源包：
 - 组件库：[Wot UI V2](https://github.com/wot-ui/wot-ui)

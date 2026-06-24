@@ -4,11 +4,7 @@ import { TooltipComponent } from 'echarts/components'
 import * as echarts from 'echarts/core'
 import { CanvasRenderer } from 'echarts/renderers'
 
-echarts.use([
-  TooltipComponent,
-  GaugeChart,
-  CanvasRenderer,
-])
+echarts.use([TooltipComponent, GaugeChart, CanvasRenderer])
 
 const option = ref({
   tooltip: {

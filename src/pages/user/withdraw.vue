@@ -34,8 +34,7 @@ console.log('uuid:', uuid())
 /** 设置可提现的最大值 */
 function setMaxDrawValue() {
   let maxValue = balance.value
-  if (maxValue > 200)
-    maxValue = 200
+  if (maxValue > 200) maxValue = 200
   amount.value = `${maxValue}`
 }
 
@@ -57,38 +56,42 @@ function successTransferHandler() {
 }
 
 const { send: sendRequestMerchantTransfer, loading } = useRequest(
-  (data: CreateMerchantTransferRequest) => Webapi_Weixin.wxPay.requestMerchantTransfer({ params: { notifyUrl: '' }, data }),
+  (data: CreateMerchantTransferRequest) =>
+    Webapi_Weixin.wxPay.requestMerchantTransfer({ params: { notifyUrl: '' }, data }),
   { immediate: false },
-).onComplete(() => {
-  hideLoading()
-}).onError(({ error }) => {
-  warning(error)
-}).onSuccess(({ data: transferBill }) => {
-  showLoading('loading')
-  const { data, message, isSuccess } = transferBill
-  if (!isSuccess) {
-    warning(message!)
-    return
-  }
-  if (data?.state !== 'WAIT_USER_CONFIRM' || !data?.package_info) {
-    warning(t('pages.user.withdraw.transferFailed'))
-    return
-  }
-
-  uni.requestMerchantTransfer({
-    mchId: merchantId,
-    appId: uni.getAccountInfoSync().miniProgram.appId,
-    package: data.package_info,
-    success: (res) => {
-      // res.err_msg将在页面展示成功后返回应用时返回ok，并不代表付款成功
-      console.log('success:', res)
-      successTransferHandler()
-    },
-    fail: (res) => {
-      console.log('fail:', res)
-    },
+)
+  .onComplete(() => {
+    hideLoading()
   })
-})
+  .onError(({ error }) => {
+    warning(error)
+  })
+  .onSuccess(({ data: transferBill }) => {
+    showLoading('loading')
+    const { data, message, isSuccess } = transferBill
+    if (!isSuccess) {
+      warning(message!)
+      return
+    }
+    if (data?.state !== 'WAIT_USER_CONFIRM' || !data?.package_info) {
+      warning(t('pages.user.withdraw.transferFailed'))
+      return
+    }
+
+    uni.requestMerchantTransfer({
+      mchId: merchantId,
+      appId: uni.getAccountInfoSync().miniProgram.appId,
+      package: data.package_info,
+      success: res => {
+        // res.err_msg将在页面展示成功后返回应用时返回ok，并不代表付款成功
+        console.log('success:', res)
+        successTransferHandler()
+      },
+      fail: res => {
+        console.log('fail:', res)
+      },
+    })
+  })
 
 function confirmTransfer() {
   if (!wx.canIUse('requestMerchantTransfer')) {
@@ -117,8 +120,7 @@ function confirmTransfer() {
     cancelButtonText: t('pages.user.withdraw.cancel'),
     msg: t('pages.user.withdraw.confirmMsg'),
     async success(res) {
-      if (res.action !== 'confirm')
-        return
+      if (res.action !== 'confirm') return
       showLoading('loading')
       await sendRequestMerchantTransfer({
         userId: userInfo!.id!,
@@ -126,7 +128,6 @@ function confirmTransfer() {
         amount: amountValue,
         appId: VITE_APPID,
         mchId: VITE_WEIXIN_PAY_MERCHANT_ID,
-
       })
     },
   })
@@ -149,11 +150,19 @@ function confirmTransfer() {
 
     <view class="flex-col gap-y-3 px-8 py-4">
       <wd-text :text="$t('pages.user.withdraw.amount')" size="12px" custom-class="!text-default" />
-      <wd-input v-model="amount" size="large" type="number" inputmode="numeric" no-border label-width="0" :placeholder="$t('pages.user.withdraw.amountPlaceholder')" focus custom-class="!p-0 !bg-transparent is-large2">
+      <wd-input
+        v-model="amount"
+        size="large"
+        type="number"
+        inputmode="numeric"
+        no-border
+        label-width="0"
+        :placeholder="$t('pages.user.withdraw.amountPlaceholder')"
+        focus
+        custom-class="!p-0 !bg-transparent is-large2"
+      >
         <template #prefix>
-          <text class="text-default">
-            ¥
-          </text>
+          <text class="text-default"> ¥ </text>
         </template>
       </wd-input>
       <view class="flex-col">
@@ -166,10 +175,23 @@ function confirmTransfer() {
         </view>
       </view>
 
-      <wd-button type="primary" size="large" custom-class="mt-30px" :loading="loading" :disabled="loading" @click="confirmTransfer">
+      <wd-button
+        type="primary"
+        size="large"
+        custom-class="mt-30px"
+        :loading="loading"
+        :disabled="loading"
+        @click="confirmTransfer"
+      >
         {{ $t('pages.user.withdraw.confirmBtn') }}
       </wd-button>
-      <wd-button type="info" variant="text" icon="time-line" size="small" @click="() => router.push('/pages/user/withdrawOrderList')">
+      <wd-button
+        type="info"
+        variant="text"
+        icon="time-line"
+        size="small"
+        @click="() => router.push('/pages/user/withdrawOrderList')"
+      >
         {{ $t('pages.user.withdraw.withdrawRecord') }}
       </wd-button>
     </view>
@@ -179,6 +201,8 @@ function confirmTransfer() {
 <style lang="scss" scoped>
 :deep(.wd-input.is-large2) {
   .wd-input__prefix,
-  .wd-input__inner {font-size: 20px !important;}
+  .wd-input__inner {
+    font-size: 20px !important;
+  }
 }
 </style>

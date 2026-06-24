@@ -9,17 +9,17 @@
  */
 import type { ConfigProviderThemeVars } from '@wot-ui/ui'
 
-export type PrimaryShadeKey
-  = | 'primary1'
-    | 'primary2'
-    | 'primary3'
-    | 'primary4'
-    | 'primary5'
-    | 'primary6'
-    | 'primary7'
-    | 'primary8'
-    | 'primary9'
-    | 'primary10'
+export type PrimaryShadeKey =
+  | 'primary1'
+  | 'primary2'
+  | 'primary3'
+  | 'primary4'
+  | 'primary5'
+  | 'primary6'
+  | 'primary7'
+  | 'primary8'
+  | 'primary9'
+  | 'primary10'
 
 export type ThemePrimaryShades = Record<PrimaryShadeKey, string>
 

@@ -30,11 +30,20 @@ onUnload(() => {
 
 <template>
   <view class="flex-center flex-col flex-full gap-y-3 py-10vh">
-    <view class="mb-30px h-56px w-56px flex flex-center rounded-full bg-orange text-26px text-white">
+    <view
+      class="mb-30px h-56px w-56px flex flex-center rounded-full bg-orange text-26px text-white"
+    >
       <text class="i-carbon:wallet" />
     </view>
     <wd-text :text="$t('pages.user.wallet.balance')" size="14px" custom-class="!text-default" />
-    <wd-text :text="balance" mode="price" prefix="￥" size="36px" bold custom-class="!text-default" />
+    <wd-text
+      :text="balance"
+      mode="price"
+      prefix="￥"
+      size="36px"
+      bold
+      custom-class="!text-default"
+    />
     <view class="flex-full" />
     <wd-button size="large" type="primary" @click="() => router.push('/pages/user/withdraw')">
       {{ $t('pages.user.wallet.withdrawNow') }}

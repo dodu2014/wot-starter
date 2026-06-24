@@ -90,7 +90,7 @@ export function useManualTheme() {
 
     // 监听系统主题变化
     if (typeof uni !== 'undefined' && uni.onThemeChange) {
-      uni.onThemeChange((res) => {
+      uni.onThemeChange(res => {
         if (store.followSystem) {
           toggleTheme(res.theme as ThemeMode, true)
         }
@@ -106,7 +106,7 @@ export function useManualTheme() {
   // 组件卸载时清理监听
   onUnmounted(() => {
     if (typeof uni !== 'undefined' && uni.offThemeChange) {
-      uni.offThemeChange((res) => {
+      uni.offThemeChange(res => {
         if (store.followSystem) {
           toggleTheme(res.theme as ThemeMode, true)
         }

@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import type { UserMessage } from '@/service/apis/base/globals'
-import dayjs from 'dayjs'
 import { usePageTitle } from '@/hooks/usePageTitle'
 import router from '@/router'
+import dayjs from 'dayjs'
 
 const { userInfo } = useUserStore()
 const toast = useGlobalToast()
@@ -25,24 +25,24 @@ usePageTitle('pages.user.message.title')
 
 type Mode = 'push' | 'replace'
 const { loading, send: sendGetListRequest } = useRequest(
-  (page: number = 1) => Webapi_Base.userMessage.getUserMessageList({ params: {
-    toId: userInfo?.id,
-    page,
-    pageSize: 20,
-  } }),
+  (page: number = 1) =>
+    Webapi_Base.userMessage.getUserMessageList({
+      params: {
+        toId: userInfo?.id,
+        page,
+        pageSize: 20,
+      },
+    }),
   { immediate: false },
-)
-  .onError((error) => {
-    toast.error(error.error?.message)
-  })
+).onError(error => {
+  toast.error(error.error?.message)
+})
 async function loadList(_page = 1, mode: Mode = 'push') {
   const { data } = await sendGetListRequest(_page)
   totalPage.value = +(data?.totalPageCount || 0)
-  if (mode === 'push')
-    modelList.value.push(...(data?.list || []))
+  if (mode === 'push') modelList.value.push(...(data?.list || []))
   else modelList.value = data?.list || []
-  if (page.value < totalPage.value)
-    page.value = _page
+  if (page.value < totalPage.value) page.value = _page
 }
 
 onPullDownRefresh(async () => {
@@ -55,8 +55,7 @@ onPullDownRefresh(async () => {
 })
 
 onReachBottom(async () => {
-  if (page.value < totalPage.value)
-    await loadList(page.value + 1)
+  if (page.value < totalPage.value) await loadList(page.value + 1)
 })
 
 onLoad(async () => {
@@ -72,8 +71,7 @@ const { send: sendGetMessageRequest } = useRequest(
   showDetail.value = true
   messageModel.value = data?.data || {}
   const model = modelList.value.find(i => i.id === data?.data?.id)
-  if (model)
-    model.isReaded = true
+  if (model) model.isReaded = true
 })
 
 const { requestSubscribeMessage, isSuccessedSubscribeResult } = useSubscribeMessage()
@@ -81,8 +79,7 @@ async function handleToPage(pagePath: string) {
   // #ifdef MP-WEIXIN
   await requestSubscribeMessage('业务受理通知')
   const subscribeSuccessed = isSuccessedSubscribeResult()
-  if (!subscribeSuccessed)
-    return
+  if (!subscribeSuccessed) return
   // #endif
   const path = (pagePath.startsWith('/') ? pagePath : `/${pagePath}`) as _LocationUrl
   router.push(path)
@@ -95,7 +92,11 @@ async function handleToPage(pagePath: string) {
     <view v-if="loading && !modelList.length" class="px-4">
       <view v-for="item in 3" :key="item" style="display: flex; margin-top: 20px">
         <wd-skeleton animation="gradient" :row-col="[{ size: '48px', type: 'rect' }]" />
-        <wd-skeleton animation="gradient" :custom-style="{ width: '100%', marginLeft: '12px' }" :row-col="[{ width: '50%' }, { width: '100%' }]" />
+        <wd-skeleton
+          animation="gradient"
+          :custom-style="{ width: '100%', marginLeft: '12px' }"
+          :row-col="[{ width: '50%' }, { width: '100%' }]"
+        />
       </view>
     </view>
 
@@ -107,7 +108,8 @@ async function handleToPage(pagePath: string) {
     <!-- 列表 -->
     <wd-cell-group v-if="modelList.length" border custom-class="cell-justify-end">
       <wd-cell
-        v-for="(item, index) in modelList" :key="index"
+        v-for="(item, index) in modelList"
+        :key="index"
         :label="`${dayjs(item.createdAt).format('YYYY-MM-DD HH:mm')}`"
         center
         is-link
@@ -115,26 +117,42 @@ async function handleToPage(pagePath: string) {
       >
         <template #icon>
           <view class="flex content-center items-center pr-3">
-            <wd-icon name="mail" :size="24" :custom-class="item.isReaded ? 'text-gray' : 'text-primary'" />
+            <wd-icon
+              name="mail"
+              :size="24"
+              :custom-class="item.isReaded ? 'text-gray' : 'text-primary'"
+            />
           </view>
         </template>
         <template #title>
           <view>
-            <wd-text :text="item.content" :lines="1" :bold="!item.isReaded" custom-class="!text-default" />
+            <wd-text
+              :text="item.content"
+              :lines="1"
+              :bold="!item.isReaded"
+              custom-class="!text-default"
+            />
           </view>
         </template>
       </wd-cell>
     </wd-cell-group>
 
     <!-- 加载更多 -->
-    <wd-loadmore v-if="totalPage >= page" :state="loading ? 'loading' : 'finished'" custom-class="!line-height-6 !h-auto" />
+    <wd-loadmore
+      v-if="totalPage >= page"
+      :state="loading ? 'loading' : 'finished'"
+      custom-class="!line-height-6 !h-auto"
+    />
 
     <!-- 消息详情弹层 -->
     <wd-popup
       v-model="showDetail"
       :z-index="10000"
-      position="bottom" closable safe-area-inset-bottom lock-scroll
-      @close="() => showDetail = false"
+      position="bottom"
+      closable
+      safe-area-inset-bottom
+      lock-scroll
+      @close="() => (showDetail = false)"
     >
       <view v-if="messageModel" class="min-h-180px flex-col gap-y-3 px-4 pb-6 pt-8">
         <view class="flex-1">
@@ -144,7 +162,10 @@ async function handleToPage(pagePath: string) {
           <wd-text :text="dayjs(messageModel?.createdAt).format('YYYY-MM-DD HH:mm')" />
           <view>
             <!-- #ifdef MP-WEIXIN -->
-            <wd-button v-if="messageModel?.pagePath" @click="() => handleToPage(messageModel!.pagePath!)">
+            <wd-button
+              v-if="messageModel?.pagePath"
+              @click="() => handleToPage(messageModel!.pagePath!)"
+            >
               {{ $t('pages.user.message.viewDetail') }}
             </wd-button>
             <!-- #endif -->

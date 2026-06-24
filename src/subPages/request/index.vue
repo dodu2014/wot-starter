@@ -61,13 +61,14 @@ const {
   error: petError,
   send: loadPetData,
 } = useRequest(
-  (status: 'available' | 'pending' | 'sold' = 'available') => Apis.pet.findPetsByStatus({
-    params: { status },
-  }),
+  (status: 'available' | 'pending' | 'sold' = 'available') =>
+    Apis.pet.findPetsByStatus({
+      params: { status },
+    }),
   {
     immediate: false,
   },
-).onError((error) => {
+).onError(error => {
   GlobalToast.error(error.error?.message || '获取宠物列表失败')
 })
 
@@ -78,16 +79,17 @@ const {
   error: loginError,
   send: performLogin,
 } = useRequest(
-  (username: string, password: string) => Apis.user.loginUser({
-    params: {
-      username,
-      password,
-    },
-  }),
+  (username: string, password: string) =>
+    Apis.user.loginUser({
+      params: {
+        username,
+        password,
+      },
+    }),
   {
     immediate: false,
   },
-).onError((error) => {
+).onError(error => {
   GlobalToast.error(error.error?.message || '用户登录失败')
 })
 
@@ -123,17 +125,14 @@ function handleNavigate(url: string) {
     <!-- 头部介绍 -->
     <view class="mx-3 mb-3">
       <view class="rounded-3 px-5 py-8 text-center wot-bg-filled-oppo">
-        <view class="mb-3 text-10">
-          🌐
-        </view>
-        <view class="mb-2 text-6 font-bold wot-text-text-main">
-          Alova 网络请求
-        </view>
+        <view class="mb-3 text-10"> 🌐 </view>
+        <view class="mb-2 text-6 font-bold wot-text-text-main"> Alova 网络请求 </view>
         <view class="mb-2 text-3.5 leading-relaxed wot-text-text-secondary">
           极致高效的请求工具集
         </view>
         <view class="text-3 leading-relaxed wot-text-text-secondary">
-          alova完美兼容你最喜欢的HTTP client和UI框架，快速开发客户端和服务的应用的业务逻辑，同时让API信息与代码进行交互，像虫洞一样拉近后端协作距离，极致高效地集成你的APIs
+          alova完美兼容你最喜欢的HTTP
+          client和UI框架，快速开发客户端和服务的应用的业务逻辑，同时让API信息与代码进行交互，像虫洞一样拉近后端协作距离，极致高效地集成你的APIs
         </view>
       </view>
     </view>
@@ -169,24 +168,15 @@ function handleNavigate(url: string) {
         <!-- 宠物列表请求 -->
         <view class="rounded-2 p-4 wot-bg-filled-oppo">
           <view class="mb-3 flex items-center">
-            <view class="mr-2 text-5">
-              🐾
-            </view>
-            <view class="text-4 font-bold wot-text-text-main">
-              宠物列表请求
-            </view>
+            <view class="mr-2 text-5"> 🐾 </view>
+            <view class="text-4 font-bold wot-text-text-main"> 宠物列表请求 </view>
           </view>
           <view class="mb-3 text-3 leading-relaxed wot-text-text-secondary">
             使用 useRequest 获取宠物列表，支持参数传递和错误处理
           </view>
 
           <view class="mb-3">
-            <wd-button
-              type="primary"
-              block
-              :loading="petLoading"
-              @click="demoLoadPets"
-            >
+            <wd-button type="primary" block :loading="petLoading" @click="demoLoadPets">
               获取宠物列表
             </wd-button>
           </view>
@@ -207,14 +197,11 @@ function handleNavigate(url: string) {
 
           <!-- 代码示例 -->
           <view class="wot-bg-bg mt-3 rounded-2 p-3">
-            <view class="mb-2 text-3 font-bold wot-text-text-secondary">
-              代码示例:
-            </view>
+            <view class="mb-2 text-3 font-bold wot-text-text-secondary"> 代码示例: </view>
             <view class="text-2.5 leading-relaxed font-mono wot-text-text-secondary">
-              const { data, loading, send } = useRequest(\n
-              &nbsp;&nbsp;(status) => Apis.pet.findPetsByStatus({ params: { status } }),\n
-              &nbsp;&nbsp;{ immediate: false }\n
-              ).onError((error) => { ... })
+              const { data, loading, send } = useRequest(\n &nbsp;&nbsp;(status) =>
+              Apis.pet.findPetsByStatus({ params: { status } }),\n &nbsp;&nbsp;{ immediate: false
+              }\n ).onError((error) => { ... })
             </view>
           </view>
         </view>
@@ -222,24 +209,15 @@ function handleNavigate(url: string) {
         <!-- 用户登录请求 -->
         <view class="rounded-2 p-4 wot-bg-filled-oppo">
           <view class="mb-3 flex items-center">
-            <view class="mr-2 text-5">
-              👤
-            </view>
-            <view class="text-4 font-bold wot-text-text-main">
-              用户登录请求
-            </view>
+            <view class="mr-2 text-5"> 👤 </view>
+            <view class="text-4 font-bold wot-text-text-main"> 用户登录请求 </view>
           </view>
           <view class="mb-3 text-3 leading-relaxed wot-text-text-secondary">
             演示多参数传递和POST请求处理
           </view>
 
           <view class="mb-3">
-            <wd-button
-              type="warning"
-              block
-              :loading="loginLoading"
-              @click="demoLogin"
-            >
+            <wd-button type="warning" block :loading="loginLoading" @click="demoLogin">
               模拟用户登录
             </wd-button>
           </view>
@@ -260,16 +238,11 @@ function handleNavigate(url: string) {
 
           <!-- 代码示例 -->
           <view class="wot-bg-bg mt-3 rounded-2 p-3">
-            <view class="mb-2 text-3 font-bold wot-text-text-secondary">
-              代码示例:
-            </view>
+            <view class="mb-2 text-3 font-bold wot-text-text-secondary"> 代码示例: </view>
             <view class="text-2.5 leading-relaxed font-mono wot-text-text-secondary">
-              const { data, loading, send } = useRequest(\n
-              &nbsp;&nbsp;(username, password) => Apis.user.loginUser({\n
-              &nbsp;&nbsp;&nbsp;&nbsp;params: { username, password }\n
-              &nbsp;&nbsp;}),\n
-              &nbsp;&nbsp;{ immediate: false }\n
-              ).onError((error) => { ... })
+              const { data, loading, send } = useRequest(\n &nbsp;&nbsp;(username, password) =>
+              Apis.user.loginUser({\n &nbsp;&nbsp;&nbsp;&nbsp;params: { username, password }\n
+              &nbsp;&nbsp;}),\n &nbsp;&nbsp;{ immediate: false }\n ).onError((error) => { ... })
             </view>
           </view>
         </view>
@@ -279,11 +252,36 @@ function handleNavigate(url: string) {
     <!-- 相关链接 -->
     <demo-block title="相关链接" transparent>
       <wd-cell-group border custom-class="rounded-2! overflow-hidden">
-        <wd-cell title="📚 Alova 官方文档" value="alova.js.org" is-link @click="handleNavigate('https://alova.js.org/')" />
-        <wd-cell title="🐙 GitHub 仓库" value="alovajs/alova" is-link @click="handleNavigate('https://github.com/alovajs/alova')" />
-        <wd-cell title="📖 uni-app 文档" value="网络请求" is-link @click="handleNavigate('https://uniapp.dcloud.net.cn/api/request/request.html')" />
-        <wd-cell title="🎯 Alova Hooks" value="请求策略" is-link @click="handleNavigate('https://alova.js.org/zh-CN/tutorial/client/strategy/')" />
-        <wd-cell title="💡 最佳实践" value="使用指南" is-link @click="handleNavigate('https://alova.js.org/zh-CN/tutorial/project/best-practice/')" />
+        <wd-cell
+          title="📚 Alova 官方文档"
+          value="alova.js.org"
+          is-link
+          @click="handleNavigate('https://alova.js.org/')"
+        />
+        <wd-cell
+          title="🐙 GitHub 仓库"
+          value="alovajs/alova"
+          is-link
+          @click="handleNavigate('https://github.com/alovajs/alova')"
+        />
+        <wd-cell
+          title="📖 uni-app 文档"
+          value="网络请求"
+          is-link
+          @click="handleNavigate('https://uniapp.dcloud.net.cn/api/request/request.html')"
+        />
+        <wd-cell
+          title="🎯 Alova Hooks"
+          value="请求策略"
+          is-link
+          @click="handleNavigate('https://alova.js.org/zh-CN/tutorial/client/strategy/')"
+        />
+        <wd-cell
+          title="💡 最佳实践"
+          value="使用指南"
+          is-link
+          @click="handleNavigate('https://alova.js.org/zh-CN/tutorial/project/best-practice/')"
+        />
       </wd-cell-group>
     </demo-block>
   </view>

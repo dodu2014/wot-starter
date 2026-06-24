@@ -58,10 +58,11 @@ export function createStorage({
           time: Date.now(),
           expire: !isNullOrUnDef(expire) ? new Date().getTime() + expire * 1000 : null,
         })
-        const stringifyValue = this.hasEncrypt ? this.encryption.encryptByAES(stringData) : stringData
+        const stringifyValue = this.hasEncrypt
+          ? this.encryption.encryptByAES(stringData)
+          : stringData
         uni.setStorageSync(this.getKey(key), stringifyValue)
-      }
-      catch (err) {
+      } catch (err) {
         throw new Error(`setStorageSync error: ${err}`)
       }
     }
@@ -74,8 +75,7 @@ export function createStorage({
      */
     get<T = any>(key: string, def: any = null): T {
       const val = uni.getStorageSync(this.getKey(key))
-      if (!val)
-        return def
+      if (!val) return def
 
       try {
         const decVal = this.hasEncrypt ? this.encryption.decryptByAES(val) : val
@@ -86,9 +86,8 @@ export function createStorage({
           return def
         }
         return value
-      }
-      // eslint-disable-next-line unused-imports/no-unused-vars
-      catch (e) {
+      } catch (e) {
+        // oxlint-disable-next-line unused-imports/no-unused-vars
         return def
       }
     }

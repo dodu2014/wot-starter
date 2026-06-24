@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import type { FormExpose } from '@wot-ui/ui/components/wd-form/types'
 import type { ChangePasswordModel } from '@/service/apis/base/globals'
-import { zodAdapter } from '@wot-ui/ui'
 import { useI18n } from 'vue-i18n'
-import { z } from 'zod'
 import { usePageTitle } from '@/hooks/usePageTitle'
+import { zodAdapter } from '@wot-ui/ui'
+import z from 'zod'
 
 const { t } = useI18n()
 
@@ -32,20 +32,19 @@ const model = reactive<ChangePasswordModel>({
 const formRef = ref<FormExpose>()
 
 const { error, loading, send } = useRequest(
-  () => Webapi_Base.user.changeUserPassword({
-    data: model,
-  }),
+  () =>
+    Webapi_Base.user.changeUserPassword({
+      data: model,
+    }),
   { immediate: false },
-)
-  .onError((error) => {
-    warning(error.error?.message || t('pages.user.changePassword.changeFailed'))
-  })
+).onError(error => {
+  warning(error.error?.message || t('pages.user.changePassword.changeFailed'))
+})
 
 async function handleSubmit() {
   const res = await formRef.value?.validate()
   console.log('valid', res)
-  if (!res || !res?.valid)
-    return
+  if (!res || !res?.valid) return
 
   // request
   await send()
@@ -58,15 +57,29 @@ async function handleSubmit() {
 <template>
   <view class="flex-col gap-y-4">
     <wd-form
-      ref="formRef" border :model="model"
-      :schema="zodAdapter(
-        z.object({
-          password: z.string().min(6, t('pages.user.changePassword.passwordMinLength')).min(1, t('pages.user.changePassword.required')),
-          newPassword: z.string().min(6, t('pages.user.changePassword.passwordMinLength')).min(1, t('pages.user.changePassword.required')),
-          confirmPassword: z.string().min(1, t('pages.user.changePassword.required')),
-        })
-          .refine(data => data.newPassword === data.confirmPassword, { message: t('pages.user.changePassword.repasswordMismatch'), path: ['confirmPassword'] }),
-      )"
+      ref="formRef"
+      border
+      :model="model"
+      :schema="
+        zodAdapter(
+          z
+            .object({
+              password: z
+                .string()
+                .min(6, t('pages.user.changePassword.passwordMinLength'))
+                .min(1, t('pages.user.changePassword.required')),
+              newPassword: z
+                .string()
+                .min(6, t('pages.user.changePassword.passwordMinLength'))
+                .min(1, t('pages.user.changePassword.required')),
+              confirmPassword: z.string().min(1, t('pages.user.changePassword.required')),
+            })
+            .refine(data => data.newPassword === data.confirmPassword, {
+              message: t('pages.user.changePassword.repasswordMismatch'),
+              path: ['confirmPassword'],
+            }),
+        )
+      "
     >
       <wd-form-item
         :title="$t('pages.user.changePassword.account')"

@@ -17,12 +17,7 @@ import storeMocks from './modules/store'
 import userMocks from './modules/user'
 
 // 合并所有mock定义
-const allMocks = [
-  commonMocks,
-  petMocks,
-  storeMocks,
-  userMocks,
-]
+const allMocks = [commonMocks, petMocks, storeMocks, userMocks]
 
 // 创建mock适配器
 const mockAdapter = createAlovaMockAdapter(allMocks, {

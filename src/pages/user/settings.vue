@@ -24,7 +24,7 @@ function handleLogout() {
     msg: t('pages.user.settings.logoutMsg'),
     closeOnClickModal: false,
     confirmButtonText: t('pages.user.settings.confirmLogout'),
-    success: async (res) => {
+    success: async res => {
       if (res.action === 'confirm') {
         await logout()
         router.back()
@@ -39,19 +39,36 @@ function handleLogout() {
     <wd-cell-group border custom-class="!m-0">
       <!-- #ifdef MP-WEIXIN -->
       <button class="button-reset" open-type="openSetting">
-        <wd-cell :title="$t('pages.user.settings.authSetting')" :value="$t('pages.user.settings.miniProgram')" icon="setting1" is-link center>
+        <wd-cell
+          :title="$t('pages.user.settings.authSetting')"
+          :value="$t('pages.user.settings.miniProgram')"
+          icon="setting1"
+          is-link
+          center
+        >
           <template #prefix>
             <wd-icon name="settings" :size="16" custom-class="text-primary content-center mr-2" />
           </template>
         </wd-cell>
       </button>
       <!-- #endif -->
-      <wd-cell :title="$t('pages.user.settings.personalProfile')" icon="user" is-link :value="userInfo?.name || userInfo?.userName" to="/pages/user/profile">
+      <wd-cell
+        :title="$t('pages.user.settings.personalProfile')"
+        icon="user"
+        is-link
+        :value="userInfo?.name || userInfo?.userName"
+        to="/pages/user/profile"
+      >
         <template #prefix>
           <text class="i-carbon:user-profile mr-2 self-center text-20px text-primary" />
         </template>
       </wd-cell>
-      <wd-cell :title="$t('pages.user.settings.changePassword')" icon="lock-on" is-link to="/pages/user/changePassword">
+      <wd-cell
+        :title="$t('pages.user.settings.changePassword')"
+        icon="lock-on"
+        is-link
+        to="/pages/user/changePassword"
+      >
         <template #prefix>
           <text class="i-carbon:rule-locked mr-2 text-20px text-primary" />
         </template>

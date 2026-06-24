@@ -25,11 +25,7 @@ export default defineConfig({
     // https://github.com/uni-helper/vite-plugin-uni-pages
     UniHelperPages({
       dts: 'src/uni-pages.d.ts',
-      subPackages: [
-        'src/subPages',
-        'src/subEcharts',
-        'src/subAsyncEcharts',
-      ],
+      subPackages: ['src/subPages', 'src/subEcharts', 'src/subAsyncEcharts'],
       /**
        * 排除的页面，相对于 dir 和 subPackages
        * @default []
@@ -58,16 +54,24 @@ export default defineConfig({
     }),
     // https://github.com/antfu/unplugin-auto-import
     AutoImport({
-      imports: ['vue', '@vueuse/core', 'pinia', 'uni-app', {
-        from: '@wot-ui/router',
-        imports: ['createRouter', 'useRouter', 'useRoute'],
-      }, {
-        from: '@wot-ui/ui',
-        imports: ['useToast', 'useDialog', 'useNotify', 'CommonUtil'],
-      }, {
-        from: 'alova/client',
-        imports: ['usePagination', 'useRequest'],
-      }],
+      imports: [
+        'vue',
+        '@vueuse/core',
+        'pinia',
+        'uni-app',
+        {
+          from: '@wot-ui/router',
+          imports: ['createRouter', 'useRouter', 'useRoute'],
+        },
+        {
+          from: '@wot-ui/ui',
+          imports: ['useToast', 'useDialog', 'useNotify', 'CommonUtil'],
+        },
+        {
+          from: 'alova/client',
+          imports: ['usePagination', 'useRequest'],
+        },
+      ],
       dts: 'src/auto-imports.d.ts',
       dirs: ['src/composables', 'src/store', 'src/utils', 'src/service/apis'],
       vueTemplate: true,

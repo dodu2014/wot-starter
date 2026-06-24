@@ -43,9 +43,6 @@ export default defineUniPages({
     selectedColor: '@tabSelectedColor',
     backgroundColor: '@tabBgColor',
     borderStyle: '@tabBorderStyle',
-    list: [
-      { pagePath: 'pages/index/index' },
-      { pagePath: 'pages/my/index' },
-    ],
+    list: [{ pagePath: 'pages/index/index' }, { pagePath: 'pages/my/index' }],
   },
 })

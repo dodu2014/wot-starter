@@ -1,7 +1,5 @@
-/* eslint-disable ts/ban-ts-comment */
-// @ts-ignore
+// oxlint-disable typescript/ban-ts-comment
 import * as fs from 'node:fs'
-// @ts-ignore
 import { argv } from 'node:process'
 
 const baseApkPath = './src/unpackage/debug/android_debug.apk'
@@ -18,8 +16,7 @@ export function copyFile(filePath: string, targetPath: string) {
     throw new Error(`${filePath} 文件不存在`)
   }
   fs.cp(filePath, targetPath, { recursive: true }, (err: any) => {
-    if (err)
-      throw err
+    if (err) throw err
     console.log(`${filePath} 已成功复制到 ${targetPath}`)
     console.log(`${targetPath} 状态：${fs.existsSync(filePath) ? '存在' : '不存在'}`)
   })
@@ -43,11 +40,9 @@ if (import.meta.url === `file://${argv[1]}`) {
   const command = argv[2]
   if (command === 'copyDevApkToDist') {
     copyDevApkToDist()
-  }
-  else if (command === 'copyBuildApkToDist') {
+  } else if (command === 'copyBuildApkToDist') {
     copyBuildApkToDist()
-  }
-  else {
+  } else {
     console.log('Usage: node scripts/copyBaseApk.ts <command>')
     console.log('Commands: copyDevApkToDist, copyBuildApkToDist')
   }

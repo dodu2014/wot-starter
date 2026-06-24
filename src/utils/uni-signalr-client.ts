@@ -29,7 +29,7 @@ interface CompletionMessage extends HubMessage {
   result?: any
 }
 
-// eslint-disable-next-line unused-imports/no-unused-vars
+// oxlint-disable-next-line unused-imports/no-unused-vars
 interface StreamItemMessage extends HubMessage {
   invocationId: string
   item?: any
@@ -127,8 +127,7 @@ export class HubConnection {
           if (this.state === 'connected') {
             clearInterval(checkState)
             resolve()
-          }
-          else if (this.state === 'disconnected') {
+          } else if (this.state === 'disconnected') {
             clearInterval(checkState)
             reject(new Error('Connection failed'))
           }
@@ -140,12 +139,11 @@ export class HubConnection {
     this.options.logger.log('Starting connection...')
 
     return this.getAccessToken()
-      .then((token) => {
+      .then(token => {
         this.accessToken = token
         if (this.options.skipNegotiation) {
           return this.startWebSocket()
-        }
-        else {
+        } else {
           return this.negotiate().then(() => this.startWebSocket())
         }
       })
@@ -155,7 +153,7 @@ export class HubConnection {
         this.options.logger.log('Connection established')
         this.startPingInterval()
       })
-      .catch((err) => {
+      .catch(err => {
         this.state = 'disconnected'
         this.options.logger.error(`Start failed: ${err.message}`)
         throw err
@@ -166,37 +164,32 @@ export class HubConnection {
    * 停止连接
    */
   public async stop(): Promise<void> {
-    if (this.state === 'disconnected')
-      return
+    if (this.state === 'disconnected') return
 
     this.options.logger.log('Stopping connection...')
-    if (this.pingInterval)
-      clearInterval(this.pingInterval)
-    if (this.handshakeTimer)
-      clearTimeout(this.handshakeTimer)
+    if (this.pingInterval) clearInterval(this.pingInterval)
+    if (this.handshakeTimer) clearTimeout(this.handshakeTimer)
 
     if (this.socketTask) {
-      return new Promise((resolve) => {
+      return new Promise(resolve => {
         if (this.socketTask) {
           this.socketTask.close({
             success: () => {
               this.cleanup()
               resolve()
             },
-            fail: (err) => {
+            fail: err => {
               this.options.logger.error(`Close failed: ${err.errMsg}`)
               this.cleanup()
               resolve()
             },
           })
-        }
-        else {
+        } else {
           this.cleanup()
           resolve()
         }
       })
-    }
-    else {
+    } else {
       this.cleanup()
       return Promise.resolve()
     }
@@ -229,7 +222,7 @@ export class HubConnection {
 
     const callPromise = new Promise<any>((resolve, reject) => {
       this.pendingCalls.set(invocationId, { resolve, reject, methodName })
-      this.sendMessage(message).catch((err) => {
+      this.sendMessage(message).catch(err => {
         this.pendingCalls.delete(invocationId)
         reject(err)
       })
@@ -276,8 +269,7 @@ export class HubConnection {
     const handlers = this.eventHandlers.get(eventName)
     if (handlers) {
       handlers.delete(callback)
-      if (handlers.size === 0)
-        this.eventHandlers.delete(eventName)
+      if (handlers.size === 0) this.eventHandlers.delete(eventName)
     }
   }
 
@@ -292,8 +284,7 @@ export class HubConnection {
 
   private async getAccessToken(): Promise<string> {
     const factory = this.options.accessTokenFactory
-    if (!factory)
-      return ''
+    if (!factory) return ''
     const token = await factory()
     return token || ''
   }
@@ -301,8 +292,7 @@ export class HubConnection {
   /** 在 URL 的 path 与 query 之间插入 /negotiate，避免 /path?query/negotiate 错误 */
   private buildNegotiateUrl(): string {
     const qIdx = this.url.indexOf('?')
-    if (qIdx === -1)
-      return `${this.url}/negotiate`
+    if (qIdx === -1) return `${this.url}/negotiate`
     return `${this.url.slice(0, qIdx)}/negotiate${this.url.slice(qIdx)}`
   }
 
@@ -320,7 +310,7 @@ export class HubConnection {
         url: negotiateUrl,
         method: 'POST',
         header: headers,
-        success: (res) => {
+        success: res => {
           if (res.statusCode !== 200) {
             reject(new Error(`Negotiate failed: HTTP ${res.statusCode}`))
             return
@@ -336,7 +326,7 @@ export class HubConnection {
           this.options.logger.log(`Negotiate success, connectionId: ${this.connectionId}`)
           resolve()
         },
-        fail: (err) => {
+        fail: err => {
           reject(new Error(`Negotiate request failed: ${err.errMsg}`))
         },
       })
@@ -354,7 +344,7 @@ export class HubConnection {
         success: () => {
           this.options.logger.log('WebSocket task created')
         },
-        fail: (err) => {
+        fail: err => {
           this.options.logger.error(`WebSocket connect failed: ${err.errMsg}`)
           reject(new Error(`WebSocket connect failed: ${err.errMsg}`))
         },
@@ -371,7 +361,7 @@ export class HubConnection {
       })
 
       // 监听错误
-      this.socketTask.onError((err) => {
+      this.socketTask.onError(err => {
         this.options.logger.error(`WebSocket error: ${err.errMsg}`)
         this.stop().catch(() => {})
         this.notifyClose(err.errMsg)
@@ -379,7 +369,7 @@ export class HubConnection {
       })
 
       // 监听关闭
-      this.socketTask.onClose((res) => {
+      this.socketTask.onClose(res => {
         this.options.logger.log(`WebSocket closed: code=${res.code}, reason=${res.reason}`)
         this.stop().catch(() => {})
         this.notifyClose(res.reason || 'Connection closed')
@@ -413,8 +403,7 @@ export class HubConnection {
       let handshakeCompleted = false
 
       const completeHandshake = () => {
-        if (handshakeCompleted)
-          return
+        if (handshakeCompleted) return
         handshakeCompleted = true
         clearTimeout(this.handshakeTimer)
         this.options.logger.log('Handshake acknowledged')
@@ -428,7 +417,7 @@ export class HubConnection {
         let data = typeof res.data === 'string' ? res.data : this.arrayBufferToString(res.data)
         this.options.logger.log(`Handshake received: ${data}`)
         // 去除记录分隔符 \x1E
-        // eslint-disable-next-line no-control-regex
+        // oxlint-disable-next-line no-control-regex
         data = data.replace(/\x1E$/, '')
         if (!data) {
           this.options.logger.log('Empty handshake message, ignoring')
@@ -456,8 +445,7 @@ export class HubConnection {
             // 处理这条消息
             this.processMessage(data)
           }
-        }
-        catch (err: any) {
+        } catch (err: any) {
           reject(new Error(`Invalid handshake response: ${data}, error: ${err.message}`))
         }
       }
@@ -471,7 +459,7 @@ export class HubConnection {
         success: () => {
           this.options.logger.log('Handshake message sent successfully')
         },
-        fail: (err) => {
+        fail: err => {
           clearTimeout(this.handshakeTimer)
           reject(new Error(`Send handshake failed: ${err.errMsg}`))
         },
@@ -506,8 +494,7 @@ export class HubConnection {
       let message: HubMessage
       try {
         message = JSON.parse(msgStr)
-      }
-      catch (e: any) {
+      } catch (e: any) {
         this.options.logger.error(`Invalid JSON: ${msgStr}, error: ${e.message}`)
         continue
       }
@@ -538,11 +525,10 @@ export class HubConnection {
   private handleInvocation(message: InvocationMessage) {
     const handlers = this.eventHandlers.get(message.target)
     if (handlers && handlers.size > 0) {
-      handlers.forEach((cb) => {
+      handlers.forEach(cb => {
         try {
           cb(...message.arguments)
-        }
-        catch (err) {
+        } catch (err) {
           this.options.logger.error(`Client callback error: ${err}`)
         }
       })
@@ -552,10 +538,11 @@ export class HubConnection {
           type: MessageType.Completion,
           invocationId: message.invocationId,
         }
-        this.sendMessage(completion).catch(err => this.options.logger.error(`Failed to send completion: ${err}`))
+        this.sendMessage(completion).catch(err =>
+          this.options.logger.error(`Failed to send completion: ${err}`),
+        )
       }
-    }
-    else {
+    } else {
       this.options.logger.log(`No handler for method: ${message.target}`)
       // 若存在 invocationId 应返回错误
       if (message.invocationId) {
@@ -564,7 +551,9 @@ export class HubConnection {
           invocationId: message.invocationId,
           error: `No method '${message.target}' found`,
         }
-        this.sendMessage(errorMsg).catch(err => this.options.logger.error(`Failed to send error: ${err}`))
+        this.sendMessage(errorMsg).catch(err =>
+          this.options.logger.error(`Failed to send error: ${err}`),
+        )
       }
     }
   }
@@ -575,12 +564,10 @@ export class HubConnection {
       this.pendingCalls.delete(message.invocationId)
       if (message.error) {
         pending.reject(new Error(message.error))
-      }
-      else {
+      } else {
         pending.resolve(message.result)
       }
-    }
-    else {
+    } else {
       this.options.logger.log(`No pending call for invocationId: ${message.invocationId}`)
     }
   }
@@ -609,8 +596,7 @@ export class HubConnection {
     if (typeof TextDecoder !== 'undefined') {
       const decoder = new TextDecoder('utf-8')
       return decoder.decode(new Uint8Array(buffer))
-    }
-    else {
+    } else {
       // Fallback for environments without TextDecoder
       const uint8Array = new Uint8Array(buffer)
       let result = ''
@@ -620,8 +606,7 @@ export class HubConnection {
       // Attempt UTF-8 decoding (basic)
       try {
         return decodeURIComponent(escape(result))
-      }
-      catch {
+      } catch {
         return result // Return as-is if decoding fails
       }
     }
@@ -631,17 +616,15 @@ export class HubConnection {
     if (this.socketTask) {
       try {
         this.socketTask.close({})
+      } catch (e: any) {
+        // oxlint-disable-next-line unused-imports/no-unused-vars
       }
-      // eslint-disable-next-line unused-imports/no-unused-vars
-      catch (e: any) {}
       this.socketTask = null
     }
     this.state = 'disconnected'
     this.connectionId = null
-    if (this.pingInterval)
-      clearInterval(this.pingInterval)
-    if (this.handshakeTimer)
-      clearTimeout(this.handshakeTimer)
+    if (this.pingInterval) clearInterval(this.pingInterval)
+    if (this.handshakeTimer) clearTimeout(this.handshakeTimer)
     this.pendingCalls.forEach((call, id) => {
       call.reject(new Error('Connection closed'))
       this.pendingCalls.delete(id)
@@ -650,11 +633,10 @@ export class HubConnection {
   }
 
   private notifyClose(error?: string) {
-    this.closeCallbacks.forEach((cb) => {
+    this.closeCallbacks.forEach(cb => {
       try {
         cb(error)
-      }
-      catch (err) {
+      } catch (err) {
         this.options.logger.error(`Close callback error: ${err}`)
       }
     })

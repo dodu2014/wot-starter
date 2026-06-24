@@ -26,7 +26,7 @@ const { send: sendGetUserPhoneNumberFromCodeRequest } = useRequest(
   { immediate: false },
 )
 
-async function handleLogin(e: { code: string, errMsg: string, encryptedData: string, iv: string }) {
+async function handleLogin(e: { code: string; errMsg: string; encryptedData: string; iv: string }) {
   console.log('login-detail', e)
   const { code, errMsg } = e
   if (!errMsg.includes(':ok')) {
@@ -41,12 +41,16 @@ async function handleLogin(e: { code: string, errMsg: string, encryptedData: str
   agreed.value = await checkAccept(agreed.value, t)
 
   loading('loading')
-  if (!wxUserInfo.value)
-    await wxUserStore.wxLogin()
+  if (!wxUserInfo.value) await wxUserStore.wxLogin()
   // code 换取 完整电话号码
   const phoneNumberRes = await sendGetUserPhoneNumberFromCodeRequest(code)
   // request
-  const { isSuccess } = await easyLogin(phoneNumberRes.data!, '', wxUserInfo.value?.openId, wxUserInfo.value?.unionId)
+  const { isSuccess } = await easyLogin(
+    phoneNumberRes.data!,
+    '',
+    wxUserInfo.value?.openId,
+    wxUserInfo.value?.unionId,
+  )
   hideLoading()
   if (!isSuccess) {
     toast.error(t('pages.login.phoneLogin.loginFailed'))
@@ -66,11 +70,17 @@ async function handleLogin(e: { code: string, errMsg: string, encryptedData: str
     </view>
 
     <!-- 登录按钮 -->
-    <wd-button type="primary" icon="mobile" block custom-class="mx-4 w-full" open-type="getPhoneNumber" @getphonenumber="handleLogin">
+    <wd-button
+      type="primary"
+      icon="mobile"
+      block
+      custom-class="mx-4 w-full"
+      open-type="getPhoneNumber"
+      @getphonenumber="handleLogin"
+    >
       {{ $t('pages.login.phoneLogin.quickLoginBtn') }}
     </wd-button>
   </view>
 </template>
 
-<style lang="scss" scoped>
-</style>
+<style lang="scss" scoped></style>

@@ -11,7 +11,7 @@ import { generateMockData } from '../utils/generators'
 
 // 宠物状态枚举
 const PET_STATUS = ['available', 'pending', 'sold'] as const
-type PetStatus = typeof PET_STATUS[number]
+type PetStatus = (typeof PET_STATUS)[number]
 
 // 宠物类别
 const PET_CATEGORIES = [
@@ -36,7 +36,10 @@ const PET_TAGS = [
 function generatePet(id?: number, status?: PetStatus) {
   const petId = id || generateMockData.number(1, 10000)
   const category = PET_CATEGORIES[generateMockData.number(0, PET_CATEGORIES.length - 1)]
-  const tags = generateMockData.array(() => PET_TAGS[generateMockData.number(0, PET_TAGS.length - 1)], generateMockData.number(1, 3))
+  const tags = generateMockData.array(
+    () => PET_TAGS[generateMockData.number(0, PET_TAGS.length - 1)],
+    generateMockData.number(1, 3),
+  )
 
   return {
     id: petId,
@@ -51,189 +54,192 @@ function generatePet(id?: number, status?: PetStatus) {
   }
 }
 
-export default defineMock({
-  // 上传宠物图片
-  '[POST]/pet/{petId}/uploadImage': ({ params, data }) => {
-    console.log(`[Mock] POST /pet/${params.petId}/uploadImage`, data)
+export default defineMock(
+  {
+    // 上传宠物图片
+    '[POST]/pet/{petId}/uploadImage': ({ params, data }) => {
+      console.log(`[Mock] POST /pet/${params.petId}/uploadImage`, data)
 
-    return {
-      code: 200,
-      type: 'success',
-      message: `Image uploaded successfully for pet ${params.petId}`,
-      data: {
-        petId: params.petId,
-        imageUrl: `https://example.com/pet/${params.petId}/uploaded-${Date.now()}.jpg`,
-      },
-    }
+      return {
+        code: 200,
+        type: 'success',
+        message: `Image uploaded successfully for pet ${params.petId}`,
+        data: {
+          petId: params.petId,
+          imageUrl: `https://example.com/pet/${params.petId}/uploaded-${Date.now()}.jpg`,
+        },
+      }
+    },
+
+    // 添加新宠物
+    '[POST]/pet': ({ data }) => {
+      console.log('[Mock] POST /pet', data)
+
+      const newPet = {
+        ...data,
+        id: generateMockData.number(10001, 20000),
+      }
+
+      return newPet
+    },
+
+    // 更新宠物信息
+    '[PUT]/pet': ({ data }) => {
+      console.log('[Mock] PUT /pet', data)
+
+      if (!data.id) {
+        return {
+          status: 400,
+          body: {
+            code: 400,
+            message: 'Pet ID is required',
+          },
+        }
+      }
+
+      return {
+        ...data,
+        updatedAt: generateMockData.datetime(),
+      }
+    },
+
+    // 根据状态查找宠物
+    '[GET]/pet/findByStatus': ({ query }) => {
+      console.log('[Mock] GET /pet/findByStatus', query)
+
+      const status = query.status as PetStatus
+      const validStatuses = Array.isArray(status) ? status : [status]
+
+      // 验证状态
+      const invalidStatuses = validStatuses.filter(s => !PET_STATUS.includes(s as PetStatus))
+      if (invalidStatuses.length > 0) {
+        return {
+          status: 400,
+          body: {
+            code: 400,
+            message: `Invalid status value: ${invalidStatuses.join(', ')}`,
+          },
+        }
+      }
+
+      // 生成符合状态的宠物列表
+      const pets = generateMockData.array(
+        index => generatePet(undefined, validStatuses[index % validStatuses.length] as PetStatus),
+        generateMockData.number(5, 15),
+      )
+
+      return pets
+    },
+
+    // 根据ID获取宠物
+    '[GET]/pet/{petId}': ({ params }) => {
+      console.log(`[Mock] GET /pet/${params.petId}`)
+
+      const petId = Number.parseInt(params.petId)
+
+      if (Number.isNaN(petId)) {
+        return {
+          status: 400,
+          body: {
+            code: 400,
+            message: 'Invalid pet ID',
+          },
+        }
+      }
+
+      // 模拟宠物不存在的情况
+      if (petId === 404) {
+        return {
+          status: 404,
+          body: {
+            code: 404,
+            message: 'Pet not found',
+          },
+        }
+      }
+
+      return generatePet(petId)
+    },
+
+    // 使用表单数据更新宠物
+    '[POST]/pet/{petId}': ({ params, data }) => {
+      console.log(`[Mock] POST /pet/${params.petId}`, data)
+
+      const petId = Number.parseInt(params.petId)
+
+      if (Number.isNaN(petId)) {
+        return {
+          status: 400,
+          body: {
+            code: 400,
+            message: 'Invalid pet ID',
+          },
+        }
+      }
+
+      // 模拟宠物不存在的情况
+      if (petId === 404) {
+        return {
+          status: 404,
+          body: {
+            code: 404,
+            message: 'Pet not found',
+          },
+        }
+      }
+
+      const updatedPet = {
+        ...generatePet(petId),
+        ...data,
+        updatedAt: generateMockData.datetime(),
+      }
+
+      return updatedPet
+    },
+
+    // 删除宠物
+    '[DELETE]/pet/{petId}': ({ params, headers }) => {
+      console.log(`[Mock] DELETE /pet/${params.petId}`, headers)
+
+      const petId = Number.parseInt(params.petId)
+
+      if (Number.isNaN(petId)) {
+        return {
+          status: 400,
+          body: {
+            code: 400,
+            message: 'Invalid pet ID',
+          },
+        }
+      }
+
+      // 检查API密钥
+      if (!headers.api_key) {
+        return {
+          status: 401,
+          body: {
+            code: 401,
+            message: 'API key is required',
+          },
+        }
+      }
+
+      // 模拟宠物不存在的情况
+      if (petId === 404) {
+        return {
+          status: 404,
+          body: {
+            code: 404,
+            message: 'Pet not found',
+          },
+        }
+      }
+
+      return {
+        code: 200,
+        message: `Pet ${petId} deleted successfully`,
+      }
+    },
   },
-
-  // 添加新宠物
-  '[POST]/pet': ({ data }) => {
-    console.log('[Mock] POST /pet', data)
-
-    const newPet = {
-      ...data,
-      id: generateMockData.number(10001, 20000),
-    }
-
-    return newPet
-  },
-
-  // 更新宠物信息
-  '[PUT]/pet': ({ data }) => {
-    console.log('[Mock] PUT /pet', data)
-
-    if (!data.id) {
-      return {
-        status: 400,
-        body: {
-          code: 400,
-          message: 'Pet ID is required',
-        },
-      }
-    }
-
-    return {
-      ...data,
-      updatedAt: generateMockData.datetime(),
-    }
-  },
-
-  // 根据状态查找宠物
-  '[GET]/pet/findByStatus': ({ query }) => {
-    console.log('[Mock] GET /pet/findByStatus', query)
-
-    const status = query.status as PetStatus
-    const validStatuses = Array.isArray(status) ? status : [status]
-
-    // 验证状态
-    const invalidStatuses = validStatuses.filter(s => !PET_STATUS.includes(s as PetStatus))
-    if (invalidStatuses.length > 0) {
-      return {
-        status: 400,
-        body: {
-          code: 400,
-          message: `Invalid status value: ${invalidStatuses.join(', ')}`,
-        },
-      }
-    }
-
-    // 生成符合状态的宠物列表
-    const pets = generateMockData.array(
-      index => generatePet(undefined, validStatuses[index % validStatuses.length] as PetStatus),
-      generateMockData.number(5, 15),
-    )
-
-    return pets
-  },
-
-  // 根据ID获取宠物
-  '[GET]/pet/{petId}': ({ params }) => {
-    console.log(`[Mock] GET /pet/${params.petId}`)
-
-    const petId = Number.parseInt(params.petId)
-
-    if (Number.isNaN(petId)) {
-      return {
-        status: 400,
-        body: {
-          code: 400,
-          message: 'Invalid pet ID',
-        },
-      }
-    }
-
-    // 模拟宠物不存在的情况
-    if (petId === 404) {
-      return {
-        status: 404,
-        body: {
-          code: 404,
-          message: 'Pet not found',
-        },
-      }
-    }
-
-    return generatePet(petId)
-  },
-
-  // 使用表单数据更新宠物
-  '[POST]/pet/{petId}': ({ params, data }) => {
-    console.log(`[Mock] POST /pet/${params.petId}`, data)
-
-    const petId = Number.parseInt(params.petId)
-
-    if (Number.isNaN(petId)) {
-      return {
-        status: 400,
-        body: {
-          code: 400,
-          message: 'Invalid pet ID',
-        },
-      }
-    }
-
-    // 模拟宠物不存在的情况
-    if (petId === 404) {
-      return {
-        status: 404,
-        body: {
-          code: 404,
-          message: 'Pet not found',
-        },
-      }
-    }
-
-    const updatedPet = {
-      ...generatePet(petId),
-      ...data,
-      updatedAt: generateMockData.datetime(),
-    }
-
-    return updatedPet
-  },
-
-  // 删除宠物
-  '[DELETE]/pet/{petId}': ({ params, headers }) => {
-    console.log(`[Mock] DELETE /pet/${params.petId}`, headers)
-
-    const petId = Number.parseInt(params.petId)
-
-    if (Number.isNaN(petId)) {
-      return {
-        status: 400,
-        body: {
-          code: 400,
-          message: 'Invalid pet ID',
-        },
-      }
-    }
-
-    // 检查API密钥
-    if (!headers.api_key) {
-      return {
-        status: 401,
-        body: {
-          code: 401,
-          message: 'API key is required',
-        },
-      }
-    }
-
-    // 模拟宠物不存在的情况
-    if (petId === 404) {
-      return {
-        status: 404,
-        body: {
-          code: 404,
-          message: 'Pet not found',
-        },
-      }
-    }
-
-    return {
-      code: 200,
-      message: `Pet ${petId} deleted successfully`,
-    }
-  },
-}, true)
+  true,
+)

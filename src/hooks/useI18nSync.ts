@@ -27,7 +27,7 @@ export const SUPPORTED_LOCALES = [
 ] as const
 
 // 通过 typeof 获取数组类型，再用 [number] 索引得到元素联合类型
-export type LOCALES = typeof SUPPORTED_LOCALES[number]
+export type LOCALES = (typeof SUPPORTED_LOCALES)[number]
 export type USE_LOCALES = Extract<LOCALES, 'zh-CN' | 'en-US'>
 
 /**

@@ -42,8 +42,8 @@ const dialog = useGlobalDialog()
 dialog.show({
   title: '提示',
   msg: '这是一条消息',
-  success: (res) => console.log('成功', res),
-  fail: (res) => console.log('失败', res),
+  success: res => console.log('成功', res),
+  fail: res => console.log('失败', res),
 })
 
 // 字符串参数会作为 title
@@ -74,12 +74,12 @@ dialog.confirm('确定要删除吗？')
 dialog.confirm({
   title: '确认删除',
   msg: '删除后不可恢复，确定要删除吗？',
-  success: (res) => {
+  success: res => {
     if (res.action === 'confirm') {
       console.log('用户确认删除')
     }
   },
-  fail: (res) => {
+  fail: res => {
     console.log('用户取消删除')
   },
 })
@@ -97,7 +97,7 @@ dialog.prompt({
   msg: '请输入新的名称',
   inputValue: '默认值',
   inputPlaceholder: '请输入内容',
-  success: (res) => {
+  success: res => {
     if (res.action === 'confirm') {
       console.log('用户输入:', res.value)
     }
@@ -119,27 +119,27 @@ dialog.close()
 
 GlobalDialogOptions 基于 Wot UI 的 DialogOptions 扩展，并额外支持 `success`、`fail` 回调。
 
-| 参数 | 类型 | 默认值 | 说明 |
-|------|------|--------|------|
-| title | string | - | 弹窗标题 |
-| msg | string | - | 弹窗内容 |
-| type | string | - | 弹窗类型：`alert` \| `confirm` \| `prompt` |
-| showCancelButton | boolean | 自动设置 | `alert` 为 `false`，`confirm` 和 `prompt` 为 `true` |
-| inputValue | string | - | `prompt` 模式下输入框默认值 |
-| inputPlaceholder | string | - | `prompt` 模式下输入框占位文案 |
-| success | Function | - | 点击确认后的回调 |
-| fail | Function | - | 取消或关闭后的回调 |
-| confirmButtonText | string | 跟随 wd-dialog 默认值 | 确认按钮文本 |
-| cancelButtonText | string | 跟随 wd-dialog 默认值 | 取消按钮文本 |
+| 参数              | 类型     | 默认值                | 说明                                                |
+| ----------------- | -------- | --------------------- | --------------------------------------------------- |
+| title             | string   | -                     | 弹窗标题                                            |
+| msg               | string   | -                     | 弹窗内容                                            |
+| type              | string   | -                     | 弹窗类型：`alert` \| `confirm` \| `prompt`          |
+| showCancelButton  | boolean  | 自动设置              | `alert` 为 `false`，`confirm` 和 `prompt` 为 `true` |
+| inputValue        | string   | -                     | `prompt` 模式下输入框默认值                         |
+| inputPlaceholder  | string   | -                     | `prompt` 模式下输入框占位文案                       |
+| success           | Function | -                     | 点击确认后的回调                                    |
+| fail              | Function | -                     | 取消或关闭后的回调                                  |
+| confirmButtonText | string   | 跟随 wd-dialog 默认值 | 确认按钮文本                                        |
+| cancelButtonText  | string   | 跟随 wd-dialog 默认值 | 取消按钮文本                                        |
 
 ### DialogResult
 
 回调参数会透传 `wd-dialog` 的结果对象，常用字段如下：
 
-| 参数 | 类型 | 说明 |
-|------|------|------|
-| action | string | 用户操作：`confirm` \| `cancel` |
-| value | string | 输入框的值，仅 `prompt` 模式可用 |
+| 参数   | 类型   | 说明                             |
+| ------ | ------ | -------------------------------- |
+| action | string | 用户操作：`confirm` \| `cancel`  |
+| value  | string | 输入框的值，仅 `prompt` 模式可用 |
 
 ## 注意事项
 

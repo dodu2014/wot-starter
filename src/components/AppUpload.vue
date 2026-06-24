@@ -1,5 +1,11 @@
 <script lang="ts" setup>
-import type { UploadFile, UploadRemoveEvent, UploadSizeType, UploadSourceType, UploadSuccessEvent } from '@wot-ui/ui/components/wd-upload/types'
+import type {
+  UploadFile,
+  UploadRemoveEvent,
+  UploadSizeType,
+  UploadSourceType,
+  UploadSuccessEvent,
+} from '@wot-ui/ui/components/wd-upload/types'
 import type { ApiResultOfUpFileUploadResult } from '@/service/apis/base/globals'
 
 defineOptions({ name: 'AppUpload' })
@@ -40,22 +46,18 @@ const model = defineModel<string | string[]>('value', {
   default: () => {
     return undefined
   },
-  validator: (value) => {
-    if (typeof value === 'string')
-      return true
-    if (Array.isArray(value))
-      return value.every(i => typeof i === 'string')
+  validator: value => {
+    if (typeof value === 'string') return true
+    if (Array.isArray(value)) return value.every(i => typeof i === 'string')
     return false
   },
 })
 
 const filesList = computed<UploadFile[]>(() => {
-  if (!model.value)
-    return []
+  if (!model.value) return []
   if (typeof model.value === 'string') {
     return [{ url: model.value }]
-  }
-  else if (Array.isArray(model.value)) {
+  } else if (Array.isArray(model.value)) {
     return model.value.map(i => ({ url: i }))
   }
   return []
@@ -66,8 +68,7 @@ function handleSuccessChange({ file }: UploadSuccessEvent) {
 
   if (typeof model.value === 'string') {
     model.value = json.data?.absUrl || ''
-  }
-  else if (Array.isArray(model.value)) {
+  } else if (Array.isArray(model.value)) {
     model.value.push(json.data?.absUrl || '')
   }
   nextTick(() => {
@@ -78,8 +79,7 @@ function handleSuccessChange({ file }: UploadSuccessEvent) {
 function handleRemove({ file }: UploadRemoveEvent) {
   if (typeof model.value === 'string') {
     model.value = ''
-  }
-  else if (Array.isArray(model.value)) {
+  } else if (Array.isArray(model.value)) {
     const index = model.value.findIndex(i => i === file.url)
     model.value.splice(index, 1)
   }
@@ -100,9 +100,9 @@ function handleRemove({ file }: UploadRemoveEvent) {
     :size-type="sizeType"
     :multiple="multiple && Number(limit) > 1"
     :disabled="disabled"
-    @success="handleSuccessChange" @remove="handleRemove"
+    @success="handleSuccessChange"
+    @remove="handleRemove"
   />
 </template>
 
-<style lang="scss" scoped>
-</style>
+<style lang="scss" scoped></style>

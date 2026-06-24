@@ -3,7 +3,7 @@ import type { CellAsteriskPosition } from '@wot-ui/ui/components/wd-cell/types'
 
 defineOptions({ name: 'CitysPicker' })
 
-// eslint-disable-next-line unused-imports/no-unused-vars
+// oxlint-disable-next-line unused-imports/no-unused-vars
 const props = withDefaults(defineProps<Props>(), {
   title: '行政区域',
   titleWidth: '75px',
@@ -36,7 +36,10 @@ const modelLabels = defineModel<string[]>('labels', { default: () => [] })
  * @param e.value - 选项值数组
  * @param e.selectedItems - 选项数组 ({ value, label })
  */
-function handleConfirm(e: { value: string[], selectedItems: { value: string, text: string }[] }): void {
+function handleConfirm(e: {
+  value: string[]
+  selectedItems: { value: string; text: string }[]
+}): void {
   const { selectedItems } = e
   modelLabels.value = selectedItems.map(item => item.text)
   emit('confirm', model.value, modelLabels.value)
@@ -49,8 +52,7 @@ function togglePicker(): void {
 
 const result: string[] = []
 function getChildren(data?: CascaderOption[]) {
-  if (!data || !data.length)
-    return
+  if (!data || !data.length) return
   result.push(data[0]!.value)
   getChildren(data[0]?.children)
 }

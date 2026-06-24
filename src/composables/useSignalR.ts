@@ -42,7 +42,7 @@ export function useSignalR(options: SianalrOption) {
   const isReconnected = ref(false)
 
   /** 内部变量，事件列表，存储通过 addListener 方法注册的事件 */
-  let eventList: { eventName: string, func: () => void }[] = []
+  let eventList: { eventName: string; func: () => void }[] = []
 
   /** 重连定时器 */
   let reconnectTimer: ReturnType<typeof setTimeout> | null = null
@@ -77,8 +77,7 @@ export function useSignalR(options: SianalrOption) {
 
   /** 调度重连 */
   const scheduleReconnect = () => {
-    if (reconnectTimer)
-      return
+    if (reconnectTimer) return
 
     console.log('SignalR reconnecting in 5 seconds...')
     isReconnected.value = true
@@ -91,8 +90,7 @@ export function useSignalR(options: SianalrOption) {
         isReconnected.value = false
         console.log('SignalR reconnected')
         options.onReconnectedCallback?.()
-      }
-      catch (err) {
+      } catch (err) {
         console.error('SignalR reconnect failed:', err)
         scheduleReconnect()
       }
@@ -101,8 +99,7 @@ export function useSignalR(options: SianalrOption) {
 
   /** 初始化连接 */
   const initailConnection = () => {
-    const builder = new HubConnectionBuilder()
-      .withUrl(options.url)
+    const builder = new HubConnectionBuilder().withUrl(options.url)
 
     // 配置访问令牌
     if (options.accessTokenFactory) {
@@ -112,8 +109,7 @@ export function useSignalR(options: SianalrOption) {
     // 配置日志
     if (options.logger) {
       builder.configureLogging(options.logger)
-    }
-    else {
+    } else {
       builder.configureLogging({
         log: msg => console.log(`[SignalR] ${msg}`),
         error: msg => console.error(`[SignalR] ${msg}`),
@@ -153,8 +149,7 @@ export function useSignalR(options: SianalrOption) {
       await connection.value?.start()
       isConnected.value = true
       options.onConnectedCallback?.()
-    }
-    catch (err) {
+    } catch (err) {
       console.error('启动连接时出错: ', err)
       // 失败时会通过 onclose 触发重连
     }
@@ -188,8 +183,7 @@ export function useSignalR(options: SianalrOption) {
 
         eventList = []
         connection.value = null
-      }
-      catch (err) {
+      } catch (err) {
         console.error('停止连接时出错: ', err)
       }
     }
@@ -202,8 +196,7 @@ export function useSignalR(options: SianalrOption) {
    * @returns 一个表示异步操作的 Promise。
    */
   const joinToGroup = async (groupName: string) => {
-    if (isConnected.value)
-      await connection.value?.invoke('JoinToGroup', groupName)
+    if (isConnected.value) await connection.value?.invoke('JoinToGroup', groupName)
   }
 
   /**
@@ -213,15 +206,13 @@ export function useSignalR(options: SianalrOption) {
    * @returns 一个 Promise，表示离开组的异步操作。
    */
   const leaveGroup = async (groupName: string) => {
-    if (isConnected.value)
-      await connection.value?.invoke('LeaveGroup', groupName)
+    if (isConnected.value) await connection.value?.invoke('LeaveGroup', groupName)
   }
 
   if (!options.manual) {
     onMounted(async () => {
       initailConnection()
-      if (options.immediate)
-        await startConnection()
+      if (options.immediate) await startConnection()
     })
 
     onUnmounted(() => {

@@ -43,8 +43,7 @@ Wot Starter
 
 - 📥 [API 自动加载](https://github.com/antfu/unplugin-auto-import) - 直接使用 Composition API 无需引入
 
-- 🦾 [TypeScript](https://www.typescriptlang.org/) & [ESLint](https://eslint.org/) - 保证代码质量
-
+- 🦾 [TypeScript](https://www.typescriptlang.org/) & [Oxlint](https://oxc.rs/) - 保证代码质量
 
 ## 快速上手
 
@@ -60,16 +59,16 @@ Wot Starter
 
 ## 周边生态
 
-| 项目                                                                                                        | 描述                                                 |
-| ----------------------------------------------------------------------------------------------------------- | ---------------------------------------------------- |
-| [wot-ui-intellisense](https://github.com/wot-ui/wot-ui-intellisense)                  | wot-ui vscode 代码提示插件     |
-| [awesome-uni-app](https://github.com/uni-helper/awesome-uni-app)                                            | 多端统一开发框架 uni-app 优秀开发资源汇总            |
-| [create-uni](https://github.com/uni-helper/create-uni)                                                      | 快速创建 uni-app 项目                                |
-| [wot-starter-retail](https://github.com/Moonofweisheng/wot-starter-retail)                                  | 基于 wot-ui 的 uni-app 零售行业模板          |
-| [uni-mini-ci](https://github.com/Moonofweisheng/uni-mini-ci)                                                | 一个 uni-app 小程序端构建后支持 CI（持续集成）的插件 |
-| [@wot-ui/router](https://github.com/wot-ui/my-uni)                                        | 一个基于 vue3 和 Typescript 的轻量级 uni-app 路由库  |
-| [uni-ku-root](https://github.com/uni-ku/root)                                                               | 一个模拟 App.vue 原有能力的根组件插件                  |
-| [uni-echarts](https://uni-echarts.xiaohe.ink/)                                                             | 适用于 uni-app 的 Apache ECharts 组件                  |
+| 项目                                                                       | 描述                                                 |
+| -------------------------------------------------------------------------- | ---------------------------------------------------- |
+| [wot-ui-intellisense](https://github.com/wot-ui/wot-ui-intellisense)       | wot-ui vscode 代码提示插件                           |
+| [awesome-uni-app](https://github.com/uni-helper/awesome-uni-app)           | 多端统一开发框架 uni-app 优秀开发资源汇总            |
+| [create-uni](https://github.com/uni-helper/create-uni)                     | 快速创建 uni-app 项目                                |
+| [wot-starter-retail](https://github.com/Moonofweisheng/wot-starter-retail) | 基于 wot-ui 的 uni-app 零售行业模板                  |
+| [uni-mini-ci](https://github.com/Moonofweisheng/uni-mini-ci)               | 一个 uni-app 小程序端构建后支持 CI（持续集成）的插件 |
+| [@wot-ui/router](https://github.com/wot-ui/my-uni)                         | 一个基于 vue3 和 Typescript 的轻量级 uni-app 路由库  |
+| [uni-ku-root](https://github.com/uni-ku/root)                              | 一个模拟 App.vue 原有能力的根组件插件                |
+| [uni-echarts](https://uni-echarts.xiaohe.ink/)                             | 适用于 uni-app 的 Apache ECharts 组件                |
 
 ## 贡献者们
 
@@ -86,7 +85,6 @@ Wot Starter
 如果您认为 Wot Starter 帮助到了您的开发工作，您可以捐赠 Wot Starter 的研发工作，捐赠无门槛，哪怕是一杯可乐也好。
 
 捐赠后您的昵称、留言等将会展示在[捐赠榜单](https://wot-ui.cn/reward/donor.html)中。
-
 
 ### 爱发电捐赠
 
@@ -105,10 +103,8 @@ Wot Starter
 - [vitesse-uni-app](https://github.com/uni-helper/vitesse-uni-app) - 感谢 vitesse-uni-app 提供的快速起手项目。
 - [uni-ku](https://uni-ku.js.org/) - 感谢 uni-ku 团队为 uni-app 插件生态做出的贡献。
 
-
 ## 开源协议
 
 本项目基于 [MIT](https://zh.wikipedia.org/wiki/MIT%E8%A8%B1%E5%8F%AF%E8%AD%89) 协议，请自由地享受和参与开源。
-
 
 [![Star History Chart](https://api.star-history.com/svg?repos=wot-ui/wot-starter&type=Date)](https://star-history.com/#wot-ui/wot-starter&Date)

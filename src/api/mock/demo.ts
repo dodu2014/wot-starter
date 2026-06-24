@@ -9,13 +9,14 @@ export class PetDemo {
   static async getAvailablePets() {
     console.log('=== 获取可用宠物 ===')
     try {
-      const pets = await Apis.pet.findPetsByStatus({
-        params: { status: 'available' },
-      }).send()
+      const pets = await Apis.pet
+        .findPetsByStatus({
+          params: { status: 'available' },
+        })
+        .send()
       console.log('可用宠物列表:', pets)
       return pets
-    }
-    catch (error) {
+    } catch (error) {
       console.error('获取宠物失败:', error)
     }
   }
@@ -24,13 +25,14 @@ export class PetDemo {
   static async getPetById(petId: number) {
     console.log(`=== 获取宠物 ${petId} 的信息 ===`)
     try {
-      const pet = await Apis.pet.getPetById({
-        pathParams: { petId },
-      }).send()
+      const pet = await Apis.pet
+        .getPetById({
+          pathParams: { petId },
+        })
+        .send()
       console.log('宠物信息:', pet)
       return pet
-    }
-    catch (error) {
+    } catch (error) {
       console.error('获取宠物信息失败:', error)
     }
   }
@@ -39,22 +41,23 @@ export class PetDemo {
   static async addNewPet() {
     console.log('=== 添加新宠物 ===')
     try {
-      const newPet = await Apis.pet.addPet({
-        data: {
-          name: 'Buddy',
-          category: { id: 1, name: 'Dogs' },
-          status: 'available',
-          photoUrls: ['https://example.com/buddy.jpg'],
-          tags: [
-            { id: 1, name: 'friendly' },
-            { id: 2, name: 'trained' },
-          ],
-        },
-      }).send()
+      const newPet = await Apis.pet
+        .addPet({
+          data: {
+            name: 'Buddy',
+            category: { id: 1, name: 'Dogs' },
+            status: 'available',
+            photoUrls: ['https://example.com/buddy.jpg'],
+            tags: [
+              { id: 1, name: 'friendly' },
+              { id: 2, name: 'trained' },
+            ],
+          },
+        })
+        .send()
       console.log('新添加的宠物:', newPet)
       return newPet
-    }
-    catch (error) {
+    } catch (error) {
       console.error('添加宠物失败:', error)
     }
   }
@@ -63,11 +66,12 @@ export class PetDemo {
   static async testPetNotFound() {
     console.log('=== 测试宠物不存在的情况 ===')
     try {
-      await Apis.pet.getPetById({
-        pathParams: { petId: 404 },
-      }).send()
-    }
-    catch (error) {
+      await Apis.pet
+        .getPetById({
+          pathParams: { petId: 404 },
+        })
+        .send()
+    } catch (error) {
       console.log('预期的404错误:', error)
     }
   }
@@ -76,14 +80,15 @@ export class PetDemo {
   static async deletePet(petId: number, apiKey: string = 'special-key') {
     console.log(`=== 删除宠物 ${petId} ===`)
     try {
-      const result = await Apis.pet.deletePet({
-        pathParams: { petId },
-        headers: { api_key: apiKey },
-      }).send()
+      const result = await Apis.pet
+        .deletePet({
+          pathParams: { petId },
+          headers: { api_key: apiKey },
+        })
+        .send()
       console.log('删除结果:', result)
       return result
-    }
-    catch (error) {
+    } catch (error) {
       console.error('删除宠物失败:', error)
     }
   }
@@ -101,8 +106,7 @@ export class StoreDemo {
       const inventory = await Apis.store.getInventory().send()
       console.log('库存信息:', inventory)
       return inventory
-    }
-    catch (error) {
+    } catch (error) {
       console.error('获取库存失败:', error)
     }
   }
@@ -111,19 +115,20 @@ export class StoreDemo {
   static async placeOrder(petId: number, quantity: number = 1) {
     console.log('=== 下单购买宠物 ===')
     try {
-      const order = await Apis.store.placeOrder({
-        data: {
-          petId,
-          quantity,
-          shipDate: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString(), // 7天后发货
-          status: 'placed',
-          complete: false,
-        },
-      }).send()
+      const order = await Apis.store
+        .placeOrder({
+          data: {
+            petId,
+            quantity,
+            shipDate: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString(), // 7天后发货
+            status: 'placed',
+            complete: false,
+          },
+        })
+        .send()
       console.log('订单信息:', order)
       return order
-    }
-    catch (error) {
+    } catch (error) {
       console.error('下单失败:', error)
     }
   }
@@ -132,13 +137,14 @@ export class StoreDemo {
   static async getOrderById(orderId: number) {
     console.log(`=== 获取订单 ${orderId} 信息 ===`)
     try {
-      const order = await Apis.store.getOrderById({
-        pathParams: { orderId },
-      }).send()
+      const order = await Apis.store
+        .getOrderById({
+          pathParams: { orderId },
+        })
+        .send()
       console.log('订单详情:', order)
       return order
-    }
-    catch (error) {
+    } catch (error) {
       console.error('获取订单失败:', error)
     }
   }
@@ -147,11 +153,12 @@ export class StoreDemo {
   static async testInvalidOrderId() {
     console.log('=== 测试无效订单ID ===')
     try {
-      await Apis.store.getOrderById({
-        pathParams: { orderId: 999 },
-      }).send()
-    }
-    catch (error) {
+      await Apis.store
+        .getOrderById({
+          pathParams: { orderId: 999 },
+        })
+        .send()
+    } catch (error) {
       console.log('预期的400错误:', error)
     }
   }
@@ -160,13 +167,14 @@ export class StoreDemo {
   static async deleteOrder(orderId: number) {
     console.log(`=== 删除订单 ${orderId} ===`)
     try {
-      const result = await Apis.store.deleteOrder({
-        pathParams: { orderId },
-      }).send()
+      const result = await Apis.store
+        .deleteOrder({
+          pathParams: { orderId },
+        })
+        .send()
       console.log('删除结果:', result)
       return result
-    }
-    catch (error) {
+    } catch (error) {
       console.error('删除订单失败:', error)
     }
   }
@@ -181,13 +189,14 @@ export class UserDemo {
   static async login(username: string = 'admin', password: string = 'admin') {
     console.log('=== 用户登录 ===')
     try {
-      const loginResult = await Apis.user.loginUser({
-        params: { username, password },
-      }).send()
+      const loginResult = await Apis.user
+        .loginUser({
+          params: { username, password },
+        })
+        .send()
       console.log('登录结果:', loginResult)
       return loginResult
-    }
-    catch (error) {
+    } catch (error) {
       console.error('登录失败:', error)
     }
   }
@@ -196,13 +205,14 @@ export class UserDemo {
   static async getUserInfo(username: string) {
     console.log(`=== 获取用户 ${username} 信息 ===`)
     try {
-      const user = await Apis.user.getUserByName({
-        pathParams: { username },
-      }).send()
+      const user = await Apis.user
+        .getUserByName({
+          pathParams: { username },
+        })
+        .send()
       console.log('用户信息:', user)
       return user
-    }
-    catch (error) {
+    } catch (error) {
       console.error('获取用户信息失败:', error)
     }
   }
@@ -211,22 +221,23 @@ export class UserDemo {
   static async createUser(userData: any = {}) {
     console.log('=== 创建新用户 ===')
     try {
-      const newUser = await Apis.user.createUser({
-        data: {
-          username: 'newuser',
-          firstName: 'John',
-          lastName: 'Doe',
-          email: 'john@example.com',
-          password: 'password123',
-          phone: '1234567890',
-          userStatus: 1,
-          ...userData,
-        },
-      }).send()
+      const newUser = await Apis.user
+        .createUser({
+          data: {
+            username: 'newuser',
+            firstName: 'John',
+            lastName: 'Doe',
+            email: 'john@example.com',
+            password: 'password123',
+            phone: '1234567890',
+            userStatus: 1,
+            ...userData,
+          },
+        })
+        .send()
       console.log('新用户:', newUser)
       return newUser
-    }
-    catch (error) {
+    } catch (error) {
       console.error('创建用户失败:', error)
     }
   }
@@ -235,14 +246,15 @@ export class UserDemo {
   static async updateUser(username: string, updateData: any) {
     console.log(`=== 更新用户 ${username} 信息 ===`)
     try {
-      const updatedUser = await Apis.user.updateUser({
-        pathParams: { username },
-        data: updateData,
-      }).send()
+      const updatedUser = await Apis.user
+        .updateUser({
+          pathParams: { username },
+          data: updateData,
+        })
+        .send()
       console.log('更新后的用户:', updatedUser)
       return updatedUser
-    }
-    catch (error) {
+    } catch (error) {
       console.error('更新用户失败:', error)
     }
   }
@@ -251,11 +263,12 @@ export class UserDemo {
   static async testUserNotFound() {
     console.log('=== 测试用户不存在的情况 ===')
     try {
-      await Apis.user.getUserByName({
-        pathParams: { username: 'notfound' },
-      }).send()
-    }
-    catch (error) {
+      await Apis.user
+        .getUserByName({
+          pathParams: { username: 'notfound' },
+        })
+        .send()
+    } catch (error) {
       console.log('预期的404错误:', error)
     }
   }
@@ -264,32 +277,33 @@ export class UserDemo {
   static async createUsersWithArray() {
     console.log('=== 批量创建用户（数组） ===')
     try {
-      const result = await Apis.user.createUsersWithListInput({
-        data: [
-          {
-            username: 'user1',
-            firstName: 'User',
-            lastName: 'One',
-            email: 'user1@example.com',
-            password: 'password',
-            phone: '1111111111',
-            userStatus: 1,
-          },
-          {
-            username: 'user2',
-            firstName: 'User',
-            lastName: 'Two',
-            email: 'user2@example.com',
-            password: 'password',
-            phone: '2222222222',
-            userStatus: 1,
-          },
-        ],
-      }).send()
+      const result = await Apis.user
+        .createUsersWithListInput({
+          data: [
+            {
+              username: 'user1',
+              firstName: 'User',
+              lastName: 'One',
+              email: 'user1@example.com',
+              password: 'password',
+              phone: '1111111111',
+              userStatus: 1,
+            },
+            {
+              username: 'user2',
+              firstName: 'User',
+              lastName: 'Two',
+              email: 'user2@example.com',
+              password: 'password',
+              phone: '2222222222',
+              userStatus: 1,
+            },
+          ],
+        })
+        .send()
       console.log('批量创建结果:', result)
       return result
-    }
-    catch (error) {
+    } catch (error) {
       console.error('批量创建用户失败:', error)
     }
   }
@@ -301,8 +315,7 @@ export class UserDemo {
       const result = await Apis.user.logoutUser().send()
       console.log('登出结果:', result)
       return result
-    }
-    catch (error) {
+    } catch (error) {
       console.error('登出失败:', error)
     }
   }
@@ -319,8 +332,7 @@ export class FullDemo {
 
     // 1. 用户登录
     const loginResult = await UserDemo.login('admin', 'admin')
-    if (!loginResult)
-      return
+    if (!loginResult) return
 
     // 2. 查看库存
     const inventory = await StoreDemo.getInventory()
@@ -344,8 +356,7 @@ export class FullDemo {
 
     // 6. 下单购买
     const order = selectedPet?.id ? await StoreDemo.placeOrder(selectedPet.id, 1) : null
-    if (!order)
-      return
+    if (!order) return
 
     // 7. 查看订单详情
     if (order?.id) {
@@ -379,10 +390,8 @@ export class FullDemo {
     const newUser = await UserDemo.createUser({ username: 'testuser' })
 
     // 读取
-    if (newPet?.id)
-      await PetDemo.getPetById(newPet.id)
-    if (newUser)
-      await UserDemo.getUserInfo('testuser')
+    if (newPet?.id) await PetDemo.getPetById(newPet.id)
+    if (newUser) await UserDemo.getUserInfo('testuser')
 
     // 更新
     if (newUser) {
@@ -393,8 +402,7 @@ export class FullDemo {
     }
 
     // 删除
-    if (newPet?.id)
-      await PetDemo.deletePet(newPet.id)
+    if (newPet?.id) await PetDemo.deletePet(newPet.id)
 
     console.log('\n✅ CRUD操作演示结束')
   }
@@ -415,8 +423,7 @@ export async function runMockDemo() {
     await FullDemo.crudDemo()
 
     console.log('\n🎉 所有演示完成!')
-  }
-  catch (error) {
+  } catch (error) {
     console.error('演示过程中发生错误:', error)
   }
 }
@@ -424,10 +431,10 @@ export async function runMockDemo() {
 // 如果直接运行此文件，执行演示
 if (typeof window !== 'undefined') {
   // 在浏览器环境中，可以在控制台调用
-  (window as any).runMockDemo = runMockDemo;
-  (window as any).PetDemo = PetDemo;
-  (window as any).StoreDemo = StoreDemo;
-  (window as any).UserDemo = UserDemo
+  ;(window as any).runMockDemo = runMockDemo
+  ;(window as any).PetDemo = PetDemo
+  ;(window as any).StoreDemo = StoreDemo
+  ;(window as any).UserDemo = UserDemo
   console.log('Mock演示函数已加载到全局对象，可在控制台调用：')
   console.log('- runMockDemo() - 运行完整演示')
   console.log('- PetDemo.* - 宠物模块演示')

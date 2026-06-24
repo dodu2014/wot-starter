@@ -2,7 +2,7 @@
 import type { FormExpose } from '@wot-ui/ui/components/wd-form/types'
 import { zodAdapter } from '@wot-ui/ui'
 import { useI18n } from 'vue-i18n'
-import { z } from 'zod'
+import z from 'zod'
 import router from '@/router'
 import { checkAccept } from './method'
 
@@ -53,8 +53,7 @@ async function handleLogin() {
       username: model.value.userName,
       password: model.value.password,
     })
-  }
-  else {
+  } else {
     uni.removeStorageSync('loginInfo')
   }
 
@@ -72,20 +71,33 @@ async function handleLogin() {
 
 <template>
   <view class="flex-col gap-y-5">
-    <wd-card custom-class="!rounded-lg !shadow-sm !shadow-gray !shadow-op-10 !m-0 !bg-#ffffff55 !dark:bg-#1a1a1a55 backdrop-blur-10px" custom-content-class="flex flex-col gap-15px !py-6">
-      <wd-text :text="$t('pages.login.passLogin.welcome')" custom-class="text-center font-bold !text-default" size="20px" />
+    <wd-card
+      custom-class="!rounded-lg !shadow-sm !shadow-gray !shadow-op-10 !m-0 !bg-#ffffff55 !dark:bg-#1a1a1a55 backdrop-blur-10px"
+      custom-content-class="flex flex-col gap-15px !py-6"
+    >
+      <wd-text
+        :text="$t('pages.login.passLogin.welcome')"
+        custom-class="text-center font-bold !text-default"
+        size="20px"
+      />
       <wd-form
-        ref="loginFormRef" :model="model" :schema="zodAdapter(
-          z.object({
-            userName: z.string().min(1, t('pages.login.passLogin.required')),
-            password: z.string().min(1, t('pages.login.passLogin.required')),
-          }),
-        )" error-type="message"
+        ref="loginFormRef"
+        :model="model"
+        :schema="
+          zodAdapter(
+            z.object({
+              userName: z.string().min(1, t('pages.login.passLogin.required')),
+              password: z.string().min(1, t('pages.login.passLogin.required')),
+            }),
+          )
+        "
+        error-type="message"
       >
         <wd-form-item
           prop="userName"
           :title="$t('pages.login.passLogin.account')"
-          title-width="80px" custom-class="!bg-transparent"
+          title-width="80px"
+          custom-class="!bg-transparent"
         >
           <!-- 用户名输入 -->
           <wd-input
@@ -99,7 +111,8 @@ async function handleLogin() {
         <wd-form-item
           prop="password"
           :title="$t('pages.login.passLogin.password')"
-          title-width="80px" custom-class="!bg-transparent"
+          title-width="80px"
+          custom-class="!bg-transparent"
         >
           <wd-input
             v-model="model.password"
@@ -128,10 +141,14 @@ async function handleLogin() {
     </wd-button>
 
     <view class="flex-center flex-row">
-      <wd-text :text="$t('pages.login.passLogin.registerNewUser')" size="12px" custom-class="!text-primary" @click="() => router.push('/pages/login/register')" />
+      <wd-text
+        :text="$t('pages.login.passLogin.registerNewUser')"
+        size="12px"
+        custom-class="!text-primary"
+        @click="() => router.push('/pages/login/register')"
+      />
     </view>
   </view>
 </template>
 
-<style lang="scss" scoped>
-</style>
+<style lang="scss" scoped></style>

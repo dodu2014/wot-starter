@@ -46,14 +46,13 @@ export function createDelayLoadingMiddleware(delay = 300) {
  * @param options.loadingText 加载指示器显示的文本，默认为 'Loading...'
  * @returns Alova 中间件
  */
-export function createGlobalLoadingMiddleware(options: {
-  delay?: number
-  loadingText?: string
-} = {}) {
-  const {
-    delay = 0,
-    loadingText = 'Loading...',
-  } = options
+export function createGlobalLoadingMiddleware(
+  options: {
+    delay?: number
+    loadingText?: string
+  } = {},
+) {
+  const { delay = 0, loadingText = 'Loading...' } = options
 
   return async (ctx: any, next: any) => {
     // 自行控制loading
@@ -65,8 +64,7 @@ export function createGlobalLoadingMiddleware(options: {
     // 如果delay为0或未设置，直接显示loading
     if (delay <= 0) {
       globalLoading.loading(loadingText)
-    }
-    else {
+    } else {
       // 延迟特定时间显示全局loading
       timer = setTimeout(() => {
         globalLoading.loading(loadingText)
@@ -75,8 +73,7 @@ export function createGlobalLoadingMiddleware(options: {
 
     try {
       await next()
-    }
-    finally {
+    } finally {
       // 清除定时器并关闭loading
       if (timer) {
         clearTimeout(timer)

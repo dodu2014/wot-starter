@@ -25,33 +25,36 @@ nextTick(() => {
 })
 // #endif
 
-watch(() => dialogOptions.value, (newVal) => {
-  if (newVal) {
-    if (currentPage.value === currentPath) {
-      const option = deepClone(newVal)
-      if (!option.cancelButtonText)
-        option.cancelButtonText = t('common.dialog.cancel')
-      if (!(option.cancelButtonProps as any)?.text)
-        (option.cancelButtonProps as any)!.text = t('common.dialog.cancel')
-      if (!option.confirmButtonText)
-        option.confirmButtonText = t('common.dialog.confirm')
-      if (!(option.confirmButtonProps as any)?.text)
-        (option.confirmButtonProps as any)!.text = t('common.dialog.confirm')
-      dialog.show(option).then((res) => {
-        if (isFunction(option.success)) {
-          option.success(res)
-        }
-      }).catch((err) => {
-        if (isFunction(option.fail)) {
-          option.fail(err)
-        }
-      })
+watch(
+  () => dialogOptions.value,
+  newVal => {
+    if (newVal) {
+      if (currentPage.value === currentPath) {
+        const option = deepClone(newVal)
+        if (!option.cancelButtonText) option.cancelButtonText = t('common.dialog.cancel')
+        if (!(option.cancelButtonProps as any)?.text)
+          (option.cancelButtonProps as any)!.text = t('common.dialog.cancel')
+        if (!option.confirmButtonText) option.confirmButtonText = t('common.dialog.confirm')
+        if (!(option.confirmButtonProps as any)?.text)
+          (option.confirmButtonProps as any)!.text = t('common.dialog.confirm')
+        dialog
+          .show(option)
+          .then(res => {
+            if (isFunction(option.success)) {
+              option.success(res)
+            }
+          })
+          .catch(err => {
+            if (isFunction(option.fail)) {
+              option.fail(err)
+            }
+          })
+      }
+    } else {
+      dialog.close()
     }
-  }
-  else {
-    dialog.close()
-  }
-})
+  },
+)
 </script>
 
 <script lang="ts">

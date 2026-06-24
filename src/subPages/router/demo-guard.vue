@@ -30,12 +30,8 @@ function demoAfterEachPage() {
     <!-- 头部 -->
     <view class="mx-3 mb-3">
       <view class="rounded-3 px-5 py-6 text-center wot-bg-filled-oppo">
-        <view class="mb-3 text-8">
-          🛡️
-        </view>
-        <view class="mb-2 text-5 font-bold wot-text-text-main">
-          导航守卫演示
-        </view>
+        <view class="mb-3 text-8"> 🛡️ </view>
+        <view class="mb-2 text-5 font-bold wot-text-text-main"> 导航守卫演示 </view>
         <view class="text-3.5 wot-text-text-secondary">
           演示 beforeEach 和 afterEach 守卫功能
         </view>
@@ -46,27 +42,17 @@ function demoAfterEachPage() {
     <demo-block title="守卫演示" transparent>
       <view class="space-y-3">
         <view class="rounded-2 p-4 wot-bg-filled-oppo">
-          <view class="mb-3 text-4 font-bold wot-text-text-main">
-            前置导航守卫拦截
-          </view>
-          <view class="mb-3 text-3.5 wot-text-text-secondary">
-            跳转前交互，可以拦截导航
-          </view>
-          <wd-button type="danger" block @click="handleBeforeEach">
-            📊 beforeEach 演示
-          </wd-button>
+          <view class="mb-3 text-4 font-bold wot-text-text-main"> 前置导航守卫拦截 </view>
+          <view class="mb-3 text-3.5 wot-text-text-secondary"> 跳转前交互，可以拦截导航 </view>
+          <wd-button type="danger" block @click="handleBeforeEach"> 📊 beforeEach 演示 </wd-button>
         </view>
 
         <view class="rounded-2 p-4 wot-bg-filled-oppo">
-          <view class="mb-3 text-4 font-bold wot-text-text-main">
-            后置导航钩子演示
-          </view>
+          <view class="mb-3 text-4 font-bold wot-text-text-main"> 后置导航钩子演示 </view>
           <view class="mb-3 text-3.5 wot-text-text-secondary">
             跳转到专门的 afterEach 演示页面，体验页面统计、埋点上报等功能
           </view>
-          <wd-button type="success" block @click="demoAfterEachPage">
-            📊 afterEach 演示
-          </wd-button>
+          <wd-button type="success" block @click="demoAfterEachPage"> 📊 afterEach 演示 </wd-button>
         </view>
       </view>
     </demo-block>
@@ -74,9 +60,7 @@ function demoAfterEachPage() {
     <!-- 操作按钮 -->
     <demo-block title="导航" transparent>
       <view class="px-3">
-        <wd-button type="warning" block @click="goBack">
-          返回上一页
-        </wd-button>
+        <wd-button type="warning" block @click="goBack"> 返回上一页 </wd-button>
       </view>
     </demo-block>
   </view>

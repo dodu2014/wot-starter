@@ -1,6 +1,11 @@
 <script setup lang="ts">
 import { PieChart } from 'echarts/charts'
-import { DatasetComponent, GraphicComponent, LegendComponent, TooltipComponent } from 'echarts/components'
+import {
+  DatasetComponent,
+  GraphicComponent,
+  LegendComponent,
+  TooltipComponent,
+} from 'echarts/components'
 import * as echarts from 'echarts/core'
 import { CanvasRenderer } from 'echarts/renderers'
 

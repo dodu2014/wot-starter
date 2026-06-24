@@ -96,8 +96,7 @@ export const useManualThemeStore = defineStore('manualTheme', {
           return systemInfo.theme as ThemeMode
         }
         // #endif
-      }
-      catch (error) {
+      } catch (error) {
         console.warn('获取系统主题失败:', error)
       }
       return 'light' // 默认返回 light
@@ -123,8 +122,7 @@ export const useManualThemeStore = defineStore('manualTheme', {
         if (!this.hasUserSet) {
           this.followSystem = true
           console.log('首次启动，使用系统主题:', this.theme)
-        }
-        else {
+        } else {
           console.log('跟随系统主题:', this.theme)
         }
       }

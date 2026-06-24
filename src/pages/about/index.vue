@@ -34,9 +34,7 @@ function openWeChat() {
   <view class="min-h-screen py-3">
     <!-- 头部介绍 -->
     <view class="mx-3 mb-3 flex flex-col gap-2">
-      <text class="text-6 font-bold wot-text-text-main">
-        关于我们
-      </text>
+      <text class="text-6 font-bold wot-text-text-main"> 关于我们 </text>
       <text class="text-3.5 leading-snug wot-text-text-secondary">
         我是不如摸鱼去，一个前端打工仔，我和我的小伙伴们正在致力于开发轻量、高效的uni-app组件库和高效、易用的uni-app快速开发模板。
       </text>
@@ -72,13 +70,14 @@ function openWeChat() {
     <demo-block title="关于 uni-helper 团队" transparent>
       <view class="rounded-3 p-5 wot-bg-filled-oppo">
         <text class="mb-3 block text-3.5 leading-relaxed wot-text-text-secondary">
-          <text class="text-blue-600" @click="openUrl('https://uni-helper.cn/')">
-            uni-helper
-          </text>
-          是一个旨在增强 uni-app 系列产品的开发体验为爱发电的非官方组织。作为靠爱发电的非官方项目，uni-helper 提供了打包工具插件支持、编辑器扩展支持、NPM 包等并尽力维护它们。
+          <text class="text-blue-600" @click="openUrl('https://uni-helper.cn/')"> uni-helper </text>
+          是一个旨在增强 uni-app
+          系列产品的开发体验为爱发电的非官方组织。作为靠爱发电的非官方项目，uni-helper
+          提供了打包工具插件支持、编辑器扩展支持、NPM 包等并尽力维护它们。
         </text>
         <text class="text-3.5 leading-relaxed wot-text-text-secondary">
-          在此我们特别向 uni-helper 团队表示感谢，他们为 uni-app 系列产品提供了强大的支持，包括打包工具插件支持、编辑器扩展支持等，这使我们得以站在巨人的巨人的肩膀上完成此项目。
+          在此我们特别向 uni-helper 团队表示感谢，他们为 uni-app
+          系列产品提供了强大的支持，包括打包工具插件支持、编辑器扩展支持等，这使我们得以站在巨人的巨人的肩膀上完成此项目。
         </text>
       </view>
     </demo-block>

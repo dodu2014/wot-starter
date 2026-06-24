@@ -14,24 +14,17 @@ type TeamMemberPayload = TeamMember & {
   status?: string
 }
 
-const urls = [
-  'https://sponsor.wot-ui.cn',
-  'https://wot-sponsors.pages.dev',
-]
+const urls = ['https://sponsor.wot-ui.cn', 'https://wot-sponsors.pages.dev']
 
-const mockMembers: TeamMember[] = [
-
-]
+const mockMembers: TeamMember[] = []
 
 const data = ref<TeamMember[]>([])
 
 function normalizeMembers(members: TeamMemberPayload[]): TeamMember[] {
   return members
     .filter(member => member?.avatar && member?.name && member?.title)
-    .map((member) => {
-      const tags = Array.isArray(member.tags)
-        ? member.tags
-        : (member.status ? [member.status] : [])
+    .map(member => {
+      const tags = Array.isArray(member.tags) ? member.tags : member.status ? [member.status] : []
 
       return {
         avatar: member.avatar,
@@ -51,7 +44,7 @@ function requestMembers(url: string): Promise<TeamMemberPayload[]> {
       url: `${url}/team.json?t=${Date.now()}`,
       method: 'GET',
       timeout: 5000,
-      success: (response) => {
+      success: response => {
         const payload = response.data as { members?: TeamMemberPayload[] } | undefined
         resolve(Array.isArray(payload?.members) ? payload.members : [])
       },
@@ -69,8 +62,7 @@ async function fetchMembers() {
       if (normalizedMembers.length > 0) {
         return normalizedMembers
       }
-    }
-    catch {
+    } catch {
       console.warn(`Failed to fetch team from ${url}`)
     }
   }

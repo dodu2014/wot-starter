@@ -4,7 +4,7 @@
 
 ## 目录结构
 
-```
+```text
 mock/
 ├── modules/                       # 按模块分类的模拟数据
 │   ├── common.ts                 # 通用模拟处理
@@ -56,15 +56,17 @@ export default defineMock({
   '[GET]/api/example': () => {
     return {
       code: 200,
-      data: { /* 模拟数据 */ },
-      message: 'success'
+      data: {
+        /* 模拟数据 */
+      },
+      message: 'success',
     }
-  }
+  },
 })
 
 const allMocks = [
   // ...
-  exampleMocks
+  exampleMocks,
 ]
 ```
 
@@ -82,10 +84,13 @@ const id = generateMockData.id()
 const name = generateMockData.name('前缀')
 
 // 生成随机数组
-const array = generateMockData.array(index => ({
-  id: generateMockData.id(),
-  name: generateMockData.name(`项目${index}`)
-}), 10)
+const array = generateMockData.array(
+  index => ({
+    id: generateMockData.id(),
+    name: generateMockData.name(`项目${index}`),
+  }),
+  10,
+)
 
 // 生成基础响应对象
 const response = generateMockData.baseResponse(data)

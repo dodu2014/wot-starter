@@ -45,20 +45,19 @@ function handleChooseAvatar(e: { avatarUrl: string }) {
 }
 
 const { error, loading, send } = useRequest(
-  () => Webapi_Base.user.updateUser({
-    data: model,
-  }),
+  () =>
+    Webapi_Base.user.updateUser({
+      data: model,
+    }),
   { immediate: false },
-)
-  .onError((error) => {
-    warning(error.error?.message || t('pages.user.profile.modifyFailed'))
-  })
+).onError(error => {
+  warning(error.error?.message || t('pages.user.profile.modifyFailed'))
+})
 
 async function handleSubmit() {
   const res = await formRef.value?.validate()
   console.log('valid', res)
-  if (!res || !res?.valid)
-    return
+  if (!res || !res?.valid) return
 
   // request
   await send()
@@ -74,11 +73,7 @@ onLoad(() => {})
 <template>
   <view class="flex-col gap-y-4">
     <wd-form ref="formRef" border :model="model">
-      <wd-form-item
-        :title="$t('pages.user.profile.account')"
-        title-width="100px"
-        prop="userName"
-      >
+      <wd-form-item :title="$t('pages.user.profile.account')" title-width="100px" prop="userName">
         <wd-input
           v-model="model.userName"
           clearable
@@ -88,11 +83,7 @@ onLoad(() => {})
           :rules="[{ required: true, message: t('pages.user.profile.required') }]"
         />
       </wd-form-item>
-      <wd-form-item
-        :title="$t('pages.user.profile.email')"
-        title-width="100px"
-        prop="email"
-      >
+      <wd-form-item :title="$t('pages.user.profile.email')" title-width="100px" prop="email">
         <wd-input
           v-model="model.email!"
           clearable
@@ -101,15 +92,15 @@ onLoad(() => {})
           marker-side="after"
           :rules="[
             { required: true, message: t('pages.user.profile.required') },
-            { required: false, pattern: /^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/, message: '邮箱格式不正确' },
+            {
+              required: false,
+              pattern: /^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/,
+              message: '邮箱格式不正确',
+            },
           ]"
         />
       </wd-form-item>
-      <wd-form-item
-        :title="$t('pages.user.profile.nickname')"
-        title-width="100px"
-        prop="name"
-      >
+      <wd-form-item :title="$t('pages.user.profile.nickname')" title-width="100px" prop="name">
         <wd-input
           v-model="model.name"
           clearable
@@ -118,7 +109,11 @@ onLoad(() => {})
           type="nickname"
           :rules="[
             { required: true, message: t('pages.user.profile.required') },
-            { required: false, validator: (value: string) => value.length >= 2, message: '格式不正确，2-10个字符' },
+            {
+              required: false,
+              validator: (value: string) => value.length >= 2,
+              message: '格式不正确，2-10个字符',
+            },
           ]"
         />
       </wd-form-item>
@@ -126,7 +121,12 @@ onLoad(() => {})
         <view class="flex-col items-start gap-3">
           <app-upload v-model:value="model.avatarUrl!" :limit="1" :show-limit-num="false" />
           <!-- #ifdef MP-WEIXIN -->
-          <wd-button type="info" size="small" open-type="chooseAvatar" @chooseavatar="handleChooseAvatar">
+          <wd-button
+            type="info"
+            size="small"
+            open-type="chooseAvatar"
+            @chooseavatar="handleChooseAvatar"
+          >
             {{ $t('pages.user.profile.useWechatAvatar') }}
           </wd-button>
           <!-- #endif -->

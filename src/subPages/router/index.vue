@@ -158,12 +158,8 @@ function handleNavigate(url: string) {
     <!-- 头部介绍 -->
     <view class="mx-3 mb-3">
       <view class="rounded-3 px-5 py-8 text-center wot-bg-filled-oppo">
-        <view class="mb-3 text-10">
-          🚀
-        </view>
-        <view class="mb-2 text-6 font-bold wot-text-text-main">
-          @wot-ui/router
-        </view>
+        <view class="mb-3 text-10"> 🚀 </view>
+        <view class="mb-2 text-6 font-bold wot-text-text-main"> @wot-ui/router </view>
         <view class="mb-2 text-3.5 leading-relaxed wot-text-text-secondary">
           轻量级路由管理解决方案
         </view>
@@ -176,34 +172,32 @@ function handleNavigate(url: string) {
     <!-- 当前路由信息 -->
     <demo-block title="当前路由信息" transparent>
       <view class="rounded-3 p-4 wot-bg-filled-oppo">
-        <view class="flex items-center justify-between border-b py-2 wot-border-border-main last:border-b-0">
-          <text class="text-3.5 wot-text-text-secondary">
-            路径:
-          </text>
+        <view
+          class="flex items-center justify-between border-b py-2 wot-border-border-main last:border-b-0"
+        >
+          <text class="text-3.5 wot-text-text-secondary"> 路径: </text>
           <text class="text-3.5 font-mono wot-text-text-main">
             {{ route.path }}
           </text>
         </view>
-        <view class="flex items-center justify-between border-b py-2 wot-border-border-main last:border-b-0">
-          <text class="text-3.5 wot-text-text-secondary">
-            名称:
-          </text>
+        <view
+          class="flex items-center justify-between border-b py-2 wot-border-border-main last:border-b-0"
+        >
+          <text class="text-3.5 wot-text-text-secondary"> 名称: </text>
           <text class="text-3.5 font-mono wot-text-text-main">
             {{ route.name || '未设置' }}
           </text>
         </view>
-        <view class="flex items-center justify-between border-b py-2 wot-border-border-main last:border-b-0">
-          <text class="text-3.5 wot-text-text-secondary">
-            参数:
-          </text>
+        <view
+          class="flex items-center justify-between border-b py-2 wot-border-border-main last:border-b-0"
+        >
+          <text class="text-3.5 wot-text-text-secondary"> 参数: </text>
           <text class="break-all text-3.5 font-mono wot-text-text-main">
             {{ JSON.stringify(route.params) }}
           </text>
         </view>
         <view class="flex items-center justify-between py-2">
-          <text class="text-3.5 wot-text-text-secondary">
-            查询:
-          </text>
+          <text class="text-3.5 wot-text-text-secondary"> 查询: </text>
           <text class="break-all text-3.5 font-mono wot-text-text-main">
             {{ JSON.stringify(route.query) }}
           </text>
@@ -215,10 +209,11 @@ function handleNavigate(url: string) {
     <demo-block title="编程式导航" transparent>
       <view class="space-y-3">
         <view class="rounded-2 p-4 wot-bg-filled-oppo">
-          <view class="mb-3 text-4 font-bold wot-text-text-main">
-            基础用法
-          </view>
-          <view class="wot-bg-bg mb-3 flex items-center justify-between border rounded-2 p-3 wot-border-border-main" @click="copyCode('router.push(\'/user\')')">
+          <view class="mb-3 text-4 font-bold wot-text-text-main"> 基础用法 </view>
+          <view
+            class="wot-bg-bg mb-3 flex items-center justify-between border rounded-2 p-3 wot-border-border-main"
+            @click="copyCode('router.push(\'/user\')')"
+          >
             <text class="flex-1 text-3 font-mono wot-text-text-secondary">
               router.push('/user')
             </text>
@@ -228,12 +223,8 @@ function handleNavigate(url: string) {
             <wd-button type="primary" size="small" @click="pushByString">
               字符串路径跳转
             </wd-button>
-            <wd-button type="success" size="small" @click="pushByPath">
-              对象路径跳转
-            </wd-button>
-            <wd-button type="warning" size="small" @click="pushByName">
-              命名路由跳转
-            </wd-button>
+            <wd-button type="success" size="small" @click="pushByPath"> 对象路径跳转 </wd-button>
+            <wd-button type="warning" size="small" @click="pushByName"> 命名路由跳转 </wd-button>
           </view>
         </view>
       </view>
@@ -243,101 +234,97 @@ function handleNavigate(url: string) {
     <demo-block title="Router方法演示" transparent>
       <view class="space-y-3">
         <view class="rounded-2 p-4 wot-bg-filled-oppo">
-          <view class="mb-3 text-4 font-bold wot-text-text-main">
-            push 方法
-          </view>
+          <view class="mb-3 text-4 font-bold wot-text-text-main"> push 方法 </view>
           <view class="mb-3 text-3.5 leading-relaxed wot-text-text-secondary">
             保留当前页面，跳转到应用内的某个页面，相当于 uni.navigateTo()
           </view>
-          <view class="wot-bg-bg mb-3 flex items-center justify-between border rounded-2 p-3 wot-border-border-main" @click="copyCode('router.push(target)')">
+          <view
+            class="wot-bg-bg mb-3 flex items-center justify-between border rounded-2 p-3 wot-border-border-main"
+            @click="copyCode('router.push(target)')"
+          >
             <text class="flex-1 text-3 font-mono wot-text-text-secondary">
               router.push(target)
             </text>
             <wd-icon name="copy" size="16px" color="#666" />
           </view>
-          <wd-button type="primary" block @click="demoPush">
-            演示 push 方法
-          </wd-button>
+          <wd-button type="primary" block @click="demoPush"> 演示 push 方法 </wd-button>
         </view>
 
         <view class="rounded-2 p-4 wot-bg-filled-oppo">
-          <view class="mb-3 text-4 font-bold wot-text-text-main">
-            pushTab 方法
-          </view>
+          <view class="mb-3 text-4 font-bold wot-text-text-main"> pushTab 方法 </view>
           <view class="mb-3 text-3.5 leading-relaxed wot-text-text-secondary">
             跳转到 tabBar 页面，并关闭其他所有非 tabBar 页面，相当于 uni.switchTab()
           </view>
-          <view class="wot-bg-bg mb-3 flex items-center justify-between border rounded-2 p-3 wot-border-border-main" @click="copyCode('router.pushTab(target)')">
+          <view
+            class="wot-bg-bg mb-3 flex items-center justify-between border rounded-2 p-3 wot-border-border-main"
+            @click="copyCode('router.pushTab(target)')"
+          >
             <text class="flex-1 text-3 font-mono wot-text-text-secondary">
               router.pushTab(target)
             </text>
             <wd-icon name="copy" size="16px" color="#666" />
           </view>
-          <wd-button type="success" block @click="demoPushTab">
-            演示 pushTab 方法
-          </wd-button>
+          <wd-button type="success" block @click="demoPushTab"> 演示 pushTab 方法 </wd-button>
         </view>
 
         <view class="rounded-2 p-4 wot-bg-filled-oppo">
-          <view class="mb-3 text-4 font-bold wot-text-text-main">
-            replace 方法
-          </view>
+          <view class="mb-3 text-4 font-bold wot-text-text-main"> replace 方法 </view>
           <view class="mb-3 text-3.5 leading-relaxed wot-text-text-secondary">
             关闭当前页面，跳转到应用内的某个页面，相当于 uni.redirectTo()
           </view>
-          <view class="wot-bg-bg mb-3 flex items-center justify-between border rounded-2 p-3 wot-border-border-main" @click="copyCode('router.replace(target)')">
+          <view
+            class="wot-bg-bg mb-3 flex items-center justify-between border rounded-2 p-3 wot-border-border-main"
+            @click="copyCode('router.replace(target)')"
+          >
             <text class="flex-1 text-3 font-mono wot-text-text-secondary">
               router.replace(target)
             </text>
             <wd-icon name="copy" size="16px" color="#666" />
           </view>
-          <wd-button type="warning" block @click="demoReplace">
-            演示 replace 方法
-          </wd-button>
+          <wd-button type="warning" block @click="demoReplace"> 演示 replace 方法 </wd-button>
         </view>
 
         <view class="rounded-2 p-4 wot-bg-filled-oppo">
-          <view class="mb-3 text-4 font-bold wot-text-text-main">
-            replaceAll 方法
-          </view>
+          <view class="mb-3 text-4 font-bold wot-text-text-main"> replaceAll 方法 </view>
           <view class="mb-3 text-3.5 leading-relaxed wot-text-text-secondary">
             关闭所有页面，打开到应用内的某个页面，相当于 uni.reLaunch()
           </view>
-          <view class="wot-bg-bg mb-3 flex items-center justify-between border rounded-2 p-3 wot-border-border-main" @click="copyCode('router.replaceAll(target)')">
+          <view
+            class="wot-bg-bg mb-3 flex items-center justify-between border rounded-2 p-3 wot-border-border-main"
+            @click="copyCode('router.replaceAll(target)')"
+          >
             <text class="flex-1 text-3 font-mono wot-text-text-secondary">
               router.replaceAll(target)
             </text>
             <wd-icon name="copy" size="16px" color="#666" />
           </view>
-          <wd-button type="danger" block @click="demoReplaceAll">
-            演示 replaceAll 方法
-          </wd-button>
+          <wd-button type="danger" block @click="demoReplaceAll"> 演示 replaceAll 方法 </wd-button>
         </view>
 
         <view class="rounded-2 p-4 wot-bg-filled-oppo">
-          <view class="mb-3 text-4 font-bold wot-text-text-main">
-            back 方法
-          </view>
+          <view class="mb-3 text-4 font-bold wot-text-text-main"> back 方法 </view>
           <view class="mb-3 text-3.5 leading-relaxed wot-text-text-secondary">
             关闭当前页面，返回上一页面或多级页面，相当于 uni.navigateBack()
           </view>
           <view class="mb-3 space-y-2">
-            <view class="wot-bg-bg flex items-center justify-between border rounded-2 p-3 wot-border-border-main" @click="copyCode('router.back()')">
-              <text class="flex-1 text-3 font-mono wot-text-text-secondary">
-                router.back()
-              </text>
+            <view
+              class="wot-bg-bg flex items-center justify-between border rounded-2 p-3 wot-border-border-main"
+              @click="copyCode('router.back()')"
+            >
+              <text class="flex-1 text-3 font-mono wot-text-text-secondary"> router.back() </text>
               <wd-icon name="copy" size="16px" color="#666" />
             </view>
-            <view class="wot-bg-bg flex items-center justify-between border rounded-2 p-3 wot-border-border-main" @click="copyCode('router.back({ delta: 2 })')">
+            <view
+              class="wot-bg-bg flex items-center justify-between border rounded-2 p-3 wot-border-border-main"
+              @click="copyCode('router.back({ delta: 2 })')"
+            >
               <text class="flex-1 text-3 font-mono wot-text-text-secondary">
                 router.back({ delta: 2 })
               </text>
               <wd-icon name="copy" size="16px" color="#666" />
             </view>
           </view>
-          <wd-button type="info" block @click="demoBack">
-            返回上一页
-          </wd-button>
+          <wd-button type="info" block @click="demoBack"> 返回上一页 </wd-button>
         </view>
       </view>
     </demo-block>
@@ -349,56 +336,53 @@ function handleNavigate(url: string) {
           ⚠️ 重要提示
         </view>
         <view class="text-3 text-orange-600 leading-relaxed dark:text-orange-200">
-          在 @wot-ui/router 中，params 和 query 参数都会以查询字符串形式放在 URL 中，两者在实际效果上并无区别。这种 API 设计主要是为了与 vue-router 保持一致。
+          在 @wot-ui/router 中，params 和 query 参数都会以查询字符串形式放在 URL
+          中，两者在实际效果上并无区别。这种 API 设计主要是为了与 vue-router 保持一致。
         </view>
       </view>
       <view class="space-y-3">
         <view class="rounded-2 p-4 wot-bg-filled-oppo">
-          <view class="mb-3 text-4 font-bold wot-text-text-main">
-            params 参数
-          </view>
+          <view class="mb-3 text-4 font-bold wot-text-text-main"> params 参数 </view>
           <view class="mb-3 text-3.5 wot-text-text-secondary">
             注意：name 和 params 搭配使用，与 query 效果相同
           </view>
           <view class="mb-3">
             <wd-input v-model="userId" placeholder="请输入用户名" />
           </view>
-          <view class="wot-bg-bg mb-3 flex items-center justify-between border rounded-2 p-3 wot-border-border-main" @click="copyCode('router.push({ name: \'user\', params: { username: \'eduardo\' } })')">
+          <view
+            class="wot-bg-bg mb-3 flex items-center justify-between border rounded-2 p-3 wot-border-border-main"
+            @click="copyCode('router.push({ name: \'user\', params: { username: \'eduardo\' } })')"
+          >
             <text class="flex-1 text-3 font-mono wot-text-text-secondary">
               router.push({ name: 'user', params: { username: 'eduardo' } })
             </text>
             <wd-icon name="copy" size="16px" color="#666" />
           </view>
-          <wd-button type="primary" block @click="pushWithParams">
-            传递 params 参数
-          </wd-button>
+          <wd-button type="primary" block @click="pushWithParams"> 传递 params 参数 </wd-button>
         </view>
 
         <view class="rounded-2 p-4 wot-bg-filled-oppo">
-          <view class="mb-3 text-4 font-bold wot-text-text-main">
-            query 参数
-          </view>
+          <view class="mb-3 text-4 font-bold wot-text-text-main"> query 参数 </view>
           <view class="mb-3 text-3.5 wot-text-text-secondary">
             注意：path 可以与 query 一起使用，与 params 效果相同
           </view>
           <view class="mb-3">
             <wd-input v-model="searchKeyword" placeholder="请输入搜索关键词" />
           </view>
-          <view class="wot-bg-bg mb-3 flex items-center justify-between border rounded-2 p-3 wot-border-border-main" @click="copyCode('router.push({ path: \'/user\', query: { username: \'eduardo\' } })')">
+          <view
+            class="wot-bg-bg mb-3 flex items-center justify-between border rounded-2 p-3 wot-border-border-main"
+            @click="copyCode('router.push({ path: \'/user\', query: { username: \'eduardo\' } })')"
+          >
             <text class="flex-1 text-3 font-mono wot-text-text-secondary">
               router.push({ path: '/user', query: { username: 'eduardo' } })
             </text>
             <wd-icon name="copy" size="16px" color="#666" />
           </view>
-          <wd-button type="success" block @click="pushWithQuery">
-            传递 query 参数
-          </wd-button>
+          <wd-button type="success" block @click="pushWithQuery"> 传递 query 参数 </wd-button>
         </view>
 
         <view class="rounded-2 p-4 wot-bg-filled-oppo">
-          <view class="mb-3 text-4 font-bold wot-text-text-main">
-            传递对象参数
-          </view>
+          <view class="mb-3 text-4 font-bold wot-text-text-main"> 传递对象参数 </view>
           <view class="mb-3 text-3.5 leading-relaxed wot-text-text-secondary">
             URL有长度限制，复杂对象需要使用 encodeURIComponent 编码
           </view>
@@ -421,29 +405,31 @@ function handleNavigate(url: string) {
     <!-- 导航守卫 -->
     <demo-block title="导航守卫" transparent>
       <view class="mb-3 border border-blue-200 rounded-2 bg-blue-50 p-3 dark:bg-blue-900/20">
-        <view class="mb-2 text-3.5 text-blue-700 font-bold dark:text-blue-300">
-          💡 完整演示
-        </view>
+        <view class="mb-2 text-3.5 text-blue-700 font-bold dark:text-blue-300"> 💡 完整演示 </view>
         <view class="text-3 text-blue-600 leading-relaxed dark:text-blue-200">
           导航守卫功能比较复杂，我们准备了专门的演示页面，包含实时日志、权限验证、参数检查等完整功能演示。
         </view>
       </view>
       <view class="space-y-3">
         <view class="rounded-2 p-4 wot-bg-filled-oppo">
-          <view class="mb-3 text-4 font-bold wot-text-text-main">
-            基础守卫 API
-          </view>
+          <view class="mb-3 text-4 font-bold wot-text-text-main"> 基础守卫 API </view>
           <view class="mb-3 text-3.5 leading-relaxed wot-text-text-secondary">
             beforeEach 和 afterEach 是最常用的导航守卫
           </view>
           <view class="mb-3 space-y-2">
-            <view class="wot-bg-bg flex items-center justify-between border rounded-2 p-3 wot-border-border-main" @click="copyCode('router.beforeEach((to, from, next) => { next() })')">
+            <view
+              class="wot-bg-bg flex items-center justify-between border rounded-2 p-3 wot-border-border-main"
+              @click="copyCode('router.beforeEach((to, from, next) => { next() })')"
+            >
               <text class="flex-1 text-3 font-mono wot-text-text-secondary">
                 router.beforeEach((to, from, next) => { next() })
               </text>
               <wd-icon name="copy" size="16px" color="#666" />
             </view>
-            <view class="wot-bg-bg flex items-center justify-between border rounded-2 p-3 wot-border-border-main" @click="copyCode('router.afterEach((to, from) => {  })')">
+            <view
+              class="wot-bg-bg flex items-center justify-between border rounded-2 p-3 wot-border-border-main"
+              @click="copyCode('router.afterEach((to, from) => {  })')"
+            >
               <text class="flex-1 text-3 font-mono wot-text-text-secondary">
                 router.afterEach((to, from) => { console.log(to) })
               </text>
@@ -460,9 +446,24 @@ function handleNavigate(url: string) {
     <!-- 相关链接 -->
     <demo-block title="相关链接" transparent>
       <wd-cell-group border custom-class="rounded-2! overflow-hidden">
-        <wd-cell title="📚 @wot-ui/router 文档" value="路由管理" is-link @click="handleNavigate('https://moonofweisheng.github.io/@wot-ui/router/')" />
-        <wd-cell title="🐙 GitHub 仓库" value="@wot-ui/router" is-link @click="handleNavigate('https://my-uni.wot-ui.cn/')" />
-        <wd-cell title="📖 uni-app 路由文档" value="页面路由" is-link @click="handleNavigate('https://uniapp.dcloud.net.cn/tutorial/page.html')" />
+        <wd-cell
+          title="📚 @wot-ui/router 文档"
+          value="路由管理"
+          is-link
+          @click="handleNavigate('https://moonofweisheng.github.io/@wot-ui/router/')"
+        />
+        <wd-cell
+          title="🐙 GitHub 仓库"
+          value="@wot-ui/router"
+          is-link
+          @click="handleNavigate('https://my-uni.wot-ui.cn/')"
+        />
+        <wd-cell
+          title="📖 uni-app 路由文档"
+          value="页面路由"
+          is-link
+          @click="handleNavigate('https://uniapp.dcloud.net.cn/tutorial/page.html')"
+        />
       </wd-cell-group>
     </demo-block>
   </view>

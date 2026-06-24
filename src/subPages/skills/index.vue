@@ -73,11 +73,9 @@ function getIconBg(color: string) {
   <view class="pb-safe wot-bg-bg box-border min-h-screen">
     <!-- Header -->
     <view class="px-6 pb-6 pt-8">
-      <view class="mb-2 text-3xl font-bold leading-tight wot-text-text-main">
-        Agent Skills
-      </view>
+      <view class="mb-2 text-3xl font-bold leading-tight wot-text-text-main"> Agent Skills </view>
       <view class="text-base leading-relaxed wot-text-text-secondary">
-        利用智能工具赋能开发效率，<br>打造极致开发体验。
+        利用智能工具赋能开发效率，<br />打造极致开发体验。
       </view>
     </view>
 

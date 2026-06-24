@@ -1,4 +1,8 @@
-import type { DialogBoxButtonOption, DialogOptions, DialogResult } from '@wot-ui/ui/components/wd-dialog/types'
+import type {
+  DialogBoxButtonOption,
+  DialogOptions,
+  DialogResult,
+} from '@wot-ui/ui/components/wd-dialog/types'
 import { defineStore } from 'pinia'
 
 export type GlobalDialogOptions = DialogOptions & {
@@ -17,7 +21,10 @@ function isButtonPropsObject(value: unknown): value is Record<string, any> {
   return value !== null && CommonUtil.isObj(value)
 }
 
-function normalizeButtonProps(props: DialogBoxButtonOption | undefined, text?: string): DialogBoxButtonOption | undefined {
+function normalizeButtonProps(
+  props: DialogBoxButtonOption | undefined,
+  text?: string,
+): DialogBoxButtonOption | undefined {
   if (isButtonPropsObject(props)) {
     return {
       ...props,
@@ -36,7 +43,10 @@ function normalizeButtonProps(props: DialogBoxButtonOption | undefined, text?: s
   return props
 }
 
-function withDefaultTypeOptions(option: GlobalDialogOptions, type?: DialogType): GlobalDialogOptions {
+function withDefaultTypeOptions(
+  option: GlobalDialogOptions,
+  type?: DialogType,
+): GlobalDialogOptions {
   const next: GlobalDialogOptions = {
     ...option,
     ...(type ? { type } : {}),
@@ -45,8 +55,7 @@ function withDefaultTypeOptions(option: GlobalDialogOptions, type?: DialogType):
   if (next.showCancelButton === undefined) {
     if (next.type === 'alert') {
       next.showCancelButton = false
-    }
-    else if (next.type === 'confirm' || next.type === 'prompt') {
+    } else if (next.type === 'confirm' || next.type === 'prompt') {
       next.showCancelButton = true
     }
   }
@@ -54,23 +63,38 @@ function withDefaultTypeOptions(option: GlobalDialogOptions, type?: DialogType):
   return next
 }
 
-function normalizeDialogOptions(option: GlobalDialogOptions, type?: DialogType): GlobalDialogOptions {
+function normalizeDialogOptions(
+  option: GlobalDialogOptions,
+  type?: DialogType,
+): GlobalDialogOptions {
   const next = withDefaultTypeOptions(option, type)
 
   const props = next.confirmButtonProps ? next.confirmButtonProps : {}
-  next.confirmButtonProps = normalizeButtonProps({ ...props as object, customClass: '!bg-primary-gradient' }, next.confirmButtonText) as DialogOptions['confirmButtonProps']
+  next.confirmButtonProps = normalizeButtonProps(
+    { ...(props as object), customClass: '!bg-primary-gradient' },
+    next.confirmButtonText,
+  ) as DialogOptions['confirmButtonProps']
 
   if (next.showCancelButton === false) {
     next.cancelButtonProps = null
-  }
-  else if (next.showCancelButton === true || next.cancelButtonProps !== undefined || next.cancelButtonText) {
-    next.cancelButtonProps = normalizeButtonProps(next.cancelButtonProps, next.cancelButtonText) as DialogOptions['cancelButtonProps']
+  } else if (
+    next.showCancelButton === true ||
+    next.cancelButtonProps !== undefined ||
+    next.cancelButtonText
+  ) {
+    next.cancelButtonProps = normalizeButtonProps(
+      next.cancelButtonProps,
+      next.cancelButtonText,
+    ) as DialogOptions['cancelButtonProps']
   }
 
   return next
 }
 
-function normalizeOption(option: GlobalDialogOptions | string, type?: DialogType): GlobalDialogOptions {
+function normalizeOption(
+  option: GlobalDialogOptions | string,
+  type?: DialogType,
+): GlobalDialogOptions {
   return normalizeDialogOptions(CommonUtil.isString(option) ? { title: option } : option, type)
 }
 

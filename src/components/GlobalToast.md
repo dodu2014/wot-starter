@@ -98,15 +98,15 @@ toast.close()
 
 ### ToastOptions
 
-| 参数 | 类型 | 默认值 | 说明 |
-|------|------|--------|------|
-| msg | string | - | 提示内容 |
-| duration | number | `2000` | 持续时间，`0` 表示不自动关闭 |
-| position | string | `middle` | 显示位置：`top` \| `middle` \| `bottom` |
-| iconName | string | - | 图标名称 |
-| direction | string | - | 布局方向：`horizontal` \| `vertical` |
-| cover | boolean | `false` | 是否显示遮罩 |
-| show | boolean | `true` | 是否显示，内部状态字段 |
+| 参数      | 类型    | 默认值   | 说明                                    |
+| --------- | ------- | -------- | --------------------------------------- |
+| msg       | string  | -        | 提示内容                                |
+| duration  | number  | `2000`   | 持续时间，`0` 表示不自动关闭            |
+| position  | string  | `middle` | 显示位置：`top` \| `middle` \| `bottom` |
+| iconName  | string  | -        | 图标名称                                |
+| direction | string  | -        | 布局方向：`horizontal` \| `vertical`    |
+| cover     | boolean | `false`  | 是否显示遮罩                            |
+| show      | boolean | `true`   | 是否显示，内部状态字段                  |
 
 ### 参数形式
 
@@ -124,8 +124,7 @@ async function handleSubmit() {
   try {
     await submitData()
     success('提交成功')
-  }
-  catch (e) {
+  } catch (e) {
     error('提交失败')
   }
 }

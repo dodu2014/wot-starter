@@ -39,16 +39,13 @@ export function checkMiniProgramUpdate(notUpdatePrompt = '') {
   // 返回全局唯一的版本更新管理器对象： updateManager，用于管理小程序更新
   const updateManager = uni.getUpdateManager()
   // 分享到朋友圈时，updateManager 为 null
-  if (!updateManager)
-    return
+  if (!updateManager) return
 
   // 当向应用后台请求完新版本信息，会进行回调
-  updateManager.onCheckForUpdate((res) => {
+  updateManager.onCheckForUpdate(res => {
     // 请求完新版本信息的回调
-    if (res.hasUpdate)
-      loading('版本更新中..')
-    else if (notUpdatePrompt)
-      alert({ msg: notUpdatePrompt, closeOnClickModal: false })
+    if (res.hasUpdate) loading('版本更新中..')
+    else if (notUpdatePrompt) alert({ msg: notUpdatePrompt, closeOnClickModal: false })
   })
 
   // 当新版本下载完成，会进行回调
@@ -60,7 +57,7 @@ export function checkMiniProgramUpdate(notUpdatePrompt = '') {
       closeOnClickModal: false,
       success(res) {
         if (res.action === 'confirm') {
-        // 当新版本下载完成，调用该方法会强制当前uni-app应用上新版本并重启
+          // 当新版本下载完成，调用该方法会强制当前uni-app应用上新版本并重启
           updateManager.applyUpdate()
         }
       },

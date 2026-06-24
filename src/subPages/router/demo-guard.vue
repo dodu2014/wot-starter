@@ -52,7 +52,7 @@ function demoAfterEachPage() {
           <view class="mb-3 text-3.5 wot-text-text-secondary">
             跳转前交互，可以拦截导航
           </view>
-          <wd-button type="error" block @click="handleBeforeEach">
+          <wd-button type="danger" block @click="handleBeforeEach">
             📊 beforeEach 演示
           </wd-button>
         </view>

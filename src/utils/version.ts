@@ -2,8 +2,8 @@ import pack from '../../package.json'
 
 export const packVersion = `v${pack.version}`
 
-/** 获取小程序版本信息 */
-export function getMiniProgramVersion() {
+/** 获取应用版本信息 */
+export function getAppVersion() {
   // #ifdef MP
   const { miniProgram } = uni.getAccountInfoSync()
   if (miniProgram) {

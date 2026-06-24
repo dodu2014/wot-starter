@@ -68,12 +68,12 @@ declare global {
   const getActivePinia: typeof import('pinia').getActivePinia
   const getAllExcludePages: typeof import('./utils/page').getAllExcludePages
   const getAllPages: typeof import('./utils/page').getAllPages
+  const getAppVersion: typeof import('./utils/version').getAppVersion
   const getCache: typeof import('./utils/cache/index').getCache
   const getCurrentInstance: typeof import('vue').getCurrentInstance
   const getCurrentPath: typeof import('./utils/page').getCurrentPath
   const getCurrentScope: typeof import('vue').getCurrentScope
   const getCurrentWatcher: typeof import('vue').getCurrentWatcher
-  const getMiniProgramVersion: typeof import('./utils/version').getMiniProgramVersion
   const h: typeof import('vue').h
   const ignorableWatch: typeof import('@vueuse/core').ignorableWatch
   const inject: typeof import('vue').inject
@@ -515,12 +515,12 @@ declare module 'vue' {
     readonly getActivePinia: UnwrapRef<typeof import('pinia')['getActivePinia']>
     readonly getAllExcludePages: UnwrapRef<typeof import('./utils/page')['getAllExcludePages']>
     readonly getAllPages: UnwrapRef<typeof import('./utils/page')['getAllPages']>
+    readonly getAppVersion: UnwrapRef<typeof import('./utils/version')['getAppVersion']>
     readonly getCache: UnwrapRef<typeof import('./utils/cache/index')['getCache']>
     readonly getCurrentInstance: UnwrapRef<typeof import('vue')['getCurrentInstance']>
     readonly getCurrentPath: UnwrapRef<typeof import('./utils/page')['getCurrentPath']>
     readonly getCurrentScope: UnwrapRef<typeof import('vue')['getCurrentScope']>
     readonly getCurrentWatcher: UnwrapRef<typeof import('vue')['getCurrentWatcher']>
-    readonly getMiniProgramVersion: UnwrapRef<typeof import('./utils/version')['getMiniProgramVersion']>
     readonly h: UnwrapRef<typeof import('vue')['h']>
     readonly ignorableWatch: UnwrapRef<typeof import('@vueuse/core')['ignorableWatch']>
     readonly inject: UnwrapRef<typeof import('vue')['inject']>

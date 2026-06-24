@@ -96,7 +96,7 @@ function openWeChat() {
         <!-- #ifdef MP-WEIXIN -->
         <wd-cell
           title="小程序版本"
-          :value="getMiniProgramVersion()"
+          :value="getAppVersion()"
           is-link
           custom-value-class="content-center"
           @click="() => checkMiniProgramUpdate('已经是最新版')"

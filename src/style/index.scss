@@ -44,3 +44,8 @@
     margin-right: 0 !important;
   }
 }
+
+// 在折叠面板中，每个折叠项之间通常通过边框、分割线或图标等 第一个带边框的折叠项往往不需要顶部的分隔装饰
+.wd-collapse > .wd-collapse-item.is-border:first-child::after {
+  display: none;
+}

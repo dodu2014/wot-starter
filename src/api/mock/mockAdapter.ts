@@ -16,6 +16,11 @@ import petMocks from './modules/pet'
 import storeMocks from './modules/store'
 import userMocks from './modules/user'
 
+const canUseGroupLogger
+  = typeof console !== 'undefined'
+    && typeof console.groupCollapsed === 'function'
+    && typeof console.groupEnd === 'function'
+
 // 合并所有mock定义
 const allMocks = [
   commonMocks,
@@ -39,7 +44,7 @@ const mockAdapter = createAlovaMockAdapter(allMocks, {
   delay: Math.random() * 400 + 200,
 
   // 在开发环境下打印mock请求日志
-  mockRequestLogger: isDev,
+  mockRequestLogger: import.meta.env.MODE === 'development' && canUseGroupLogger,
   // 路径匹配模式 - 使用完整路径匹配
   matchMode: 'pathname',
 })

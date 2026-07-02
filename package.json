@@ -50,7 +50,7 @@
     "@vant/area-data": "^2.1.0",
     "@vueuse/core": "^11.0.3",
     "@wot-ui/router": "^1.1.2",
-    "@wot-ui/ui": "2.1.0",
+    "@wot-ui/ui": "^2.2.0",
     "@wot-ui/unocss-preset": "0.0.1-beta.4",
     "alova": "^3.5.1",
     "crypto-js": "^4.2.0",

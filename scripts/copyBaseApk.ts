@@ -14,8 +14,8 @@ const targetBuildApkPath = './dist/build/app/unpackage/debug/android_debug.apk'
 export function copyFile(filePath: string, targetPath: string) {
   console.log('文件源', filePath)
   if (!fs.existsSync(filePath)) {
-    console.log(`${filePath} 文件不存在`)
-    throw new Error(`${filePath} 文件不存在`)
+    console.log(`${filePath} 基座文件不存在，忽略拷贝操作`)
+    return
   }
   fs.cp(filePath, targetPath, { recursive: true }, (err: any) => {
     if (err)

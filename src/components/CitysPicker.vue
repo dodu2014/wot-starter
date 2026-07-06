@@ -6,9 +6,9 @@ defineOptions({ name: 'CitysPicker' })
 // eslint-disable-next-line unused-imports/no-unused-vars
 const props = withDefaults(defineProps<Props>(), {
   title: '行政区域',
-  titleWidth: '75px',
+  valueAlign: 'right',
+  titleWidth: undefined,
 })
-
 const emit = defineEmits<{
   confirm: [value: string[], labels: string[]]
 }>()
@@ -22,6 +22,9 @@ interface Props {
   asteriskPosition?: CellAsteriskPosition
   hideAsterisk?: boolean
   ellipsis?: boolean
+  prefixIcon?: string
+  valueAlign?: 'left' | 'center' | 'right'
+  customClass?: string
 }
 
 const { colPickerData } = useColPickerData()
@@ -72,6 +75,9 @@ onMounted(() => {
     :hide-asterisk="hideAsterisk"
     :ellipsis="ellipsis"
     :prop="prop"
+    :prefix-icon="prefixIcon"
+    :value-align="valueAlign"
+    :custom-class="customClass"
     is-link
     @click="togglePicker"
   >

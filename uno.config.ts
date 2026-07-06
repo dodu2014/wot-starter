@@ -18,6 +18,10 @@ import {
 } from 'unocss'
 
 export default defineConfig({
+  blocklist: [/^i-(?![a-z0-9]+:[a-z0-9-]+$).+/],
+  content: {
+    filesystem: ['src/**/*.{vue,html}'],
+  },
   presets: [
     presetUni({
       attributify: false,
@@ -32,10 +36,10 @@ export default defineConfig({
         'display': 'inline-block',
         'vertical-align': 'middle',
       },
-      // HBuilderX 必须针对要使用的 Collections 做异步导入
-      // collections: {
-      //   carbon: () => import('@iconify-json/carbon/icons.json').then(i => i.default),
-      // },
+      // HBuilderX 下显式注册已使用的图标集，避免 Android 构建/运行时图标加载报错。
+      collections: {
+        // carbon: () => import('@iconify/json/json/carbon.json').then(i => i.default),
+      },
     }),
   ],
   transformers: [

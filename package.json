@@ -64,7 +64,7 @@
     "vue-i18n": "9.1.9"
   },
   "devDependencies": {
-    "@alova/wormhole": "1.5.0",
+    "@alova/wormhole": "1.5.2",
     "@commitlint/cli": "^20.3.1",
     "@commitlint/config-conventional": "^20.3.1",
     "@dcloudio/types": "^3.4.29",

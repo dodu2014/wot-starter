@@ -115,8 +115,8 @@ importers:
         version: 9.1.9(vue@3.4.38(typescript@5.9.3))
     devDependencies:
       '@alova/wormhole':
-        specifier: 1.5.0
-        version: 1.5.0
+        specifier: 1.5.2
+        version: 1.5.2
       '@commitlint/cli':
         specifier: ^20.3.1
         version: 20.5.3(@types/node@20.19.43)(conventional-commits-parser@6.4.0)(typescript@5.9.3)
@@ -305,8 +305,8 @@ packages:
   '@alova/shared@1.3.2':
     resolution: {integrity: sha512-1XvDLWgYpVZ99MmLl1f3Fw4T6S6pPYk5afz5cwRVjuq8JXEGsDn9IygDKfvRyWqkqCBx7Jif07LIct1O+MVEow==}
 
-  '@alova/wormhole@1.5.0':
-    resolution: {integrity: sha512-s1z93i41pgzErmHiDvVTbTpzeCBvI4OkVt8sNo05QLPr13Vz13mF83eSXP8et3RxMHRAv3jRgBAbIT+QgbSWPw==}
+  '@alova/wormhole@1.5.2':
+    resolution: {integrity: sha512-87VU1d/hO4oVy5TbPKNsTByhyDFyCOrmAf+qpua3emd9BhvRLNitpIHBrgA7KgLjn9zV8tOLixE/V31RKWsV7g==}
     hasBin: true
 
   '@ampproject/remapping@2.3.0':
@@ -9257,7 +9257,7 @@ snapshots:
 
   '@alova/shared@1.3.2': {}
 
-  '@alova/wormhole@1.5.0':
+  '@alova/wormhole@1.5.2':
     dependencies:
       alova: 3.5.1
       commander: 14.0.3
@@ -12784,18 +12784,18 @@ snapshots:
 
   '@unocss-applet/preset-applet@0.12.2':
     dependencies:
-      '@unocss/core': 66.7.2
+      '@unocss/core': 66.7.4
       '@unocss/preset-mini': 66.7.2
       '@unocss/preset-wind3': 66.7.2
       '@unocss/preset-wind4': 66.7.2
 
   '@unocss-applet/preset-rem-rpx@0.12.2':
     dependencies:
-      '@unocss/core': 66.7.2
+      '@unocss/core': 66.7.4
 
   '@unocss-applet/transformer-attributify@0.12.2':
     dependencies:
-      '@unocss/core': 66.7.2
+      '@unocss/core': 66.7.4
       magic-string: 0.30.21
 
   '@unocss/astro@66.0.0(vite@5.4.21(@types/node@20.19.43)(sass@1.101.0)(terser@5.48.0))(vue@3.4.38(typescript@5.9.3))':

@@ -15,7 +15,7 @@ declare global {
   const HubConnectionBuilder: typeof import('./utils/uni-signalr-client').HubConnectionBuilder
   const VITE_API_BASE_URL: typeof import('./utils/env').VITE_API_BASE_URL
   const VITE_APPID: typeof import('./utils/env').VITE_APPID
-  const VITE_APP_NAME: typeof import('./utils/env').VITE_APP_NAME
+  const VITE_APP_TITLE: typeof import('./utils/env').VITE_APP_TITLE
   const VITE_ENV_NAME: typeof import('./utils/env').VITE_ENV_NAME
   const VITE_ICP: typeof import('./utils/env').VITE_ICP
   const VITE_PLATFORMID: typeof import('./utils/env').VITE_PLATFORMID
@@ -467,7 +467,7 @@ declare module 'vue' {
     readonly HubConnectionBuilder: UnwrapRef<typeof import('./utils/uni-signalr-client')['HubConnectionBuilder']>
     readonly VITE_API_BASE_URL: UnwrapRef<typeof import('./utils/env')['VITE_API_BASE_URL']>
     readonly VITE_APPID: UnwrapRef<typeof import('./utils/env')['VITE_APPID']>
-    readonly VITE_APP_NAME: UnwrapRef<typeof import('./utils/env')['VITE_APP_NAME']>
+    readonly VITE_APP_TITLE: UnwrapRef<typeof import('./utils/env')['VITE_APP_TITLE']>
     readonly VITE_ENV_NAME: UnwrapRef<typeof import('./utils/env')['VITE_ENV_NAME']>
     readonly VITE_ICP: UnwrapRef<typeof import('./utils/env')['VITE_ICP']>
     readonly VITE_PLATFORMID: UnwrapRef<typeof import('./utils/env')['VITE_PLATFORMID']>

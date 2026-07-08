@@ -7,7 +7,9 @@
  * @FilePath: /wot-starter/uno.config.ts
  * 记得注释
  */
+import type { Preset } from 'unocss'
 import { presetUni } from '@uni-helper/unocss-preset-uni'
+import presetLegacyCompat from '@unocss/preset-legacy-compat'
 import { presetWot } from '@wot-ui/unocss-preset'
 
 import {
@@ -41,6 +43,13 @@ export default defineConfig({
         // carbon: () => import('@iconify/json/json/carbon.json').then(i => i.default),
       },
     }),
+    // 遗留兼容预设, https://unocss.dev/presets/legacy-compat
+    // 解决 app 端，不支持的渐变模式
+    presetLegacyCompat({
+      // options
+      legacyColorSpace: true, // 移除 'in oklch' 等关键词，强制使用 sRGB [7†L19-L22]
+      commaStyleColorFunction: true, // 将空格分隔的 rgb() 转为逗号分隔，兼容性更好 [7†L13-L16]
+    }) as Preset<object>,
   ],
   transformers: [
     transformerDirectives(),

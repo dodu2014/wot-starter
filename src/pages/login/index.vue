@@ -98,7 +98,7 @@ onLoad(async (e: any) => {
       </wd-tabs>
       <!-- #endif -->
 
-      <!-- #ifdef WEB -->
+      <!-- #ifndef MP-WEIXIN -->
       <pass-login v-model:agreed="agreed" @login-success="loginSuccess" />
       <!-- #endif -->
     </view>

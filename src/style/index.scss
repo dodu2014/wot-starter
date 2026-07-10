@@ -10,6 +10,14 @@
   }
 }
 
+// Center the left and right sides of the cell
+.wd-cell.is-center {
+  .wd-cell__left,
+  .wd-cell__right {
+    align-items: center;
+  }
+}
+
 .button-reset {
   // 重置按钮样式
   border-radius: 0;

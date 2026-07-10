@@ -113,7 +113,7 @@ onShow(async () => {
 <template>
   <view class="page">
     <!-- 用户信息头部 -->
-    <view class="from-orange/75 to-primary bg-gradient-to-rb text-white">
+    <view class="bg-gradient-to-rb text-white from-primary-4 to-primary-10">
       <wd-navbar
         :title="$t('pages.my.title')"
         safe-area-inset-top placeholder fixed

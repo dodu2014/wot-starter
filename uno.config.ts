@@ -51,6 +51,45 @@ export default defineConfig({
       commaStyleColorFunction: true, // 将空格分隔的 rgb() 转为逗号分隔，兼容性更好 [7†L13-L16]
     }) as Preset<object>,
   ],
+  rules: [
+    [
+      /^text-overflow-(\d+)$/,
+      ([_, d]) =>
+        d === '1'
+          ? { 'white-space': 'nowrap', 'overflow': 'hidden', 'text-overflow': 'ellipsis' }
+          : {
+              'display': '-webkit-box',
+              '-webkit-line-clamp': d,
+              'line-clamp': d,
+              '-webkit-box-orient': 'vertical',
+              'box-orient': 'vertical',
+              'overflow': 'hidden',
+              'text-overflow': 'ellipsis',
+            },
+    ],
+    [
+      /^text-primary-(\d+)$/,
+      ([_, d]) => ({
+        color: `var(--wot-primary-${d})`,
+      }),
+    ],
+    [
+      /^from-primary-(\d+)$/,
+      ([_, d]) => ({
+        '--un-gradient-from-position': '0%',
+        '--un-gradient-from': `var(--wot-primary-${d}, #4d7fff) var(--un-gradient-from-position)`,
+        '--un-gradient-to-position': '100%',
+        '--un-gradient-to': 'rgba(255, 255, 255, 0) var(--un-gradient-to-position)',
+        '--un-gradient-stops': 'var(--un-gradient-from), var(--un-gradient-to)',
+      }),
+    ],
+    [
+      /^to-primary-(\d+)$/,
+      ([_, d]) => ({
+        '--un-gradient-to': `var(--wot-primary-${d}, #4d7fff) var(--un-gradient-to-position)`,
+      }),
+    ],
+  ],
   transformers: [
     transformerDirectives(),
     transformerVariantGroup(),

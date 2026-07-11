@@ -28,7 +28,10 @@ export default defineManifestConfig({
       delay: 0,
     },
     /* 模块配置 */
-    modules: {},
+    modules: {
+      OAuth: {},
+      Payment: {},
+    },
     /* 应用发布信息 */
     distribute: {
       /* android打包配置 */
@@ -55,9 +58,27 @@ export default defineManifestConfig({
       ios: {},
       /* SDK配置 */
       sdkConfigs: {
+        geolocation: {
+          system: {
+            __platform__: ['android'],
+          },
+        },
+        oauth: {
+          weixin: {
+            appid: 'wx7d5adabd3911a519',
+            appsecret: '0c691d53aca3e286a32a0ec2c60e19aa',
+            UniversalLinks: '',
+          },
+        },
         payment: {
           weixin: {
-            appid: '',
+            appid: 'wx7d5adabd3911a519',
+          },
+        },
+        share: {
+          weixin: {
+            appid: 'wx7d5adabd3911a519',
+            UniversalLinks: '',
           },
         },
       },
@@ -114,4 +135,6 @@ export default defineManifestConfig({
     enable: false,
   },
   'vueVersion': '3',
+  'locale': 'zh-CN',
+  'fallbackLocale': 'en-US',
 })

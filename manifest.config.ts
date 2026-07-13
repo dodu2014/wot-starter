@@ -31,6 +31,7 @@ export default defineManifestConfig({
     modules: {
       OAuth: {},
       Payment: {},
+      Share: {},
     },
     /* 应用发布信息 */
     distribute: {
@@ -52,6 +53,10 @@ export default defineManifestConfig({
           '<uses-permission android:name="android.permission.FLASHLIGHT"/>',
           '<uses-feature android:name="android.hardware.camera"/>',
           '<uses-permission android:name="android.permission.WRITE_SETTINGS"/>',
+        ],
+        targetSdkVersion: 30,
+        abiFilters: [
+          'arm64-v8a',
         ],
       },
       /* ios打包配置 */

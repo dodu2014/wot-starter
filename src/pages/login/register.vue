@@ -70,7 +70,7 @@ async function handleSendCode() {
   sendCodeLoading.value = true
   try {
     const { send: sendEmailCode } = useRequest(
-      (email: string) => Webapi_Base.auth.sendEmail({ params: { email } }),
+      (email: string) => Webapi_Base.auth.sendEmail({ params: { email, module: 'User' } }),
       { immediate: false },
     ).onError((err) => {
       toast.error(err.error.message)

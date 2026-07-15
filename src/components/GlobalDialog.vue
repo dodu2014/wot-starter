@@ -9,10 +9,8 @@
 -->
 <script lang="ts" setup>
 import { deepClone, isFunction } from '@wot-ui/ui/common/util'
-import { useI18n } from 'vue-i18n'
 
 const { dialogOptions, currentPage } = storeToRefs(useGlobalDialog())
-const { t } = useI18n()
 
 const dialog = useDialog('globalDialog')
 const currentPath = getCurrentPath()
@@ -29,14 +27,6 @@ watch(() => dialogOptions.value, (newVal) => {
   if (newVal) {
     if (currentPage.value === currentPath) {
       const option = deepClone(newVal)
-      if (!option.cancelButtonText)
-        option.cancelButtonText = t('common.dialog.cancel')
-      if (!(option.cancelButtonProps as any)?.text)
-        (option.cancelButtonProps as any)!.text = t('common.dialog.cancel')
-      if (!option.confirmButtonText)
-        option.confirmButtonText = t('common.dialog.confirm')
-      if (!(option.confirmButtonProps as any)?.text)
-        (option.confirmButtonProps as any)!.text = t('common.dialog.confirm')
       dialog.show(option).then((res) => {
         if (isFunction(option.success)) {
           option.success(res)

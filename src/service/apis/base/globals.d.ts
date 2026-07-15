@@ -2779,6 +2779,34 @@ declare global {
       /**
        * ---
        *
+       * [POST] 注销账户, 删除用户及其关联数据
+       *
+       * **path:** /api/Base/Auth/cancelAccount
+       *
+       * ---
+       *
+       * **Response**
+       * ```ts
+       * type Response = {
+       *   // 响应编号
+       *   code?: number | string
+       *   // 响应消息
+       *   message?: string
+       *   // 响应数据 T
+       *   data?: null
+       *   // 扩展数据
+       *   extend?: null
+       *   // 请求是否返回正确
+       *   isSuccess?: boolean
+       * }
+       * ```
+       */
+      cancelAccount<Config extends Alova2MethodConfig<ApiResult>>(
+        config?: Config
+      ): Alova2Method<ApiResult, 'auth.cancelAccount', Config>;
+      /**
+       * ---
+       *
        * [POST] 发送账号激活码邮件
        *
        * **path:** /api/Base/Auth/sendEmail

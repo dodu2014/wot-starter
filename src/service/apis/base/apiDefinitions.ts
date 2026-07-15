@@ -38,6 +38,7 @@ export default {
   'auth.getProfileInfoByToken': ['GET', '/api/Base/Auth/getProfileInfoByToken'],
   'auth.getProfileInfo': ['GET', '/api/Base/Auth/getProfileInfo'],
   'auth.logout': ['POST', '/api/Base/Auth/logout'],
+  'auth.cancelAccount': ['POST', '/api/Base/Auth/cancelAccount'],
   'auth.sendEmail': ['POST', '/api/Base/Auth/sendEmail'],
   'auth.generateRandomAccount': ['GET', '/api/Base/Auth/generateRandomAccount'],
   'auth.register': ['POST', '/api/Base/Auth/register'],

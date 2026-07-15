@@ -220,6 +220,9 @@
         "userWithdrawToWechat": "User withdrew to WeChat Balance",
         "date": "Date",
         "noContent": "No Content Available"
+      },
+      "cancelAccount": {
+        "title": "Deactivate account"
       }
     },
     "article": {

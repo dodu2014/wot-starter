@@ -120,6 +120,19 @@ export const useUserStore = defineStore(
       }
     }
 
+    /** 注销账户 */
+    async function cancelAccount() {
+      const { error, send } = useRequest(() => Webapi_Base.auth.cancelAccount(), { immediate: false }).onError((err) => {
+        toast.error(err.error?.message || '注销失败')
+      })
+      const res = await send()
+      if (!error.value) {
+        console.log('账户注销成功', res)
+        clear()
+      }
+      return { isSuccess: !error.value, data: res?.data }
+    }
+
     /** 注册请求 */
     const { send: sendRegisterRequest } = useRequest(
       (data: RegisterByEmailModel, role: string) => Webapi_Base.auth.register({ data, headers: { role } }),
@@ -205,6 +218,8 @@ export const useUserStore = defineStore(
       easyLogin,
       /** 退出登录 */
       logout,
+      /** 注销账户 */
+      cancelAccount,
       /** 注册 */
       register,
       /** 检查用户登录状态，未登录时显示提示弹窗并跳转到登录页面 */

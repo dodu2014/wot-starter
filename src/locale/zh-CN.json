@@ -220,6 +220,9 @@
         "userWithdrawToWechat": "用户提现到微信零钱",
         "date": "日期",
         "noContent": "暂无内容"
+      },
+      "cancelAccount": {
+        "title": "注销账号"
       }
     },
     "article": {

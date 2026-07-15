@@ -16,6 +16,7 @@ type _LocationUrl =
   "/pages/login/register" |
   "/pages/login/userAgreement" |
   "/pages/my/index" |
+  "/pages/user/cancelAccount" |
   "/pages/user/changePassword" |
   "/pages/user/message" |
   "/pages/user/profile" |

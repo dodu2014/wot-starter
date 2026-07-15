@@ -32,10 +32,34 @@ function handleLogout() {
     },
   })
 }
+
+function handleCancelAccount() {
+  confirm({
+    title: '注销账户',
+    msg: '注销后您的账户、财务数据及所有关联信息将被永久删除，且无法恢复。确定要申请注销账户吗？',
+    closeOnClickModal: false,
+    confirmButtonText: '确定注销',
+    cancelButtonText: '我再想想',
+    success: async (res) => {
+      if (res.action === 'confirm') {
+        router.push({ path: '/pages/user/cancelAccount' })
+      }
+    },
+  })
+}
+
+function toProtocol(type: 'userAgreement' | 'privacyPolicy') {
+  if (type === 'userAgreement') {
+    router.push({ path: '/pages/login/userAgreement' })
+  }
+  else if (type === 'privacyPolicy') {
+    router.push({ path: '/pages/login/privacyPolicy' })
+  }
+}
 </script>
 
 <template>
-  <view class="flex-col gap-y-3">
+  <view class="flex-col flex-1 gap-4">
     <wd-cell-group border custom-class="!m-0">
       <!-- #ifdef MP-WEIXIN -->
       <button class="button-reset" open-type="openSetting">
@@ -59,13 +83,27 @@ function handleLogout() {
     </wd-cell-group>
 
     <!-- 退出登录/操作区域 -->
-    <view v-if="logined" class="mt-3 text-center">
+    <view v-if="logined" class="flex-center">
       <wd-button size="small" type="danger" round variant="plain" @click="handleLogout">
         <view class="flex-row items-center gap-3">
           <text class="i-carbon:logout" />
           <text>{{ $t('pages.user.settings.logout') }}</text>
         </view>
       </wd-button>
+    </view>
+
+    <!-- 注销账户/显示隐私政策 -->
+    <view v-if="logined" class="mt-auto flex-col items-center justify-center gap-3 pb-8">
+      <!-- 协议勾选 -->
+      <view class="flex-center gap-4">
+        <wd-text type="primary" :text="$t('pages.login.userServiceAgreement')" @click="toProtocol('userAgreement')" />
+        <wd-text type="primary" :text="$t('pages.login.privacyPolicyStatement')" @click="toProtocol('privacyPolicy')" />
+      </view>
+
+      <view class="flex-center gap-2" @click="handleCancelAccount">
+        <text class="i-carbon:port-output" />
+        <wd-text type="default" text="申请注销账户" />
+      </view>
     </view>
   </view>
 </template>

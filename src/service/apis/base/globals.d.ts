@@ -3,7 +3,7 @@
 /**
  * TNT.WebApi 接口文档 | 基础模块 - version v10.0.9.0
  *
- * TNT.WebApi 项目接口文档, Powered By .NET 10.0.9
+ * TNT.WebApi 项目接口文档, Powered By .NET 10.0.12
  *
  * OpenAPI version: 3.1.1
  *
@@ -2817,6 +2817,7 @@ declare global {
        * ```ts
        * type QueryParameters = {
        *   email?: string
+       *   module?: string
        * }
        * ```
        *
@@ -2842,6 +2843,7 @@ declare global {
         Config extends Alova2MethodConfig<ApiResult> & {
           params: {
             email?: string;
+            module?: string;
           };
         }
       >(

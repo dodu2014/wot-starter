@@ -6,6 +6,12 @@
       "sourceType": "github",
       "computedHash": "0557819ce03183457bd196af213996963b5713641bf76546306d826501bab188"
     },
+    "worma-guidelines": {
+      "source": "alovajs/skills",
+      "sourceType": "github",
+      "skillPath": "skills/worma-guidelines/SKILL.md",
+      "computedHash": "792efa7b80764c43f1c54b30bede5fa915e51ab2999e54370f77a13b14d29e2c"
+    },
     "wot-ui-cli": {
       "source": "wot-ui/open-wot",
       "sourceType": "github",

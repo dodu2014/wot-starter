@@ -1,11 +1,7 @@
-/* eslint-disable no-irregular-whitespace */
+import { defineConfig } from 'wormajs'
+import { alovaGlobals } from 'wormajs/plugin'
 
-import type { Config } from '@alova/wormhole'
-
-// For more config detailed visit:
-// https://alova.js.org/tutorial/getting-started/extension-integration
-
-export default <Config>{
+export default defineConfig({
   generator: [
     // demo
     {
@@ -16,16 +12,11 @@ export default <Config>{
        */
       input: 'https://petstore3.swagger.io/api/v3/openapi.json',
       /**
-       * input file platform. Currently only swagger is supported.
-       * When this parameter is specified, the input field only needs to specify the document address without specifying the openapi file
-       */
-      platform: 'swagger',
-
-      /**
        * output path of interface file and type file.
        * Multiple generators cannot have the same address, otherwise the generated code will overwrite each other.
        */
       output: 'src/service/apis/demo',
+      plugins: [alovaGlobals({ global: 'Apis' })],
 
       /**
        * the mediaType of the generated response data. default is `application/json`
@@ -42,16 +33,8 @@ export default <Config>{
        */
       // version: 3,
 
-      /**
-       * type of generated code. The options ​​are `auto/ts/typescript/module/commonjs`.
-       */
+      /** Generated code format. */
       type: 'typescript',
-
-      /**
-       * exported global api name, you can access the generated api globally through this name, default is `Apis`.
-       * it is required when multiple generators are configured, and it cannot be repeated
-       */
-      global: 'Apis',
 
       /**
        * filter or convert the generated api information, return an apiDescriptor, if this function is not specified, the apiDescripor object is not converted
@@ -79,16 +62,11 @@ export default <Config>{
        */
       input: 'http://localhost:5001/openapi/App.json',
       /**
-       * input file platform. Currently only swagger is supported.
-       * When this parameter is specified, the input field only needs to specify the document address without specifying the openapi file
-       */
-      platform: 'swagger',
-
-      /**
        * output path of interface file and type file.
        * Multiple generators cannot have the same address, otherwise the generated code will overwrite each other.
        */
       output: 'src/service/apis/app',
+      plugins: [alovaGlobals({ global: 'Webapi_App' })],
 
       /**
        * the mediaType of the generated response data. default is `application/json`
@@ -105,16 +83,8 @@ export default <Config>{
        */
       // version: 3,
 
-      /**
-       * type of generated code. The options ​​are `auto/ts/typescript/module/commonjs`.
-       */
+      /** Generated code format. */
       type: 'typescript',
-
-      /**
-       * exported global api name, you can access the generated api globally through this name, default is `Apis`.
-       * it is required when multiple generators are configured, and it cannot be repeated
-       */
-      global: 'Webapi_App',
 
       /**
        * filter or convert the generated api information, return an apiDescriptor, if this function is not specified, the apiDescripor object is not converted
@@ -142,16 +112,11 @@ export default <Config>{
        */
       input: 'http://localhost:5001/openapi/Base.json',
       /**
-       * input file platform. Currently only swagger is supported.
-       * When this parameter is specified, the input field only needs to specify the document address without specifying the openapi file
-       */
-      platform: 'swagger',
-
-      /**
        * output path of interface file and type file.
        * Multiple generators cannot have the same address, otherwise the generated code will overwrite each other.
        */
       output: 'src/service/apis/base',
+      plugins: [alovaGlobals({ global: 'Webapi_Base' })],
 
       /**
        * the mediaType of the generated response data. default is `application/json`
@@ -168,16 +133,8 @@ export default <Config>{
        */
       // version: 3,
 
-      /**
-       * type of generated code. The options ​​are `auto/ts/typescript/module/commonjs`.
-       */
+      /** Generated code format. */
       type: 'typescript',
-
-      /**
-       * exported global api name, you can access the generated api globally through this name, default is `Apis`.
-       * it is required when multiple generators are configured, and it cannot be repeated
-       */
-      global: 'Webapi_Base',
 
       /**
        * filter or convert the generated api information, return an apiDescriptor, if this function is not specified, the apiDescripor object is not converted
@@ -205,16 +162,11 @@ export default <Config>{
        */
       input: 'http://localhost:5001/openapi/Weixin.json',
       /**
-       * input file platform. Currently only swagger is supported.
-       * When this parameter is specified, the input field only needs to specify the document address without specifying the openapi file
-       */
-      platform: 'swagger',
-
-      /**
        * output path of interface file and type file.
        * Multiple generators cannot have the same address, otherwise the generated code will overwrite each other.
        */
       output: 'src/service/apis/weixin',
+      plugins: [alovaGlobals({ global: 'Webapi_Weixin' })],
 
       /**
        * the mediaType of the generated response data. default is `application/json`
@@ -231,16 +183,8 @@ export default <Config>{
        */
       // version: 3,
 
-      /**
-       * type of generated code. The options ​​are `auto/ts/typescript/module/commonjs`.
-       */
+      /** Generated code format. */
       type: 'typescript',
-
-      /**
-       * exported global api name, you can access the generated api globally through this name, default is `Apis`.
-       * it is required when multiple generators are configured, and it cannot be repeated
-       */
-      global: 'Webapi_Weixin',
 
       /**
        * filter or convert the generated api information, return an apiDescriptor, if this function is not specified, the apiDescripor object is not converted
@@ -268,16 +212,11 @@ export default <Config>{
        */
       input: 'http://localhost:5001/openapi/Demo.json',
       /**
-       * input file platform. Currently only swagger is supported.
-       * When this parameter is specified, the input field only needs to specify the document address without specifying the openapi file
-       */
-      platform: 'swagger',
-
-      /**
        * output path of interface file and type file.
        * Multiple generators cannot have the same address, otherwise the generated code will overwrite each other.
        */
       output: 'src/service/apis/demo2',
+      plugins: [alovaGlobals({ global: 'Webapi_Demo' })],
 
       /**
        * the mediaType of the generated response data. default is `application/json`
@@ -294,16 +233,8 @@ export default <Config>{
        */
       // version: 3,
 
-      /**
-       * type of generated code. The options ​​are `auto/ts/typescript/module/commonjs`.
-       */
+      /** Generated code format. */
       type: 'typescript',
-
-      /**
-       * exported global api name, you can access the generated api globally through this name, default is `Apis`.
-       * it is required when multiple generators are configured, and it cannot be repeated
-       */
-      global: 'Webapi_Demo',
 
       /**
        * filter or convert the generated api information, return an apiDescriptor, if this function is not specified, the apiDescripor object is not converted
@@ -323,15 +254,4 @@ export default <Config>{
       },
     },
   ],
-
-  /**
-   * extension only
-   * whether to automatically update the interface, enabled by default, check every 5 minutes, closed when set to `false`
-   */
-  autoUpdate: {
-    // Update when editor is launched
-    launchEditor: true,
-    // Check for updates every 5 minutes
-    interval: 5 * 60 * 1000,
-  },
-}
+})

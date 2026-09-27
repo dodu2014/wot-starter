@@ -55,7 +55,7 @@
   "explorer.fileNesting.enabled": true,
   "explorer.fileNesting.expand": false,
   "explorer.fileNesting.patterns": {
-    "vite.config.*": "pages.config.*, manifest.config.*, uno.config.*, volar.config.*, *.env, .env.*, alova.config.*, unh.config.*, tsconfig.*",
+    "vite.config.*": "pages.config.*, manifest.config.*, uno.config.*, volar.config.*, *.env, .env.*, worma.config.*, unh.config.*, tsconfig.*",
     "index.html": "readme.md, license, favicon.ico, changelog.*",
     "eslint.config.mjs": "commitlint.config.*, .editorconfig, .git-cz.*, .npmrc, .nvmrc, .versionrc, renovate.json, .gitignore"
   },

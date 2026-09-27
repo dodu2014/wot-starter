@@ -24,7 +24,7 @@
     "release-major": "standard-version --release-as major",
     "release-minor": "standard-version --release-as minor",
     "release-patch": "standard-version --release-as patch",
-    "alova-gen": "alova gen -f",
+    "gen": "worma gen -f",
     "uvm": "npx @dcloudio/uvm@latest"
   },
   "dependencies": {
@@ -64,7 +64,6 @@
     "vue-i18n": "9.1.9"
   },
   "devDependencies": {
-    "@alova/wormhole": "1.5.2",
     "@commitlint/cli": "^20.3.1",
     "@commitlint/config-conventional": "^20.3.1",
     "@dcloudio/types": "^3.4.29",
@@ -109,6 +108,7 @@
     "vite": "^5.2.8",
     "vitest": "^1.6.0",
     "vue-tsc": "^3.2.2",
+    "wormajs": "^0.4.0",
     "zod": "^4.4.3"
   },
   "pnpm": {

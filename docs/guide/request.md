@@ -45,7 +45,7 @@ catch (error) {
 [Alova](https://github.com/alovajs/alova) 是一个极致高效的请求工具集，本项目已集成此方案，无需额外安装。
 
 :::danger ⚠️ 非常重要
-我们通过[@alova/wormhole](https://alova.js.org/zh-CN/tutorial/getting-started/extension-integration) 完成了编辑器扩展集成，集成 alova 的编辑器扩展可以让它展现出它更强大的力量。
+我们通过 [worma](https://worma.js.org/) 完成 OpenAPI 接口代码生成与编辑器文档集成。生成配置位于 `worma.config.ts`，运行 `pnpm gen` 可重新生成接口代码。
 
 - 自动生成请求代码和响应数据类型，在 js 项目中也能体验对接口数据的智能提示。
 - 将 api 文档嵌入代码中，带你体验边查边用 API 的效果。
@@ -151,15 +151,15 @@ const {
 
 1. **卸载依赖包**
    ```bash
-   npm uninstall alova @alova/adapter-uniapp @alova/mock @alova/shared @alova/wormhole
+   npm uninstall alova @alova/adapter-uniapp @alova/mock @alova/shared wormajs
    # 或者使用 pnpm
-   pnpm remove alova @alova/adapter-uniapp @alova/mock @alova/shared @alova/wormhole
+   pnpm remove alova @alova/adapter-uniapp @alova/mock @alova/shared wormajs
    ```
 
 2. **删除相关配置文件**
    - 删除 `src/api/` 目录下的 alova 相关配置文件
    - 移除项目中引入 alova 的代码
-   - 移除`alova.config.ts`文件
+   - 移除 `worma.config.ts` 文件
 
 3. **替换为其他请求方案**
    - 可以选择上述提到的 [axios](#axios)、[@uni-helper/uni-network](#uni-helperuni-network) 或直接使用 [uni-app 内置方法](#uni-app-内置方法)

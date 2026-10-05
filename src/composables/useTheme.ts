@@ -1,4 +1,4 @@
-import type { ThemeMode } from '@/composables/types/theme'
+import { initializeThemeOnce, subscribeSystemThemeChange } from '@/utils/systemTheme'
 
 /**
  * 简化版系统主题管理组合式API
@@ -28,7 +28,7 @@ import type { ThemeMode } from '@/composables/types/theme'
  * </script>
  *
  * <template>
- *   <wd-config-provider :theme-vars="themeVars">
+ *   <wd-config-provider :theme="theme" :theme-vars="themeVars">
  *     <view :class="{ 'dark-mode': isDark }">
  *       <text>当前主题: {{ theme }}</text>
  *     </view>
@@ -38,27 +38,22 @@ import type { ThemeMode } from '@/composables/types/theme'
  */
 export function useTheme() {
   const store = useThemeStore()
+  let stopThemeChangeListener: (() => void) | undefined
 
   // 组件挂载前初始化系统主题
   onBeforeMount(() => {
-    store.initSystemTheme()
-    // 监听系统主题变化
-    if (typeof uni !== 'undefined' && uni.onThemeChange) {
-      uni.onThemeChange((res) => {
-        // 系统主题变化时自动更新，导航栏颜色由 theme.json 自动处理
-        store.setTheme(res.theme as ThemeMode)
-        console.log('系统主题已切换至:', res.theme)
-      })
-    }
+    initializeThemeOnce(store, () => store.initSystemTheme())
+    stopThemeChangeListener = subscribeSystemThemeChange(store, (res) => {
+      // 系统主题变化时自动更新，导航栏颜色由 theme.json 自动处理
+      store.setTheme(res.theme)
+      console.log('系统主题已切换至:', res.theme)
+    })
   })
 
   // 组件卸载时清理监听
   onUnmounted(() => {
-    if (typeof uni !== 'undefined' && uni.offThemeChange) {
-      uni.offThemeChange((res) => {
-        store.setTheme(res.theme as ThemeMode)
-      })
-    }
+    stopThemeChangeListener?.()
+    stopThemeChangeListener = undefined
   })
 
   return {

@@ -1,6 +1,7 @@
 import type { ThemeColorOption, ThemeMode, ThemeState } from '@/composables/types/theme'
 import { defineStore } from 'pinia'
 import { themeColorOptions } from '@/composables/types/theme'
+import { getSystemTheme } from '@/utils/systemTheme'
 
 function buildThemeVars(color: ThemeColorOption) {
   return {
@@ -29,11 +30,11 @@ export const useManualThemeStore = defineStore('manualTheme', {
     /**
      * 手动切换主题
      * @param mode 指定主题模式，不传则自动切换
-     * @param isFollw 是否是跟随系统
+     * @param isFollowSystem 是否是跟随系统
      */
-    toggleTheme(mode?: ThemeMode, isFollw: boolean = false) {
+    toggleTheme(mode?: ThemeMode, isFollowSystem: boolean = false) {
       this.theme = mode || (this.theme === 'light' ? 'dark' : 'light')
-      if (!isFollw) {
+      if (!isFollowSystem) {
         // 如果不是跟随系统，是手动切换
         this.hasUserSet = true // 标记用户已手动设置
         this.followSystem = false // 不再跟随系统
@@ -50,6 +51,10 @@ export const useManualThemeStore = defineStore('manualTheme', {
       if (follow) {
         this.hasUserSet = false
         this.initTheme() // 重新获取系统主题
+      }
+      else {
+        this.hasUserSet = true
+        this.setNavigationBarColor()
       }
     },
 
@@ -80,27 +85,7 @@ export const useManualThemeStore = defineStore('manualTheme', {
      * @returns 系统主题模式
      */
     getSystemTheme(): ThemeMode {
-      try {
-        // #ifdef MP-WEIXIN
-        // 微信小程序使用 getAppBaseInfo
-        const appBaseInfo = uni.getAppBaseInfo()
-        if (appBaseInfo && appBaseInfo.theme) {
-          return appBaseInfo.theme as ThemeMode
-        }
-        // #endif
-
-        // #ifndef MP-WEIXIN
-        // 其他平台使用 getSystemInfoSync
-        const systemInfo = uni.getSystemInfoSync()
-        if (systemInfo && systemInfo.theme) {
-          return systemInfo.theme as ThemeMode
-        }
-        // #endif
-      }
-      catch (error) {
-        console.warn('获取系统主题失败:', error)
-      }
-      return 'light' // 默认返回 light
+      return getSystemTheme()
     },
 
     /**

@@ -1,6 +1,7 @@
 import type { SystemThemeState, ThemeMode } from '@/composables/types/theme'
 import { defineStore } from 'pinia'
 import { themeColorOptions } from '@/composables/types/theme'
+import { getSystemTheme } from '@/utils/systemTheme'
 
 /**
  * 简化版系统主题状态管理
@@ -11,17 +12,7 @@ export const useThemeStore = defineStore('theme', {
   state: (): SystemThemeState => ({
     theme: 'light',
     themeVars: {
-      darkBackground: '#0f0f0f',
-      darkBackground2: '#1a1a1a',
-      darkBackground3: '#242424',
-      darkBackground4: '#2f2f2f',
-      darkBackground5: '#3d3d3d',
-      darkBackground6: '#4a4a4a',
-      darkBackground7: '#606060',
-      darkColor: '#ffffff',
-      darkColor2: '#e0e0e0',
-      darkColor3: '#a0a0a0',
-      colorTheme: themeColorOptions[0]!.primary,
+      ...themeColorOptions[0].primaryShades,
     },
   }),
 
@@ -35,23 +26,7 @@ export const useThemeStore = defineStore('theme', {
      * @returns 系统主题模式
      */
     getSystemTheme(): ThemeMode {
-      // #ifdef MP-WEIXIN
-      // 微信小程序使用 getAppBaseInfo
-      const appBaseInfo = uni.getAppBaseInfo()
-      if (appBaseInfo && appBaseInfo.theme) {
-        return appBaseInfo.theme as ThemeMode
-      }
-      // #endif
-
-      // #ifndef MP-WEIXIN
-      // 其他平台使用 getSystemInfoSync
-      const systemInfo = uni.getSystemInfoSync()
-      if (systemInfo && systemInfo.theme) {
-        return systemInfo.theme as ThemeMode
-      }
-      // #endif
-
-      return 'light' // 默认返回 light
+      return getSystemTheme()
     },
 
     /**
@@ -68,6 +43,9 @@ export const useThemeStore = defineStore('theme', {
     initSystemTheme() {
       const systemTheme = this.getSystemTheme()
       this.theme = systemTheme
+      this.themeVars = {
+        ...themeColorOptions[0].primaryShades,
+      }
       console.log('初始化系统主题:', this.theme)
     },
   },

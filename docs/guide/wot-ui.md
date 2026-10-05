@@ -38,9 +38,9 @@ Wot UI 是一个轻量、美观、AI友好的 uni-app 组件库，提供80+高�
 
 ## 赞助我们
 
-如果您认为 Wot UI 帮助到了您的开发工作，您可以选择[赞助](/reward/reward.html)我们，赞助无门槛，哪怕是一杯柠檬水也好。
+如果您认为 Wot UI 帮助到了您的开发工作，您可以选择[赞助](https://wot-ui.cn/reward/reward.html)我们，赞助无门槛，哪怕是一杯柠檬水也好。
 
-捐赠后您的昵称、留言等将会展示在[捐赠榜单](/reward/donor.html)中。
+捐赠后您的昵称、留言等将会展示在[捐赠榜单](https://wot-ui.cn/reward/donor.html)中。
 
 ## 生态
 

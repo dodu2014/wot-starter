@@ -147,7 +147,7 @@ const { theme, isDark, themeVars } = useTheme()
 </script>
 
 <template>
-  <wd-config-provider :theme-vars="themeVars">
+  <wd-config-provider :theme="theme" :theme-vars="themeVars">
     <view :class="{ 'dark-mode': isDark }">
       <text>当前主题: {{ theme }}</text>
     </view>
@@ -186,7 +186,7 @@ const {
 </script>
 
 <template>
-  <wd-config-provider :theme-vars="themeVars">
+  <wd-config-provider :theme="theme" :theme-vars="themeVars">
     <view :class="{ 'dark-mode': isDark }">
       <wd-button @click="toggleTheme">
         切换主题

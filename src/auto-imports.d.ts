@@ -73,9 +73,11 @@ declare global {
   const getCurrentInstance: typeof import('vue').getCurrentInstance
   const getCurrentPath: typeof import('./utils/page').getCurrentPath
   const getCurrentScope: typeof import('vue').getCurrentScope
+  const getSystemTheme: typeof import('./utils/systemTheme')['getSystemTheme']
   const getCurrentWatcher: typeof import('vue').getCurrentWatcher
   const h: typeof import('vue').h
   const ignorableWatch: typeof import('@vueuse/core').ignorableWatch
+  const initializeThemeOnce: typeof import('./utils/systemTheme')['initializeThemeOnce']
   const inject: typeof import('vue').inject
   const injectLocal: typeof import('@vueuse/core').injectLocal
   const is: typeof import('./utils/is').is
@@ -195,6 +197,7 @@ declare global {
   const storage: typeof import('./utils/cache/index').storage
   const storeToRefs: typeof import('pinia').storeToRefs
   const subscribeMessages: typeof import('./composables/useSubscribeMessage').subscribeMessages
+  const subscribeSystemThemeChange: typeof import('./utils/systemTheme')['subscribeSystemThemeChange']
   const syncRef: typeof import('@vueuse/core').syncRef
   const syncRefs: typeof import('@vueuse/core').syncRefs
   const templateRef: typeof import('@vueuse/core').templateRef
@@ -522,8 +525,10 @@ declare module 'vue' {
     readonly getCurrentPath: UnwrapRef<typeof import('./utils/page')['getCurrentPath']>
     readonly getCurrentScope: UnwrapRef<typeof import('vue')['getCurrentScope']>
     readonly getCurrentWatcher: UnwrapRef<typeof import('vue')['getCurrentWatcher']>
+    readonly getSystemTheme: UnwrapRef<typeof import('./utils/systemTheme')['getSystemTheme']>
     readonly h: UnwrapRef<typeof import('vue')['h']>
     readonly ignorableWatch: UnwrapRef<typeof import('@vueuse/core')['ignorableWatch']>
+    readonly initializeThemeOnce: UnwrapRef<typeof import('./utils/systemTheme')['initializeThemeOnce']>
     readonly inject: UnwrapRef<typeof import('vue')['inject']>
     readonly injectLocal: UnwrapRef<typeof import('@vueuse/core')['injectLocal']>
     readonly is: UnwrapRef<typeof import('./utils/is')['is']>
@@ -641,6 +646,7 @@ declare module 'vue' {
     readonly storage: UnwrapRef<typeof import('./utils/cache/index')['storage']>
     readonly storeToRefs: UnwrapRef<typeof import('pinia')['storeToRefs']>
     readonly subscribeMessages: UnwrapRef<typeof import('./composables/useSubscribeMessage')['subscribeMessages']>
+    readonly subscribeSystemThemeChange: UnwrapRef<typeof import('./utils/systemTheme')['subscribeSystemThemeChange']>
     readonly syncRef: UnwrapRef<typeof import('@vueuse/core')['syncRef']>
     readonly syncRefs: UnwrapRef<typeof import('@vueuse/core')['syncRefs']>
     readonly templateRef: UnwrapRef<typeof import('@vueuse/core')['templateRef']>

@@ -1,5 +1,6 @@
 import type { ThemeColorOption, ThemeMode } from '@/composables/types/theme'
 import { themeColorOptions } from '@/composables/types/theme'
+import { initializeThemeOnce, subscribeSystemThemeChange } from '@/utils/systemTheme'
 
 /**
  * 完整版主题管理组合式API
@@ -32,7 +33,7 @@ import { themeColorOptions } from '@/composables/types/theme'
  * </script>
  *
  * <template>
- *   <wd-config-provider :theme-vars="themeVars">
+ *   <wd-config-provider :theme="theme" :theme-vars="themeVars">
  *     <view :class="{ 'dark-mode': isDark }">
  *       <wd-button @click="toggleTheme">切换主题</wd-button>
  *       <wd-button @click="openThemeColorPicker">选择主题色</wd-button>
@@ -44,14 +45,15 @@ import { themeColorOptions } from '@/composables/types/theme'
 export function useManualTheme() {
   const store = useManualThemeStore()
   const showThemeColorSheet = ref(false)
+  let stopThemeChangeListener: (() => void) | undefined
 
   /**
    * 切换暗黑模式
    * @param mode 指定主题模式，不传则自动切换
-   * @param isFollw 是否跟随系统
+   * @param isFollowSystem 是否跟随系统
    */
-  function toggleTheme(mode?: ThemeMode, isFollw: boolean = false) {
-    store.toggleTheme(mode, isFollw)
+  function toggleTheme(mode?: ThemeMode, isFollowSystem: boolean = false) {
+    store.toggleTheme(mode, isFollowSystem)
   }
 
   /**
@@ -86,16 +88,12 @@ export function useManualTheme() {
 
   // 组件挂载前初始化主题
   onBeforeMount(() => {
-    initTheme()
-
-    // 监听系统主题变化
-    if (typeof uni !== 'undefined' && uni.onThemeChange) {
-      uni.onThemeChange((res) => {
-        if (store.followSystem) {
-          toggleTheme(res.theme as ThemeMode, true)
-        }
-      })
-    }
+    initializeThemeOnce(store, initTheme)
+    stopThemeChangeListener = subscribeSystemThemeChange(store, (res) => {
+      if (store.followSystem) {
+        store.toggleTheme(res.theme, true)
+      }
+    })
   })
 
   // 页面显示时更新导航栏颜色，确保每次切换页面时导航栏颜色都是正确的
@@ -105,13 +103,8 @@ export function useManualTheme() {
 
   // 组件卸载时清理监听
   onUnmounted(() => {
-    if (typeof uni !== 'undefined' && uni.offThemeChange) {
-      uni.offThemeChange((res) => {
-        if (store.followSystem) {
-          toggleTheme(res.theme as ThemeMode, true)
-        }
-      })
-    }
+    stopThemeChangeListener?.()
+    stopThemeChangeListener = undefined
   })
 
   return {

@@ -73,11 +73,11 @@ declare global {
   const getCurrentInstance: typeof import('vue').getCurrentInstance
   const getCurrentPath: typeof import('./utils/page').getCurrentPath
   const getCurrentScope: typeof import('vue').getCurrentScope
-  const getSystemTheme: typeof import('./utils/systemTheme')['getSystemTheme']
   const getCurrentWatcher: typeof import('vue').getCurrentWatcher
+  const getSystemTheme: typeof import('./utils/systemTheme').getSystemTheme
   const h: typeof import('vue').h
   const ignorableWatch: typeof import('@vueuse/core').ignorableWatch
-  const initializeThemeOnce: typeof import('./utils/systemTheme')['initializeThemeOnce']
+  const initializeThemeOnce: typeof import('./utils/systemTheme').initializeThemeOnce
   const inject: typeof import('vue').inject
   const injectLocal: typeof import('@vueuse/core').injectLocal
   const is: typeof import('./utils/is').is
@@ -197,7 +197,7 @@ declare global {
   const storage: typeof import('./utils/cache/index').storage
   const storeToRefs: typeof import('pinia').storeToRefs
   const subscribeMessages: typeof import('./composables/useSubscribeMessage').subscribeMessages
-  const subscribeSystemThemeChange: typeof import('./utils/systemTheme')['subscribeSystemThemeChange']
+  const subscribeSystemThemeChange: typeof import('./utils/systemTheme').subscribeSystemThemeChange
   const syncRef: typeof import('@vueuse/core').syncRef
   const syncRefs: typeof import('@vueuse/core').syncRefs
   const templateRef: typeof import('@vueuse/core').templateRef

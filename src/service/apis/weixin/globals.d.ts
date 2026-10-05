@@ -1232,7 +1232,7 @@ export interface Scene {
   device_id?: string | null;
 }
 export interface SendResult {
-  type?: number;
+  type?: UploadMediaFileType;
   msg_id?: string | null;
   msg_data_id?: string | null;
   errcode?: ReturnCode;
@@ -1261,7 +1261,7 @@ export interface SyncApiResult {
 
   count?: number | string;
 }
-export type UploadMediaFileType = number;
+export type UploadMediaFileType = 'image' | 'voice' | 'video' | 'thumb' | 'news';
 export type ValueTupleOfintAndint = object;
 export interface Watermark {
   appid?: string | null;
@@ -1741,7 +1741,7 @@ declare global {
        *   // 响应数据 T
        *   // [params2] end
        *   data?: null | {
-       *     type?: number
+       *     type?: "image" | "voice" | "video" | "thumb" | "news"
        *     msg_id?: string | null
        *     msg_data_id?: string | null
        *     errcode?: number

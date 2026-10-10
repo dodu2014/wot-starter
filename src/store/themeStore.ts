@@ -12,7 +12,7 @@ export const useThemeStore = defineStore('theme', {
   state: (): SystemThemeState => ({
     theme: 'light',
     themeVars: {
-      ...themeColorOptions[0].primaryShades,
+      ...themeColorOptions[0]!.primaryShades,
     },
   }),
 
@@ -44,7 +44,7 @@ export const useThemeStore = defineStore('theme', {
       const systemTheme = this.getSystemTheme()
       this.theme = systemTheme
       this.themeVars = {
-        ...themeColorOptions[0].primaryShades,
+        ...themeColorOptions[0]!.primaryShades,
       }
       console.log('初始化系统主题:', this.theme)
     },
